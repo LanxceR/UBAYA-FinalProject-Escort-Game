@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Player Pizzaman
+  m_Controller: {fileID: 9100000, guid: c8d4f3d8225ead54a8b6c033591b0d2b, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: fdbae84030f36cd4ab0fd2c01aae7c57, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fdbae84030f36cd4ab0fd2c01aae7c57, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 934149fe5896c054aba25f32a5412a23, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 934149fe5896c054aba25f32a5412a23, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c024c714593eb684a8ca692b639027c3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c024c714593eb684a8ca692b639027c3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: fa1ec204a0d597f40b6070ce60135138, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fa1ec204a0d597f40b6070ce60135138, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9a3d75b0ea1408143ba9fe0b39db7fa6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9a3d75b0ea1408143ba9fe0b39db7fa6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f6e36fcb2bfec3e44b9e1ca2a77479ca, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f6e36fcb2bfec3e44b9e1ca2a77479ca, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 48a3bb70145394d478f3d0a6f0d1c8f6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 48a3bb70145394d478f3d0a6f0d1c8f6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 82faabc633cefde4693550c7067dbc2a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 82faabc633cefde4693550c7067dbc2a, type: 2}
