@@ -14,6 +14,7 @@ public class WeaponAttackScript : MonoBehaviour
     // Variables
     private float cooldown = 0f;
     private bool canAttack = true;
+    private Coroutine reloadCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -64,36 +65,61 @@ public class WeaponAttackScript : MonoBehaviour
     {
         if (!canAttack) return;
 
-        // If this weapon does NOT have an animation, fire/attack straight away
-        // Otherwise call firing/attack in WeaponAnimation & animator
-        if (!weaponScript.weaponAnimationScript)
-            ShootProjectile();
-        else
-            AttackWithAnim();
+        if (weaponScript.Ammo <= 0 && reloadCoroutine == null)
+        {
+            // Reload
+            reloadCoroutine = StartCoroutine(ReloadCoroutine(weaponScript.reloadTime));
+        }
+        else if (cooldown <= 0f && weaponScript.Ammo > 0)
+        {
+            // If this weapon does NOT have an animation, fire/attack straight away
+            // Otherwise call firing/attack in WeaponAnimation & animator
+            if (!weaponScript.weaponAnimationScript)
+                ShootProjectile();
+            else
+                AttackWithAnim();
+        }
     }
 
     // Execute shoot anim (if available)
     internal void AttackWithAnim()
     {
-        if (cooldown <= 0f && weaponScript.Ammo > 0)
+        weaponScript.weaponAnimationScript.AttackAnimation();
+    }
+
+    // Weapon reload
+    private IEnumerator ReloadCoroutine(float reloadTime)
+    {
+        weaponScript.reloadElapsedTime = 0f;
+
+        while (weaponScript.reloadElapsedTime < reloadTime)
         {
-            weaponScript.weaponAnimationScript.AttackAnimation();
+            weaponScript.reloadElapsedTime += Time.fixedUnscaledDeltaTime;
+
+            yield return null;
         }
+
+        // Reload weapon's ammo
+        weaponScript.UpdateAmmo(weaponScript.startingAmmo);
+
+        weaponScript.reloadElapsedTime = 0f;
+
+        reloadCoroutine = null;
     }
 
     // Attempt to shoot projectile
     internal void ShootProjectile()
     {
-        if (cooldown <= 0f && weaponScript.Ammo > 0)
+        // Call a shoot projectile coroutine from each muzzle subscripts
+        foreach (WeaponMuzzleScript muzzleScript in weaponScript.weaponMuzzleScripts)
         {
-            // Call a shoot projectile coroutine from each muzzle subscripts
-            foreach (WeaponMuzzleScript muzzleScript in weaponScript.weaponMuzzleScripts)
-            {
-                StartCoroutine(muzzleScript.ShootCoroutine());
-            }
-
-            // Set Cooldown
-            cooldown = weaponScript.fireRateDelay;
+            StartCoroutine(muzzleScript.ShootCoroutine());
         }
+
+        // Set Cooldown
+        cooldown = weaponScript.fireRateDelay;
+
+        // Subtract ammo by one
+        weaponScript.UpdateAmmo(weaponScript.Ammo - 1);
     }
 }

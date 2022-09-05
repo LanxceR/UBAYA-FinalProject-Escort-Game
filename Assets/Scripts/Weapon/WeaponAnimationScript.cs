@@ -16,6 +16,7 @@ public class WeaponAnimationScript : MonoBehaviour
     [SerializeField]
     internal Animator animator;
 
+    // TODO: Add weapon reload anim
     // Animation States
     public const string WEAPON_IDLE = "Weapon Idle";
     public const string WEAPON_ATTACK = "Weapon Attack";

@@ -1078,13 +1078,14 @@ MonoBehaviour:
   isBurstFire: 0
   burstAmount: 3
   burstDelay: 0.03
-  startingAmmo: Infinity
+  startingAmmo: 10
   weaponInputScript: {fileID: 1405488519}
   weaponAnimationScript: {fileID: 1405488516}
   weaponAttackScript: {fileID: 1405488518}
   weaponMuzzleScripts:
   - {fileID: 1405488521}
   weaponSpriteScript: {fileID: 1405488520}
+  drawGizmo: 1
 --- !u!114 &1405488518
 MonoBehaviour:
   m_ObjectHideFlags: 0
