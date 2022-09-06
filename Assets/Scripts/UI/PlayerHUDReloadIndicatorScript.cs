@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// The HUD reload indicator script (handles the reload indicator HUD)
+/// The player attached HUD reload indicator script (handles the reload indicator HUD)
 /// </summary>
 public class PlayerHUDReloadIndicatorScript : MonoBehaviour
 {
-    // Reference to the main player script
+    // Reference to the main player HUD script
     [SerializeField]
     internal PlayerHUDScript pHUDScript;
 
@@ -22,7 +22,7 @@ public class PlayerHUDReloadIndicatorScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("HUDReloadIndicatorScript starting");
+        Debug.Log("PlayerHUDReloadIndicatorScript starting");
     }
 
     // Update is called once per frame

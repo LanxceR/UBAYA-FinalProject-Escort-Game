@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// The main HUD script (or the hub)
+/// The main player attached HUD script (or the hub)
 /// </summary>
 public class PlayerHUDScript : MonoBehaviour
 {

@@ -65,18 +65,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 1682162235438324679}
-  fireRateDelay: 0.33333334
+  fireRateDelay: 0.25
   damage: 1
   range: 5
-  velocity: 2.5
+  velocity: 10
   knockbackForce: 10
   spread: 20
   isFullAuto: 0
   isBurstFire: 0
-  reloadTime: 2
+  reloadTime: 1.2
   burstAmount: 3
   burstDelay: 0.03
-  startingAmmo: 10
+  startingAmmo: 5
   weaponInputScript: {fileID: 1682162235438324673}
   weaponAnimationScript: {fileID: 1682162235438324674}
   weaponAttackScript: {fileID: 1682162235438324672}

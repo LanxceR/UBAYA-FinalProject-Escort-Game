@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c501acea7e870a74da38229e9394c7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hudReloadScript: {fileID: 1975930359}
+  pHUDReloadScript: {fileID: 1975930359}
 --- !u!114 &1975930359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0f0c3e6761888479957f2b62f2fe0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hudScript: {fileID: 6790172340947755722}
+  pHUDScript: {fileID: 6790172340947755722}
   reloadIndicatorSlider: {fileID: 8040423113043011728}
   playerWeaponScript: {fileID: 0}
 --- !u!1 &8040423113657794431
