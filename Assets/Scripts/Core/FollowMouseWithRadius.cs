@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Object Follow Mouse behaviour
+/// Object Follow Mouse behaviour with max radius around a root transform
 /// </summary>
-public class FollowMouse : MonoBehaviour
+public class FollowMouseWithRadius : MonoBehaviour
 {
     [SerializeField] private Transform rootTransform;
     [SerializeField] private float maxRadius;

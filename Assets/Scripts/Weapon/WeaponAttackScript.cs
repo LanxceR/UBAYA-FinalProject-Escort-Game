@@ -91,10 +91,12 @@ public class WeaponAttackScript : MonoBehaviour
     private IEnumerator ReloadCoroutine(float reloadTime)
     {
         weaponScript.reloadElapsedTime = 0f;
+        weaponScript.reloadProgress = 0f;
 
         while (weaponScript.reloadElapsedTime < reloadTime)
         {
             weaponScript.reloadElapsedTime += Time.fixedUnscaledDeltaTime;
+            weaponScript.reloadProgress = (weaponScript.reloadElapsedTime / reloadTime * 100);
 
             yield return null;
         }
@@ -103,6 +105,7 @@ public class WeaponAttackScript : MonoBehaviour
         weaponScript.UpdateAmmo(weaponScript.startingAmmo);
 
         weaponScript.reloadElapsedTime = 0f;
+        weaponScript.reloadProgress = 0f;
 
         reloadCoroutine = null;
     }

@@ -25,7 +25,7 @@ public class PlayerInputScript : MonoBehaviour
 
     // OnMove listener from InputAction "MainPlayerInput.inputaction"
     // Sets MoveX and MoveY public properties
-    void OnMove(InputValue moveValue)
+    void OnPMove(InputValue moveValue)
     {
         // TODO: For pausing, implement this later
         //if (!GameManager.GetInstance().IsPlaying) return;

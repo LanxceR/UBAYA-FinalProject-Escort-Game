@@ -32,6 +32,7 @@ public class WeaponScript : MonoBehaviour
 
     // TODO: Probably add a dedicated ammo manager sub-script?
     // References of the weapon's sub-scripts
+    [Header("Sub-scripts")]
     [SerializeField]
     internal WeaponInputScript weaponInputScript;
     [SerializeField]
@@ -48,6 +49,7 @@ public class WeaponScript : MonoBehaviour
 
     // Variables
     internal float reloadElapsedTime;
+    internal float reloadProgress;
 
     // Start is called before the first frame update
     void Start()
@@ -83,7 +85,6 @@ public class WeaponScript : MonoBehaviour
 
         // Reloading (as text & completion percentage)
         Vector3 reloadTextPos = textRootPos + new Vector3(0f, 0.2f * textPos);
-        string reloadProgress = (reloadElapsedTime / reloadTime * 100).ToString();
         if (reloadElapsedTime > 0)
         {
             Handles.Label(reloadTextPos, $"Reloading...{reloadProgress}%");

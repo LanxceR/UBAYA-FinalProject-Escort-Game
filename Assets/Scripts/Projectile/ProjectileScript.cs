@@ -9,11 +9,12 @@ public class ProjectileScript : MonoBehaviour
 {
     // Projectile stats
     [Header("Projectile Stats")]
-    internal float range = 5f;
-    internal float damage = 1f;
-    internal float knockbackForce = 10f;
+    [SerializeField] internal float range = 5f;
+    [SerializeField] internal float damage = 1f;
+    [SerializeField] internal float knockbackForce = 10f;
 
     // References of the projectile's sub-scripts
+    [Header("Sub-scripts")]
     [SerializeField]
     internal ProjectileHitScript projectileHitScript;
     // References of the projectile's sub-scripts
