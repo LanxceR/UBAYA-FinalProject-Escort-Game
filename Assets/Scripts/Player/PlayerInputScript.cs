@@ -23,7 +23,7 @@ public class PlayerInputScript : MonoBehaviour
         Debug.Log("PlayerInputScript starting");
     }
 
-    // OnMove listener from InputAction "MainPlayerInput.inputaction"
+    // OnPMove listener from InputAction "MainPlayerInput.inputaction"
     // Sets MoveX and MoveY public properties
     void OnPMove(InputValue moveValue)
     {
@@ -40,8 +40,8 @@ public class PlayerInputScript : MonoBehaviour
         Input_MoveY = moveVector.y;
     }
 
-    // OnLook listener from InputAction "MainPlayerInput.inputaction"
-    void OnLook(InputValue mousePos)
+    // OnPLook listener from InputAction "MainPlayerInput.inputaction"
+    void OnPLook(InputValue mousePos)
     {
         // Get mouse position on screen
         Input_MousePosition = mousePos.Get<Vector2>();

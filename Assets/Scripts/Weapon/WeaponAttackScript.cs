@@ -28,6 +28,15 @@ public class WeaponAttackScript : MonoBehaviour
         // Countdown cooldown until zero
         cooldown = cooldown - Time.deltaTime > 0 ? cooldown - Time.deltaTime : 0f;
 
+        if (weaponScript.weaponInputScript.Input_Reload == 1)
+        {
+            if (weaponScript.Ammo < weaponScript.startingAmmo && reloadCoroutine == null)
+            {
+                // Reload
+                reloadCoroutine = StartCoroutine(ReloadCoroutine(weaponScript.reloadTime));
+            }
+        }
+
         if (weaponScript.weaponInputScript.Input_Attack == 1)
         {
             if (weaponScript.isFullAuto)

@@ -42,8 +42,8 @@ public class FollowMouseWithRadius : MonoBehaviour
         }
     }
 
-    // OnLook listener from InputAction "PlayerInput.inputaction"
-    void OnLook(InputValue mousePos)
+    // OnPLook listener from InputAction "PlayerInput.inputaction"
+    void OnPLook(InputValue mousePos)
     {
         // Get mouse position on screen
         mousePosition = mousePos.Get<Vector2>();
