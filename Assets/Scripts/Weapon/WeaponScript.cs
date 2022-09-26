@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
 
 /// <summary>
 /// The main weapon script (or the hub)
@@ -64,6 +64,7 @@ public class WeaponScript : MonoBehaviour
         Ammo = newAmmoCount;
     }
 
+#if UNITY_EDITOR
     // Implement this OnDrawGizmosSelected if you want to draw gizmos only if the object is selected
     private void OnDrawGizmos()
     {
@@ -91,4 +92,5 @@ public class WeaponScript : MonoBehaviour
             textPos++;
         }
     }
+#endif
 }
