@@ -15,6 +15,7 @@ public class WeaponInputScript : MonoBehaviour
 
     // 1 = performed, 0 = canceled
     internal float Input_Attack { get; private set; }
+    internal float Input_Reload { get; private set; }
 
     // Start is called just before any of the Update methods is called the first time
     private void Start()
@@ -22,9 +23,16 @@ public class WeaponInputScript : MonoBehaviour
         Debug.Log("WeaponInputScript starting");
     }
 
-    // OnFire listener from InputAction "MainPlayerInput.inputaction"
-    void OnFire(InputValue value)
+    // OnPFire listener from InputAction "MainPlayerInput.inputaction"
+    void OnPFire(InputValue value)
     {
         Input_Attack = value.Get<float>();
+    }
+
+    // OnPReload listener from InputAction "MainPlayerInput.inputaction"
+    void OnPReload(InputValue value)
+    {
+        Input_Reload = value.Get<float>();
+        Debug.Log(Input_Reload);
     }
 }

@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour
     internal float Speed = 5f;
 
     // References of the player's sub-scripts
+    [Header("Sub-scripts")]
     [SerializeField]
     internal PlayerMovementScript playerMovementScript;
     [SerializeField]
