@@ -14,6 +14,8 @@ public class LookAtMouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.GetInstance().GameIsPlaying) return;
+
         // Flip sprite based on parent's euler angle (rotation in degrees)
         // 180 < x < 360  ==>  Aiming left
         // 0 < x < 180  ==>  Aiming right
@@ -26,6 +28,12 @@ public class LookAtMouse : MonoBehaviour
 
             transform.localScale = new Vector3(-1, 1, 1);
         }
+
+        // Translate screen position to world position
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        // "Rotate" this gameobject up axis towards mouse position
+        transform.up = new Vector3(worldPos.x - transform.position.x, worldPos.y - transform.position.y);
     }
 
     // OnPLook listener from InputAction "PlayerInput.inputaction"
@@ -33,11 +41,5 @@ public class LookAtMouse : MonoBehaviour
     {
         // Get mouse position on screen
         mousePosition = mousePos.Get<Vector2>();
-
-        // Translate screen position to world position
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        // "Rotate" this gameobject up axis
-        transform.up = new Vector3(worldPos.x - transform.position.x, worldPos.y - transform.position.y);
     }
 }

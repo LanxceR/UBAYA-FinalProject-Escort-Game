@@ -25,6 +25,8 @@ public class WeaponAttackScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.GetInstance().GameIsPlaying) return;
+
         // Countdown cooldown until zero
         cooldown = cooldown - Time.deltaTime > 0 ? cooldown - Time.deltaTime : 0f;
 
@@ -81,6 +83,15 @@ public class WeaponAttackScript : MonoBehaviour
         }
         else if (cooldown <= 0f && weaponScript.Ammo > 0)
         {
+            // Interrupt any ongoing reload
+            if (reloadCoroutine != null)
+            {
+                StopCoroutine(reloadCoroutine);
+                reloadCoroutine = null;
+                weaponScript.reloadElapsedTime = 0f;
+                weaponScript.reloadProgress = 0f;
+            }
+
             // If this weapon does NOT have an animation, fire/attack straight away
             // Otherwise call firing/attack in WeaponAnimation & animator
             if (!weaponScript.weaponAnimationScript)
@@ -104,7 +115,7 @@ public class WeaponAttackScript : MonoBehaviour
 
         while (weaponScript.reloadElapsedTime < reloadTime)
         {
-            weaponScript.reloadElapsedTime += Time.fixedUnscaledDeltaTime;
+            weaponScript.reloadElapsedTime += Time.deltaTime;
             weaponScript.reloadProgress = (weaponScript.reloadElapsedTime / reloadTime * 100);
 
             yield return null;

@@ -8,7 +8,7 @@ using UnityEngine.Events;
 /// </summary>
 public class GameStateManager : MonoBehaviour
 {
-    // TODO: Perform various gamestate checking for other non-time dependent actions in Unity!!!
+    // TODO: (DONE) Perform various gamestate checking for other non-time dependent actions in Unity!!!
 
     // Reference to the game manager script
     [SerializeField]

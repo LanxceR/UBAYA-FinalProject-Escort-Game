@@ -1120,9 +1120,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1099540352}
     m_Modifications:
+    - target: {fileID: 4133587222346563355, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7731216073637533441, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
       propertyPath: m_Name
       value: Canvas In-Game UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731216073637533441, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7731216073637533452, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
       propertyPath: m_Camera

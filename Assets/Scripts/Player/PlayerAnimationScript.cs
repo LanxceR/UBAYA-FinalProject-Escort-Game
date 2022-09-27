@@ -44,6 +44,8 @@ public class PlayerAnimationScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.GetInstance().GameIsPlaying) return;
+
         UpdateAnimationDirection();
     }
 
