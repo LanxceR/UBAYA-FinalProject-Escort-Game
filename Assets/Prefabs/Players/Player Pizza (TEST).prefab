@@ -916,9 +916,21 @@ PrefabInstance:
       propertyPath: playerWeaponScript
       value: 
       objectReference: {fileID: 1682162235438324675}
+    - target: {fileID: 8040423112634622371, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8040423112761327668, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040423112761327669, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040423113043011730, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113043011730, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_IsActive
@@ -954,7 +966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 640
+      value: 640.00006
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_SizeDelta.y
@@ -970,7 +982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_LocalRotation.w
@@ -978,15 +990,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1024,9 +1036,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas Player HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 8040423113550862878, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040423113657794431, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040423114127748292, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8040423114288824257, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040423114288824258, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040423114388371501, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040423114506124058, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8040423114506124058, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_IsActive

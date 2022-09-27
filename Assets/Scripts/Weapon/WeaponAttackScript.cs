@@ -9,7 +9,7 @@ public class WeaponAttackScript : MonoBehaviour
 {
     // Reference to the main player script
     [SerializeField]
-    internal WeaponScript weaponScript;
+    private WeaponScript weaponScript;
 
     // Variables
     private float cooldown = 0f;

@@ -14,11 +14,11 @@ public class PlayerAnimationScript : MonoBehaviour
 {
     // Reference to the main player script
     [SerializeField]
-    internal PlayerScript playerScript;
+    private PlayerScript playerScript;
 
     // Components
     [SerializeField]
-    internal Animator animator;
+    private Animator animator;
 
     // Animation States
     public const string PLAYER_IDLE_FRONT = "Player Idle Front";

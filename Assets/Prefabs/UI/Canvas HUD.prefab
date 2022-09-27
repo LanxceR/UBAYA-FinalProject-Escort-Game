@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1247278644278437421}
   - component: {fileID: 4544646583532400673}
   - component: {fileID: 2689341742710053674}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Canvas HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 1247278645655977143}
   - component: {fileID: 1247278645655977145}
   - component: {fileID: 1247278645655977142}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Ammo Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}

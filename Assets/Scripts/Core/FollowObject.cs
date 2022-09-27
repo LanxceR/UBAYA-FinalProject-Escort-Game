@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class FollowObject : MonoBehaviour
 {
-    // TODO: Programmatically assign this object to follow for various overhead HUD elements
+    // TODO: (UNUSED?) Programmatically assign this object to follow for various overhead HUD elements
     // Components
     [Header("Components")]
     [SerializeField]

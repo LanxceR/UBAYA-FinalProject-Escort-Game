@@ -33,6 +33,5 @@ public class WeaponInputScript : MonoBehaviour
     void OnPReload(InputValue value)
     {
         Input_Reload = value.Get<float>();
-        Debug.Log(Input_Reload);
     }
 }

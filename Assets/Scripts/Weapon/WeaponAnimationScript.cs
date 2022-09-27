@@ -10,11 +10,11 @@ public class WeaponAnimationScript : MonoBehaviour
 {
     // Reference to the main player script
     [SerializeField]
-    internal WeaponScript weaponScript;
+    private WeaponScript weaponScript;
 
     // Components
     [SerializeField]
-    internal Animator animator;
+    private Animator animator;
 
     // TODO: Add weapon reload anim
     // Animation States

@@ -9,11 +9,11 @@ public class WeaponMuzzleScript : MonoBehaviour
 {
     // Reference to the main player script
     [SerializeField]
-    internal WeaponScript weaponScript;
+    private WeaponScript weaponScript;
 
     // Components
     [SerializeField]
-    internal List<GameObject> muzzles;
+    private List<GameObject> muzzles;
 
     // Settings
     [Header("Prefab Type")]

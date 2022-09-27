@@ -11,7 +11,7 @@ public class PlayerInputScript : MonoBehaviour
 {
     // Reference to the main player script
     [SerializeField]
-    internal PlayerScript playerScript;
+    private PlayerScript playerScript;
 
     internal float Input_MoveX { get; private set; }
     internal float Input_MoveY { get; private set; }
