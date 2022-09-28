@@ -5,20 +5,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// The HUD script (handles the ammo counter HUD)
+/// The ammo HUD script (handles the ammo counter HUD)
 /// </summary>
 public class HUDAmmoScript : MonoBehaviour
 {
     // Reference to the main HUD script
     [SerializeField]
-    internal HUDScript hudScript;
+    private HUDScript hudScript;
 
     // TODO: Implement accessing playerWeaponScript programmatically (through a game manager)
     // Components
     [SerializeField]
-    internal TextMeshProUGUI ammoText;
+    private TextMeshProUGUI ammoText;
     [SerializeField]
-    internal WeaponScript playerWeaponScript;
+    private WeaponScript playerWeaponScript;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +29,7 @@ public class HUDAmmoScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Update ammo counter text
         ammoText.text = $"{playerWeaponScript.Ammo} / {playerWeaponScript.startingAmmo}";
     }
 }

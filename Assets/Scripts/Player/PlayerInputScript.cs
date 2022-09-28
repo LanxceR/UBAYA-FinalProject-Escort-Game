@@ -11,7 +11,7 @@ public class PlayerInputScript : MonoBehaviour
 {
     // Reference to the main player script
     [SerializeField]
-    internal PlayerScript playerScript;
+    private PlayerScript playerScript;
 
     internal float Input_MoveX { get; private set; }
     internal float Input_MoveY { get; private set; }
@@ -27,8 +27,7 @@ public class PlayerInputScript : MonoBehaviour
     // Sets MoveX and MoveY public properties
     void OnPMove(InputValue moveValue)
     {
-        // TODO: For pausing, implement this later
-        //if (!GameManager.GetInstance().IsPlaying) return;
+        if (!GameManager.GetInstance().GameIsPlaying) return;
 
         // Get input value
         Vector2 moveVector = moveValue.Get<Vector2>();

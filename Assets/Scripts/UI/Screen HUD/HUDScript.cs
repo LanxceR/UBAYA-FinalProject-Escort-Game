@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class HUDScript : MonoBehaviour
 {
+    // TODO: (DUPLICATE) Applies to ALL UI/HUD elements. Programmatically assign render cameras for each UI canvases!!
+
     // References of the HUD's sub-scripts
     [SerializeField]
     internal HUDAmmoScript hudAmmoScript;

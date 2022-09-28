@@ -17,6 +17,8 @@ public class FollowMouseWithRadius : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.GetInstance().GameIsPlaying) return;
+
         // Translate screen position to world position
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         Vector2 worldPos = ray.GetPoint(0.5f);

@@ -9,11 +9,11 @@ public class WeaponSpriteScript : MonoBehaviour
 {
     // Reference to the main player script
     [SerializeField]
-    internal WeaponScript weaponScript;
+    private WeaponScript weaponScript;
 
     // Components
     [SerializeField]
-    internal SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
     // Variables
     private float degRotation;
