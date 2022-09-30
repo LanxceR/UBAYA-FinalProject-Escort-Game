@@ -9,6 +9,15 @@ public class GameManager : MonoBehaviour
 {
     // Singleton instance
     private static GameManager instance;
+    internal static GameManager Instance
+    {
+        get
+        {
+            if (instance == null) Debug.LogError("GameManager is NULL");
+            return instance;
+        }
+        private set { instance = value; }
+    }
 
     [Header("Game States")]
     [SerializeField] internal bool GameIsPlaying = true; // Bool to determine if player is in menu or playing the game
@@ -40,11 +49,5 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this);
-    }
-
-    // Get singleton instance
-    internal static GameManager GetInstance()
-    {
-        return instance;
     }
 }

@@ -14,7 +14,7 @@ public class LookAtMouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.GetInstance().GameIsPlaying) return;
+        if (!GameManager.Instance.GameIsPlaying) return;
 
         // Flip sprite based on parent's euler angle (rotation in degrees)
         // 180 < x < 360  ==>  Aiming left

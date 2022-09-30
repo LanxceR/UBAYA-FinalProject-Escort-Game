@@ -25,7 +25,7 @@ public class WeaponAttackScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.GetInstance().GameIsPlaying) return;
+        if (!GameManager.Instance.GameIsPlaying) return;
 
         // Countdown cooldown until zero
         cooldown = cooldown - Time.deltaTime > 0 ? cooldown - Time.deltaTime : 0f;

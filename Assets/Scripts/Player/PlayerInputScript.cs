@@ -27,7 +27,7 @@ public class PlayerInputScript : MonoBehaviour
     // Sets MoveX and MoveY public properties
     void OnPMove(InputValue moveValue)
     {
-        if (!GameManager.GetInstance().GameIsPlaying) return;
+        if (!GameManager.Instance.GameIsPlaying) return;
 
         // Get input value
         Vector2 moveVector = moveValue.Get<Vector2>();
