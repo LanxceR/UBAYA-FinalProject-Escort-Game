@@ -17,6 +17,7 @@ public class ProjectileMovementScript : MonoBehaviour
 
     // Variables
     private Vector2 startingPosition;
+    private Vector2 dir;
 
     // Start is called before the first frame update
     void Start()
@@ -53,5 +54,16 @@ public class ProjectileMovementScript : MonoBehaviour
     internal void SetVelocity(float velocity)
     {
         moveableComp.SetSpeed(velocity);
+    }
+
+    internal void SetDirection(Vector3 direction)
+    {
+        dir.x = direction.x;
+        dir.y = direction.y;
+        moveableComp.SetDirection(dir.normalized);
+    }
+    internal void SetDirection(Vector2 direction)
+    {
+        moveableComp.SetDirection(direction.normalized);
     }
 }

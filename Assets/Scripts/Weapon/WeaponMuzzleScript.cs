@@ -27,15 +27,25 @@ public class WeaponMuzzleScript : MonoBehaviour
             // Request an object pool
             PoolObject poolObj = ObjectPooler.GetInstance().RequestObject(poolObjectType);
 
-            // Calculate direction with given spread deviation (randomed)
-            Quaternion direction = Quaternion.Euler(
+            // Calculate rotation with given spread deviation (randomed)
+            Quaternion rotation = Quaternion.Euler(
                 muzzle.transform.rotation.eulerAngles.x,
                 muzzle.transform.rotation.eulerAngles.y,
                 muzzle.transform.rotation.eulerAngles.z + Random.Range(-spread / 2, spread / 2)
                 );
-
+            
             // Activate fetched object
-            ProjectileScript projectile = poolObj.Activate(muzzle.transform.position, direction).GetComponent<ProjectileScript>();
+            ProjectileScript projectile = poolObj.Activate(muzzle.transform.position, Quaternion.identity).GetComponent<ProjectileScript>();
+            
+            // Offset projectile spawn position (to take into account sprite sort point)
+            projectile.transform.position += projectile.spawnOffset;
+
+            // Set projectile rotation
+            projectile.projectileAnimationScript.model.transform.rotation = rotation;
+
+            // Set projectile direction
+            Vector2 direction = rotation * Vector2.up;
+            projectile.projectileMovementScript.SetDirection(direction);
 
             // Stats for projectile
             projectile.SetDamage(damage);
