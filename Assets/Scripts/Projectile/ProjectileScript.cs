@@ -13,13 +13,18 @@ public class ProjectileScript : MonoBehaviour
     [SerializeField] internal float damage = 1f;
     [SerializeField] internal float knockbackForce = 10f;
 
+    // Settings
+    [Header("Projectile Settings")]
+    [SerializeField] internal Vector3 spawnOffset = Vector3.zero;
+
     // References of the projectile's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]
     internal ProjectileHitScript projectileHitScript;
-    // References of the projectile's sub-scripts
     [SerializeField]
     internal ProjectileMovementScript projectileMovementScript;
+    [SerializeField]
+    internal ProjectileAnimationScript projectileAnimationScript;
 
     // Methods to change stats
     // Set projectile range (lifetime based on dist. travelled)

@@ -22,8 +22,8 @@ public class InGamePauseUIScript : MonoBehaviour
         Debug.Log("InGamePauseUIScript starting");
 
         // Subscribe methods to game manager
-        GameManager.GetInstance().gameState.OnPauseAction += PauseGame;
-        GameManager.GetInstance().gameState.OnResumeAction += ResumeGame;
+        GameManager.Instance.gameState.OnPauseAction += PauseGame;
+        GameManager.Instance.gameState.OnResumeAction += ResumeGame;
 
         // Disable pause panel at start
         pausePanel.SetActive(false);
