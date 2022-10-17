@@ -41,7 +41,8 @@ public class WeaponMuzzleScript : MonoBehaviour
             projectile.transform.position += projectile.spawnOffset;
 
             // Set projectile rotation
-            projectile.projectileAnimationScript.model.transform.rotation = rotation;
+            projectile.projectileAnimationScript.projectileModel.transform.rotation = rotation;
+            projectile.projectileCollisionScript.projectileCollider.transform.rotation = rotation;
 
             // Set projectile direction
             Vector2 direction = rotation * Vector2.up;

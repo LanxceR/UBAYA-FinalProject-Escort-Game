@@ -8,6 +8,7 @@ using UnityEditor;
 /// </summary>
 public class WeaponScript : MonoBehaviour
 {
+    // TODO: Programatically assign weapon's parent object
     // Settings
     [Header("Parent Settings")]
     [SerializeField] internal GameObject parent;

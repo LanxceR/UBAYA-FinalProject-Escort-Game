@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6ce658d24d7e33a4eab789f019d54ba3
+guid: 913e1526458196e47abfb2314591084d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_0
+      name: Player-Lemper-spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39c55662cd7fb4e4ab3f4fad441d6fa2
-      internalID: -2024151851
+      spriteID: af0c37a80621847498bf1a4a600138cb
+      internalID: -1391400127
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_1
+      name: Player-Lemper-spritesheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -164,14 +164,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4c218ad874f6f346905faba79638fd4
-      internalID: 1916647757
+      spriteID: 8f1e7b9bfd32f054f8017a407cbc172f
+      internalID: -1509621181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_2
+      name: Player-Lemper-spritesheet_2
       rect:
         serializedVersion: 2
         x: 64
@@ -185,14 +185,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0baf6df0628a9845ae230be84599159
-      internalID: -925066083
+      spriteID: 263b4aa7614c2fd4a9b03bd654792db4
+      internalID: 1699186027
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_3
+      name: Player-Lemper-spritesheet_3
       rect:
         serializedVersion: 2
         x: 0
@@ -206,14 +206,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22aa0f09ad7475145bee93af4751dcb8
-      internalID: -1824390235
+      spriteID: 51f27f16cc4ca304eb95e15390d2c26a
+      internalID: -751913390
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_4
+      name: Player-Lemper-spritesheet_4
       rect:
         serializedVersion: 2
         x: 32
@@ -227,14 +227,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c65afe08406140b4f865eab4670c769c
-      internalID: -1412937635
+      spriteID: 7a1f76f6e0175bd449b21f6cbc6e38a6
+      internalID: -678410134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_5
+      name: Player-Lemper-spritesheet_5
       rect:
         serializedVersion: 2
         x: 64
@@ -248,14 +248,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 673d89b26ef6b494f9c919da183c1703
-      internalID: 217221754
+      spriteID: eee3a10591df0b449a0efaadc90fd32c
+      internalID: 868179838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_6
+      name: Player-Lemper-spritesheet_6
       rect:
         serializedVersion: 2
         x: 0
@@ -269,14 +269,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f87f487dea340c479ac73c5fe506535
-      internalID: 2010253497
+      spriteID: 7bec9c71f9b07934ea5c209f4b01b842
+      internalID: 517625686
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_7
+      name: Player-Lemper-spritesheet_7
       rect:
         serializedVersion: 2
         x: 32
@@ -290,14 +290,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a004beac22a062841aac7db8d520dc5f
-      internalID: 424336720
+      spriteID: 78c21ffc5e6173d44871983952fa9583
+      internalID: -751521377
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_8
+      name: Player-Lemper-spritesheet_8
       rect:
         serializedVersion: 2
         x: 0
@@ -311,14 +311,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5044bc6bb7b19e74485e843e625ab505
-      internalID: -1409795240
+      spriteID: ecc98ef0859869f49b71f155a74ad4c1
+      internalID: 197440729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_9
+      name: Player-Lemper-spritesheet_9
       rect:
         serializedVersion: 2
         x: 32
@@ -332,14 +332,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 375d9d178cb827341877747a07434bca
-      internalID: 1635517594
+      spriteID: 436e8614a631ae94db774fa5ce1ccc09
+      internalID: 224898083
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_10
+      name: Player-Lemper-spritesheet_10
       rect:
         serializedVersion: 2
         x: 0
@@ -353,14 +353,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b0bb620c8c1e5d4aa9f32df515cce5f
-      internalID: 1481422696
+      spriteID: 11fa0f485c7ac0448ab6eac7fab3bfae
+      internalID: 2088275327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_11
+      name: Player-Lemper-spritesheet_11
       rect:
         serializedVersion: 2
         x: 32
@@ -374,14 +374,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: beb5ad3257092e3449474c8c4e31e7b0
-      internalID: 1485674986
+      spriteID: 35e932f39f41fc143bc7942d0c73c5b8
+      internalID: 746145473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_12
+      name: Player-Lemper-spritesheet_12
       rect:
         serializedVersion: 2
         x: 64
@@ -395,14 +395,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34c60d9bbc1b8ea44ba43f85c52fc798
-      internalID: 479810740
+      spriteID: 94bc1f296c5edd541af9c8172e726a3b
+      internalID: 1743774492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_13
+      name: Player-Lemper-spritesheet_13
       rect:
         serializedVersion: 2
         x: 96
@@ -416,14 +416,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c9f84b35c315d448bfc2d345cf84781
-      internalID: 1167509838
+      spriteID: 65d22ec45c1af964d9bd80542786bf11
+      internalID: 824032424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_14
+      name: Player-Lemper-spritesheet_14
       rect:
         serializedVersion: 2
         x: 0
@@ -437,14 +437,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e983ccd899678744eb2b8b49b04efe9f
-      internalID: 1145865410
+      spriteID: 994be2d24c0f96c49909308ae064b3ad
+      internalID: 1048707210
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_15
+      name: Player-Lemper-spritesheet_15
       rect:
         serializedVersion: 2
         x: 32
@@ -458,14 +458,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 993ab4e80c8b7464e870d9e137d09aa1
-      internalID: -965458064
+      spriteID: 36bfa33bb4bd4574a80c2d8bdea572fa
+      internalID: -417675213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_16
+      name: Player-Lemper-spritesheet_16
       rect:
         serializedVersion: 2
         x: 64
@@ -479,14 +479,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8edf5b975f75c304fbdfeefc2baee547
-      internalID: 583857244
+      spriteID: 8c5f32cd0cd169848bf01dea5c6136ac
+      internalID: -928440971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_17
+      name: Player-Lemper-spritesheet_17
       rect:
         serializedVersion: 2
         x: 96
@@ -500,14 +500,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55ff7c83e92ad2e49aba3a2dff2e282d
-      internalID: -1507315491
+      spriteID: 54acbe997bd8c4444a71fe5a4d16a610
+      internalID: 1942509062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_18
+      name: Player-Lemper-spritesheet_18
       rect:
         serializedVersion: 2
         x: 0
@@ -521,14 +521,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0a9c9e0561c27f4ab8f4bb96bd374d2
-      internalID: 799669791
+      spriteID: c81229b56807a5f468b6233659f339d7
+      internalID: -1836719407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_19
+      name: Player-Lemper-spritesheet_19
       rect:
         serializedVersion: 2
         x: 32
@@ -542,14 +542,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1109a7c8d49db1640a6d3a1cf7e56e7c
-      internalID: 763759823
+      spriteID: a27408a7e593baa479b7dcf88ef61b10
+      internalID: 860998263
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_20
+      name: Player-Lemper-spritesheet_20
       rect:
         serializedVersion: 2
         x: 64
@@ -563,14 +563,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bd97b3049ff7fc41a64bdbda5ee8cce
-      internalID: 1585159427
+      spriteID: 5a2e1f95c5eead34cb6ae7d5a8da7256
+      internalID: -1258368917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_21
+      name: Player-Lemper-spritesheet_21
       rect:
         serializedVersion: 2
         x: 96
@@ -584,14 +584,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86559a26cba0adb4385fca21c86153a6
-      internalID: -1654507593
+      spriteID: 78f082b2994e8d545a022541aef4b5c5
+      internalID: 1179606809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_22
+      name: Player-Lemper-spritesheet_22
       rect:
         serializedVersion: 2
         x: 0
@@ -605,14 +605,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ea02b41424601e4b92ea3137e1df327
-      internalID: 2068536030
+      spriteID: 12a41802283fc54459987875cce67023
+      internalID: -1674629198
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_23
+      name: Player-Lemper-spritesheet_23
       rect:
         serializedVersion: 2
         x: 32
@@ -626,14 +626,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0257de36a51f8142bd455cf6ff086ac
-      internalID: -507107914
+      spriteID: 3dbd568c6fd851f4f97a4e5377dcb222
+      internalID: 1913033693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_24
+      name: Player-Lemper-spritesheet_24
       rect:
         serializedVersion: 2
         x: 64
@@ -647,14 +647,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8ddb55628160d547a05386eb72f0071
-      internalID: 780388883
+      spriteID: 38f043a99e955a74ebf3e01a0bd01339
+      internalID: -1371944296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy-Pizza-spritesheet_25
+      name: Player-Lemper-spritesheet_25
       rect:
         serializedVersion: 2
         x: 96
@@ -668,8 +668,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81c799b586789c94eb81c0567cd253b1
-      internalID: 344304145
+      spriteID: db8c8861f47086a4ab7211d7b6f780eb
+      internalID: -1036960001
       vertices: []
       indices: 
       edges: []
@@ -685,32 +685,32 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Enemy-Pizza-spritesheet_19: 763759823
-      Enemy-Pizza-spritesheet_1: 1916647757
-      Enemy-Pizza-spritesheet_13: 1167509838
-      Enemy-Pizza-spritesheet_4: -1412937635
-      Enemy-Pizza-spritesheet_17: -1507315491
-      Enemy-Pizza-spritesheet_20: 1585159427
-      Enemy-Pizza-spritesheet_8: -1409795240
-      Enemy-Pizza-spritesheet_21: -1654507593
-      Enemy-Pizza-spritesheet_0: -2024151851
-      Enemy-Pizza-spritesheet_24: 780388883
-      Enemy-Pizza-spritesheet_14: 1145865410
-      Enemy-Pizza-spritesheet_16: 583857244
-      Enemy-Pizza-spritesheet_18: 799669791
-      Enemy-Pizza-spritesheet_5: 217221754
-      Enemy-Pizza-spritesheet_3: -1824390235
-      Enemy-Pizza-spritesheet_9: 1635517594
-      Enemy-Pizza-spritesheet_25: 344304145
-      Enemy-Pizza-spritesheet_15: -965458064
-      Enemy-Pizza-spritesheet_23: -507107914
-      Enemy-Pizza-spritesheet_22: 2068536030
-      Enemy-Pizza-spritesheet_7: 424336720
-      Enemy-Pizza-spritesheet_12: 479810740
-      Enemy-Pizza-spritesheet_2: -925066083
-      Enemy-Pizza-spritesheet_10: 1481422696
-      Enemy-Pizza-spritesheet_11: 1485674986
-      Enemy-Pizza-spritesheet_6: 2010253497
+      Player-Lemper-spritesheet_22: -1674629198
+      Player-Lemper-spritesheet_6: 517625686
+      Player-Lemper-spritesheet_25: -1036960001
+      Player-Lemper-spritesheet_14: 1048707210
+      Player-Lemper-spritesheet_17: 1942509062
+      Player-Lemper-spritesheet_20: -1258368917
+      Player-Lemper-spritesheet_7: -751521377
+      Player-Lemper-spritesheet_0: -1391400127
+      Player-Lemper-spritesheet_4: -678410134
+      Player-Lemper-spritesheet_16: -928440971
+      Player-Lemper-spritesheet_1: -1509621181
+      Player-Lemper-spritesheet_15: -417675213
+      Player-Lemper-spritesheet_5: 868179838
+      Player-Lemper-spritesheet_10: 2088275327
+      Player-Lemper-spritesheet_3: -751913390
+      Player-Lemper-spritesheet_8: 197440729
+      Player-Lemper-spritesheet_2: 1699186027
+      Player-Lemper-spritesheet_9: 224898083
+      Player-Lemper-spritesheet_18: -1836719407
+      Player-Lemper-spritesheet_13: 824032424
+      Player-Lemper-spritesheet_21: 1179606809
+      Player-Lemper-spritesheet_24: -1371944296
+      Player-Lemper-spritesheet_12: 1743774492
+      Player-Lemper-spritesheet_11: 746145473
+      Player-Lemper-spritesheet_19: 860998263
+      Player-Lemper-spritesheet_23: 1913033693
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

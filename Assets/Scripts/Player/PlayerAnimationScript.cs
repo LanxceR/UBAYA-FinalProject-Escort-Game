@@ -20,6 +20,7 @@ public class PlayerAnimationScript : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    // TODO: Hurt/Hit animation, Death animation
     // Animation States
     public const string PLAYER_IDLE_FRONT = "Player Idle Front";
     public const string PLAYER_IDLE_RIGHT = "Player Idle Right";

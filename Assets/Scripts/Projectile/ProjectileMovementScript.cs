@@ -38,7 +38,7 @@ public class ProjectileMovementScript : MonoBehaviour
         if (IsOutOfRange() && !projectileScript.projectileHitScript.HasHit())
         {
             // If projectile has travelled out of range without hitting anything, stop moving
-            moveableComp.StopMoving();
+            StopMoving();
 
             // TODO: Deactivate object using animation timestamps
             gameObject.SetActive(false);
@@ -65,5 +65,10 @@ public class ProjectileMovementScript : MonoBehaviour
     internal void SetDirection(Vector2 direction)
     {
         moveableComp.SetDirection(direction.normalized);
+    }
+
+    internal void StopMoving()
+    {
+        moveableComp.StopMoving();
     }
 }

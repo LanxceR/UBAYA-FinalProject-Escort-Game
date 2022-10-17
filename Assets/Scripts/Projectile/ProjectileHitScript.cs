@@ -5,44 +5,39 @@ using UnityEngine;
 /// <summary>
 /// The projectile damage script (handles all projectile damaging action)
 /// </summary>
-[RequireComponent(typeof(Collider2D))]
 public class ProjectileHitScript : MonoBehaviour
 {
     // Reference to the main player script
     [SerializeField]
     private ProjectileScript projectileScript;
 
-    // Components
-    [SerializeField]
-    private Collider2D projectileCollider; // To disable collider after hitting something
-    internal GameObject attacker;
-
     // Variables
+    private GameObject attacker;
     private bool hit; // To prevent bullet from repeatedly registering consecutive hits
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        projectileCollider = GetComponentInChildren<Collider2D>();
-    }
 
     // This function is called when the object becomes enabled and active
     private void OnEnable()
     {
         // Set hit variable to false (bullet hasn't hit anything yet)
         hit = false;
-
-        // Enable collider
-        projectileCollider.enabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // TODO: Projectile knockback
         if (HasHit())
         {
-            // If projectile has hit something, disable collider
-            projectileCollider.enabled = false;
+            // If projectile has hit something,
+
+            // Disable collider
+            projectileScript.projectileCollisionScript.DisableCollider();
+
+            // Stop moving
+            projectileScript.projectileMovementScript.StopMoving();
+            
+            // TODO: Projectile hit and destroy animation
+            gameObject.SetActive(false);
         }
     }
 
@@ -58,15 +53,22 @@ public class ProjectileHitScript : MonoBehaviour
     }
 
     // Set Hit condition
-    internal void SetHit(bool hit)
+    private void SetHit(bool hit)
     {
         this.hit = hit;
     }
 
-    // TODO: Projectile Hit
+    internal void OnHit(GameObject victim)
+    {
+        Debug.Log($"{attacker.name}'s projectile has hit {victim.transform.parent.parent.name}!");
+
+        // Set bullet hit to true; bullet has hit something
+        SetHit(true);
+    }
+
     // Do damage to a gameObject
     /*
-    public void DoDamage(GameObject victim)
+    private void DoDamage(GameObject victim)
     {
         victim.TryGetComponent<HealthSystem>(out HealthSystem health);
         victim.TryGetComponent<KnockbackSystem>(out KnockbackSystem knockback);

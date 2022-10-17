@@ -93,6 +93,7 @@ public class WeaponAnimationScript : MonoBehaviour
         ChangeAnimationState(WEAPON_ATTACK);
 
         // TODO: Implement shoot/attack timed on a specific frame on an animation clip
+        // Call ShootProjectile method (to shoot projectile(s))
         weaponScript.weaponAttackScript.ShootProjectile();
     }
 

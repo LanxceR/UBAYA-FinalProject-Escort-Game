@@ -16,7 +16,7 @@ public class ProjectileScript : MonoBehaviour
     // Settings
     [Header("Projectile Settings")]
     [SerializeField] internal Vector3 spawnOffset = Vector3.zero;
-
+    
     // References of the projectile's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]
@@ -25,6 +25,11 @@ public class ProjectileScript : MonoBehaviour
     internal ProjectileMovementScript projectileMovementScript;
     [SerializeField]
     internal ProjectileAnimationScript projectileAnimationScript;
+    [SerializeField]
+    internal ProjectileCollisionScript projectileCollisionScript;
+
+    [Header("Misc Settings")]
+    [SerializeField] private bool logDebug = false;
 
     // Methods to change stats
     // Set projectile range (lifetime based on dist. travelled)
