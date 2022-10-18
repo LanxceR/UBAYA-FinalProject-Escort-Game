@@ -53,7 +53,7 @@ public class ProjectileMovementScript : MonoBehaviour
 
     internal void SetVelocity(float velocity)
     {
-        moveableComp.SetSpeed(velocity);
+        moveableComp.speed = velocity;
     }
 
     internal void SetDirection(Vector3 direction)

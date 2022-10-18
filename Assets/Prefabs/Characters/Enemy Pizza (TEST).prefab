@@ -440,7 +440,7 @@ Animator:
   m_GameObject: {fileID: 8235225913366474086}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 6afe8e428a2d6984a99c15ba0d8b54e3, type: 2}
+  m_Controller: {fileID: 22100000, guid: 57d4b0aa4a123e64b8aac412450783ec, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -643,6 +643,9 @@ GameObject:
   - component: {fileID: 8235225914126728359}
   - component: {fileID: 8235225914126728025}
   - component: {fileID: 8235225914126728031}
+  - component: {fileID: 1267373589}
+  - component: {fileID: 1449538883933793047}
+  - component: {fileID: 1848742212066797660}
   m_Layer: 0
   m_Name: Enemy Pizza (TEST)
   m_TagString: Enemy
@@ -701,6 +704,50 @@ SortingGroup:
   m_SortingLayerID: -1297388881
   m_SortingLayer: 2
   m_SortingOrder: 0
+--- !u!114 &1267373589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8235225914126728358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66712dbb5d325543a7a75f4b145a45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: Infinity
+  speed: 0.5
+  enemyAnimationScript: {fileID: 1449538883933793047}
+  healthScript: {fileID: 1848742212066797660}
+--- !u!114 &1449538883933793047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8235225914126728358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fec56a87e38d21c44804254aee46f72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyScript: {fileID: 1267373589}
+  animator: {fileID: 8235225913366474085}
+--- !u!114 &1848742212066797660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8235225914126728358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc0acb03433ece740baa2b5a2335ce31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0
 --- !u!1 &8235225914585798715
 GameObject:
   m_ObjectHideFlags: 0

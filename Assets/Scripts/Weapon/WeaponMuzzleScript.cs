@@ -19,6 +19,7 @@ public class WeaponMuzzleScript : MonoBehaviour
     [Header("Prefab Type")]
     [SerializeField] private PoolObjectType projectileType; //Type of projectile to fire
 
+    // TODO: Use a raycast from player's center to detect a point blank shot happening (Prevent gun phasing through someone and ending up shooting behind them)
     // Fire projectile(s) from this muzzleScripts stored muzzles/fire positions
     public void SpawnProjectile(PoolObjectType poolObjectType, float range, float damage, float velocity, float knockbackForce, float spread, GameObject attacker)
     {

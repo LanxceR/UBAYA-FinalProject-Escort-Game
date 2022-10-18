@@ -26,7 +26,7 @@ public class WeaponAttackScript : MonoBehaviour
     void Update()
     {
         if (!GameManager.Instance.GameIsPlaying) return;
-
+        
         // Countdown cooldown until zero
         cooldown = cooldown - Time.deltaTime > 0 ? cooldown - Time.deltaTime : 0f;
 

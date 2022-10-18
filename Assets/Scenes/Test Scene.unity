@@ -1119,10 +1119,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6249207989594811046, guid: d15d5baad8e86d643bb833166ddb8c47, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1246568505}
+    - target: {fileID: 6780693471056540420, guid: d15d5baad8e86d643bb833166ddb8c47, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d15d5baad8e86d643bb833166ddb8c47, type: 3}
 --- !u!114 &1796956927983966438 stripped
@@ -1318,10 +1318,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Pizza (TEST)
       objectReference: {fileID: 0}
-    - target: {fileID: 8235225914126728358, guid: c4737309330e57c4cb2a97379b87d6bc, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 8235225914126728359, guid: c4737309330e57c4cb2a97379b87d6bc, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1381,15 +1377,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7566496929840350116, guid: d31f05c594204da49964f10c5ad0cc80, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.014006738
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 7566496929840350116, guid: d31f05c594204da49964f10c5ad0cc80, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.06318721
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 7566496929840350116, guid: d31f05c594204da49964f10c5ad0cc80, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0038833618
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 7566496929840350116, guid: d31f05c594204da49964f10c5ad0cc80, type: 3}
       propertyPath: m_LocalRotation.w

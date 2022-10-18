@@ -62,27 +62,34 @@ public class ProjectileHitScript : MonoBehaviour
     {
         Debug.Log($"{attacker.name}'s projectile has hit {victim.transform.parent.parent.name}!");
 
+        // Try to damage victim
+        DoDamage(victim);
+
         // Set bullet hit to true; bullet has hit something
         SetHit(true);
     }
 
     // Do damage to a gameObject
-    /*
     private void DoDamage(GameObject victim)
     {
-        victim.TryGetComponent<HealthSystem>(out HealthSystem health);
-        victim.TryGetComponent<KnockbackSystem>(out KnockbackSystem knockback);
+        // Fetch victim's health on their parent gameobject
+        victim.transform.parent.parent.TryGetComponent<Health>(out Health health);
 
         if (health)
         {
             // Damage health
-            health.TakeDamage(attacker, damage);
+            health.TakeDamage(attacker, projectileScript.damage);
         }
+
+        // TODO: Implement Knockback
+        /*
+        victim.TryGetComponent<KnockbackSystem>(out KnockbackSystem knockback);
 
         if (knockback)
         {
             // Knockback push
             knockback.DoKnockback(knockbackForce, transform.up, !health.isDead, !health.isDead);
         }
-    }*/
+        */
+    }
 }

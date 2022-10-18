@@ -8,9 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Moveable : MonoBehaviour
 {
-    // For convenience
-    private float speed = 1f;
-
+    // Variables
+    internal float speed = 1f;
     private Vector3 direction;
     private Rigidbody2D rb;
 
@@ -73,12 +72,6 @@ public class Moveable : MonoBehaviour
     {
         direction.y = y;
         direction.x = x;
-    }
-
-    // Set move speed
-    internal void SetSpeed(float moveSpeed)
-    {
-        this.speed = moveSpeed;
     }
 
     // Stop moving
