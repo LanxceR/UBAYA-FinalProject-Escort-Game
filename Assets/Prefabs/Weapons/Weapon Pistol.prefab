@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2841505594726194213}
   m_Layer: 0
   m_Name: Weapon Model
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 2841505594858512612}
   m_Layer: 0
   m_Name: Weapon Muzzle
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 2841505595252050280}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 2841505596119360403}
   m_Layer: 0
   m_Name: Weapon Pistol
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
   damage: 1
   range: 5
   velocity: 10
-  knockbackForce: 10
+  knockbackForce: 5
   spread: 5
   isFullAuto: 0
   isBurstFire: 0

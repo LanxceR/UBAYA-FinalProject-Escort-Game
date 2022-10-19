@@ -15,11 +15,24 @@ public class ProjectileHitScript : MonoBehaviour
     private GameObject attacker;
     private bool hit; // To prevent bullet from repeatedly registering consecutive hits
 
+    // Start is called just before any of the Update methods is called the first time
+    private void Start()
+    {
+        if (projectileScript.collisionScript)
+        {
+            // Add listener to collision UnityEvents
+            projectileScript.collisionScript.OnCollisionEnterGO?.AddListener(OnHit);
+        }
+    }
+
     // This function is called when the object becomes enabled and active
     private void OnEnable()
     {
         // Set hit variable to false (bullet hasn't hit anything yet)
         hit = false;
+
+        // Enable collider
+        projectileScript.collisionScript.EnableCollider();
     }
 
     // Update is called once per frame
@@ -31,7 +44,7 @@ public class ProjectileHitScript : MonoBehaviour
             // If projectile has hit something,
 
             // Disable collider
-            projectileScript.projectileCollisionScript.DisableCollider();
+            projectileScript.collisionScript.DisableCollider();
 
             // Stop moving
             projectileScript.projectileMovementScript.StopMoving();
@@ -60,20 +73,21 @@ public class ProjectileHitScript : MonoBehaviour
 
     internal void OnHit(GameObject victim)
     {
+        // TODO: Perform checking and/or retrieve the correct parent victim gameobject
         Debug.Log($"{attacker.name}'s projectile has hit {victim.transform.parent.parent.name}!");
 
         // Try to damage victim
-        DoDamage(victim);
+        Hit(victim);
 
         // Set bullet hit to true; bullet has hit something
         SetHit(true);
     }
 
-    // Do damage to a gameObject
-    private void DoDamage(GameObject victim)
+    // Hit an gameObject (and do various hitting related behaviours)
+    private void Hit(GameObject victim)
     {
         // Fetch victim's health on their parent gameobject
-        victim.transform.parent.parent.TryGetComponent<Health>(out Health health);
+        victim.transform.parent.parent.TryGetComponent(out HealthScript health);
 
         if (health)
         {
@@ -81,15 +95,13 @@ public class ProjectileHitScript : MonoBehaviour
             health.TakeDamage(attacker, projectileScript.damage);
         }
 
-        // TODO: Implement Knockback
-        /*
-        victim.TryGetComponent<KnockbackSystem>(out KnockbackSystem knockback);
+        // Fetch victim's knockback script on their parent gameobject
+        victim.transform.parent.parent.TryGetComponent(out KnockbackScript knockback);
 
         if (knockback)
         {
             // Knockback push
-            knockback.DoKnockback(knockbackForce, transform.up, !health.isDead, !health.isDead);
+            knockback.DoKnockback(projectileScript.knockbackForce, projectileScript.projectileMovementScript.GetDirection(), !health.IsDead, !health.IsDead);
         }
-        */
     }
 }

@@ -25,16 +25,17 @@ public class ProjectileCollisionScript : MonoBehaviour
         EnableCollider();
     }
 
+    // Collider settings
     internal void EnableCollider()
     {
         projectileCollider.enabled = true;
     }
-
     internal void DisableCollider()
     {
         projectileCollider.enabled = false;
     }
 
+    // Collision Processes
     private void CollisionEnter(GameObject other)
     {
         if (!CheckTargetedTags(other)) return;

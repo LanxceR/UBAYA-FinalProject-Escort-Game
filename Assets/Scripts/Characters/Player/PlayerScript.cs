@@ -5,15 +5,17 @@ using UnityEngine;
 /// <summary>
 /// The main player script (or the hub)
 /// </summary>
-[RequireComponent(typeof(Moveable))]
-public class PlayerScript : MonoBehaviour
+[RequireComponent(typeof(MoveableScript))]
+public class PlayerScript : MonoBehaviour, ICharacter
 {
     // Player stats
     [Header("Player Stats")]
     [SerializeField]
     internal float health = 5f;
     [SerializeField]
-    internal float speed = 1f;
+    internal float baseSpeed = 1f;
+    [SerializeField]
+    internal bool knockbackImmune = false;
 
     // References of the player's sub-scripts
     [Header("Sub-scripts")]
@@ -24,7 +26,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     internal PlayerAnimationScript playerAnimationScript;
     [SerializeField]
-    internal Health healthScript;
+    internal HealthScript healthScript;
+    [SerializeField]
+    internal KnockbackScript knockbackScript;
 
     // Start is called before the first frame update
     void Start()
@@ -33,5 +37,8 @@ public class PlayerScript : MonoBehaviour
 
         // Set health
         healthScript.MaxHealth = health;
+
+        // Set knockback immunity
+        knockbackScript.knockbackImmune = this.knockbackImmune;
     }
 }

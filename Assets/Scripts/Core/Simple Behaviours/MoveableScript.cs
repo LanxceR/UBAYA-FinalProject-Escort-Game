@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Moveable objects behaviour
+/// Moveable objects behaviour (for objects that can move under it's own volition)
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
-public class Moveable : MonoBehaviour
+public class MoveableScript : MonoBehaviour
 {
     // Variables
     internal float speed = 1f;
+
+    // Components
     private Vector3 direction;
     private Rigidbody2D rb;
 
@@ -47,10 +49,20 @@ public class Moveable : MonoBehaviour
     // Get the next position according to direction
     internal Vector3 GetNextPosition()
     {
-        return transform.position + GetDirection();
+        return transform.position + GetDirectionWithVelocity();
     }
 
-    internal Vector3 GetDirection()
+    // Get directions
+    // Get direction and return a vector with velocity taken into account
+    internal Vector3 GetDirectionWithVelocity()
+    {
+        if (!rb)
+            return direction.normalized * Time.deltaTime * speed;
+        else
+            return direction.normalized * Time.fixedDeltaTime * speed;
+    }
+    // Get direction and return a normalized vector (magnitude = 1)
+    internal Vector3 GetDirectionNormalized()
     {
         if (!rb)
             return direction.normalized * Time.deltaTime * speed;

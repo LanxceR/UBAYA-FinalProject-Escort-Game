@@ -41,9 +41,9 @@ public class WeaponMuzzleScript : MonoBehaviour
             // Offset projectile spawn position (to take into account sprite sort point)
             projectile.transform.position += projectile.spawnOffset;
 
-            // Set projectile rotation
+            // Set projectile (and it's collider) rotation
             projectile.projectileAnimationScript.projectileModel.transform.rotation = rotation;
-            projectile.projectileCollisionScript.projectileCollider.transform.rotation = rotation;
+            projectile.collisionScript.col.transform.rotation = rotation;
 
             // Set projectile direction
             Vector2 direction = rotation * Vector2.up;
@@ -52,7 +52,7 @@ public class WeaponMuzzleScript : MonoBehaviour
             // Stats for projectile
             projectile.SetDamage(damage);
             projectile.SetRange(range);
-            projectile.projectileMovementScript.SetVelocity(velocity);
+            projectile.projectileMovementScript.SetSpeed(velocity);
             projectile.SetKnockbackForce(knockbackForce);
             projectile.projectileHitScript.SetAttacker(attacker);
         }        

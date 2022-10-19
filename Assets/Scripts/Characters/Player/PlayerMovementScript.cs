@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// The player movement script (handles all player movements)
 /// </summary>
-[RequireComponent(typeof(PlayerScript), typeof(Moveable))]
+[RequireComponent(typeof(PlayerScript), typeof(MoveableScript))]
 public class PlayerMovementScript : MonoBehaviour
 {
     // Reference to the main player script
@@ -13,16 +13,29 @@ public class PlayerMovementScript : MonoBehaviour
     private PlayerScript playerScript;
 
     // Components
-    private Moveable moveableComp;
+    private MoveableScript moveableComp;
 
     // Variables
+    [SerializeField]
+    private float currentSpeed; // To store current calculated speed in respect to other possible modifiers
+    [SerializeField]
+    private float actualSpeed; // To store current actual speed instead of player's base speed
     internal Vector2 dir;
+    private Coroutine knockbackRecoverCoroutine;
 
     // Start is called just before any of the Update methods is called the first time
     private void Start()
     {
         Debug.Log("PlayerMovementScript starting");
-        moveableComp = GetComponent<Moveable>();
+        moveableComp = GetComponent<MoveableScript>();
+        actualSpeed = playerScript.baseSpeed;
+        currentSpeed = playerScript.baseSpeed;
+
+        if (playerScript.knockbackScript)
+        {
+            // Add listener to Health's OnHit UnityEvent
+            playerScript.knockbackScript.KnockbackRecovery.AddListener(KnockbackRecovery);
+        }
     }
 
     // This function is called every fixed framerate frame, if the MonoBehaviour is enabled
@@ -36,9 +49,41 @@ public class PlayerMovementScript : MonoBehaviour
         dir = new Vector2(MoveX, MoveY);
 
         // Set moveable speed
-        moveableComp.speed = playerScript.speed;
+        moveableComp.speed = actualSpeed;
 
         // Move using moveable
         moveableComp.SetDirection(dir);
+    }
+
+    // Method to recover from any knockbacks
+    private void KnockbackRecovery(float recoveryTime)
+    {
+        if (knockbackRecoverCoroutine == null)
+        {
+            StartCoroutine(RecoverFromKnockback(recoveryTime));
+        }
+    }
+
+    private IEnumerator RecoverFromKnockback(float recoveryTime)
+    {
+        float elapsedTime = 0f;
+
+        // Set player's speed to 0
+        actualSpeed = 0;
+
+        // Gradually recover
+        while (elapsedTime < recoveryTime)
+        {
+            elapsedTime += Time.deltaTime;
+
+            actualSpeed = Mathf.Lerp(0, currentSpeed, elapsedTime / recoveryTime);
+
+            yield return null;
+        }
+
+        // Snap the actual speed to the current speed at the end
+        actualSpeed = currentSpeed;
+
+        knockbackRecoverCoroutine = null;
     }
 }

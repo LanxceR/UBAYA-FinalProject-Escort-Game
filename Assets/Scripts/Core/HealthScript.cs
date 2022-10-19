@@ -6,7 +6,7 @@ using UnityEngine.Events;
 /// <summary>
 /// The health script
 /// </summary>
-public class Health : MonoBehaviour
+public class HealthScript : MonoBehaviour
 {
     // Events
     [Header("Events")]
@@ -17,8 +17,8 @@ public class Health : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private float currentHealth;
 
-    public float MaxHealth { get => maxHealth; set => maxHealth = value; }
-    public float CurrentHealth { 
+    internal float MaxHealth { get => maxHealth; set => maxHealth = value; }
+    internal float CurrentHealth { 
         get => currentHealth;
         private set {
             currentHealth = value > MaxHealth ? MaxHealth : value <= 0 ? 0 : value;
@@ -116,28 +116,16 @@ public class Health : MonoBehaviour
         if (isDead)
         {
             SetSpriteColor(deadColor);
-            gameObject.layer = ToLayer(corpseLayerMask.value);
+            gameObject.layer = Utilities.ToLayer(corpseLayerMask.value);
         }
         else if (isInvulnerable)
         {
-            gameObject.layer = ToLayer(invulnerableLayerMask.value);
+            gameObject.layer = Utilities.ToLayer(invulnerableLayerMask.value);
         }
         else
         {
-            gameObject.layer = ToLayer(defaultLayerMask.value);
+            gameObject.layer = Utilities.ToLayer(defaultLayerMask.value);
         }
     }
     */
-
-    // Converts given bitmask to layer number
-    public static int ToLayer(int bitmask)
-    {
-        int result = bitmask > 0 ? 0 : 31;
-        while (bitmask > 1)
-        {
-            bitmask = bitmask >> 1;
-            result++;
-        }
-        return result;
-    }
 }

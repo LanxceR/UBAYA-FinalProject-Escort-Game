@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 1682162236064106789}
   m_Layer: 0
   m_Name: Aim Helper
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 1682162236125928186}
   m_Layer: 0
   m_Name: Trail(TEST)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,15 +341,16 @@ GameObject:
   - component: {fileID: 1682162236686772803}
   - component: {fileID: 1839667179}
   - component: {fileID: 1682162236686773688}
-  - component: {fileID: 1682162236686772804}
   - component: {fileID: 1682162236686772807}
   - component: {fileID: 1682162236686772806}
   - component: {fileID: 1682162236686773689}
   - component: {fileID: 1682162236686772802}
   - component: {fileID: 2724598766007864789}
+  - component: {fileID: 343115373522259718}
+  - component: {fileID: 6791545207713223445}
   m_Layer: 0
   m_Name: Player Pizza (TEST)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -448,18 +449,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1682162236686772804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682162236686773690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da4f86ba10ad74e4ea0b73943b301feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1682162236686772807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,11 +462,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: Infinity
-  speed: 1
+  baseSpeed: 1
+  knockbackImmune: 0
   playerMovementScript: {fileID: 1682162236686772806}
   playerInputScript: {fileID: 1682162236686773689}
   playerAnimationScript: {fileID: 1682162236686772802}
   healthScript: {fileID: 2724598766007864789}
+  knockbackScript: {fileID: 343115373522259718}
 --- !u!114 &1682162236686772806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,6 +482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1682162236686772807}
+  currentSpeed: 0
+  actualSpeed: 0
 --- !u!114 &1682162236686773689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,14 +523,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0acb03433ece740baa2b5a2335ce31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnHit:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHealthReachedZero:
-    m_PersistentCalls:
-      m_Calls: []
   maxHealth: 0
   currentHealth: 0
+--- !u!114 &343115373522259718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682162236686773690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9530357a5486654a98b7c79d2214bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  physMaterial: {fileID: 6200000, guid: e6da2d6b1aa9f344a90c364108bbdd2a, type: 2}
+  knockbackResist: 0
+  recoveryTime: 0.2
+  staggerTime: 0.2
+--- !u!114 &6791545207713223445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682162236686773690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29900944d710574f8779d38ef45f758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1682162236755148562
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +598,7 @@ GameObject:
   - component: {fileID: 1682162237051814617}
   m_Layer: 0
   m_Name: CurrentEquip
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -617,7 +632,7 @@ GameObject:
   - component: {fileID: 1682162237547691129}
   m_Layer: 0
   m_Name: Player Model
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -818,6 +833,10 @@ PrefabInstance:
       propertyPath: playerWeaponScript
       value: 
       objectReference: {fileID: 4723215012371079406}
+    - target: {fileID: 8040423112634622371, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -906,6 +925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas Player HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 8040423113550862878, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
 --- !u!224 &5629878377592717997 stripped
@@ -968,10 +991,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Pistol
       objectReference: {fileID: 0}
-    - target: {fileID: 2841505596119360415, guid: 79f1e0bc3febcd94fb0dc18ead2c6836, type: 3}
-      propertyPath: parent
-      value: 
-      objectReference: {fileID: 1682162236686773690}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79f1e0bc3febcd94fb0dc18ead2c6836, type: 3}
 --- !u!4 &4723215012371079401 stripped

@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 1318883733215571198}
   m_Layer: 0
   m_Name: Shadow
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 8235225913281557861}
   m_Layer: 0
   m_Name: Weapon Model
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 8235225913366474085}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 8235225913413732772}
   m_Layer: 0
   m_Name: Weapon Muzzle
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 8235225913560339397}
   m_Layer: 0
   m_Name: CurrentEquip
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -646,9 +646,12 @@ GameObject:
   - component: {fileID: 1267373589}
   - component: {fileID: 1449538883933793047}
   - component: {fileID: 1848742212066797660}
+  - component: {fileID: 1229547623720970518}
+  - component: {fileID: 3059799812038082763}
+  - component: {fileID: 32714593091820326}
   m_Layer: 0
   m_Name: Enemy Pizza (TEST)
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -684,7 +687,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -718,8 +721,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: Infinity
   speed: 0.5
+  knockbackImmune: 0
   enemyAnimationScript: {fileID: 1449538883933793047}
   healthScript: {fileID: 1848742212066797660}
+  knockbackScript: {fileID: 1229547623720970518}
 --- !u!114 &1449538883933793047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,6 +753,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+--- !u!114 &1229547623720970518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8235225914126728358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9530357a5486654a98b7c79d2214bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  physMaterial: {fileID: 6200000, guid: e6da2d6b1aa9f344a90c364108bbdd2a, type: 2}
+  knockbackResist: 0
+  recoveryTime: 1
+  staggerTime: 1
+--- !u!114 &3059799812038082763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8235225914126728358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f6ecf3e52c61a4aaecf3f69ec10ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  col: {fileID: 6290639784261018946}
+  targetTags:
+  - Player
+--- !u!114 &32714593091820326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8235225914126728358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7df1453bb305f4099d35cbdb555818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  force: 20
 --- !u!1 &8235225914585798715
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,7 +810,7 @@ GameObject:
   - component: {fileID: 8235225914585798713}
   m_Layer: 0
   m_Name: Aim Helper
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -806,7 +856,7 @@ GameObject:
   - component: {fileID: 8235225914754665446}
   m_Layer: 0
   m_Name: Trail(TEST)
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -952,7 +1002,7 @@ GameObject:
   - component: {fileID: 8235225915143424723}
   m_Layer: 0
   m_Name: Weapon Pistol
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -26,7 +26,7 @@ public class ProjectileScript : MonoBehaviour
     [SerializeField]
     internal ProjectileAnimationScript projectileAnimationScript;
     [SerializeField]
-    internal ProjectileCollisionScript projectileCollisionScript;
+    internal CollisionScript collisionScript;
 
     [Header("Misc Settings")]
     [SerializeField] private bool logDebug = false;

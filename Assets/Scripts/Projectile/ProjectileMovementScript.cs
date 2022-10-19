@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// The projectile movement script (handles all projectile movements)
 /// </summary>
-[RequireComponent(typeof(Moveable))]
+[RequireComponent(typeof(MoveableScript))]
 public class ProjectileMovementScript : MonoBehaviour
 {
     // Reference to the main player script
@@ -13,7 +13,7 @@ public class ProjectileMovementScript : MonoBehaviour
     private ProjectileScript projectileScript;
 
     // Components
-    private Moveable moveableComp;
+    private MoveableScript moveableComp;
 
     // Variables
     private Vector2 startingPosition;
@@ -22,7 +22,7 @@ public class ProjectileMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveableComp = GetComponent<Moveable>();
+        moveableComp = GetComponent<MoveableScript>();
     }
 
     // This function is called when the object becomes enabled and active
@@ -51,7 +51,7 @@ public class ProjectileMovementScript : MonoBehaviour
         return Vector2.Distance(startingPosition, transform.position) > projectileScript.range;
     }
 
-    internal void SetVelocity(float velocity)
+    internal void SetSpeed(float velocity)
     {
         moveableComp.speed = velocity;
     }
@@ -65,6 +65,10 @@ public class ProjectileMovementScript : MonoBehaviour
     internal void SetDirection(Vector2 direction)
     {
         moveableComp.SetDirection(direction.normalized);
+    }
+    internal Vector3 GetDirection()
+    {
+        return moveableComp.GetDirectionWithVelocity().normalized;
     }
 
     internal void StopMoving()

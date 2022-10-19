@@ -47,7 +47,7 @@ public class EnemyAnimationScript : MonoBehaviour
         {
             // Add listener to Health's OnHit UnityEvent
             //UnityEditor.Events.UnityEventTools.AddPersistentListener(enemyScript.healthScript.OnHit, EnemyHurt);            
-            enemyScript.healthScript.OnHit.AddListener(EnemyHurt);
+            enemyScript.healthScript.OnHit?.AddListener(EnemyHurt);
         }
     }
 

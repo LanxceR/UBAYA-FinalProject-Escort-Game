@@ -8,7 +8,6 @@ using UnityEditor;
 /// </summary>
 public class WeaponScript : MonoBehaviour
 {
-    // TODO: Programatically assign weapon's parent object
     // Settings
     [Header("Parent Settings")]
     [SerializeField] internal GameObject parent;
@@ -57,6 +56,30 @@ public class WeaponScript : MonoBehaviour
     {
         Debug.Log("Main WeaponScript starting");
         Ammo = startingAmmo;
+    }
+
+    // This function is called when the object becomes enabled and active
+    private void OnEnable()
+    {
+        AssignParent();
+    }
+
+    // Try to assign a valid parent that implements the ICharacter interface
+    private void AssignParent()
+    {
+        Transform t = this.transform;
+        while (t.parent != null)
+        {
+            if (t.parent.TryGetComponent(out ICharacter _))
+            {
+                parent = t.parent.gameObject; 
+                return;
+            }
+            t = t.parent;
+        }
+
+        // Could not find a parent with implementing ICharacter
+        parent = this.gameObject;
     }
 
     // To update ammo count

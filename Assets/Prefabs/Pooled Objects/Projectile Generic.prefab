@@ -209,12 +209,12 @@ GameObject:
   - component: {fileID: 1892697278814914595}
   - component: {fileID: 512879018223981086}
   - component: {fileID: 1429416601}
-  - component: {fileID: 7246473564500421413}
   - component: {fileID: 7038735463007049559}
   - component: {fileID: 7542916428049988055}
   - component: {fileID: 6428794869061359875}
   - component: {fileID: 884628123488878989}
-  - component: {fileID: -575162761088225098}
+  - component: {fileID: 6046900791852495642}
+  - component: {fileID: 8946504609972496669}
   m_Layer: 0
   m_Name: Projectile Generic
   m_TagString: Projectile
@@ -337,18 +337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 0
---- !u!114 &7246473564500421413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4201512056582742862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da4f86ba10ad74e4ea0b73943b301feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7038735463007049559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,7 +356,7 @@ MonoBehaviour:
   projectileHitScript: {fileID: 7542916428049988055}
   projectileMovementScript: {fileID: 6428794869061359875}
   projectileAnimationScript: {fileID: 884628123488878989}
-  projectileCollisionScript: {fileID: -575162761088225098}
+  collisionScript: {fileID: 6046900791852495642}
   logDebug: 0
 --- !u!114 &7542916428049988055
 MonoBehaviour:
@@ -411,7 +399,7 @@ MonoBehaviour:
   projectileScript: {fileID: 7038735463007049559}
   animator: {fileID: 2508213894959448719}
   projectileModel: {fileID: 7675695199186185868}
---- !u!114 &-575162761088225098
+--- !u!114 &6046900791852495642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -420,15 +408,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 4201512056582742862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e558500ba4cd86f419c55cd34dbd2d6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 89f6ecf3e52c61a4aaecf3f69ec10ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileScript: {fileID: 7038735463007049559}
-  projectileCollider: {fileID: 3433842635670957736}
+  col: {fileID: 3433842635670957736}
   targetTags:
   - Enemy
   - Obstacle
   - World
+--- !u!114 &8946504609972496669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4201512056582742862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29900944d710574f8779d38ef45f758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6716274387078471369
 GameObject:
   m_ObjectHideFlags: 0
