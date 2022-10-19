@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum SpeedRecoveryMode { LINEAR, SMOOTHSTEP, SMOOTHSTEP2, EXPONENTIAL}
 /// <summary>
 /// The player movement script (handles all player movements)
 /// </summary>
@@ -20,6 +21,8 @@ public class PlayerMovementScript : MonoBehaviour
     private float currentSpeed; // To store current calculated speed in respect to other possible modifiers
     [SerializeField]
     private float actualSpeed; // To store current actual speed instead of player's base speed
+    [SerializeField]
+    private SpeedRecoveryMode recoveryMode;
     internal Vector2 dir;
     private Coroutine knockbackRecoverCoroutine;
 
@@ -72,11 +75,33 @@ public class PlayerMovementScript : MonoBehaviour
         actualSpeed = 0;
 
         // Gradually recover
-        while (elapsedTime < recoveryTime)
+        while (elapsedTime <= recoveryTime)
         {
             elapsedTime += Time.deltaTime;
 
-            actualSpeed = Mathf.Lerp(0, currentSpeed, elapsedTime / recoveryTime);
+            float t = elapsedTime / recoveryTime;
+
+            switch (recoveryMode)
+            {
+                case SpeedRecoveryMode.LINEAR:
+                    // Linear
+                    actualSpeed = Mathf.Lerp(0, currentSpeed, t);
+                    break;
+                case SpeedRecoveryMode.SMOOTHSTEP:
+                    // SmoothStep
+                    actualSpeed = Mathf.SmoothStep(0, currentSpeed, t);
+                    break;
+                case SpeedRecoveryMode.SMOOTHSTEP2:
+                    // SmoothStep 2
+                    t = t * t * (3f - 2f * t);
+                    actualSpeed = Mathf.Lerp(0, currentSpeed, t);
+                    break;
+                case SpeedRecoveryMode.EXPONENTIAL:
+                    // Exponential
+                    t = t * t;
+                    actualSpeed = Mathf.Lerp(0, currentSpeed, t);
+                    break;
+            }
 
             yield return null;
         }

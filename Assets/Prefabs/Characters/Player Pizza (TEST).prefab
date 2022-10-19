@@ -484,6 +484,7 @@ MonoBehaviour:
   playerScript: {fileID: 1682162236686772807}
   currentSpeed: 0
   actualSpeed: 0
+  recoveryMode: 1
 --- !u!114 &1682162236686773689
 MonoBehaviour:
   m_ObjectHideFlags: 0
