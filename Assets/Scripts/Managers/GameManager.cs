@@ -20,8 +20,18 @@ public class GameManager : MonoBehaviour
     }
 
     [Header("Game States")]
-    [SerializeField] private bool gameIsPlaying = true; // Bool to determine if player is in menu or playing the game
+    [SerializeField] 
+    private bool gameIsPlaying = true; // Bool to determine if player is in menu or playing the game
     internal bool GameIsPlaying { get => gameIsPlaying; set => gameIsPlaying = value; }
+    [SerializeField] [Range(0f, 2f)]
+    private float gameTimeScale = 1f;
+    public float GameTimeScale { get => gameTimeScale; 
+        set 
+        {
+            gameTimeScale = value;
+            gameState.UpdateTimeScale(gameTimeScale);
+        } 
+    }
 
     [Header("Player Prefabs")]
     [SerializeField] private GameObject playerPrefab; // Player prefab to spawn

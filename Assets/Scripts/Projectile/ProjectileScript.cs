@@ -9,8 +9,8 @@ public class ProjectileScript : MonoBehaviour
 {
     // Projectile stats
     [Header("Projectile Stats")]
-    [SerializeField] internal float range = 5f;
-    [SerializeField] internal float damage = 1f;
+    [SerializeField] internal float damage = 99f;
+    [SerializeField] internal float range = 10f;
     [SerializeField] internal float knockbackForce = 10f;
 
     // Settings

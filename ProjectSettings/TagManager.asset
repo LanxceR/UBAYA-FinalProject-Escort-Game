@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - World
   - Obstacle
+  - WeaponAttachPos
   layers:
   - Default
   - TransparentFX

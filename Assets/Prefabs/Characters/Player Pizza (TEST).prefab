@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 1682162237051814617}
   m_Layer: 0
   m_Name: CurrentEquip
-  m_TagString: Untagged
+  m_TagString: WeaponAttachPos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

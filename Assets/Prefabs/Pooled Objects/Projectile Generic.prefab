@@ -349,8 +349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da23cad0ae951647b763a500fd463bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
-  damage: 1
+  damage: 99
+  range: 10
   knockbackForce: 10
   spawnOffset: {x: 0, y: -0.16, z: 0}
   projectileHitScript: {fileID: 7542916428049988055}

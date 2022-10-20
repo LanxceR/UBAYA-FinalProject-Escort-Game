@@ -38,7 +38,7 @@ public class CollisionScript : MonoBehaviour
     }
 
     // Collision Processes
-    private string CollisionEnter(GameObject other)
+    internal string CollisionEnter(GameObject other)
     {
         if (CheckTargetedTags(other) == null) return null;
 
@@ -47,7 +47,7 @@ public class CollisionScript : MonoBehaviour
 
         return other.tag;
     }
-    private string Collision(GameObject other)
+    internal string Collision(GameObject other)
     {
         if (CheckTargetedTags(other) == null) return null;
 
@@ -56,8 +56,47 @@ public class CollisionScript : MonoBehaviour
 
         return other.tag;
     }
+    private string CollisionExit(GameObject other, out string tag)
+    {
+        tag = other.tag;
+        if (CheckTargetedTags(other) == null) return null;
+
+        OnCollisionExit?.Invoke();
+        OnCollisionExitGO?.Invoke(other);
+
+        return other.tag;
+    }
+    internal string CollisionEnter(GameObject other, out string tag)
+    {
+        tag = other.tag;
+        if (CheckTargetedTags(other) == null) return null;
+
+        OnCollisionEnter?.Invoke();
+        OnCollisionEnterGO?.Invoke(other);
+
+        return other.tag;
+    }
+    internal string Collision(GameObject other, out string tag)
+    {
+        tag = other.tag;
+        if (CheckTargetedTags(other) == null) return null;
+
+        OnCollision?.Invoke();
+        OnCollisionGO?.Invoke(other);
+
+        return other.tag;
+    }
+    private string CollisionExit(GameObject other)
+    {
+        if (CheckTargetedTags(other) == null) return null;
+
+        OnCollisionExit?.Invoke();
+        OnCollisionExitGO?.Invoke(other);
+
+        return other.tag;
+    }
     // Collision Processes (with accepted target tags as arguments)
-    private string CollisionExit(GameObject other, string[] targetTags)
+    internal string CollisionExit(GameObject other, string[] targetTags)
     {
         if (CheckTargetedTags(other, targetTags) == null) return null;
 
@@ -84,18 +123,9 @@ public class CollisionScript : MonoBehaviour
 
         return other.tag;
     }
-    private string CollisionExit(GameObject other)
-    {
-        if (CheckTargetedTags(other) == null) return null;
-
-        OnCollisionExit?.Invoke();
-        OnCollisionExitGO?.Invoke(other);
-
-        return other.tag;
-    }
 
     // Check if object collided with a desired tagged object
-    private string CheckTargetedTags(GameObject other)
+    internal string CheckTargetedTags(GameObject other)
     {
         foreach (string tag in targetTags)
         {
@@ -106,7 +136,7 @@ public class CollisionScript : MonoBehaviour
         }
         return null;
     }
-    private string CheckTargetedTags(GameObject other, string[] targetTags)
+    internal string CheckTargetedTags(GameObject other, string[] targetTags)
     {
         foreach (string tag in targetTags)
         {
