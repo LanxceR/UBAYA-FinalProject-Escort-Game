@@ -20,11 +20,24 @@ public class GameManager : MonoBehaviour
     }
 
     [Header("Game States")]
-    [SerializeField] internal bool GameIsPlaying = true; // Bool to determine if player is in menu or playing the game
+    [SerializeField] 
+    private bool gameIsPlaying = true; // Bool to determine if player is in menu or playing the game
+    internal bool GameIsPlaying { get => gameIsPlaying; set => gameIsPlaying = value; }
+    [SerializeField] [Range(0f, 2f)]
+    private float gameTimeScale = 1f;
+    public float GameTimeScale { get => gameTimeScale; 
+        set 
+        {
+            gameTimeScale = value;
+            gameState.UpdateTimeScale(gameTimeScale);
+        } 
+    }
 
     [Header("Player Prefabs")]
-    [SerializeField] private GameObject PlayerPrefab; // Player prefab to spawn
-    [SerializeField] internal GameObject ActivePlayer; // Stored active player
+    [SerializeField] private GameObject playerPrefab; // Player prefab to spawn
+    [SerializeField] private GameObject activePlayer; // Stored active player
+    public GameObject PlayerPrefab { get => playerPrefab; set => playerPrefab = value; }
+    internal GameObject ActivePlayer { get => activePlayer; set => activePlayer = value; }
 
     [Header("Service Locators (Other managers)")]
     // TODO: Put other managers here. GameManager is going to act as the main entryway for accessing these managers
@@ -49,5 +62,10 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this);
+    }
+
+    public void GameOver(GameObject killer)
+    {
+        // TODO: Implement GameOver events here
     }
 }

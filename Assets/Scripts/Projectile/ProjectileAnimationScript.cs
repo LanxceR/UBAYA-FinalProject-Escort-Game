@@ -15,5 +15,5 @@ public class ProjectileAnimationScript : MonoBehaviour
     [SerializeField]
     private Animator animator;
     [SerializeField]
-    internal SpriteRenderer model;
+    internal SpriteRenderer projectileModel;
 }

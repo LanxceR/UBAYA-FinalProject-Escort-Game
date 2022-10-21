@@ -5,25 +5,24 @@ using UnityEngine;
 /// <summary>
 /// The projectile damage script (handles all projectile damaging action)
 /// </summary>
-[RequireComponent(typeof(Collider2D))]
 public class ProjectileHitScript : MonoBehaviour
 {
     // Reference to the main player script
     [SerializeField]
     private ProjectileScript projectileScript;
 
-    // Components
-    [SerializeField]
-    private Collider2D projectileCollider; // To disable collider after hitting something
-    internal GameObject attacker;
-
     // Variables
+    private GameObject attacker;
     private bool hit; // To prevent bullet from repeatedly registering consecutive hits
 
-    // Start is called before the first frame update
-    void Start()
+    // Start is called just before any of the Update methods is called the first time
+    private void Start()
     {
-        projectileCollider = GetComponentInChildren<Collider2D>();
+        if (projectileScript.collisionScript)
+        {
+            // Add listener to collision UnityEvents
+            projectileScript.collisionScript.OnCollisionEnterGO?.AddListener(OnHit);
+        }
     }
 
     // This function is called when the object becomes enabled and active
@@ -33,16 +32,25 @@ public class ProjectileHitScript : MonoBehaviour
         hit = false;
 
         // Enable collider
-        projectileCollider.enabled = true;
+        projectileScript.collisionScript.EnableCollider();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // TODO: Projectile knockback
         if (HasHit())
         {
-            // If projectile has hit something, disable collider
-            projectileCollider.enabled = false;
+            // If projectile has hit something,
+
+            // Disable collider
+            projectileScript.collisionScript.DisableCollider();
+
+            // Stop moving
+            projectileScript.projectileMovementScript.StopMoving();
+            
+            // TODO: Projectile hit and destroy animation
+            gameObject.SetActive(false);
         }
     }
 
@@ -58,29 +66,42 @@ public class ProjectileHitScript : MonoBehaviour
     }
 
     // Set Hit condition
-    internal void SetHit(bool hit)
+    private void SetHit(bool hit)
     {
         this.hit = hit;
     }
 
-    // TODO: Projectile Hit
-    // Do damage to a gameObject
-    /*
-    public void DoDamage(GameObject victim)
+    internal void OnHit(GameObject victim)
     {
-        victim.TryGetComponent<HealthSystem>(out HealthSystem health);
-        victim.TryGetComponent<KnockbackSystem>(out KnockbackSystem knockback);
+        // TODO: Perform checking and/or retrieve the correct parent victim gameobject
+        Debug.Log($"{attacker.name}'s projectile has hit {victim.transform.parent.parent.name}!");
+
+        // Try to damage victim
+        Hit(victim);
+
+        // Set bullet hit to true; bullet has hit something
+        SetHit(true);
+    }
+
+    // Hit an gameObject (and do various hitting related behaviours)
+    private void Hit(GameObject victim)
+    {
+        // Fetch victim's health on their parent gameobject
+        victim.transform.parent.parent.TryGetComponent(out HealthScript health);
 
         if (health)
         {
             // Damage health
-            health.TakeDamage(attacker, damage);
+            health.TakeDamage(attacker, projectileScript.damage);
         }
+
+        // Fetch victim's knockback script on their parent gameobject
+        victim.transform.parent.parent.TryGetComponent(out KnockbackScript knockback);
 
         if (knockback)
         {
             // Knockback push
-            knockback.DoKnockback(knockbackForce, transform.up, !health.isDead, !health.isDead);
+            knockback.DoKnockback(projectileScript.knockbackForce, projectileScript.projectileMovementScript.GetDirection(), !health.IsDead, !health.IsDead);
         }
-    }*/
+    }
 }

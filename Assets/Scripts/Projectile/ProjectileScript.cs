@@ -9,14 +9,14 @@ public class ProjectileScript : MonoBehaviour
 {
     // Projectile stats
     [Header("Projectile Stats")]
-    [SerializeField] internal float range = 5f;
-    [SerializeField] internal float damage = 1f;
+    [SerializeField] internal float damage = 99f;
+    [SerializeField] internal float range = 10f;
     [SerializeField] internal float knockbackForce = 10f;
 
     // Settings
     [Header("Projectile Settings")]
     [SerializeField] internal Vector3 spawnOffset = Vector3.zero;
-
+    
     // References of the projectile's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]
@@ -25,6 +25,11 @@ public class ProjectileScript : MonoBehaviour
     internal ProjectileMovementScript projectileMovementScript;
     [SerializeField]
     internal ProjectileAnimationScript projectileAnimationScript;
+    [SerializeField]
+    internal CollisionScript collisionScript;
+
+    [Header("Misc Settings")]
+    [SerializeField] private bool logDebug = false;
 
     // Methods to change stats
     // Set projectile range (lifetime based on dist. travelled)

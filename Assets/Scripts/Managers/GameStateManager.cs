@@ -25,11 +25,16 @@ public class GameStateManager : MonoBehaviour
     {
         if (!gameManager.GameIsPlaying)
         {
-            Time.timeScale = 0f;
+            UpdateTimeScale(0f);
         } else
         {
-            Time.timeScale = 1f;
+            UpdateTimeScale(gameManager.GameTimeScale);
         }
+    }
+
+    internal void UpdateTimeScale(float timeScale)
+    {
+        Time.timeScale = timeScale;
     }
 
     internal void StartGame()

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8040423112634622370}
   - component: {fileID: 8040423112634622368}
   - component: {fileID: 8040423112634622369}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Parent
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 8040423112761327668}
   - component: {fileID: 8040423112761327666}
   - component: {fileID: 8040423112761327667}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -164,13 +164,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8040423113043011729}
   - component: {fileID: 8040423113043011728}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Reload Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8040423113043011729
 RectTransform:
   m_ObjectHideFlags: 0
@@ -260,9 +260,9 @@ GameObject:
   - component: {fileID: 8040423113550862873}
   - component: {fileID: 6790172340947755722}
   - component: {fileID: 1975930359}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Canvas Player HUD
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8040423113550862877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,7 +399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8040423113657794430}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8040423114127748291}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 8040423114288824257}
   - component: {fileID: 8040423114288824287}
   - component: {fileID: 8040423114288824256}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +498,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 8040423114388371500}
   - component: {fileID: 8040423114388371498}
   - component: {fileID: 8040423114388371499}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,13 +627,13 @@ GameObject:
   - component: {fileID: 8040423114506124057}
   - component: {fileID: 8040423114506124055}
   - component: {fileID: 8040423114506124056}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Image (TEST)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8040423114506124057
 RectTransform:
   m_ObjectHideFlags: 0

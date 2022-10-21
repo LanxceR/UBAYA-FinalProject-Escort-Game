@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Projectile
+  - World
+  - Obstacle
+  - WeaponAttachPos
   layers:
   - Default
   - TransparentFX
@@ -11,6 +16,9 @@ TagManager:
   - HUD
   - Water
   - UI
+  - ActorBody
+  - ActorHitbox
+  - Projectile
   - 
   - 
   - 
@@ -33,10 +41,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - World
   m_SortingLayers:
   - name: Default
     uniqueID: 0
