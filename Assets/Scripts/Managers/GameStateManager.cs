@@ -14,6 +14,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField]
     internal GameManager gameManager;
 
+    // TODO: Decide if UnityAction or UnityEvents are to be used here
     // Unity Events
     // Subbed at:
     internal UnityAction OnPauseAction;
