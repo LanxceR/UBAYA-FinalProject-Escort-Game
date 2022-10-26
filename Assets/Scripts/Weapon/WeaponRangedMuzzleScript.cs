@@ -5,7 +5,8 @@ using UnityEngine;
 /// <summary>
 /// The weapon muzzle script (handles all weapon muzzle behaviour (if the weapon has one))
 /// </summary>
-public class WeaponMuzzleScript : MonoBehaviour
+[RequireComponent(typeof(WeaponScript), typeof(WeaponRangedAttackScript))]
+public class WeaponRangedMuzzleScript : MonoBehaviour
 {
     // Reference to the main player script
     [SerializeField]
@@ -100,15 +101,15 @@ public class WeaponMuzzleScript : MonoBehaviour
     internal IEnumerator ShootCoroutine()
     {
         // For abbreviation
-        var w = weaponScript;
+        var w = weaponScript.weaponAttackScript as WeaponRangedAttackScript;
 
         // Check if weapon has a burst fire mechanism
-        if (weaponScript.isBurstFire)
+        if (w.isBurstFire)
         {
             // Shoot in bursts
-            for (int i = 0; i < weaponScript.burstAmount; i++)
+            for (int i = 0; i < w.burstAmount; i++)
             {
-                SpawnProjectile(projectileType, w.range, w.damage, w.velocity, w.knockbackForce, w.spread, w.parentHolder);
+                SpawnProjectile(projectileType, w.range, w.damage, w.velocity, w.knockbackForce, w.spread, weaponScript.parentHolder);
 
                 yield return new WaitForSeconds(w.burstDelay);
             }
@@ -116,7 +117,7 @@ public class WeaponMuzzleScript : MonoBehaviour
         else
         {
             // Shoot once
-            SpawnProjectile(projectileType, w.range, w.damage, w.velocity, w.knockbackForce, w.spread, w.parentHolder);
+            SpawnProjectile(projectileType, w.range, w.damage, w.velocity, w.knockbackForce, w.spread, weaponScript.parentHolder);
         }
     }
 

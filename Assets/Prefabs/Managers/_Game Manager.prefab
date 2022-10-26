@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3476358989919382763}
   - component: {fileID: 3476358989919382760}
   - component: {fileID: 8801675597772898125}
+  - component: {fileID: 1202313559238121517}
   m_Layer: 0
   m_Name: _Game Manager
   m_TagString: Untagged
@@ -90,11 +91,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f103868c67ba42143905b11e0e5cb7b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameIsPlaying: 1
-  PlayerPrefab: {fileID: 0}
-  ActivePlayer: {fileID: 0}
+  gameIsPlaying: 1
+  gameTimeScale: 1
+  playerPrefab: {fileID: 0}
+  activePlayer: {fileID: 0}
+  playerDatas:
+  - isEmpty: 1
+    index: 0
+    difficulty: 0
+    money: 0
+    daysPassed: 0
+    missionsCompleted: 0
+    missionsFailed: 0
+  - isEmpty: 1
+    index: 1
+    difficulty: 0
+    money: 0
+    daysPassed: 0
+    missionsCompleted: 0
+    missionsFailed: 0
+  - isEmpty: 1
+    index: 2
+    difficulty: 0
+    money: 0
+    daysPassed: 0
+    missionsCompleted: 0
+    missionsFailed: 0
+  loadedPlayerData:
+    isEmpty: 1
+    index: 0
+    difficulty: 0
+    money: 0
+    daysPassed: 0
+    missionsCompleted: 0
+    missionsFailed: 0
   gameState: {fileID: 3476358989919382760}
   gameInput: {fileID: 8801675597772898125}
+  gameData: {fileID: 1202313559238121517}
 --- !u!114 &3476358989919382760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +151,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3e3a81ce42a2ff4c8f22fb81ba84129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 3476358989919382763}
+--- !u!114 &1202313559238121517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3476358989919382757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32df4119c991624f8f5922bca67e906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 3476358989919382763}

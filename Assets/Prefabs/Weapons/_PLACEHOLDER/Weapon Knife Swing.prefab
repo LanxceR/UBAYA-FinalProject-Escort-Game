@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 2841505594726194215}
   - component: {fileID: 2841505594726194212}
   - component: {fileID: 2841505594726194213}
-  m_Layer: 0
+  - component: {fileID: 5514772793992127660}
+  m_Layer: 8
   m_Name: Weapon Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2841505594726194214}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.020000026, y: 0.13, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -1297388881
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1882846700, guid: 033afdbd2f956ee419525cb6819752a3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b43201418fcd1f34fa192e83af23b15e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 2841505594726194214}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 2c354ce3ea8acb84eb1848148adffc50, type: 2}
+  m_Controller: {fileID: 22100000, guid: d00cc159cd7cb5a4087937183293d341, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -105,6 +106,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &5514772793992127660
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2841505594726194214}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.18, y: 0}
+  m_Size: {x: 0.12, y: 0.08}
+  m_Direction: 1
 --- !u!1 &2841505594858512615
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2841505594858512612
 Transform:
   m_ObjectHideFlags: 0
@@ -230,15 +247,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2841505596119360408}
+  - component: {fileID: 7569207651545181028}
   - component: {fileID: 2841505596119360409}
   - component: {fileID: 2841505596119360415}
   - component: {fileID: 2841505596119360413}
   - component: {fileID: 2841505596119360414}
-  - component: {fileID: 2841505596119360412}
   - component: {fileID: 2841505596119360402}
-  - component: {fileID: 2841505596119360403}
+  - component: {fileID: 7811067868400536492}
+  - component: {fileID: 3983509067198406285}
+  - component: {fileID: 5025714026878176227}
   m_Layer: 0
-  m_Name: Weapon Pistol
+  m_Name: Weapon Knife Swing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2841505596119360411}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -261,6 +280,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &7569207651545181028
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2841505596119360411}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.05
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &2841505596119360409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,26 +325,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5709b6dd2479b041bd832aa3182c493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  fireRateDelay: 0.25
-  damage: 1
-  range: 5
-  velocity: 10
-  knockbackForce: 5
-  spread: 5
-  isFullAuto: 0
-  isBurstFire: 0
-  reloadTime: 1
-  burstAmount: 3
-  burstDelay: 0.03
+  parentHolder: {fileID: 0}
+  parentAttach: {fileID: 0}
   startingAmmo: 5
   weaponInputScript: {fileID: 2841505596119360413}
-  weaponAnimationScript: {fileID: 2841505596119360414}
-  weaponAttackScript: {fileID: 2841505596119360412}
-  weaponMuzzleScripts:
-  - {fileID: 2841505596119360403}
   weaponSpriteScript: {fileID: 2841505596119360402}
-  drawGizmo: 1
+  weaponAnimationScript: {fileID: 2841505596119360414}
 --- !u!114 &2841505596119360413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,19 +359,6 @@ MonoBehaviour:
   weaponScript: {fileID: 2841505596119360415}
   animator: {fileID: 2841505594726194213}
   frameToExecuteAttack: 0
---- !u!114 &2841505596119360412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2841505596119360411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7c77d5f0b4d1c44390257ee3282c75b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponScript: {fileID: 2841505596119360415}
 --- !u!114 &2841505596119360402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,7 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponScript: {fileID: 2841505596119360415}
   spriteRenderer: {fileID: 2841505594726194212}
---- !u!114 &2841505596119360403
+--- !u!114 &7811067868400536492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -369,10 +382,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 2841505596119360411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f82cca12eff0134ea2a79481174e2f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 56720ef54571cd64689e35356cd1b606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weaponScript: {fileID: 2841505596119360415}
-  muzzles:
-  - {fileID: 2841505594858512615}
-  projectileType: 0
+  weaponMeleeHitScript: {fileID: 3983509067198406285}
+  attackDelay: 0.375
+  damage: 20
+  range: 0.1
+  knockbackForce: 5
+  isFullAuto: 0
+  drawGizmo: 0
+--- !u!114 &3983509067198406285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2841505596119360411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4684ab5cba3f5c24cbda082ce9bb346e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponScript: {fileID: 2841505596119360415}
+  collisionScript: {fileID: 5025714026878176227}
+--- !u!114 &5025714026878176227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2841505596119360411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f6ecf3e52c61a4aaecf3f69ec10ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  col: {fileID: 5514772793992127660}
+  targetTags:
+  - Enemy
