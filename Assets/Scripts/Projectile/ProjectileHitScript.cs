@@ -86,6 +86,7 @@ public class ProjectileHitScript : MonoBehaviour
     // Hit an gameObject (and do various hitting related behaviours)
     private void Hit(GameObject victim)
     {
+        // TODO: Find parent instead of climbing up manually
         // Fetch victim's health on their parent gameobject
         victim.transform.parent.parent.TryGetComponent(out HealthScript health);
 

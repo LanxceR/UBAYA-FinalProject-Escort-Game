@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    // TODO: Implement weapon switching mechanics, ammo management, etc
+    // TODO: Implement programmatical assigning of Camera Events, Player instance, etc.
+
     // Singleton instance
     private static GameManager instance;
     internal static GameManager Instance
