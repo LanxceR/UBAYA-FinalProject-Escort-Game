@@ -13,7 +13,6 @@ public class HUDAmmoScript : MonoBehaviour
     [SerializeField]
     private HUDScript hudScript;
 
-    // TODO: Implement accessing playerWeaponScript programmatically (through a game manager)
     // Components
     [SerializeField]
     private TextMeshProUGUI ammoText;
@@ -31,5 +30,11 @@ public class HUDAmmoScript : MonoBehaviour
     {
         // Update ammo counter text
         ammoText.text = $"{playerWeaponScript.Ammo} / {playerWeaponScript.startingAmmo}";
+    }
+
+    internal void AssignWeaponScript()
+    {
+        // Assign world space event camera
+        playerWeaponScript = GameManager.Instance.ActivePlayer.inventoryScript.currentEquippedItem as WeaponScript;
     }
 }

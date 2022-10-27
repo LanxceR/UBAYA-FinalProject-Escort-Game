@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1cf4e77fb4ce2743a014df9bb66a3c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 1247278644278437419}
   hudAmmoScript: {fileID: 2689341742710053674}
 --- !u!114 &2689341742710053674
 MonoBehaviour:

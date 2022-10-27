@@ -375,6 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pHUDReloadScript: {fileID: 1975930359}
+  canvas: {fileID: 8040423113550862875}
 --- !u!114 &1975930359
 MonoBehaviour:
   m_ObjectHideFlags: 0

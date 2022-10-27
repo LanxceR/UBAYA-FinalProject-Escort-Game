@@ -11,6 +11,13 @@ public class GameDataManager : MonoBehaviour
     [SerializeField]
     public GameManager gameManager;
 
+    // Start is called just before any of the Update methods is called the first time
+    private void Start()
+    {
+        // TODO: Implement the rest of the saving and loading system of the game (autosave, creation, deletion, etc)
+        gameManager.PlayerDatas = LoadGamesFromFiles();
+    }
+
     // Create a new save
     internal void CreateGame(
         int index,

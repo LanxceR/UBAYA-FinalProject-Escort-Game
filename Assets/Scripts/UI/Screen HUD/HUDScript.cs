@@ -7,7 +7,9 @@ using UnityEngine;
 /// </summary>
 public class HUDScript : MonoBehaviour
 {
-    // TODO: (DUPLICATE) Applies to ALL UI/HUD elements. Programmatically assign render cameras for each UI canvases!!
+    [Header("Components")]
+    [SerializeField]
+    internal Canvas canvas;
 
     // References of the HUD's sub-scripts
     [SerializeField]
@@ -17,5 +19,8 @@ public class HUDScript : MonoBehaviour
     void Start()
     {
         Debug.Log("Main HUDScript starting");
+
+        // Assign world space event camera
+        canvas.worldCamera = GameManager.Instance.Cameras.HUDCamera;
     }
 }

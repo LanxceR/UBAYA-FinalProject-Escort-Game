@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 14562141972734121}
   - component: {fileID: 3557282564589218432}
   - component: {fileID: 3666172875973088831}
+  - component: {fileID: 2933326581545959992}
   m_Layer: 0
   m_Name: Player Lemper (TEST)
   m_TagString: Untagged
@@ -259,6 +260,7 @@ MonoBehaviour:
   playerAnimationScript: {fileID: 1135118919356334664}
   healthScript: {fileID: 14562141972734121}
   knockbackScript: {fileID: 3557282564589218432}
+  inventoryScript: {fileID: 2933326581545959992}
 --- !u!114 &1135118919356334668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +346,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29900944d710574f8779d38ef45f758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2933326581545959992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135118919356335536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ab3bf6f7108164dac99834a2f184a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryHolder: {fileID: 1135118919662119634}
 --- !u!1 &1135118919621596272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862878, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_Name
-      value: Canvas Player HUD (1)
+      value: Canvas Player HUD
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862878, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_TagString

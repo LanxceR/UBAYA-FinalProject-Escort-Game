@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3476358989919382760}
   - component: {fileID: 8801675597772898125}
   - component: {fileID: 1202313559238121517}
+  - component: {fileID: 6291330310439833848}
   m_Layer: 0
   m_Name: _Game Manager
   m_TagString: Untagged
@@ -93,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameIsPlaying: 1
   gameTimeScale: 1
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 1135118919356334669, guid: d15d5baad8e86d643bb833166ddb8c47, type: 3}
   activePlayer: {fileID: 0}
   playerDatas:
   - isEmpty: 1
@@ -125,9 +126,14 @@ MonoBehaviour:
     daysPassed: 0
     missionsCompleted: 0
     missionsFailed: 0
+  camerasPrefab: {fileID: 964555149148725884, guid: 506a16dc35dc64b4ebccd61123f5113d, type: 3}
+  activeCameras: {fileID: 0}
+  uiPrefab: {fileID: 2875460915544099525, guid: 862dec262569ba347857e48fd56433e2, type: 3}
+  activeUI: {fileID: 0}
   gameState: {fileID: 3476358989919382760}
   gameInput: {fileID: 8801675597772898125}
   gameData: {fileID: 1202313559238121517}
+  gamePlayer: {fileID: 6291330310439833848}
 --- !u!114 &3476358989919382760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +170,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32df4119c991624f8f5922bca67e906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 3476358989919382763}
+--- !u!114 &6291330310439833848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3476358989919382757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b131fc30179178a40a1194cf5256192a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 3476358989919382763}

@@ -9,6 +9,8 @@ TagManager:
   - World
   - Obstacle
   - WeaponAttachPos
+  - HUDCamera
+  - UICamera
   layers:
   - Default
   - TransparentFX

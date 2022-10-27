@@ -6,7 +6,7 @@ using UnityEditor;
 /// <summary>
 /// The main weapon script (or the hub)
 /// </summary>
-public class WeaponScript : MonoBehaviour
+public class WeaponScript : MonoBehaviour, IEquipmentItem
 {
     // Settings
     [Header("Parent Settings")]
@@ -53,24 +53,28 @@ public class WeaponScript : MonoBehaviour
     // Try to assign a valid parent that implements the ICharacter interface
     private void AssignParentHolder()
     {
-        Transform t = this.transform;
-        while (t.parent != null)
-        {
-            if (t.parent.TryGetComponent(out ICharacter _))
-            {
-                parentHolder = t.parent.gameObject; 
-                return;
-            }
-            t = t.parent;
-        }
-
-        // Could not find a parent with implementing ICharacter
-        parentHolder = this.gameObject;
+        parentHolder = FindICharacterParent().gameObject;
     }
 
     private void AssignParentAttach()
     {
         parentAttach = Utilities.FindParentWithTag(gameObject, "WeaponAttachPos");
+    }
+
+    private Transform FindICharacterParent()
+    {
+        Transform t = this.transform;
+        while (t.parent != null)
+        {
+            if (t.parent.TryGetComponent(out ICharacter _))
+            {
+                return t.parent;
+            }
+            t = t.parent;
+        }
+        
+        // Could not find a parent with implementing ICharacter
+        return this.transform;
     }
 
     // To update ammo count

@@ -39,10 +39,16 @@ public class GameManager : MonoBehaviour
     }
 
     [Header("Player Prefabs")]
-    [SerializeField] private GameObject playerPrefab; // Player prefab to spawn
-    public GameObject PlayerPrefab { get => playerPrefab; set => playerPrefab = value; }
-    [SerializeField] private GameObject activePlayer; // Stored active player
-    internal GameObject ActivePlayer { get => activePlayer; set => activePlayer = value; }
+    [SerializeField] private PlayerScript playerPrefab; // Player prefab to spawn
+    public PlayerScript PlayerPrefab { get => playerPrefab; set => playerPrefab = value; }
+    [SerializeField] private PlayerScript activePlayer; // Stored active player
+    internal PlayerScript ActivePlayer { get => activePlayer; 
+        set
+        {
+            activePlayer = value;
+            UI.HUDScript.hudAmmoScript.AssignWeaponScript();
+        }
+    }
 
     [Header("Player Datas")]
     [SerializeField] private PlayerData[] playerDatas = new PlayerData[3];
@@ -67,6 +73,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerData loadedPlayerData;
     internal PlayerData LoadedPlayerData { get => loadedPlayerData; set => loadedPlayerData = value; }
 
+
+    [Header("Cameras Prefab")]
+    [SerializeField] private CameraManager camerasPrefab;
+    [SerializeField] private CameraManager activeCameras;
+    public CameraManager Cameras { get => activeCameras; private set => activeCameras = value; }
+
+    [Header("UI Prefab")]
+    [SerializeField] private UIManager uiPrefab;
+    [SerializeField] private UIManager activeUI;
+    public UIManager UI { get => activeUI; private set => activeUI = value; }
+
+
     [Header("Service Locators (Other managers)")]
     // TODO: Put other managers here. GameManager is going to act as the main entryway for accessing these managers
     [SerializeField]
@@ -75,6 +93,8 @@ public class GameManager : MonoBehaviour
     internal GameInputManager gameInput;
     [SerializeField]
     internal GameDataManager gameData;
+    [SerializeField]
+    internal GamePlayerManager gamePlayer;
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -93,12 +113,77 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this);
 
-        // TODO: Implement the rest of the saving and loading system of the game (autosave, creation, deletion, etc)
-        PlayerDatas = gameData.LoadGamesFromFiles();
+        FindActiveCameras();
+        FindActiveUI();
+    }
+
+    // Start is called just before any of the Update methods is called the first time
+    private void Start()
+    {
+        InitializeCameras();
+        InitializeUI();
     }
 
     public void GameOver(GameObject killer)
     {
         // TODO: Implement GameOver events here
+    }
+
+
+    // Find an active Cameras object in hirearchy
+    private void FindActiveCameras()
+    {
+        var activeCameras = FindObjectOfType<CameraManager>();
+
+        if (activeCameras)
+        {
+            Cameras = activeCameras;
+        }
+    }
+    // Find an active UI object in hirearchy
+    private void FindActiveUI()
+    {
+        var activeUI = FindObjectOfType<UIManager>();
+
+        if (activeUI)
+        {
+            UI = activeUI;
+        }
+    }
+
+    // Initialize Cameras
+    public void InitializeCameras()
+    {
+        InitializeCameras(camerasPrefab.transform);
+    }
+    public void InitializeCameras(Transform spawnPoint)
+    {
+        if (!Cameras)
+        {
+            Cameras = Instantiate(camerasPrefab, spawnPoint.position, Quaternion.identity);
+        }
+        else
+        {
+            Cameras.gameObject.SetActive(true);
+            Cameras.transform.position = spawnPoint.position;
+        }
+    }
+
+    // Initialize UI
+    public void InitializeUI()
+    {
+        InitializeUI(uiPrefab.transform);
+    }
+    public void InitializeUI(Transform spawnPoint)
+    {
+        if (!UI)
+        {
+            UI = Instantiate(uiPrefab, spawnPoint.position, Quaternion.identity);
+        }
+        else
+        {
+            UI.gameObject.SetActive(true);
+            UI.transform.position = spawnPoint.position;
+        }
     }
 }

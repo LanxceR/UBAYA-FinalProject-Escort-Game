@@ -5,7 +5,6 @@ using UnityEngine;
 /// <summary>
 /// The main player script (or the hub)
 /// </summary>
-[RequireComponent(typeof(MoveableScript))]
 public class PlayerScript : MonoBehaviour, ICharacter
 {
     // Player stats
@@ -29,6 +28,8 @@ public class PlayerScript : MonoBehaviour, ICharacter
     internal HealthScript healthScript;
     [SerializeField]
     internal KnockbackScript knockbackScript;
+    [SerializeField]
+    internal InventoryScript inventoryScript;
 
     // Start is called before the first frame update
     void Start()
