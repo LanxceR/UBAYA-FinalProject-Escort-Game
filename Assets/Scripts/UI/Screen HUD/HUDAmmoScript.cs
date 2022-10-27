@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -19,22 +19,38 @@ public class HUDAmmoScript : MonoBehaviour
     [SerializeField]
     private WeaponScript playerWeaponScript;
 
+    // Variables
+    private PlayerScript activePlayer;
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("HUDAmmoScript starting");
+
+        activePlayer = GameManager.Instance.ActivePlayer;
+
+        if (activePlayer)
+        {
+            // Add listener to Inventory's OnEquipmentSwitch UnityEvent         
+            activePlayer.inventoryScript.OnEquipmentSwitch?.AddListener(AssignWeaponScript);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Update ammo counter text
-        ammoText.text = $"{playerWeaponScript.Ammo} / {playerWeaponScript.startingAmmo}";
+        if (playerWeaponScript)
+        {
+            // Update ammo counter text
+            ammoText.text = playerWeaponScript.Ammo == Mathf.Infinity ? "INF" : $"{playerWeaponScript.Ammo} / {playerWeaponScript.startingAmmo}";
+        }
     }
 
     internal void AssignWeaponScript()
     {
-        // Assign world space event camera
-        playerWeaponScript = GameManager.Instance.ActivePlayer.inventoryScript.currentEquippedItem as WeaponScript;
+        InventoryScript inv = GameManager.Instance.ActivePlayer.inventoryScript;
+
+        // Assign to show currently equipped item
+        playerWeaponScript = inv.GetCurrentEquippedItem() as WeaponScript;
     }
 }

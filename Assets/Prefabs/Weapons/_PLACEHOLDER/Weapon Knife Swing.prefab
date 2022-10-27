@@ -327,7 +327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentHolder: {fileID: 0}
   parentAttach: {fileID: 0}
-  startingAmmo: 5
+  startingAmmo: Infinity
   weaponInputScript: {fileID: 2841505596119360413}
   weaponSpriteScript: {fileID: 2841505596119360402}
   weaponAnimationScript: {fileID: 2841505596119360414}
