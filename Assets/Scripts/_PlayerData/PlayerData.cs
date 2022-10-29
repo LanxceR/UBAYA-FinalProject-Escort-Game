@@ -7,7 +7,6 @@ using System;
 /// Class for serializing savefiles (use this class as an instance to serialize player datas for storing)
 /// </summary>
 public enum Difficulty { CASUAL, HARDCORE}
-//[CreateAssetMenu(fileName = "New Player Data", menuName = "Scriptable Object/PlayerData")]
 [Serializable]
 public class PlayerData
 {

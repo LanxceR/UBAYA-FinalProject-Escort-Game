@@ -15,7 +15,7 @@ public class PlayerDataEditor : Editor
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-
+        
         /*
         // Fetch the target object that is being inspected in inspector
         playerData = (PlayerData)target;
@@ -23,7 +23,7 @@ public class PlayerDataEditor : Editor
         foreach (KeyValuePair<AmmoType, Ammo> a in playerData.ammo)
         {
             playerData.ammo[a.Key].amount = EditorGUILayout.FloatField($"ammo.{a.Key}", a.Value.amount);
-        }
+        }        
         */
     }
 }

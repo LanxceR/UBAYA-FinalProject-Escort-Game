@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,17 +13,26 @@ public class PlayerHUDReloadIndicatorScript : MonoBehaviour
     [SerializeField]
     internal PlayerHUDScript pHUDScript;
 
-    // TODO: Implement accessing playerWeaponScript programmatically (through a game manager)
     // Components
+    [Header("UI Components")]
     [SerializeField]
     internal Slider reloadIndicatorSlider;
     [SerializeField]
+    internal TextMeshProUGUI noAmmoAlertText;
+
+    [Header("Weapon Component")]
+    [SerializeField]
     internal WeaponScript playerWeaponScript;
+
+    // Variables
+    internal Coroutine alertCoroutine;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("PlayerHUDReloadIndicatorScript starting");
+
+        playerWeaponScript.weaponAmmoScript.NoAmmoAlert.AddListener(NoAmmoAlert);
     }
 
     // Update is called once per frame
@@ -34,6 +44,9 @@ public class PlayerHUDReloadIndicatorScript : MonoBehaviour
 
             // Enable slider gameobject
             reloadIndicatorSlider.gameObject.SetActive(true);
+
+            // Interrupt any ongoing alert coroutine
+            InterruptAlertCoroutine();
 
             // Set slider value
             reloadIndicatorSlider.value = playerWeaponScript.reloadProgress;
@@ -48,5 +61,51 @@ public class PlayerHUDReloadIndicatorScript : MonoBehaviour
             // Set slider value
             reloadIndicatorSlider.value = 0f;
         }
+    }
+
+    // To stop any ongoing reload
+    internal void InterruptAlertCoroutine()
+    {
+        if (alertCoroutine != null)
+        {
+            StopCoroutine(alertCoroutine);
+            alertCoroutine = null;
+
+            noAmmoAlertText.alpha = 0;
+        }
+    }
+
+    void NoAmmoAlert()
+    {
+        if (alertCoroutine == null)
+        {
+            // Show alert for 3 seconds, flash 3 times
+            alertCoroutine = StartCoroutine(ShowNoAmmoAlert(3, 3));
+        }
+    }
+
+    // Show alert (use flashAmount = 0 if you dont want any flashing/blinking behaviour)
+    internal IEnumerator ShowNoAmmoAlert(float duration, int flashAmount)
+    {
+        if (flashAmount <= 0)
+        {
+            noAmmoAlertText.alpha = 1;
+            yield return new WaitForSeconds(duration);
+            noAmmoAlertText.alpha = 0;
+        }
+        else
+        {
+            float timeGap = (duration / flashAmount) / 2;
+
+            for (int i = 0; i < flashAmount; i++)
+            {
+                noAmmoAlertText.alpha = 1;
+                yield return new WaitForSeconds(timeGap);
+                noAmmoAlertText.alpha = 0;
+                yield return new WaitForSeconds(timeGap);
+            }
+        }
+
+        alertCoroutine = null;
     }
 }

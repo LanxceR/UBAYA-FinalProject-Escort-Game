@@ -36,7 +36,6 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
     // Variables
     private float cooldown = 0f;
     private bool canAttack = true;
-    private Coroutine reloadCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -51,15 +50,6 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
         
         // Countdown cooldown until zero
         cooldown = cooldown - Time.deltaTime > 0 ? cooldown - Time.deltaTime : 0f;
-
-        if (weaponScript.weaponInputScript.Input_Reload == 1)
-        {
-            if (weaponScript.weaponAmmoScript.loadedAmmo < weaponScript.ammoMagSize && reloadCoroutine == null)
-            {
-                // Reload
-                reloadCoroutine = StartCoroutine(ReloadCoroutine(reloadTime));
-            }
-        }
 
         if (weaponScript.weaponInputScript.Input_Attack == 1)
         {
@@ -98,21 +88,10 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
     {
         if (!canAttack) return;
 
-        if (weaponScript.weaponAmmoScript.loadedAmmo <= 0 && reloadCoroutine == null)
-        {
-            // Reload
-            reloadCoroutine = StartCoroutine(ReloadCoroutine(reloadTime));
-        }
-        else if (cooldown <= 0f && weaponScript.weaponAmmoScript.loadedAmmo > 0)
+        if (cooldown <= 0f && weaponScript.weaponAmmoScript.loadedAmmo > 0)
         {
             // Interrupt any ongoing reload
-            if (reloadCoroutine != null)
-            {
-                StopCoroutine(reloadCoroutine);
-                reloadCoroutine = null;
-                weaponScript.reloadElapsedTime = 0f;
-                weaponScript.reloadProgress = 0f;
-            }
+            weaponScript.weaponAmmoScript.InterruptReloadCoroutine();
 
             // If this weapon does NOT have an animation, fire/attack straight away
             // Otherwise call firing/attack in WeaponAnimation & animator
@@ -143,30 +122,6 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
 
         // Subtract ammo by one
         weaponScript.weaponAmmoScript.ChangeLoadedAmmo(-1);
-    }
-
-
-    // Weapon reload
-    internal IEnumerator ReloadCoroutine(float reloadTime)
-    {
-        weaponScript.reloadElapsedTime = 0f;
-        weaponScript.reloadProgress = 0f;
-
-        while (weaponScript.reloadElapsedTime < reloadTime)
-        {
-            weaponScript.reloadElapsedTime += Time.deltaTime;
-            weaponScript.reloadProgress = (weaponScript.reloadElapsedTime / reloadTime * 100);
-
-            yield return null;
-        }
-
-        // Reload weapon's ammo
-        weaponScript.weaponAmmoScript.ReloadLoadedAmmo(true);
-
-        weaponScript.reloadElapsedTime = 0f;
-        weaponScript.reloadProgress = 0f;
-
-        reloadCoroutine = null;
     }
 
 

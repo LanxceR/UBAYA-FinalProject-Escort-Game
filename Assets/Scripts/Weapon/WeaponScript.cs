@@ -15,6 +15,7 @@ public class WeaponScript : MonoBehaviour, IEquipmentItem
     [SerializeField] internal GameObject parentAttach;
 
     [Header("Ammo")]
+    [SerializeField] internal float reloadTime = 1f;
     [SerializeField] internal AmmoType ammoType;
     [SerializeField] internal float ammoMagSize = Mathf.Infinity;
 

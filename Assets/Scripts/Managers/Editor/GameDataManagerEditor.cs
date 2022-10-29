@@ -36,5 +36,10 @@ public class GameDataManagerEditor : Editor
         {
             gameDataManager.LoadGame(indexToLoad);
         }
+
+        if (GUILayout.Button($"Save Game {gameDataManager.gameManager.LoadedPlayerData.index}"))
+        {
+            gameDataManager.SaveGame();
+        }
     }
 }

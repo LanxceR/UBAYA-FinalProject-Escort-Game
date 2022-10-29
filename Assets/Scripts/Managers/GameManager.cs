@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         }
     }
     [SerializeField] private PlayerData loadedPlayerData;
-    internal PlayerData LoadedPlayerData { get => loadedPlayerData; set => loadedPlayerData = value; }
+    public PlayerData LoadedPlayerData { get => loadedPlayerData; set => loadedPlayerData = value; }
 
 
     [Header("Cameras Prefab")]

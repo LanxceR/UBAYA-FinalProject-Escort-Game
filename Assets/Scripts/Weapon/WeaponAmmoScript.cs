@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Events;
 
 /// <summary>
 /// The weapon ammo script (handles all ammo related actions for weapons)
@@ -16,15 +17,59 @@ public class WeaponAmmoScript : MonoBehaviour
     [Header("Misc Settings")]
     [SerializeField] private bool drawGizmo = false;
 
+    // Events
+    [Header("Events")]
+    internal UnityEvent NoAmmoAlert = new UnityEvent();
+
     // Variables
     [SerializeField]
     internal float loadedAmmo;
+    internal Coroutine reloadCoroutine;
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("WeaponAmmoScript starting");
+
         // Set ammo count at the start
         loadedAmmo = weaponScript.ammoMagSize;
+    }
+
+    // Update is called every frame, if the MonoBehaviour is enabled
+    private void Update()
+    {
+        if (!GameManager.Instance.GameIsPlaying) return;
+
+        if (weaponScript.weaponInputScript.Input_Reload == 1)
+        {
+            if (GameManager.Instance.LoadedPlayerData.ammo[weaponScript.ammoType].amount <= 0)
+            {
+                // Invoke no ammo alert event
+                NoAmmoAlert?.Invoke();
+            }
+            else if (loadedAmmo < weaponScript.ammoMagSize && reloadCoroutine == null)
+            {
+                // Reload
+                reloadCoroutine = StartCoroutine(ReloadCoroutine(weaponScript.reloadTime));
+            }
+        }
+
+        if (weaponScript.weaponInputScript.Input_Attack == 1)
+        {
+            if (loadedAmmo <= 0 && reloadCoroutine == null)
+            {
+                if (GameManager.Instance.LoadedPlayerData.ammo[weaponScript.ammoType].amount <= 0)
+                {
+                    // Invoke no ammo alert event
+                    NoAmmoAlert?.Invoke();
+                }
+                else
+                {
+                    // If player attacks while ammo is depleted, perform a reload instead
+                    reloadCoroutine = StartCoroutine(ReloadCoroutine(weaponScript.reloadTime));
+                }
+            }
+        }
     }
 
     internal void SaveLoadedAmmoToPlayerData()
@@ -79,6 +124,41 @@ public class WeaponAmmoScript : MonoBehaviour
 
             loadedAmmo += value;
         }
+    }
+
+    // To stop any ongoing reload
+    internal void InterruptReloadCoroutine()
+    {
+        if (reloadCoroutine != null)
+        {
+            StopCoroutine(reloadCoroutine);
+            reloadCoroutine = null;
+            weaponScript.reloadElapsedTime = 0f;
+            weaponScript.reloadProgress = 0f;
+        }
+    }
+
+    // Weapon reload
+    internal IEnumerator ReloadCoroutine(float reloadTime)
+    {
+        weaponScript.reloadElapsedTime = 0f;
+        weaponScript.reloadProgress = 0f;
+
+        while (weaponScript.reloadElapsedTime < reloadTime)
+        {
+            weaponScript.reloadElapsedTime += Time.deltaTime;
+            weaponScript.reloadProgress = (weaponScript.reloadElapsedTime / reloadTime * 100);
+
+            yield return null;
+        }
+
+        // Reload weapon's ammo
+        ReloadLoadedAmmo(true);
+
+        weaponScript.reloadElapsedTime = 0f;
+        weaponScript.reloadProgress = 0f;
+
+        reloadCoroutine = null;
     }
 
 #if UNITY_EDITOR

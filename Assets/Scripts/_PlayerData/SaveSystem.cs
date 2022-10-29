@@ -22,7 +22,8 @@ public static class SaveSystem
      *  Read more at https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html
      */
 
-    // TODO: Maybe implement a different serialization method (other than binaryformatter)?
+    // TODO: Maybe implement a different serialization method (other than binaryformatter)? Maybe use Newtonsoft's JSON.NET package.
+    // https://www.newtonsoft.com/json
 
     // Save the game
     internal static void SaveGame(string saveName,
