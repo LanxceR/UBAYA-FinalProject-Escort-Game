@@ -41,8 +41,6 @@ public class EnemyAnimationScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("EnemyAnimationScript starting");
-
         if (enemyScript.healthScript)
         {
             // Add listener to Health's OnHit UnityEvent

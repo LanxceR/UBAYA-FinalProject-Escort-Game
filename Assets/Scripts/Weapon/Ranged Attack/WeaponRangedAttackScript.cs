@@ -54,7 +54,7 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
 
         if (weaponScript.weaponInputScript.Input_Reload == 1)
         {
-            if (weaponScript.Ammo < weaponScript.startingAmmo && reloadCoroutine == null)
+            if (weaponScript.weaponAmmoScript.loadedAmmo < weaponScript.ammoMagSize && reloadCoroutine == null)
             {
                 // Reload
                 reloadCoroutine = StartCoroutine(ReloadCoroutine(reloadTime));
@@ -98,12 +98,12 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
     {
         if (!canAttack) return;
 
-        if (weaponScript.Ammo <= 0 && reloadCoroutine == null)
+        if (weaponScript.weaponAmmoScript.loadedAmmo <= 0 && reloadCoroutine == null)
         {
             // Reload
             reloadCoroutine = StartCoroutine(ReloadCoroutine(reloadTime));
         }
-        else if (cooldown <= 0f && weaponScript.Ammo > 0)
+        else if (cooldown <= 0f && weaponScript.weaponAmmoScript.loadedAmmo > 0)
         {
             // Interrupt any ongoing reload
             if (reloadCoroutine != null)
@@ -142,11 +142,12 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
         cooldown = fireRateDelay;
 
         // Subtract ammo by one
-        weaponScript.UpdateAmmo(weaponScript.Ammo - 1);
+        weaponScript.weaponAmmoScript.ChangeLoadedAmmo(-1);
     }
 
+
     // Weapon reload
-    private IEnumerator ReloadCoroutine(float reloadTime)
+    internal IEnumerator ReloadCoroutine(float reloadTime)
     {
         weaponScript.reloadElapsedTime = 0f;
         weaponScript.reloadProgress = 0f;
@@ -160,14 +161,13 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
         }
 
         // Reload weapon's ammo
-        weaponScript.UpdateAmmo(weaponScript.startingAmmo);
+        weaponScript.weaponAmmoScript.ReloadLoadedAmmo(true);
 
         weaponScript.reloadElapsedTime = 0f;
         weaponScript.reloadProgress = 0f;
 
         reloadCoroutine = null;
     }
-
 
 
 #if UNITY_EDITOR
@@ -182,21 +182,6 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
         // Weapon range (as a wireframe sphere)
         Gizmos.color = new Color(240f / 255, 120f / 255, 46f / 255);
         Gizmos.DrawWireSphere(transform.position, range);
-
-        // TODO: Probably implement a better Text Gizmo Draw
-
-        // Ammo count (as text)
-        Vector3 ammoTextPos = textRootPos + new Vector3(0f, 0.2f * textPos);
-        Handles.Label(ammoTextPos, $"Ammo: {weaponScript.Ammo.ToString()}");
-        textPos++;
-
-        // Reloading (as text & completion percentage)
-        Vector3 reloadTextPos = textRootPos + new Vector3(0f, 0.2f * textPos);
-        if (weaponScript.reloadElapsedTime > 0)
-        {
-            Handles.Label(reloadTextPos, $"Reloading...{weaponScript.reloadProgress}%");
-            textPos++;
-        }
     }
 #endif
 }

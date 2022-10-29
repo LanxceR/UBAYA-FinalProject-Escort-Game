@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 2841505596119360402}
   - component: {fileID: 2841505596119360412}
   - component: {fileID: 2841505596119360403}
+  - component: {fileID: 7984325879285600136}
   m_Layer: 0
   m_Name: Weapon Pistol
   m_TagString: Untagged
@@ -287,10 +288,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentHolder: {fileID: 0}
   parentAttach: {fileID: 0}
-  startingAmmo: 5
+  ammoType: 1
+  ammoMagSize: 5
   weaponInputScript: {fileID: 2841505596119360413}
   weaponSpriteScript: {fileID: 2841505596119360402}
   weaponAnimationScript: {fileID: 2841505596119360414}
+  weaponAmmoScript: {fileID: 7984325879285600136}
 --- !u!114 &2841505596119360413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,3 +379,18 @@ MonoBehaviour:
   muzzles:
   - {fileID: 2841505594858512615}
   projectileType: 0
+--- !u!114 &7984325879285600136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2841505596119360411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8482192e21c4f9f488d39e0e22dd2765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponScript: {fileID: 2841505596119360415}
+  drawGizmo: 1
+  loadedAmmo: 0

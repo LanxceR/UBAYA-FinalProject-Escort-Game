@@ -79,7 +79,7 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
     {
         if (!canAttack) return;
         
-        if (cooldown <= 0f && weaponScript.Ammo > 0)
+        if (cooldown <= 0f && weaponScript.weaponAmmoScript.loadedAmmo > 0)
         {
             // If this weapon does NOT have an animation, fire/attack straight away
             // Otherwise call firing/attack in WeaponAnimation & animator

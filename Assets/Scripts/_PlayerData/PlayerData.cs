@@ -7,12 +7,13 @@ using System;
 /// Class for serializing savefiles (use this class as an instance to serialize player datas for storing)
 /// </summary>
 public enum Difficulty { CASUAL, HARDCORE}
+//[CreateAssetMenu(fileName = "New Player Data", menuName = "Scriptable Object/PlayerData")]
 [Serializable]
 public class PlayerData
 {
     #region Data fields
 
-    public bool isEmpty = false;
+    public bool isEmpty = true;
     public int index;
     public Difficulty difficulty;
     public float money;
@@ -20,6 +21,12 @@ public class PlayerData
     public int missionsCompleted;
     public int missionsFailed;
 
+    public Dictionary<AmmoType, Ammo> ammo = new Dictionary<AmmoType, Ammo>
+    {
+        {AmmoType.LIGHT, new Ammo(AmmoType.LIGHT, 0) },
+        {AmmoType.SHOTGUN, new Ammo(AmmoType.SHOTGUN, 0) },
+        {AmmoType.HEAVY, new Ammo(AmmoType.HEAVY, 0) }
+    };
 
     #endregion
 
@@ -28,7 +35,7 @@ public class PlayerData
     {
         isEmpty = true;
     }
-    public PlayerData(int index, Difficulty difficulty, float money, int daysPassed, int missionsCompleted, int missionsFailed)
+    public PlayerData(int index, Difficulty difficulty, float money, int daysPassed, int missionsCompleted, int missionsFailed, float ammo_LIGHT, float ammo_SHOTGUN, float ammo_HEAVY)
     {
         this.isEmpty = false;
         this.index = index;
@@ -37,9 +44,13 @@ public class PlayerData
         this.daysPassed = daysPassed;
         this.missionsCompleted = missionsCompleted;
         this.missionsFailed = missionsFailed;
+        this.ammo[AmmoType.LIGHT].amount = ammo_LIGHT;
+        this.ammo[AmmoType.SHOTGUN].amount = ammo_SHOTGUN;
+        this.ammo[AmmoType.HEAVY].amount = ammo_HEAVY;
     }
     #endregion
 
+    // TODO: Update the methods to include ammo checking
     public void Empty()
     {
         this.isEmpty = true;
