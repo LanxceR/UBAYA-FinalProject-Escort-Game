@@ -359,6 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryHolder: {fileID: 1135118919662119634}
+  equippedItemIndex: 0
 --- !u!1 &1135118919621596272
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,6 +896,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Knife Swing
       objectReference: {fileID: 0}
+    - target: {fileID: 2841505596119360411, guid: 5897a634d2aff6a48a45a88602373edd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5897a634d2aff6a48a45a88602373edd, type: 3}
 --- !u!4 &1091813784548210647 stripped
@@ -959,7 +964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2841505596119360411, guid: 79f1e0bc3febcd94fb0dc18ead2c6836, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79f1e0bc3febcd94fb0dc18ead2c6836, type: 3}
@@ -1085,6 +1090,10 @@ PrefabInstance:
     - target: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040423113550862875, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862876, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_PresetInfoIsWorld

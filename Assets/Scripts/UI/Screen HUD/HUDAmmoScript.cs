@@ -41,8 +41,27 @@ public class HUDAmmoScript : MonoBehaviour
     {
         if (playerWeaponScript)
         {
+            string textToDisplay;
+
+            if (playerWeaponScript.weaponAmmoScript.loadedAmmo == Mathf.Infinity)
+            {
+                textToDisplay = "INF";
+            }
+            else
+            {
+                textToDisplay = $"{playerWeaponScript.weaponAmmoScript.loadedAmmo} / ";
+
+                if (playerWeaponScript.ammoType == AmmoType.NONE)
+                {
+                    textToDisplay = "N/A";
+                    return;
+                }
+
+                textToDisplay += $"{GameManager.Instance.LoadedPlayerData.ammo[playerWeaponScript.ammoType].amount}";
+            }
+
             // Update ammo counter text
-            ammoText.text = playerWeaponScript.Ammo == Mathf.Infinity ? "INF" : $"{playerWeaponScript.Ammo} / {playerWeaponScript.startingAmmo}";
+            ammoText.text = textToDisplay;
         }
     }
 

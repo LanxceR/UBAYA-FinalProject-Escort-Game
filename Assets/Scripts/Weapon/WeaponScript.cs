@@ -6,6 +6,7 @@ using UnityEditor;
 /// <summary>
 /// The main weapon script (or the hub)
 /// </summary>
+public enum AmmoType { NONE, LIGHT, SHOTGUN, HEAVY }
 public class WeaponScript : MonoBehaviour, IEquipmentItem
 {
     // Settings
@@ -14,10 +15,10 @@ public class WeaponScript : MonoBehaviour, IEquipmentItem
     [SerializeField] internal GameObject parentAttach;
 
     [Header("Ammo")]
-    [SerializeField] internal float startingAmmo = Mathf.Infinity;
-    internal float Ammo { get; private set; }
+    [SerializeField] internal float reloadTime = 1f;
+    [SerializeField] internal AmmoType ammoType;
+    [SerializeField] internal float ammoMagSize = Mathf.Infinity;
 
-    // TODO: Probably add a dedicated ammo manager sub-script?
     // References of the weapon's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]
@@ -26,12 +27,14 @@ public class WeaponScript : MonoBehaviour, IEquipmentItem
     internal WeaponSpriteScript weaponSpriteScript;
     [SerializeField]
     internal WeaponAnimationScript weaponAnimationScript;
+    [SerializeField]
+    internal WeaponAmmoScript weaponAmmoScript;
 
     internal IAttackStrategy weaponAttackScript;
 
     // Variables
-    internal float reloadElapsedTime;
-    internal float reloadProgress;
+    internal float reloadElapsedTime = 0f;
+    internal float reloadProgress = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -39,8 +42,6 @@ public class WeaponScript : MonoBehaviour, IEquipmentItem
         Debug.Log("Main WeaponScript starting");
 
         weaponAttackScript = GetComponent<IAttackStrategy>();
-
-        Ammo = startingAmmo;
     }
 
     // This function is called when the object becomes enabled and active
@@ -75,11 +76,5 @@ public class WeaponScript : MonoBehaviour, IEquipmentItem
         
         // Could not find a parent with implementing ICharacter
         return this.transform;
-    }
-
-    // To update ammo count
-    internal void UpdateAmmo(float newAmmoCount)
-    {
-        Ammo = newAmmoCount;
     }
 }

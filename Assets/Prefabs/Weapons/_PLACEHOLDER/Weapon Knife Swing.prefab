@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 7811067868400536492}
   - component: {fileID: 3983509067198406285}
   - component: {fileID: 5025714026878176227}
+  - component: {fileID: 7216340852834708743}
   m_Layer: 0
   m_Name: Weapon Knife Swing
   m_TagString: Untagged
@@ -327,10 +328,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentHolder: {fileID: 0}
   parentAttach: {fileID: 0}
-  startingAmmo: Infinity
+  reloadTime: 0
+  ammoType: 0
+  ammoMagSize: Infinity
   weaponInputScript: {fileID: 2841505596119360413}
   weaponSpriteScript: {fileID: 2841505596119360402}
   weaponAnimationScript: {fileID: 2841505596119360414}
+  weaponAmmoScript: {fileID: 7216340852834708743}
 --- !u!114 &2841505596119360413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,3 +426,18 @@ MonoBehaviour:
   col: {fileID: 5514772793992127660}
   targetTags:
   - Enemy
+--- !u!114 &7216340852834708743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2841505596119360411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8482192e21c4f9f488d39e0e22dd2765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponScript: {fileID: 2841505596119360415}
+  drawGizmo: 1
+  loadedAmmo: 0

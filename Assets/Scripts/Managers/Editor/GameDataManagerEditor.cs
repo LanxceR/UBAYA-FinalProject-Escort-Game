@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEditor;
 
 /// <summary>
-/// Custome ditor for GameDataManager
+/// Custom editor for GameDataManager
 /// </summary>
 [CustomEditor(typeof(GameDataManager))]
 public class GameDataManagerEditor : Editor
 {
     private GameDataManager gameDataManager; // GameDataManager.cs script
+
+    int indexToLoad = 0;
 
     // Draws the GUI on Unity Editor Inspector
     public override void OnInspectorGUI()
@@ -27,6 +29,17 @@ public class GameDataManagerEditor : Editor
         if (GUILayout.Button("Load All"))
         {
             gameDataManager.gameManager.PlayerDatas = gameDataManager.LoadGamesFromFiles();
+        }
+
+        indexToLoad = EditorGUILayout.IntSlider("Index to Load", indexToLoad, 0, gameDataManager.gameManager.PlayerDatas.Length - 1);
+        if (GUILayout.Button($"Load savegame_{indexToLoad}"))
+        {
+            gameDataManager.LoadGame(indexToLoad);
+        }
+
+        if (GUILayout.Button($"Save Game {gameDataManager.gameManager.LoadedPlayerData.index}"))
+        {
+            gameDataManager.SaveGame();
         }
     }
 }

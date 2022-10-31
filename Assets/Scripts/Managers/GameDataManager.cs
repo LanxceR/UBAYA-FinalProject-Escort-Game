@@ -16,6 +16,7 @@ public class GameDataManager : MonoBehaviour
     {
         // TODO: Implement the rest of the saving and loading system of the game (autosave, creation, deletion, etc)
         gameManager.PlayerDatas = LoadGamesFromFiles();
+        LoadGame(0);
     }
 
     // Create a new save
@@ -25,15 +26,24 @@ public class GameDataManager : MonoBehaviour
         float money,
         int daysPassed,
         int missionsCompleted,
-        int missionsFailed
+        int missionsFailed,
+        float ammo_LIGHT, float ammo_SHOTGUN, float ammo_HEAVY
         )
     {
         // Create new player data and store in game manager array
-        gameManager.PlayerDatas[index] = new PlayerData(index, difficulty, money, daysPassed, missionsCompleted, missionsFailed);
+        gameManager.PlayerDatas[index] = new PlayerData(
+            index, 
+            difficulty, 
+            money, 
+            daysPassed, 
+            missionsCompleted, 
+            missionsFailed, 
+            ammo_LIGHT, ammo_SHOTGUN, ammo_HEAVY
+            );
     }
 
     // Save the game
-    internal void SaveGame()
+    public void SaveGame()
     {
         // Fetch loaded player data
         PlayerData data = gameManager.LoadedPlayerData;
@@ -44,13 +54,14 @@ public class GameDataManager : MonoBehaviour
     }
 
     // Load a save and store in game manager loaded save
-    internal void LoadGame(int index)
+    public void LoadGame(int index)
     {
         gameManager.LoadedPlayerData = gameManager.PlayerDatas[index];
+        Debug.Log($"Loaded stored player data at index = {index}");
     }
 
     // Unload the game manager loaded save
-    internal void UnloadGame()
+    public void UnloadGame()
     {
         gameManager.LoadedPlayerData.Empty();
     }

@@ -22,7 +22,8 @@ public static class SaveSystem
      *  Read more at https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html
      */
 
-    // TODO: Maybe implement a different serialization method (other than binaryformatter)?
+    // TODO: Maybe implement a different serialization method (other than binaryformatter)? Maybe use Newtonsoft's JSON.NET package.
+    // https://www.newtonsoft.com/json
 
     // Save the game
     internal static void SaveGame(string saveName,
@@ -31,10 +32,19 @@ public static class SaveSystem
         float money,
         int daysPassed,
         int missionsCompleted,
-        int missionsFailed)
+        int missionsFailed,
+        float ammo_LIGHT, float ammo_SHOTGUN, float ammo_HEAVY)
     {
         // Prepare a playerData object
-        PlayerData savegame = new PlayerData(saveNum, difficulty, money, daysPassed, missionsCompleted, missionsFailed);
+        PlayerData savegame = new PlayerData(
+            saveNum,
+            difficulty,
+            money,
+            daysPassed,
+            missionsCompleted,
+            missionsFailed,
+            ammo_LIGHT, ammo_SHOTGUN, ammo_HEAVY
+            );
 
         // Setup a BinaryFormatter object
         BinaryFormatter formatter = new BinaryFormatter();
@@ -96,7 +106,11 @@ public static class SaveSystem
                                $"Money: {savegame.money} \n" +
                                $"Days Passed: {savegame.daysPassed} \n" +
                                $"Missions Completed: {savegame.missionsCompleted} \n" +
-                               $"Missions Failed: {savegame.missionsFailed} \n";
+                               $"Missions Failed: {savegame.missionsFailed} \n" +
+                               $"-----------AMMO----------- \n" +
+                               $"Light Ammo: {savegame.ammo[AmmoType.LIGHT].amount} \n" +
+                               $"Shotgun Ammo: {savegame.ammo[AmmoType.SHOTGUN].amount} \n" +
+                               $"Heavy Ammo: {savegame.ammo[AmmoType.HEAVY].amount}";
                 Debug.Log(debug);
                 return savegame;
             }

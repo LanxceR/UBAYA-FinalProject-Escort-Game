@@ -4,26 +4,31 @@ using UnityEngine;
 using UnityEditor;
 
 /// <summary>
-/// The weapon melee attack script (handles all weapon melee attack action)
+/// The weapon ranged attack script (handles all weapon ranged attack action)
 /// </summary>
-[RequireComponent(typeof(WeaponScript), typeof(WeaponMeleeHitScript), typeof(CollisionScript))]
-[RequireComponent(typeof(Rigidbody2D))]
-public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
+[RequireComponent(typeof(WeaponScript), typeof(WeaponRangedMuzzleScript))]
+public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
 {
     // Reference to the main player script
     [SerializeField]
     private WeaponScript weaponScript;
 
     [SerializeField]
-    private WeaponMeleeHitScript weaponMeleeHitScript;
-
+    private List<WeaponRangedMuzzleScript> weaponMuzzleScripts; //List of muzzleScripts for multiple shooting mechanics (shotgun, different firing modes)
+       
     // Weapon stats
     [Header("Weapon Stats")]
-    [SerializeField] internal float attackDelay = 0.1f;
+    [SerializeField] internal float fireRateDelay = 0.1f;
     [SerializeField] internal float damage = 1f;
     [SerializeField] internal float range = 5f;
+    [SerializeField] internal float velocity = 5f;
     [SerializeField] internal float knockbackForce = 10f;
+    [Range(0, 359)] [SerializeField] internal float spread = 0f;
     [SerializeField] internal bool isFullAuto = false;
+    [SerializeField] internal bool isBurstFire = false;
+    [SerializeField] internal float reloadTime = 1f;
+    [SerializeField] internal int burstAmount = 3;
+    [SerializeField] internal float burstDelay = 0.03f;
 
     [Header("Misc Settings")]
     [SerializeField] private bool drawGizmo = false;
@@ -35,13 +40,16 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("WeaponMeleeAttackScript starting");
+        Debug.Log("WeaponRangedAttackScript starting");
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!GameManager.Instance.GameIsPlaying) return;
+        
+        // Countdown cooldown until zero
+        cooldown = cooldown - Time.deltaTime > 0 ? cooldown - Time.deltaTime : 0f;
 
         if (weaponScript.weaponInputScript.Input_Attack == 1)
         {
@@ -75,12 +83,16 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
         canAttack = true;
     }
 
+    // Weapon attack
     public void BeginAttack()
     {
         if (!canAttack) return;
-        
-        if (cooldown <= 0f && weaponScript.Ammo > 0)
+
+        if (cooldown <= 0f && weaponScript.weaponAmmoScript.loadedAmmo > 0)
         {
+            // Interrupt any ongoing reload
+            weaponScript.weaponAmmoScript.InterruptReloadCoroutine();
+
             // If this weapon does NOT have an animation, fire/attack straight away
             // Otherwise call firing/attack in WeaponAnimation & animator
             if (!weaponScript.weaponAnimationScript)
@@ -90,18 +102,41 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
         }
     }
 
-
+    // Execute shoot anim (if available)
     public void AttackWithAnim()
     {
         weaponScript.weaponAnimationScript.AttackAnimation();
     }
 
+    // Attempt to shoot projectile
     public void ExecuteAttack()
     {
-        // Set attacker
-        weaponMeleeHitScript.SetAttacker(weaponScript.parentHolder);
+        // Call a shoot projectile coroutine from each muzzle subscripts
+        foreach (WeaponRangedMuzzleScript muzzleScript in weaponMuzzleScripts)
+        {
+            StartCoroutine(muzzleScript.ShootCoroutine());
+        }
 
-        // Enabling and disabling colliders are handled in animation clip
-        return;
+        // Set Cooldown
+        cooldown = fireRateDelay;
+
+        // Subtract ammo by one
+        weaponScript.weaponAmmoScript.ChangeLoadedAmmo(-1);
     }
+
+
+#if UNITY_EDITOR
+    // Implement this OnDrawGizmosSelected if you want to draw gizmos only if the object is selected
+    private void OnDrawGizmos()
+    {
+        if (!drawGizmo) return;
+
+        Vector3 textRootPos = transform.position + new Vector3(0.2f, 0.2f);
+        int textPos = 0;
+
+        // Weapon range (as a wireframe sphere)
+        Gizmos.color = new Color(240f / 255, 120f / 255, 46f / 255);
+        Gizmos.DrawWireSphere(transform.position, range);
+    }
+#endif
 }
