@@ -37,6 +37,33 @@ public class InventoryScript : MonoBehaviour
 
         OnEquipmentSwitch.Invoke();
     }
+
+    // OnPWeapon1 listener from InputAction "MainPlayerInput.inputaction"
+    void OnPWeapon1()
+    {
+        // Switch to equipment 1 (index = 0)
+        SwitchEquipment(0);
+
+        OnEquipmentSwitch.Invoke();
+    }
+
+    // OnPWeapon1 listener from InputAction "MainPlayerInput.inputaction"
+    void OnPWeapon2()
+    {
+        // Switch to equipment 2 (index = 1)
+        SwitchEquipment(1);
+
+        OnEquipmentSwitch.Invoke();
+    }
+
+    // OnPWeapon1 listener from InputAction "MainPlayerInput.inputaction"
+    void OnPWeapon3()
+    {
+        // Switch to equipment 3 (index = 2)
+        SwitchEquipment(2);
+
+        OnEquipmentSwitch.Invoke();
+    }
     #endregion
 
     // Awake is called when the script instance is being loaded
@@ -69,6 +96,9 @@ public class InventoryScript : MonoBehaviour
         // Use try catch to prevent index out of bounds exception
         try
         {
+            // If player changes to the currently equipped weapon, do nothing
+            if (equippedItemIndex == index) return;
+
             GameObject obj = null;
 
             // Go through equipments list
