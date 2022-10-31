@@ -33,12 +33,14 @@ public class PlayerAnimationScript : MonoBehaviour
     public const string PLAYER_RUN_LEFT = "Player Run Left";
 
     public const string PLAYER_HURT = "Player Hurt";
+    public const string PLAYER_DEATH = "Player Death";
 
     // Variables
     private string currentState;
     private bool uninterruptibleCoroutineRunning = false;
     private string playerDir;
 
+    #region Initialization
     // Start is called before the first frame update
     void Start()
     {
@@ -46,12 +48,13 @@ public class PlayerAnimationScript : MonoBehaviour
 
         if (playerScript.healthScript)
         {
-            // Add listener to Health's OnHit UnityEvent
-            //UnityEditor.Events.UnityEventTools.AddPersistentListener(playerScript.healthScript.OnHit, PlayerHurt);            
+            // Add listener to Health's OnHit UnityEvent          
             playerScript.healthScript.OnHit.AddListener(PlayerHurt);
         }
     }
+    #endregion
 
+    #region State machine
     // Update is called once per frame
     void Update()
     {
@@ -60,6 +63,14 @@ public class PlayerAnimationScript : MonoBehaviour
         UpdateAnimationState();
     }
 
+    // Central process to handle all anim state update
+    void UpdateAnimationState()
+    {
+        UpdateAnimationDirection();
+    }
+    #endregion
+
+    #region Core transition functions
     // Method to change animation state
     internal void ChangeAnimationState(string newState)
     {
@@ -76,6 +87,7 @@ public class PlayerAnimationScript : MonoBehaviour
         currentState = newState;
     }
 
+    // Method to change animation state to another state and make it uninterruptible
     private IEnumerator ChangeAnimationStateUninterruptible(string newState)
     {
         // Anim transition
@@ -93,8 +105,9 @@ public class PlayerAnimationScript : MonoBehaviour
 
         uninterruptibleCoroutineRunning = false;
     }
+    #endregion
 
-
+    #region State checking, other utilities
     // Method to check if there's any animation clip is currently playing
     bool AnimatorIsPlaying()
     {
@@ -118,13 +131,9 @@ public class PlayerAnimationScript : MonoBehaviour
     {
         return AnimatorIsPlaying(stateName) && AnimatorHasFinishedPlaying();
     }
+    #endregion
 
-    // Central process to handle all anim state update
-    void UpdateAnimationState()
-    {
-        UpdateAnimationDirection();
-    }
-
+    #region Transitions
     // Play hurt animation
     private void PlayerHurt()
     {
@@ -201,4 +210,5 @@ public class PlayerAnimationScript : MonoBehaviour
             // TODO: Update player sprite facing based off of movement
         }
     }
+    #endregion
 }

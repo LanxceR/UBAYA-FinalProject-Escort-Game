@@ -19,7 +19,6 @@ public class EnemyAnimationScript : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
-    // TODO: Death animation
     // Animation States
     public const string ENEMY_IDLE_FRONT = "Idle Front";
     public const string ENEMY_IDLE_RIGHT = "Idle Right";
@@ -32,23 +31,28 @@ public class EnemyAnimationScript : MonoBehaviour
     public const string ENEMY_RUN_LEFT = "Run Left";
 
     public const string ENEMY_HURT = "Hurt";
+    public const string ENEMY_DEATH = "Death";
+
+    public const string ENEMY_ATTACK = "Attack";
 
     // Variables
     private string currentState;
     private bool uninterruptibleCoroutineRunning = false;
     private string enemyDir;
 
+    #region Initialization
     // Start is called before the first frame update
     void Start()
     {
         if (enemyScript.healthScript)
         {
-            // Add listener to Health's OnHit UnityEvent
-            //UnityEditor.Events.UnityEventTools.AddPersistentListener(enemyScript.healthScript.OnHit, EnemyHurt);            
+            // Add listener to Health's OnHit UnityEvent         
             enemyScript.healthScript.OnHit?.AddListener(EnemyHurt);
         }
     }
+    #endregion
 
+    #region State machine
     // Update is called once per frame
     void Update()
     {
@@ -57,6 +61,14 @@ public class EnemyAnimationScript : MonoBehaviour
         UpdateAnimationState();
     }
 
+    // Central process to handle all anim state update
+    void UpdateAnimationState()
+    {
+        UpdateAnimationDirection();
+    }
+    #endregion
+
+    #region Core transition functions
     // Method to change animation state
     internal void ChangeAnimationState(string newState)
     {
@@ -73,6 +85,7 @@ public class EnemyAnimationScript : MonoBehaviour
         currentState = newState;
     }
 
+    // Method to change animation state to another state and make it uninterruptible
     private IEnumerator ChangeAnimationStateUninterruptible(string newState)
     {
         // Anim transition
@@ -90,8 +103,9 @@ public class EnemyAnimationScript : MonoBehaviour
 
         uninterruptibleCoroutineRunning = false;
     }
+    #endregion
 
-
+    #region State checking, other utilities
     // Method to check if there's any animation clip is currently playing
     bool AnimatorIsPlaying()
     {
@@ -115,13 +129,9 @@ public class EnemyAnimationScript : MonoBehaviour
     {
         return AnimatorIsPlaying(stateName) && AnimatorHasFinishedPlaying();
     }
+    #endregion
 
-    // Central process to handle all anim state update
-    void UpdateAnimationState()
-    {
-        UpdateAnimationDirection();
-    }
-
+    #region Transitions
     // Play hurt animation
     private void EnemyHurt()
     {
@@ -135,5 +145,6 @@ public class EnemyAnimationScript : MonoBehaviour
     {
         // TODO: Update enemy sprite facing based off of movement
         ChangeAnimationState(ENEMY_IDLE_FRONT);
-    }
+    } 
+    #endregion
 }

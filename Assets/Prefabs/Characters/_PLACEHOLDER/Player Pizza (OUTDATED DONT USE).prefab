@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 343115373522259718}
   - component: {fileID: 6791545207713223445}
   m_Layer: 0
-  m_Name: Player Pizza (TEST)
+  m_Name: Player Pizza (OUTDATED DONT USE)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

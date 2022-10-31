@@ -674,6 +674,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Enemy-Pizza-spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca6cd8d26a4ac6408b9bd733383eb76
+      internalID: -145907019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Pizza-spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b610d8bb65cb4604b8b3c17a21cbeb22
+      internalID: -1765379708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -695,6 +737,7 @@ TextureImporter:
       Enemy-Pizza-spritesheet_21: -1654507593
       Enemy-Pizza-spritesheet_0: -2024151851
       Enemy-Pizza-spritesheet_24: 780388883
+      Enemy-Pizza-spritesheet_27: -1765379708
       Enemy-Pizza-spritesheet_14: 1145865410
       Enemy-Pizza-spritesheet_16: 583857244
       Enemy-Pizza-spritesheet_18: 799669791
@@ -703,6 +746,7 @@ TextureImporter:
       Enemy-Pizza-spritesheet_9: 1635517594
       Enemy-Pizza-spritesheet_25: 344304145
       Enemy-Pizza-spritesheet_15: -965458064
+      Enemy-Pizza-spritesheet_26: -145907019
       Enemy-Pizza-spritesheet_23: -507107914
       Enemy-Pizza-spritesheet_22: 2068536030
       Enemy-Pizza-spritesheet_7: 424336720
