@@ -20,7 +20,6 @@ public class PlayerAnimationScript : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
-    // TODO: Death animation
     // Animation States
     public const string PLAYER_IDLE_FRONT = "Player Idle Front";
     public const string PLAYER_IDLE_RIGHT = "Player Idle Right";
@@ -50,6 +49,9 @@ public class PlayerAnimationScript : MonoBehaviour
         {
             // Add listener to Health's OnHit UnityEvent          
             playerScript.healthScript.OnHit.AddListener(PlayerHurt);
+
+            // Add listener to Health's OnHealthReachedZero UnityEvent          
+            playerScript.healthScript.OnHealthReachedZero.AddListener(PlayerDeath);
         }
     }
     #endregion
@@ -74,6 +76,9 @@ public class PlayerAnimationScript : MonoBehaviour
     // Method to change animation state
     internal void ChangeAnimationState(string newState)
     {
+        // If animator speed is 0, then return
+        if (animator.speed == 0) return;
+
         // Prevent the same animation from interrupting itself
         if (currentState == newState) return;
 
@@ -88,7 +93,7 @@ public class PlayerAnimationScript : MonoBehaviour
     }
 
     // Method to change animation state to another state and make it uninterruptible
-    private IEnumerator ChangeAnimationStateUninterruptible(string newState)
+    private IEnumerator ChangeAnimationStateUninterruptible(string newState, bool stopAfterAnimEnd)
     {
         // Anim transition
         ChangeAnimationState(newState);
@@ -102,6 +107,9 @@ public class PlayerAnimationScript : MonoBehaviour
         {
             yield return null;
         }
+
+        // Stop the animator
+        if (stopAfterAnimEnd) animator.speed = 0;
 
         uninterruptibleCoroutineRunning = false;
     }
@@ -139,7 +147,16 @@ public class PlayerAnimationScript : MonoBehaviour
     {
         if (!uninterruptibleCoroutineRunning)
         {
-            StartCoroutine(ChangeAnimationStateUninterruptible(PLAYER_HURT));
+            StartCoroutine(ChangeAnimationStateUninterruptible(PLAYER_HURT, false));
+        }
+    }
+
+    // Play death animation
+    private void PlayerDeath()
+    {
+        if (!uninterruptibleCoroutineRunning)
+        {
+            StartCoroutine(ChangeAnimationStateUninterruptible(PLAYER_DEATH, true));
         }
     }
 

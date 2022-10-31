@@ -719,7 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66712dbb5d325543a7a75f4b145a45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: Infinity
+  health: 5
   speed: 0.5
   knockbackImmune: 0
   enemyAnimationScript: {fileID: 1449538883933793047}
@@ -753,6 +753,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+  corpseLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  colliders:
+  - {fileID: 6290639784261018946}
+  - {fileID: 3729195382114475088}
 --- !u!114 &1229547623720970518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,7 +866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8235225914754665441
 Transform:
   m_ObjectHideFlags: 0

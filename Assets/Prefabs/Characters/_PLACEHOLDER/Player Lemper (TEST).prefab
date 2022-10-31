@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507f09702b6293d4b8c801603ec352f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: Infinity
+  health: 5
   baseSpeed: 1
   knockbackImmune: 0
   playerMovementScript: {fileID: 1135118919356334668}
@@ -318,6 +318,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+  corpseLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  colliders:
+  - {fileID: 3081994311626349652}
+  - {fileID: 5641151623828333894}
 --- !u!114 &3557282564589218432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,7 +569,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1135118920875324151
 Transform:
   m_ObjectHideFlags: 0

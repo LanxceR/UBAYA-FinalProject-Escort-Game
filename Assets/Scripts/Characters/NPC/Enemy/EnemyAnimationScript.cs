@@ -48,6 +48,9 @@ public class EnemyAnimationScript : MonoBehaviour
         {
             // Add listener to Health's OnHit UnityEvent         
             enemyScript.healthScript.OnHit?.AddListener(EnemyHurt);
+
+            // Add listener to Health's OnHealthReachedZero UnityEvent          
+            enemyScript.healthScript.OnHealthReachedZero.AddListener(EnemyDeath);
         }
     }
     #endregion
@@ -72,6 +75,9 @@ public class EnemyAnimationScript : MonoBehaviour
     // Method to change animation state
     internal void ChangeAnimationState(string newState)
     {
+        // If animator speed is 0, then return
+        if (animator.speed == 0) return;
+
         // Prevent the same animation from interrupting itself
         if (currentState == newState) return;
 
@@ -86,7 +92,7 @@ public class EnemyAnimationScript : MonoBehaviour
     }
 
     // Method to change animation state to another state and make it uninterruptible
-    private IEnumerator ChangeAnimationStateUninterruptible(string newState)
+    private IEnumerator ChangeAnimationStateUninterruptible(string newState, bool stopAfterAnimEnd)
     {
         // Anim transition
         ChangeAnimationState(newState);
@@ -100,6 +106,9 @@ public class EnemyAnimationScript : MonoBehaviour
         {
             yield return null;
         }
+
+        // Stop the animator
+        if (stopAfterAnimEnd) animator.speed = 0;
 
         uninterruptibleCoroutineRunning = false;
     }
@@ -137,7 +146,16 @@ public class EnemyAnimationScript : MonoBehaviour
     {
         if (!uninterruptibleCoroutineRunning)
         {
-            StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_HURT));
+            StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_HURT, false));
+        }
+    }
+
+    // Play death animation
+    private void EnemyDeath()
+    {
+        if (!uninterruptibleCoroutineRunning)
+        {
+            StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_DEATH, true));
         }
     }
 

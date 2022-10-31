@@ -8,14 +8,22 @@ using UnityEngine.Events;
 /// </summary>
 public class HealthScript : MonoBehaviour
 {
+    // Variables
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float currentHealth;
+
+    // Layer masks
+    [Header("Layer Masks")]
+    [SerializeField] private LayerMask corpseLayerMask = 1 << 10; // Layer Uninteractable
+
+    // Components
+    [Header("Components")]
+    [SerializeField] private Collider2D[] colliders;
+
     // Events
     [Header("Events")]
     internal UnityEvent OnHit = new UnityEvent();
     internal UnityEvent OnHealthReachedZero = new UnityEvent();
-
-    // Variables
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float currentHealth;
 
     internal float MaxHealth { get => maxHealth; set => maxHealth = value; }
     internal float CurrentHealth { 
@@ -37,6 +45,12 @@ public class HealthScript : MonoBehaviour
     {
         // Set health at start
         CurrentHealth = MaxHealth;
+    }
+
+    // Update is called every frame, if the MonoBehaviour is enabled
+    private void Update()
+    {
+        UpdateState();
     }
 
     // This function is called when the object becomes enabled and active
@@ -109,15 +123,17 @@ public class HealthScript : MonoBehaviour
     }
 
     // TODO: Implement State Checking for health (e.g Change corpse layer to Corpse layer to prevent any further interactions). Maybe do this on a separate script?
-    /*
-    // Perform various update to the object based on different states
     private void UpdateState()
     {
-        if (isDead)
+        if (IsDead)
         {
-            SetSpriteColor(deadColor);
-            gameObject.layer = Utilities.ToLayer(corpseLayerMask.value);
+            // Set corpse's colliders to the corpse layer
+            foreach (var c in colliders)
+            {
+                c.gameObject.layer = Utilities.ToLayer(corpseLayerMask.value);
+            }
         }
+        /*
         else if (isInvulnerable)
         {
             gameObject.layer = Utilities.ToLayer(invulnerableLayerMask.value);
@@ -126,6 +142,6 @@ public class HealthScript : MonoBehaviour
         {
             gameObject.layer = Utilities.ToLayer(defaultLayerMask.value);
         }
+        */
     }
-    */
 }

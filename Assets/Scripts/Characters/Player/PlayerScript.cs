@@ -41,5 +41,17 @@ public class PlayerScript : MonoBehaviour, ICharacter
 
         // Set knockback immunity
         knockbackScript.knockbackImmune = this.knockbackImmune;
+
+        // Add listener to Health's OnHealthReachedZero UnityEvent
+        healthScript.OnHealthReachedZero.AddListener(PlayerDeath);
+    }
+
+    void PlayerDeath()
+    {
+        if (inventoryScript)
+        {
+            inventoryScript.DisableAllEquipment();
+            inventoryScript.enabled = false;
+        }
     }
 }

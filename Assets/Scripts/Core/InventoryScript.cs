@@ -81,6 +81,22 @@ public class InventoryScript : MonoBehaviour
         equipments = inventoryHolder.GetComponentsInChildren<IEquipmentItem>(true).ToList();
     }
 
+    internal void DisableAllEquipment()
+    {
+        try
+        {
+            foreach (var e in equipments)
+            {
+                if (e is WeaponScript) (e as WeaponScript).gameObject.SetActive(false);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Selected item index not found \n" + e);
+            return;
+        }
+    }
+
     internal IEquipmentItem GetCurrentEquippedItem()
     {
         return GetCurrentEquippedItem(equippedItemIndex);
@@ -90,7 +106,6 @@ public class InventoryScript : MonoBehaviour
         return equipments[index];
     }
 
-    // TODO: (DUPLICATE) Finish implementing weapon switching and HUD weapon script assigning.
     internal void SwitchEquipment(int index)
     {
         // Use try catch to prevent index out of bounds exception
