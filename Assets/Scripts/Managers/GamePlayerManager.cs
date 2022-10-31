@@ -43,7 +43,7 @@ public class GamePlayerManager : MonoBehaviour
         if (!gameManager.ActivePlayer)
         {
             gameManager.ActivePlayer = Instantiate(gameManager.PlayerPrefab, spawnPoint.position, Quaternion.identity);
-            //SetVcamTargetGroup(ActivePlayer);
+            gameManager.Cameras.AssignCameraTargetGroup(true);
         }
         else
         {
@@ -53,6 +53,7 @@ public class GamePlayerManager : MonoBehaviour
             {
                 behaviour.enabled = true;
             }
+            gameManager.Cameras.AssignCameraTargetGroup(true);
         }
     }
 }

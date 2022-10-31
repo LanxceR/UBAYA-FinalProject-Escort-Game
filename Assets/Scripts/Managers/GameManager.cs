@@ -129,7 +129,6 @@ public class GameManager : MonoBehaviour
         // TODO: Implement GameOver events here
     }
 
-
     // Find an active Cameras object in hirearchy
     private void FindActiveCameras()
     {

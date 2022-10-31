@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8149645940133432906}
   - component: {fileID: 2781960273024480784}
   - component: {fileID: 5162142725094302229}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Alert Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 8040423112634622370}
   - component: {fileID: 8040423112634622368}
   - component: {fileID: 8040423112634622369}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Parent
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 8040423112761327668}
   - component: {fileID: 8040423112761327666}
   - component: {fileID: 8040423112761327667}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8040423113043011729}
   - component: {fileID: 8040423113043011728}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Reload Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 8040423113550862873}
   - component: {fileID: 6790172340947755722}
   - component: {fileID: 1975930359}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Canvas Player HUD
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -537,7 +537,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8040423113657794430}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8040423114127748291}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 8040423114288824257}
   - component: {fileID: 8040423114288824287}
   - component: {fileID: 8040423114288824256}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -689,7 +689,7 @@ GameObject:
   - component: {fileID: 8040423114388371500}
   - component: {fileID: 8040423114388371498}
   - component: {fileID: 8040423114388371499}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -765,7 +765,7 @@ GameObject:
   - component: {fileID: 8040423114506124057}
   - component: {fileID: 8040423114506124055}
   - component: {fileID: 8040423114506124056}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Image (TEST)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

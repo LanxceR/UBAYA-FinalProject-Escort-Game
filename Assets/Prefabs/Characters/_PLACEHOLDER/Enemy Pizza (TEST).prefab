@@ -814,7 +814,7 @@ GameObject:
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8235225914585798712
 Transform:
   m_ObjectHideFlags: 0
@@ -1048,26 +1048,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5709b6dd2479b041bd832aa3182c493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 8235225915143424731}
-  fireRateDelay: 0.25
-  damage: 1
-  range: 5
-  velocity: 10
-  knockbackForce: 10
-  spread: 20
-  isFullAuto: 0
-  isBurstFire: 0
+  parentHolder: {fileID: 0}
+  parentAttach: {fileID: 0}
   reloadTime: 1
-  burstAmount: 3
-  burstDelay: 0.03
-  startingAmmo: 5
+  ammoType: 0
+  ammoMagSize: Infinity
   weaponInputScript: {fileID: 8235225915143424733}
-  weaponAnimationScript: {fileID: 8235225915143424734}
-  weaponAttackScript: {fileID: 8235225915143424732}
-  weaponMuzzleScripts:
-  - {fileID: 8235225915143424723}
   weaponSpriteScript: {fileID: 8235225915143424722}
-  drawGizmo: 1
+  weaponAnimationScript: {fileID: 8235225915143424734}
+  weaponAmmoScript: {fileID: 0}
 --- !u!114 &8235225915143424733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,6 +1098,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponScript: {fileID: 8235225915143424735}
+  weaponMuzzleScripts: []
+  fireRateDelay: 0.1
+  damage: 1
+  range: 5
+  velocity: 5
+  knockbackForce: 10
+  spread: 0
+  isFullAuto: 0
+  isBurstFire: 0
+  reloadTime: 1
+  burstAmount: 3
+  burstDelay: 0.03
+  drawGizmo: 0
 --- !u!114 &8235225915143424722
 MonoBehaviour:
   m_ObjectHideFlags: 0
