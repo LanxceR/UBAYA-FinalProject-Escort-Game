@@ -12,7 +12,7 @@ public class EnemyScript : MonoBehaviour, ICharacter
     [SerializeField]
     internal float health = 5f;
     [SerializeField]
-    internal float speed = 0.5f;
+    internal float baseSpeed = 0.5f;
     [SerializeField]
     internal bool knockbackImmune = false;
 
@@ -21,6 +21,10 @@ public class EnemyScript : MonoBehaviour, ICharacter
     [Header("Sub-scripts")]
     [SerializeField]
     internal EnemyAnimationScript enemyAnimationScript;
+    [SerializeField]
+    internal EnemyAIMovementScript enemyMovementScript;
+    [SerializeField]
+    internal PathfindingScript pathfindingScript;
     [SerializeField]
     internal HealthScript healthScript;
     [SerializeField]
