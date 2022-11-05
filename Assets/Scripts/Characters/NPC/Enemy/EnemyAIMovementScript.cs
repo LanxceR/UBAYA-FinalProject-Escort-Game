@@ -53,6 +53,14 @@ public class EnemyAIMovementScript : MonoBehaviour
     // This function is called every fixed framerate frame, if the MonoBehaviour is enabled
     private void FixedUpdate()
     {
+        // Check the current health state (dead or not) if it has one
+        if (enemyScript.healthScript)
+        {
+            if (enemyScript.healthScript.IsDead == true)
+                moveableComp.enabled = false;
+        }
+
+        // AI Movement
         if (enemyScript.pathfindingScript)
             AIPathMovement();
     }

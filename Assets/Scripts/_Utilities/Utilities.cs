@@ -64,4 +64,14 @@ public static class Utilities
         InitializeLayerMatrixMask();
         return _masksByLayer[layer];
     }
+
+    public static float GetDirectionAngle(Vector2 dir)
+    {
+        // Get the angle in degrees (-180, 180)
+        float degAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        // Normalize angle (0, 360)
+        if (degAngle < 0) degAngle += 360;
+
+        return degAngle;
+    }
 }

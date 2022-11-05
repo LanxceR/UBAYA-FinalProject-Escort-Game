@@ -868,8 +868,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   physMaterial: {fileID: 6200000, guid: e6da2d6b1aa9f344a90c364108bbdd2a, type: 2}
   knockbackResist: 0
-  recoveryTime: 1
-  staggerTime: 1
+  recoveryTime: 0.2
+  staggerTime: 0.2
 --- !u!114 &3059799812038082763
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -224,7 +224,44 @@ public class PlayerAnimationScript : MonoBehaviour
         }
         else
         {
-            // TODO: Update player sprite facing based off of movement
+            // Get Direction angle (right = 0 deg, anti-clockwise until 360 deg)
+            float degAngle = Utilities.GetDirectionAngle(playerScript.playerMovementScript.dir);
+
+            // Perform direction checking
+            if (degAngle < 45 || 315 < degAngle)
+            {
+                // Facing right
+                if (playerScript.playerMovementScript.dir.magnitude > 0)
+                    playerDir = PLAYER_RUN_RIGHT;
+                else
+                    playerDir = PLAYER_IDLE_RIGHT;
+            }
+            else if (45 < degAngle && degAngle < 135)
+            {
+                // Facing back / up
+                if (playerScript.playerMovementScript.dir.magnitude > 0)
+                    playerDir = PLAYER_RUN_BACK;
+                else
+                    playerDir = PLAYER_IDLE_BACK;
+            }
+            else if (135 < degAngle && degAngle < 225)
+            {
+                // Facing left
+                if (playerScript.playerMovementScript.dir.magnitude > 0)
+                    playerDir = PLAYER_RUN_LEFT;
+                else
+                    playerDir = PLAYER_IDLE_LEFT;
+            }
+            else
+            {
+                // Facing front / down
+                if (playerScript.playerMovementScript.dir.magnitude > 0)
+                    playerDir = PLAYER_RUN_FRONT;
+                else
+                    playerDir = PLAYER_IDLE_FRONT;
+            }
+
+            ChangeAnimationState(playerDir);
         }
     }
     #endregion
