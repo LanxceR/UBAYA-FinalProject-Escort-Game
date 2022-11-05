@@ -353,6 +353,9 @@ MonoBehaviour:
   range: 10
   knockbackForce: 10
   spawnOffset: {x: 0, y: -0.16, z: 0}
+  damageableTags:
+  - Player
+  - Enemy
   projectileHitScript: {fileID: 7542916428049988055}
   projectileMovementScript: {fileID: 6428794869061359875}
   projectileAnimationScript: {fileID: 884628123488878989}

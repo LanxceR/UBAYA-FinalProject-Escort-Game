@@ -829,7 +829,7 @@ MonoBehaviour:
   subdivisions: 2
   iterations: 2
   strength: 0.5
-  uniformLength: 1
+  uniformLength: 0
   maxSegmentLength: 2
   bezierTangentLength: 0.4
   offset: 0.2

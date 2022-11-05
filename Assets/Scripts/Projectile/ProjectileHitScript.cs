@@ -76,8 +76,14 @@ public class ProjectileHitScript : MonoBehaviour
         // TODO: Perform checking and/or retrieve the correct parent victim gameobject
         Debug.Log($"{attacker.name}'s projectile has hit {victim.transform.parent.parent.name}!");
 
-        // Try to damage victim
-        Hit(victim);
+        foreach (string tag in projectileScript.damageableTags)
+        {
+            if (victim.gameObject.CompareTag(tag))
+            {
+                // Try to damage victim
+                Hit(victim);
+            }
+        }
 
         // Set bullet hit to true; bullet has hit something
         SetHit(true);
