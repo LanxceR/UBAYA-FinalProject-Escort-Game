@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class HUDScript : MonoBehaviour
 {
+    // TODO: Implement escortee related HUD (Escortee Speed)
+    // TODO: Implement progress/journey bar
+
     [Header("Components")]
     [SerializeField]
     internal Canvas canvas;

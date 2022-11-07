@@ -17,6 +17,7 @@ public class EnemyScript : MonoBehaviour, ICharacter
     internal bool knockbackImmune = false;
 
     // TODO: Implement other subscripts for the enemy
+    // TODO: Implement melee attack for enemy zombies
     // References of the enemy's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]

@@ -26,12 +26,16 @@ public class WeaponInputScript : MonoBehaviour
     // OnPFire listener from InputAction "MainPlayerInput.inputaction"
     void OnPFire(InputValue value)
     {
+        if (!GameManager.Instance.GameIsPlaying) return;
+
         Input_Attack = value.Get<float>();
     }
 
     // OnPReload listener from InputAction "MainPlayerInput.inputaction"
     void OnPReload(InputValue value)
     {
+        if (!GameManager.Instance.GameIsPlaying) return;
+
         Input_Reload = value.Get<float>();
     }
 }
