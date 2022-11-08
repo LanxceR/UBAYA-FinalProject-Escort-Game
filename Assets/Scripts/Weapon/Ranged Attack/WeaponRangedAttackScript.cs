@@ -70,7 +70,7 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
     {
         BeginAttack();
 
-        // Set canAttack to false non full-auto weapons
+        // Set canAttack to false for non full-auto weapons
         canAttack = false;
 
         while (weaponScript.weaponInputScript.Input_Attack == 1)

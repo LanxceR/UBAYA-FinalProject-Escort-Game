@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Moveable objects behaviour (for objects that can move under it's own volition)
@@ -49,7 +50,13 @@ public class MoveableScript : MonoBehaviour
     // Get the next position according to direction
     internal Vector3 GetNextPosition()
     {
-        return transform.position + GetDirectionWithVelocity();
+        // TODO: Fix movement jitter when moving camera using Cinemachine & Pixel Perfect Camera
+        Vector3 pos;
+        pos.x = (float)Math.Round(transform.position.x + GetDirectionWithVelocity().x, 2);
+        pos.y = (float)Math.Round(transform.position.y + GetDirectionWithVelocity().y, 2);
+        pos.z = (float)Math.Round(transform.position.z + GetDirectionWithVelocity().z, 2);
+
+        return pos;
     }
 
     // Get directions

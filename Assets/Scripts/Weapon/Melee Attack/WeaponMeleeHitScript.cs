@@ -43,8 +43,7 @@ public class WeaponMeleeHitScript : MonoBehaviour
 
     internal void OnHit(GameObject victim)
     {
-        // TODO: Perform checking and/or retrieve the correct parent victim gameobject
-        Debug.Log($"{attacker.name}'s attack has hit {victim.transform.parent.parent.name}!");
+        Debug.Log($"{attacker.name}'s attack has hit {Utilities.FindParent<ICharacter>(victim.transform).name}!");
 
         // Try to damage victim
         Hit(victim);
@@ -56,9 +55,8 @@ public class WeaponMeleeHitScript : MonoBehaviour
         // For abbreviation
         var w = weaponScript.weaponAttackScript as WeaponMeleeAttackScript;
 
-        // TODO: Find parent instead of climbing up manually
         // Fetch victim's health on their parent gameobject
-        victim.transform.parent.parent.TryGetComponent(out HealthScript health);
+        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out HealthScript health);
 
         if (health)
         {
@@ -67,7 +65,7 @@ public class WeaponMeleeHitScript : MonoBehaviour
         }
 
         // Fetch victim's knockback script on their parent gameobject
-        victim.transform.parent.parent.TryGetComponent(out KnockbackScript knockback);
+        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out KnockbackScript knockback);
         // Fetch victim's collider
         victim.TryGetComponent(out Collider2D collider);
 
@@ -78,6 +76,15 @@ public class WeaponMeleeHitScript : MonoBehaviour
 
             // Knockback push
             knockback.DoKnockback(w.knockbackForce, dir.normalized, !health.IsDead, !health.IsDead);
+        }
+
+        // Fetch victim's aggro script on their parent gameobject
+        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out ReceiveAggroScript aggro);
+
+        if (aggro)
+        {
+            // Force aggro
+            aggro.ForceAggroTarget(attacker.transform, 5f);
         }
     }
 }

@@ -8,6 +8,8 @@ using UnityEngine.Events;
 /// </summary>
 public class HealthScript : MonoBehaviour
 {
+    // TODO: Implement various health HUDs
+
     // Variables
     [SerializeField] private float maxHealth;
     [SerializeField] private float currentHealth;

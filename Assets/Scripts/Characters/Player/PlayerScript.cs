@@ -30,6 +30,8 @@ public class PlayerScript : MonoBehaviour, ICharacter
     internal KnockbackScript knockbackScript;
     [SerializeField]
     internal InventoryScript inventoryScript;
+    [SerializeField]
+    internal EmitAggroScript emitAggroScript;
 
     // Start is called before the first frame update
     void Start()

@@ -161,8 +161,28 @@ public class EnemyAnimationScript : MonoBehaviour
 
     private void UpdateAnimationDirection()
     {
-        // TODO: Update enemy sprite facing based off of movement
-        ChangeAnimationState(ENEMY_IDLE_FRONT);
+        // Get Direction angle (right = 0 deg, anti-clockwise until 360 deg)
+        float degAngle = Utilities.GetDirectionAngle(enemyScript.enemyMovementScript.dir);
+
+        // Perform direction checking
+        if (degAngle < 90 || 270 < degAngle)
+        {
+            // Facing right
+            if (enemyScript.enemyMovementScript.dir.magnitude > 0)
+                enemyDir = ENEMY_RUN_RIGHT;
+            else
+                enemyDir = ENEMY_IDLE_RIGHT;
+        }
+        else
+        {
+            // Facing left
+            if (enemyScript.enemyMovementScript.dir.magnitude > 0)
+                enemyDir = ENEMY_RUN_LEFT;
+            else
+                enemyDir = ENEMY_IDLE_LEFT;
+        }
+
+        ChangeAnimationState(enemyDir);
     } 
     #endregion
 }

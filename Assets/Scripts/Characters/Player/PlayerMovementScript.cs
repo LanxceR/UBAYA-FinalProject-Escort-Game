@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum SpeedRecoveryMode { LINEAR, SMOOTHSTEP, SMOOTHSTEP2, EXPONENTIAL}
 /// <summary>
 /// The player movement script (handles all player movements)
 /// </summary>
 [RequireComponent(typeof(PlayerScript), typeof(MoveableScript))]
 public class PlayerMovementScript : MonoBehaviour
 {
+    enum SpeedRecoveryMode { LINEAR, SMOOTHSTEP, SMOOTHSTEP2, EXPONENTIAL }
+
     // Reference to the main player script
     [SerializeField]
     private PlayerScript playerScript;

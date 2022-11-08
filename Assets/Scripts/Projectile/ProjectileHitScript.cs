@@ -73,11 +73,16 @@ public class ProjectileHitScript : MonoBehaviour
 
     internal void OnHit(GameObject victim)
     {
-        // TODO: Perform checking and/or retrieve the correct parent victim gameobject
-        Debug.Log($"{attacker.name}'s projectile has hit {victim.transform.parent.parent.name}!");
+        Debug.Log($"{attacker.name}'s projectile has hit {Utilities.FindParent<ICharacter>(victim.transform).name}!");
 
-        // Try to damage victim
-        Hit(victim);
+        foreach (string tag in projectileScript.damageableTags)
+        {
+            if (victim.gameObject.CompareTag(tag))
+            {
+                // Try to damage victim
+                Hit(victim);
+            }
+        }
 
         // Set bullet hit to true; bullet has hit something
         SetHit(true);
@@ -86,9 +91,8 @@ public class ProjectileHitScript : MonoBehaviour
     // Hit an gameObject (and do various hitting related behaviours)
     private void Hit(GameObject victim)
     {
-        // TODO: Find parent instead of climbing up manually
         // Fetch victim's health on their parent gameobject
-        victim.transform.parent.parent.TryGetComponent(out HealthScript health);
+        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out HealthScript health);
 
         if (health)
         {
@@ -97,12 +101,21 @@ public class ProjectileHitScript : MonoBehaviour
         }
 
         // Fetch victim's knockback script on their parent gameobject
-        victim.transform.parent.parent.TryGetComponent(out KnockbackScript knockback);
+        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out KnockbackScript knockback);
 
         if (knockback)
         {
             // Knockback push
             knockback.DoKnockback(projectileScript.knockbackForce, projectileScript.projectileMovementScript.GetDirection(), !health.IsDead, !health.IsDead);
+        }
+
+        // Fetch victim's aggro script on their parent gameobject
+        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out ReceiveAggroScript aggro);
+
+        if (aggro)
+        {
+            // Force aggro
+            aggro.ForceAggroTarget(attacker.transform, 5f);
         }
     }
 }

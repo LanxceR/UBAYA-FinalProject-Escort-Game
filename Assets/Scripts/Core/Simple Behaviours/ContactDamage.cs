@@ -35,8 +35,7 @@ public class ContactDamage : MonoBehaviour
 
     internal void OnHit(GameObject victim)
     {
-        // TODO: Perform checking and/or retrieve the correct parent victim gameobject
-        Debug.Log($"{gameObject.name} has hit {victim.transform.parent.parent.name}!");
+        Debug.Log($"{gameObject.name} has hit {Utilities.FindParent<ICharacter>(victim.transform).name}!");
 
         // Try to damage victim
         Hit(victim);
@@ -46,7 +45,7 @@ public class ContactDamage : MonoBehaviour
     private void Hit(GameObject victim)
     {
         // Fetch victim's health on their parent gameobject
-        victim.transform.parent.parent.TryGetComponent(out HealthScript health);
+        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out HealthScript health);
 
         if (health)
         {
@@ -55,7 +54,7 @@ public class ContactDamage : MonoBehaviour
         }
 
         // Fetch victim's knockback script on their parent gameobject
-        victim.transform.parent.parent.TryGetComponent(out KnockbackScript knockback);
+        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out KnockbackScript knockback);
 
         if (knockback)
         {

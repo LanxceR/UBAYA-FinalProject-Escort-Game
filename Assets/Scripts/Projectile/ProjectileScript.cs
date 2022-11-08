@@ -16,7 +16,8 @@ public class ProjectileScript : MonoBehaviour
     // Settings
     [Header("Projectile Settings")]
     [SerializeField] internal Vector3 spawnOffset = Vector3.zero;
-    
+    [SerializeField] internal string[] damageableTags;
+
     // References of the projectile's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]

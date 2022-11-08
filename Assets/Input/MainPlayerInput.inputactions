@@ -76,6 +76,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ESlowDown",
+                    "type": "Button",
+                    "id": "be96b1d9-3feb-4b8c-8c47-e6bd1be04f43",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ESpeedUp",
+                    "type": "Button",
+                    "id": "bf81d109-dd23-40c1-a6de-54459481fea8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -335,7 +353,7 @@
                 {
                     "name": "",
                     "id": "f11fd4c8-7c56-4317-ba35-1825beed56d0",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -384,6 +402,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "PWeapon3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cab855aa-4c56-4c42-9650-ba59f84282d8",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ESlowDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5823bc2c-f899-4cbc-9b2a-75d0fb65a166",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ESpeedUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
