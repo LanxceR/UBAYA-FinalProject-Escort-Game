@@ -10,6 +10,8 @@ public class ReceiveAggroScript : MonoBehaviour
     [Header("State Settings")]
     [SerializeField]
     internal bool active;
+    [SerializeField]
+    private bool isForced;
 
     [Header("Main Settings")]
     [SerializeField]
@@ -28,10 +30,19 @@ public class ReceiveAggroScript : MonoBehaviour
     [SerializeField]
     private bool drawGizmo;
 
+    // Coroutines
+    private Coroutine aggroDetectionCoroutine;
+    private Coroutine forcedAggroCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(AggroDetection());
+        aggroDetectionCoroutine = StartCoroutine(AggroDetection());
+    }
+
+    internal void ForceAggroTarget(Transform target, float duration)
+    {
+        forcedAggroCoroutine = StartCoroutine(ForcedAggro(target, duration));
     }
 
     private WaitForSeconds intervalWait = new WaitForSeconds(1 / 30);
@@ -42,6 +53,9 @@ public class ReceiveAggroScript : MonoBehaviour
         {
             // Wait until the game is not paused and aggro is active
             yield return new WaitUntil(() => (GameManager.Instance.GameIsPlaying && active));
+            
+            // Wait until there is no forced aggro
+            yield return new WaitWhile(() => (isForced));
 
             // Cast OverlapCircle
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius, aggroLayers);
@@ -69,6 +83,18 @@ public class ReceiveAggroScript : MonoBehaviour
             // Perform this aggro detection 30 times / sec
             yield return intervalWait;
         }
+    }
+
+    private IEnumerator ForcedAggro(Transform target, float duration)
+    {
+        isForced = true;
+
+        // Set new target
+        this.target = target.transform;
+
+        yield return new WaitForSeconds(duration);
+
+        isForced = false;
     }
 
 #if UNITY_EDITOR

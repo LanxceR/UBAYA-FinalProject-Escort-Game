@@ -108,5 +108,14 @@ public class ProjectileHitScript : MonoBehaviour
             // Knockback push
             knockback.DoKnockback(projectileScript.knockbackForce, projectileScript.projectileMovementScript.GetDirection(), !health.IsDead, !health.IsDead);
         }
+
+        // Fetch victim's aggro script on their parent gameobject
+        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out ReceiveAggroScript aggro);
+
+        if (aggro)
+        {
+            // Force aggro
+            aggro.ForceAggroTarget(attacker.transform, 5f);
+        }
     }
 }

@@ -32,7 +32,7 @@ public class EnemyAIMovementScript : MonoBehaviour
     internal Transform Target { get => target; set 
         {
             target = value;
-            enemyScript.pathfindingScript.target = Target;
+            enemyScript.pathfindingScript.Target = value;
         } 
     }
     [SerializeField] private bool followTarget = true;
@@ -83,7 +83,7 @@ public class EnemyAIMovementScript : MonoBehaviour
 
     private void AIPathMovement()
     {
-        if (enemyScript.pathfindingScript.target)
+        if (enemyScript.pathfindingScript.Target)
         {
             if (followTarget)
             {

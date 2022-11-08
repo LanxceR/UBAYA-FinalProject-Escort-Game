@@ -41,5 +41,20 @@ public class EnemyScript : MonoBehaviour, ICharacter
 
         // Set knockback immunity
         knockbackScript.knockbackImmune = this.knockbackImmune;
+
+        // Add listener to Health's OnHealthReachedZero UnityEvent
+        healthScript.OnHealthReachedZero.AddListener(EnemyDeath);
+    }
+
+    void EnemyDeath()
+    {
+        if (pathfindingScript)
+        {
+            pathfindingScript.enabled = false;
+        }
+        if (recAggroScript)
+        {
+            recAggroScript.enabled = false;
+        }
     }
 }

@@ -17,7 +17,8 @@ public class PathfindingScript : MonoBehaviour
     [SerializeField] Collider2D bodyCollider;
 
     // Variables
-    internal Transform target;
+    private Transform target;
+    internal Transform Target { get => target; set => target = value; }
     internal Path path;
     internal RaycastHit2D hit;
 
@@ -43,23 +44,29 @@ public class PathfindingScript : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
 
-        // Repeatedly invoke UpdatePath
-        InvokeRepeating(nameof(UpdatePath), 0f, pathUpdateIntervalSeconds);
+        // Start continuous UpdatePathCoroutine
+        StartCoroutine(UpdatePathCoroutine());
     }
 
-    // Set the target to find a path to
-    private void SetTarget(Transform target)
+    private IEnumerator UpdatePathCoroutine()
     {
-        this.target = target;
+        while (true)
+        {
+            yield return new WaitUntil(() => (this.enabled));
+
+            UpdatePath();
+
+            yield return new WaitForSeconds(pathUpdateIntervalSeconds);
+        }
     }
 
     // Update/generate/calculate a new path
     private void UpdatePath()
     {
-        if (seeker.IsDone() && target)
+        if (seeker.IsDone() && Target)
         {
             // Start path calculation
-            seeker.StartPath(transform.position, target.position, OnPathGenComplete);
+            seeker.StartPath(transform.position, Target.position, OnPathGenComplete);
         }
     }
 
@@ -88,7 +95,7 @@ public class PathfindingScript : MonoBehaviour
         IsTargetInLineOfSight(lineOfSightCircleCastRadius);
 
         // Calculcate distance to end destination
-        distanceToEnd = Vector2.Distance(transform.position, target.position);
+        distanceToEnd = Vector2.Distance(transform.position, Target.position);
 
         // Has this object reached the destination yet (within this endReachedDistance radius, OR has reached the last waypoint in this path)
         if ((distanceToEnd <= endReachedDistance && targetIsInSight) || (currentWaypoint >= path.vectorPath.Count))
@@ -133,7 +140,7 @@ public class PathfindingScript : MonoBehaviour
     // Find direction in Vector3 to the target
     private Vector3 DirectionToTarget()
     {
-        return target.position - transform.position;
+        return Target.position - transform.position;
     }
 
     // Implement this OnDrawGizmosSelected if you want to draw gizmos only if the object is selected
@@ -146,9 +153,9 @@ public class PathfindingScript : MonoBehaviour
             Gizmos.color = Color.green;
         else
             Gizmos.color = Color.red;
-        if (target)
+        if (Target)
         {
-            Gizmos.DrawLine(transform.position, target.position);
+            Gizmos.DrawLine(transform.position, Target.position);
             Gizmos.DrawWireSphere(transform.position, lineOfSightCircleCastRadius);
         }
 
