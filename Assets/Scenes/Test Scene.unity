@@ -621,6 +621,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   escorteeScript: {fileID: 635229478}
+  isMounted: 0
+  mountPos: {fileID: 822692825}
+  offsetPos: {x: 0, y: 0}
 --- !u!1 &705865313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,6 +1445,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1135118920821793069, guid: d15d5baad8e86d643bb833166ddb8c47, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6780693471056540420, guid: d15d5baad8e86d643bb833166ddb8c47, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

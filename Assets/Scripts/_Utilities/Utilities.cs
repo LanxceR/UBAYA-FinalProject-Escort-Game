@@ -36,7 +36,7 @@ public static class Utilities
         return null; 
     }
     // Climb up the hirearchy and find a parent with the specified type
-    public static Transform FindParent<T>(Transform child)
+    public static Transform FindParent<T>(Transform child) where T: class
     {
         Transform t = child;
         while (t.parent != null)
