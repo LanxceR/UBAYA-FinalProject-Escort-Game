@@ -51,6 +51,22 @@ public static class Utilities
         // Could not find a parent with implementing ICharacter
         return t;
     }
+    // Climb up the hirearchy and find a parent with the specified type
+    public static T FindParentOfType<T>(Transform child)
+    {
+        Transform t = child;
+        while (t.parent != null)
+        {
+            if (t.parent.TryGetComponent(out T parent))
+            {
+                return parent;
+            }
+            t = t.parent;
+        }
+
+        // Could not find a parent with implementing ICharacter
+        return default(T);
+    }
 
     public static Vector2 VectorBetweenTwoPoints(Vector2 first, Vector2 second)
     {

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 1135118919356334668}
   - component: {fileID: 1135118919356335539}
   - component: {fileID: 1135118919356334664}
+  - component: {fileID: 5850976561494223016}
   - component: {fileID: 14562141972734121}
   - component: {fileID: 3557282564589218432}
   - component: {fileID: 3666172875973088831}
@@ -259,6 +260,7 @@ MonoBehaviour:
   playerMovementScript: {fileID: 1135118919356334668}
   playerInputScript: {fileID: 1135118919356335539}
   playerAnimationScript: {fileID: 1135118919356334664}
+  playerInteractScript: {fileID: 5850976561494223016}
   healthScript: {fileID: 14562141972734121}
   knockbackScript: {fileID: 3557282564589218432}
   inventoryScript: {fileID: 2933326581545959992}
@@ -306,6 +308,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1135118919356334669}
   animator: {fileID: 1135118919621596275}
+--- !u!114 &5850976561494223016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135118919356335536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768790a648fb5bc409d72b07c6d29da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScript: {fileID: 1135118919356334669}
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!114 &14562141972734121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,10 +941,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Knife Swing
       objectReference: {fileID: 0}
-    - target: {fileID: 2841505596119360411, guid: 5897a634d2aff6a48a45a88602373edd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5897a634d2aff6a48a45a88602373edd, type: 3}
 --- !u!4 &1091813784548210647 stripped
@@ -989,10 +1003,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Pistol
       objectReference: {fileID: 0}
-    - target: {fileID: 2841505596119360411, guid: 79f1e0bc3febcd94fb0dc18ead2c6836, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79f1e0bc3febcd94fb0dc18ead2c6836, type: 3}
 --- !u!114 &1135118920255353801 stripped
@@ -1022,17 +1032,9 @@ PrefabInstance:
       propertyPath: playerWeaponScript
       value: 
       objectReference: {fileID: 1135118920255353801}
-    - target: {fileID: 8040423112634622371, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 8040423112761327668, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8040423113043011730, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_Pivot.x
@@ -1118,29 +1120,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8040423113550862875, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8040423113550862876, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8040423113550862878, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_Name
       value: Canvas Player HUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 8040423113550862878, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 8040423114288824257, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8040423114506124058, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
@@ -1203,10 +1185,6 @@ PrefabInstance:
     - target: {fileID: 2841505596119360411, guid: f995b45c1a6a12b43991d9dfc1a0cf00, type: 3}
       propertyPath: m_Name
       value: Weapon Knife
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841505596119360411, guid: f995b45c1a6a12b43991d9dfc1a0cf00, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f995b45c1a6a12b43991d9dfc1a0cf00, type: 3}

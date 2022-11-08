@@ -15,6 +15,7 @@ public class PlayerInputScript : MonoBehaviour
 
     internal float Input_MoveX { get; private set; }
     internal float Input_MoveY { get; private set; }
+    internal float Input_Interact { get; private set; }
     internal Vector2 Input_MousePosition { get; private set; }
 
     // Start is called just before any of the Update methods is called the first time
@@ -44,5 +45,13 @@ public class PlayerInputScript : MonoBehaviour
     {
         // Get mouse position on screen
         Input_MousePosition = mousePos.Get<Vector2>();
+    }
+
+    // OnPInteract listener from InputAction "MainPlayerInput.inputaction"
+    void OnPInteract(InputValue value)
+    {
+        if (!GameManager.Instance.GameIsPlaying) return;
+
+        Input_Interact = value.Get<float>();
     }
 }

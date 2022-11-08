@@ -28,6 +28,8 @@ public class EscorteeScript : MonoBehaviour, ICharacter
     [SerializeField]
     internal EscorteeMovementScript escorteeMovementScript;
     [SerializeField]
+    internal EscorteeInteractScript escorteeInteractScript;
+    [SerializeField]
     internal EmitAggroScript emitAggroScript;
 
     // Start is called before the first frame update

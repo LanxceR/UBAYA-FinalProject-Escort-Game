@@ -12,6 +12,7 @@ TagManager:
   - HUDCamera
   - UICamera
   - Ally
+  - VehicleMount
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - WorldHUD
   - Uninteractable
   - Obstacle
-  - 
+  - Interactable
   - 
   - 
   - 

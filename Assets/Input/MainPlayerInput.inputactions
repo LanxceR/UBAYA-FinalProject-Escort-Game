@@ -78,6 +78,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "PInteract",
+                    "type": "Button",
+                    "id": "6442a245-bc11-495e-9e36-c012e436c208",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "ESlowDown",
                     "type": "Button",
                     "id": "be96b1d9-3feb-4b8c-8c47-e6bd1be04f43",
@@ -424,6 +433,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "ESpeedUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58a8a73a-8c81-439c-bd25-cc79d6e89d26",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a81e07ab-95fb-4b60-b55b-c25bd2ccc307",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "PInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
