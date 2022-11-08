@@ -73,8 +73,7 @@ public class ProjectileHitScript : MonoBehaviour
 
     internal void OnHit(GameObject victim)
     {
-        // TODO: Perform checking and/or retrieve the correct parent victim gameobject
-        Debug.Log($"{attacker.name}'s projectile has hit {victim.transform.parent.parent.name}!");
+        Debug.Log($"{attacker.name}'s projectile has hit {Utilities.FindParent<ICharacter>(victim.transform).name}!");
 
         foreach (string tag in projectileScript.damageableTags)
         {
@@ -92,9 +91,8 @@ public class ProjectileHitScript : MonoBehaviour
     // Hit an gameObject (and do various hitting related behaviours)
     private void Hit(GameObject victim)
     {
-        // TODO: Find parent instead of climbing up manually
         // Fetch victim's health on their parent gameobject
-        victim.transform.parent.parent.TryGetComponent(out HealthScript health);
+        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out HealthScript health);
 
         if (health)
         {
@@ -103,7 +101,7 @@ public class ProjectileHitScript : MonoBehaviour
         }
 
         // Fetch victim's knockback script on their parent gameobject
-        victim.transform.parent.parent.TryGetComponent(out KnockbackScript knockback);
+        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out KnockbackScript knockback);
 
         if (knockback)
         {

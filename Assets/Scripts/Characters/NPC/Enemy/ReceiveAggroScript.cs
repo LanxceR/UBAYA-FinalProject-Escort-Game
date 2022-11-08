@@ -49,8 +49,7 @@ public class ReceiveAggroScript : MonoBehaviour
             // Compare all hit target tags with targetTags list
             foreach (Collider2D hit in hits)
             {
-                // TODO: Find parent instead of climbing up manually
-                hit.transform.parent.parent.TryGetComponent(out EmitAggroScript aggressor);
+                Utilities.FindParent<ICharacter>(hit.transform).TryGetComponent(out EmitAggroScript aggressor);
 
                 foreach (string tag in targetTags)
                 {

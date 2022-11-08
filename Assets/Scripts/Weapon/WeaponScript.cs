@@ -54,27 +54,11 @@ public class WeaponScript : MonoBehaviour, IEquipmentItem
     // Try to assign a valid parent that implements the ICharacter interface
     private void AssignParentHolder()
     {
-        parentHolder = FindICharacterParent().gameObject;
+        parentHolder = Utilities.FindParent<ICharacter>(transform).gameObject;
     }
 
     private void AssignParentAttach()
     {
         parentAttach = Utilities.FindParentWithTag(gameObject, "WeaponAttachPos");
-    }
-
-    private Transform FindICharacterParent()
-    {
-        Transform t = this.transform;
-        while (t.parent != null)
-        {
-            if (t.parent.TryGetComponent(out ICharacter _))
-            {
-                return t.parent;
-            }
-            t = t.parent;
-        }
-        
-        // Could not find a parent with implementing ICharacter
-        return this.transform;
     }
 }

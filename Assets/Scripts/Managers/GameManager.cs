@@ -7,7 +7,6 @@ using UnityEngine;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    // TODO: Implement programmatical assigning of Camera Events, Player instance, etc.
     // TODO: Enemy AI, spawning, etc
     // TODO: Procgenerated map
 

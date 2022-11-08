@@ -9,8 +9,6 @@ using UnityEngine;
 public class EnemyAIMovementScript : MonoBehaviour
 {    enum SpeedRecoveryMode { LINEAR, SMOOTHSTEP, SMOOTHSTEP2, EXPONENTIAL }
 
-    // TODO: Implement AI target switching based on closest targets 
-
     // Reference to the main enemy script
     [SerializeField]
     private EnemyScript enemyScript;

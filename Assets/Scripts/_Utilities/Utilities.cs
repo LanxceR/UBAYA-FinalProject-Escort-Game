@@ -35,6 +35,22 @@ public static class Utilities
         // Could not find a parent with given tag.
         return null; 
     }
+    // Climb up the hirearchy and find a parent with the specified type
+    public static Transform FindParent<T>(Transform child)
+    {
+        Transform t = child;
+        while (t.parent != null)
+        {
+            if (t.parent.TryGetComponent(out T _))
+            {
+                return t.parent;
+            }
+            t = t.parent;
+        }
+
+        // Could not find a parent with implementing ICharacter
+        return t;
+    }
 
     public static Vector2 VectorBetweenTwoPoints(Vector2 first, Vector2 second)
     {
