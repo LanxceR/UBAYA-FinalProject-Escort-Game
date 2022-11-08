@@ -30,16 +30,20 @@ public class EnemyAIMovementScript : MonoBehaviour
 
     // Pathfinding Settings
     [Header("Pathfinding Settings")]
-    [SerializeField] internal Transform target;
+    [SerializeField] private Transform target;
+    internal Transform Target { get => target; set 
+        {
+            target = value;
+            enemyScript.pathfindingScript.target = Target;
+        } 
+    }
     [SerializeField] private bool followTarget = true;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        // TODO: Probably improve this assigning of target (maybe use property with custom setters?)
-        if (GameManager.Instance.ActivePlayer.transform)
-            target = GameManager.Instance.ActivePlayer.transform;
-        enemyScript.pathfindingScript.target = target;
+        SetAITarget();
 
         moveableComp = GetComponent<MoveableScript>();
         actualSpeed = enemyScript.baseSpeed;
@@ -62,9 +66,21 @@ public class EnemyAIMovementScript : MonoBehaviour
                 moveableComp.enabled = false;
         }
 
+        // Assign target for AI
+        SetAITarget();
+
         // AI Movement
         if (enemyScript.pathfindingScript)
             AIPathMovement();
+    }
+
+    private void SetAITarget()
+    {
+        // Assign target for AI
+        if (enemyScript.recAggroScript)
+            Target = enemyScript.recAggroScript.target;
+        else if (Target == null && GameManager.Instance.ActivePlayer)
+            Target = GameManager.Instance.ActivePlayer.transform;
     }
 
     private void AIPathMovement()

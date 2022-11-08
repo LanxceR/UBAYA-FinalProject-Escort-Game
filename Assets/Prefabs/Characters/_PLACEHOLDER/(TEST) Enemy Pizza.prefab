@@ -651,9 +651,10 @@ GameObject:
   - component: {fileID: 8951127028136328810}
   - component: {fileID: 1848742212066797660}
   - component: {fileID: 1229547623720970518}
+  - component: {fileID: 4914703293644530559}
   - component: {fileID: 3059799812038082763}
   - component: {fileID: 32714593091820326}
-  - component: {fileID: 4914703293644530559}
+  - component: {fileID: 1336992636}
   m_Layer: 0
   m_Name: (TEST) Enemy Pizza
   m_TagString: Untagged
@@ -732,6 +733,7 @@ MonoBehaviour:
   pathfindingScript: {fileID: 1561224701167398412}
   healthScript: {fileID: 1848742212066797660}
   knockbackScript: {fileID: 1229547623720970518}
+  recAggroScript: {fileID: 1336992636}
 --- !u!114 &1449538883933793047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,6 +872,18 @@ MonoBehaviour:
   knockbackResist: 0
   recoveryTime: 0.2
   staggerTime: 0.2
+--- !u!114 &4914703293644530559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8235225914126728358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29900944d710574f8779d38ef45f758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3059799812038082763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,7 +913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   force: 20
---- !u!114 &4914703293644530559
+--- !u!114 &1336992636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -908,9 +922,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 8235225914126728358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b29900944d710574f8779d38ef45f758, type: 3}
+  m_Script: {fileID: 11500000, guid: e68fef9f2db1494458b266d897dd6409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  radius: 10
+  aggroLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  targetTags:
+  - Player
+  - Ally
+  target: {fileID: 0}
+  drawGizmo: 1
 --- !u!1 &8235225914585798715
 GameObject:
   m_ObjectHideFlags: 0

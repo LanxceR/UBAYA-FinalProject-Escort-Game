@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 3557282564589218432}
   - component: {fileID: 3666172875973088831}
   - component: {fileID: 2933326581545959992}
+  - component: {fileID: 9156792}
   m_Layer: 0
   m_Name: (TEST) Player Lemper
   m_TagString: Untagged
@@ -261,6 +262,7 @@ MonoBehaviour:
   healthScript: {fileID: 14562141972734121}
   knockbackScript: {fileID: 3557282564589218432}
   inventoryScript: {fileID: 2933326581545959992}
+  emitAggroScript: {fileID: 9156792}
 --- !u!114 &1135118919356334668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +368,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryHolder: {fileID: 1135118919662119634}
   equippedItemIndex: 0
+--- !u!114 &9156792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135118919356335536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6687d1bda95fb49adb6ad1c436cebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  aggroLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  targetTags:
+  - Enemy
+  drawGizmo: 1
 --- !u!1 &1135118919621596272
 GameObject:
   m_ObjectHideFlags: 0

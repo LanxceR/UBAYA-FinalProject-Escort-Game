@@ -30,6 +30,8 @@ public class EnemyScript : MonoBehaviour, ICharacter
     internal HealthScript healthScript;
     [SerializeField]
     internal KnockbackScript knockbackScript;
+    [SerializeField]
+    internal ReceiveAggroScript recAggroScript;
 
     // Start is called before the first frame update
     void Start()
