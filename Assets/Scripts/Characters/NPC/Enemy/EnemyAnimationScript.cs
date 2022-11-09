@@ -33,10 +33,11 @@ public class EnemyAnimationScript : MonoBehaviour
     public const string ENEMY_HURT = "Hurt";
     public const string ENEMY_DEATH = "Death";
 
-    public const string ENEMY_ATTACK = "Attack";
+    public const string ENEMY_ATTACK_LEFT = "Attack Left";
+    public const string ENEMY_ATTACK_RIGHT = "Attack Right";
 
     // Variables
-    private string currentState;
+    internal string currentState;
     private bool uninterruptibleCoroutineRunning = false;
     private string enemyDir;
 
@@ -159,12 +160,50 @@ public class EnemyAnimationScript : MonoBehaviour
         }
     }
 
+    private float GetFacingDirection()
+    {
+        float degAngle = 0f;
+        if (enemyScript.recAggroScript)
+        {
+            // If aiming at a target, get direction based off of that target position
+            if (enemyScript.recAggroScript.target) degAngle = Utilities.GetDirectionAngle(enemyScript.recAggroScript.target.position - transform.position);
+        }
+        else
+        {
+            // Otherwise, get direction based off of movement
+            degAngle = Utilities.GetDirectionAngle(enemyScript.enemyMovementScript.dir);
+        }
+
+        return degAngle;
+    }
+
+    // Trigger attack anim
+    internal void AttackAnimation()
+    {
+        // Get Direction angle (right = 0 deg, anti-clockwise until 360 deg)
+        float degAngle = GetFacingDirection();
+
+        // Perform direction checking
+        if (degAngle < 90 || 270 < degAngle)
+        {
+            enemyDir = ENEMY_ATTACK_RIGHT;
+        }
+        else
+        {
+            enemyDir = ENEMY_ATTACK_LEFT;
+        }
+
+        // TODO: Implement shoot/attack timed on a specific frame on an animation clip
+        // For now shooting / attacking (for melee) is handled through animation clips
+        StartCoroutine(ChangeAnimationStateUninterruptible(enemyDir, false));
+    }
+
     private void UpdateAnimationDirection()
     {
         // TODO: Fix animation flickers from left/right for the first frame when transitioning (something to do with pathfinding direction flipping left/right momemntarily everytime).
 
         // Get Direction angle (right = 0 deg, anti-clockwise until 360 deg)
-        float degAngle = Utilities.GetDirectionAngle(enemyScript.enemyMovementScript.dir);
+        float degAngle = GetFacingDirection();
 
         // Perform direction checking
         if (degAngle < 90 || 270 < degAngle)

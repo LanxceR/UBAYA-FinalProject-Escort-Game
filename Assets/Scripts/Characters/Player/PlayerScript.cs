@@ -58,4 +58,9 @@ public class PlayerScript : MonoBehaviour, ICharacter
             inventoryScript.enabled = false;
         }
     }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 }

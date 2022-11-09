@@ -19,9 +19,9 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
 
     // Weapon stats
     [Header("Weapon Stats")]
-    [SerializeField] internal float attackDelay = 0.1f;
+    [SerializeField] internal float attackDelay = 1f;
     [SerializeField] internal float damage = 1f;
-    [SerializeField] internal float range = 5f;
+    //[SerializeField] internal float range = 5f;
     [SerializeField] internal float knockbackForce = 10f;
     [SerializeField] internal bool isFullAuto = false;
 
@@ -42,6 +42,9 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
     void Update()
     {
         if (!GameManager.Instance.GameIsPlaying) return;
+
+        // Countdown cooldown until zero
+        cooldown = cooldown - Time.deltaTime > 0 ? cooldown - Time.deltaTime : 0f;
 
         if (weaponScript.weaponInputScript.Input_Attack == 1)
         {
@@ -65,7 +68,7 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
         // Set canAttack to false non full-auto weapons
         canAttack = false;
 
-        while (weaponScript.weaponInputScript.Input_Attack == 1)
+        while (cooldown <= 0f && weaponScript.weaponInputScript.Input_Attack == 1)
         {
             // While attack button is still performed, wait until the next frame
             yield return null;
@@ -86,7 +89,7 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
             if (!weaponScript.weaponAnimationScript)
                 ExecuteAttack();
             else
-                AttackWithAnim();
+                AttackWithAnim(); // AttackWithAnim => AttackAnimation => ExecuteAttack
         }
     }
 
@@ -100,6 +103,9 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
     {
         // Set attacker
         weaponMeleeHitScript.SetAttacker(weaponScript.parentHolder);
+
+        // Set Cooldown
+        cooldown = attackDelay;
 
         // Enabling and disabling colliders are handled in animation clip
         return;

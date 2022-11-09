@@ -37,4 +37,9 @@ public class EscorteeScript : MonoBehaviour, ICharacter
     {
         Debug.Log("Main EscorteeScript starting");
     }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 }

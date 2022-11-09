@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Weapon Melee Invisible
+  m_Name: Zombie Melee Invisible
   m_Controller: {fileID: 9100000, guid: b7de7b27403a95e489d3a59030e7f70f, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: d78bcc02f3f94584fa9e12224dd64e93, type: 2}

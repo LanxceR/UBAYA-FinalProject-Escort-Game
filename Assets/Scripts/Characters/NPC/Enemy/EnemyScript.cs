@@ -25,6 +25,8 @@ public class EnemyScript : MonoBehaviour, ICharacter
     [SerializeField]
     internal EnemyAIMovementScript enemyMovementScript;
     [SerializeField]
+    internal EnemyAIAttackScript enemyAttackScript;
+    [SerializeField]
     internal PathfindingScript pathfindingScript;
     [SerializeField]
     internal HealthScript healthScript;
@@ -56,5 +58,10 @@ public class EnemyScript : MonoBehaviour, ICharacter
         {
             recAggroScript.enabled = false;
         }
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

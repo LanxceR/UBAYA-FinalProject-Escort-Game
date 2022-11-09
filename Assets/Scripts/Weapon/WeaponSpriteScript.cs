@@ -35,15 +35,18 @@ public class WeaponSpriteScript : MonoBehaviour
         if (degRotation > 360) degRotation -= 360;
 
         // Perform direction checking
-        if (180 > degRotation && degRotation > 0)
+        if (spriteRenderer)
         {
-            // Facing back / up
-            spriteRenderer.sortingOrder = -1;
-        }
-        else
-        {
-            // Facing front / down
-            spriteRenderer.sortingOrder = 1;
+            if (180 > degRotation && degRotation > 0)
+            {
+                // Facing back / up
+                spriteRenderer.sortingOrder = -1;
+            }
+            else
+            {
+                // Facing front / down
+                spriteRenderer.sortingOrder = 1;
+            }
         }
     }
 }
