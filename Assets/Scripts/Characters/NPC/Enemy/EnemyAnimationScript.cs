@@ -161,6 +161,8 @@ public class EnemyAnimationScript : MonoBehaviour
 
     private void UpdateAnimationDirection()
     {
+        // TODO: Fix animation flickers from left/right for the first frame when transitioning (something to do with pathfinding direction flipping left/right momemntarily everytime).
+
         // Get Direction angle (right = 0 deg, anti-clockwise until 360 deg)
         float degAngle = Utilities.GetDirectionAngle(enemyScript.enemyMovementScript.dir);
 

@@ -61,4 +61,9 @@ public class WeaponScript : MonoBehaviour, IEquipmentItem
     {
         parentAttach = Utilities.FindParentWithTag(gameObject, "WeaponAttachPos");
     }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 }

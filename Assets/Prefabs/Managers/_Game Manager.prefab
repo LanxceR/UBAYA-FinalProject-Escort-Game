@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameIsPlaying: 1
   gameTimeScale: 1
-  playerPrefab: {fileID: 1135118919356334669, guid: d15d5baad8e86d643bb833166ddb8c47, type: 3}
+  playerPrefab: {fileID: 1135118919356334669, guid: 043710402536b654f8c0686ee92c188a, type: 3}
   activePlayer: {fileID: 0}
   playerDatas:
   - isEmpty: 1
