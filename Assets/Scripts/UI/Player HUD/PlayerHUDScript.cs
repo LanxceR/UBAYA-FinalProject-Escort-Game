@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class PlayerHUDScript : MonoBehaviour
 {
+    // TODO: Implement a floating "key to press" UI for interactions ([F] Interact)
+
     // References of the HUD's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]

@@ -63,6 +63,15 @@ public class PlayerHUDReloadIndicatorScript : MonoBehaviour
         }
     }
 
+    // TODO: Implement programmatical weapon script assigning (Maybe put this on Start or OnEnable)
+    internal void AssignWeaponScript()
+    {
+        InventoryScript inv = GameManager.Instance.ActivePlayer.inventoryScript;
+
+        // Assign to show currently equipped item
+        playerWeaponScript = inv.GetCurrentEquippedItem() as WeaponScript;
+    }
+
     // To stop any ongoing reload
     internal void InterruptAlertCoroutine()
     {

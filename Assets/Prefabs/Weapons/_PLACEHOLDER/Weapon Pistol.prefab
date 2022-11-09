@@ -288,6 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentHolder: {fileID: 0}
   parentAttach: {fileID: 0}
+  reloadTime: 1
   ammoType: 1
   ammoMagSize: 5
   weaponInputScript: {fileID: 2841505596119360413}

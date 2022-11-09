@@ -13,7 +13,7 @@ public class EscorteeMovementScript : MonoBehaviour
     private EscorteeScript escorteeScript;
 
     // Components
-    private MoveableScript moveableComp;
+    internal MoveableScript moveableComp;
 
     // Variables
     [SerializeField]
@@ -75,12 +75,12 @@ public class EscorteeMovementScript : MonoBehaviour
         // Increment/decrement speedstage
         if (speedUp)
         {
-            speedStage++;
+            speedStage = Mathf.Clamp(speedStage + 1, 0, 3);
             a = escorteeScript.acceleration;
         }
         else
         {
-            speedStage--;
+            speedStage = Mathf.Clamp(speedStage - 1, 0, 3);
             a = escorteeScript.deceleration;
         }
 
