@@ -37,8 +37,6 @@ public class InventoryScript : MonoBehaviour
 
         // Switch equipment
         SwitchEquipment(nextWeaponIndex);
-
-        OnEquipmentSwitch.Invoke();
     }
 
     // OnPWeapon1 listener from InputAction "MainPlayerInput.inputaction"
@@ -48,8 +46,6 @@ public class InventoryScript : MonoBehaviour
 
         // Switch to equipment 1 (index = 0)
         SwitchEquipment(0);
-
-        OnEquipmentSwitch.Invoke();
     }
 
     // OnPWeapon1 listener from InputAction "MainPlayerInput.inputaction"
@@ -59,8 +55,6 @@ public class InventoryScript : MonoBehaviour
 
         // Switch to equipment 2 (index = 1)
         SwitchEquipment(1);
-
-        OnEquipmentSwitch.Invoke();
     }
 
     // OnPWeapon1 listener from InputAction "MainPlayerInput.inputaction"
@@ -70,8 +64,6 @@ public class InventoryScript : MonoBehaviour
 
         // Switch to equipment 3 (index = 2)
         SwitchEquipment(2);
-
-        OnEquipmentSwitch.Invoke();
     }
     #endregion
 
@@ -139,6 +131,8 @@ public class InventoryScript : MonoBehaviour
                 {
                     equippedItemIndex = index;
                     obj.SetActive(true);
+
+                    OnEquipmentSwitch.Invoke();
                 }
 
                 // Deactivate everything else

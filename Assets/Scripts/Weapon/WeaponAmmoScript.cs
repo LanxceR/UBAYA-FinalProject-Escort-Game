@@ -26,6 +26,8 @@ public class WeaponAmmoScript : MonoBehaviour
     internal float loadedAmmo;
     internal Coroutine reloadCoroutine;
 
+    private InventoryScript inv;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,11 @@ public class WeaponAmmoScript : MonoBehaviour
 
         // Set ammo count at the start
         loadedAmmo = weaponScript.ammoMagSize;
+
+        // Add listener to OnEquipmentSwitch to interrupt reloads on equipment switch
+        inv = Utilities.FindParentOfType<InventoryScript>(transform);
+        if (inv)
+            inv.OnEquipmentSwitch?.AddListener(InterruptReloadCoroutine);
     }
 
     // Update is called every frame, if the MonoBehaviour is enabled
