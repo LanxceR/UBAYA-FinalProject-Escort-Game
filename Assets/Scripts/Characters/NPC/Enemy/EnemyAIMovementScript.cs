@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// The enemy movement script (handles all player movements)
+/// The enemy movement script (handles all enemy movements)
 /// </summary>
 [RequireComponent(typeof(EnemyScript), typeof(MoveableScript))]
 public class EnemyAIMovementScript : MonoBehaviour
@@ -62,6 +62,17 @@ public class EnemyAIMovementScript : MonoBehaviour
         {
             if (enemyScript.healthScript.IsDead == true)
                 moveableComp.enabled = false;
+        }
+
+        // If attacking, stop moving until finished attacking
+        if (enemyScript.enemyAnimationScript.currentState == EnemyAnimationScript.ENEMY_ATTACK_LEFT ||
+            enemyScript.enemyAnimationScript.currentState == EnemyAnimationScript.ENEMY_ATTACK_RIGHT)
+        {
+            followTarget = false;
+        }
+        else
+        {
+            followTarget = true;
         }
 
         // Assign target for AI

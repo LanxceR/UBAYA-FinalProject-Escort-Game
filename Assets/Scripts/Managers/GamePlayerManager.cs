@@ -36,6 +36,7 @@ public class GamePlayerManager : MonoBehaviour
     // Spawn player
     public void SpawnPlayer()
     {
+        // TODO: Spawn point for player
         SpawnPlayer(gameManager.PlayerPrefab.transform);
     }
     public void SpawnPlayer(Transform spawnPoint)
@@ -49,10 +50,12 @@ public class GamePlayerManager : MonoBehaviour
         {
             gameManager.ActivePlayer.gameObject.SetActive(true);
             gameManager.ActivePlayer.transform.position = spawnPoint.position;
+            /*
             foreach (var behaviour in gameManager.ActivePlayer.GetComponents<Behaviour>())
             {
                 behaviour.enabled = true;
             }
+            */
             gameManager.Cameras.AssignCameraTargetGroup(true);
         }
     }

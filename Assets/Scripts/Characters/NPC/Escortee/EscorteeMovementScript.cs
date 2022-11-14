@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,9 @@ public class EscorteeMovementScript : MonoBehaviour
         Debug.Log("PlayerMovementScript starting");
         moveableComp = GetComponent<MoveableScript>();
         currentMaxSpeed = escorteeScript.maxSpeed;
+
+        // Add listener to Health's OnHealthReachedZero UnityEvent
+        escorteeScript.healthScript.OnHealthReachedZero.AddListener(EscorteeDeath);
     }
 
     // This function is called every fixed framerate frame, if the MonoBehaviour is enabled
@@ -45,18 +49,22 @@ public class EscorteeMovementScript : MonoBehaviour
 
         float Input_SlowDown = escorteeScript.escorteeInputScript.Input_SlowDown;
         float Input_SpeedUp = escorteeScript.escorteeInputScript.Input_SpeedUp;
+               
+        if (escorteeScript.healthScript)
+            if (!escorteeScript.healthScript.IsDead)
+            {
+                if (Input_SpeedUp == 1)
+                {
+                    if (speedUpCoroutine == null)
+                        speedUpCoroutine = StartCoroutine(ChangeSpeedStage(true));
+                }
 
-        if (Input_SpeedUp == 1)
-        {
-            if (speedUpCoroutine == null)
-                speedUpCoroutine = StartCoroutine(ChangeSpeedStage(true));
-        }
-
-        if (Input_SlowDown == 1)
-        {
-            if (slowDownCoroutine == null)
-                slowDownCoroutine = StartCoroutine(ChangeSpeedStage(false));
-        }
+                if (Input_SlowDown == 1)
+                {
+                    if (slowDownCoroutine == null)
+                        slowDownCoroutine = StartCoroutine(ChangeSpeedStage(false));
+                }
+            }
 
         // Set direction vector for player movement
         dir = Vector2.right;
@@ -67,6 +75,13 @@ public class EscorteeMovementScript : MonoBehaviour
         // Move using moveable
         moveableComp.SetDirection(dir);
     }
+
+    private void EscorteeDeath()
+    {
+        // Stop the escortee
+        StartSpeedChangeCoroutine(0, escorteeScript.deceleration, true);
+    }
+
 
     private IEnumerator ChangeSpeedStage(bool speedUp)
     {
@@ -87,16 +102,16 @@ public class EscorteeMovementScript : MonoBehaviour
         switch (speedStage)
         {
             case 0:
-                StartSpeedChangeCoroutine(0, a); // Stops
+                StartSpeedChangeCoroutine(0, a, false); // Stops
                 break;
             case 1:
-                StartSpeedChangeCoroutine(currentMaxSpeed / 3, a); // 1/3 max speed
+                StartSpeedChangeCoroutine(currentMaxSpeed / 4, a, false); // 1/4 max speed
                 break;
             case 2:
-                StartSpeedChangeCoroutine(currentMaxSpeed * 2 / 3, a); // 2/3 max speed
+                StartSpeedChangeCoroutine(currentMaxSpeed / 2, a, false); // 1/2 max speed
                 break;
             case 3:
-                StartSpeedChangeCoroutine(currentMaxSpeed, a); // Max speed
+                StartSpeedChangeCoroutine(currentMaxSpeed, a, false); // Max speed
                 break;
         }
 
@@ -119,7 +134,7 @@ public class EscorteeMovementScript : MonoBehaviour
         }
     }
 
-    private void StartSpeedChangeCoroutine(float targetSpeed, float acceleration)
+    private void StartSpeedChangeCoroutine(float targetSpeed, float acceleration, bool disableMovementAtEnd)
     {
         // Interrupt any ongoing speed change coroutine
         if (speedChangeCoroutine != null)
@@ -128,10 +143,10 @@ public class EscorteeMovementScript : MonoBehaviour
             speedChangeCoroutine = null;
         }
 
-        speedChangeCoroutine = StartCoroutine(ChangeSpeed(targetSpeed, acceleration));
+        speedChangeCoroutine = StartCoroutine(ChangeSpeed(targetSpeed, acceleration, disableMovementAtEnd));
     }
 
-    private IEnumerator ChangeSpeed(float targetSpeed, float acceleration)
+    private IEnumerator ChangeSpeed(float targetSpeed, float acceleration, bool disableMovementAtEnd)
     {
         // Store the starting speed
         float initialSpeed = actualSpeed;
@@ -158,6 +173,13 @@ public class EscorteeMovementScript : MonoBehaviour
 
         // Snap the actual speed to the target velocity at the end
         actualSpeed = targetSpeed;
+
+        // Disable component if permitted
+        if (disableMovementAtEnd)
+        {
+            yield return new WaitForSeconds(0.5f);
+            this.enabled = false;
+        }
 
         speedChangeCoroutine = null;
     }

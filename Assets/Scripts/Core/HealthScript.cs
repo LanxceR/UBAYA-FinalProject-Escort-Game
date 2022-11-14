@@ -40,7 +40,7 @@ public class HealthScript : MonoBehaviour
 
     private float iFramesDuration;
 
-    private GameObject lastHitBy;
+    internal GameObject lastHitBy;
 
     // Start is called before the first frame update
     void Start()

@@ -52,7 +52,7 @@ public static class Utilities
         return t;
     }
     // Climb up the hirearchy and find a parent with the specified type
-    public static T FindParentOfType<T>(Transform child)
+    public static T FindParentOfType<T>(Transform child) where T : class
     {
         Transform t = child;
         while (t.parent != null)
@@ -68,12 +68,29 @@ public static class Utilities
         return default(T);
     }
 
+    // Find a child with the specified tag
+    public static GameObject FindChildWithTag(GameObject parentObject, string tag)
+    {
+        Transform[] children = parentObject.GetComponentsInChildren<Transform>(true);
+
+        foreach (Transform child in children)
+        {
+            if (child.tag == tag)
+            {
+                return child.gameObject;
+            }
+        }
+
+        // Could not find a child with given tag.
+        return null;
+    }
+
     public static Vector2 VectorBetweenTwoPoints(Vector2 first, Vector2 second)
     {
         return first - second;
     }
 
-    // Useful to access a layermask from the layer collision matrix (DOESNT WORK)
+    // Useful to access a layermask from the layer collision matrix (DOESN'T WORK)
     private static Dictionary<int, int> _masksByLayer;
     public static void InitializeLayerMatrixMask()
     {

@@ -20,7 +20,7 @@ public class DebugDisplayAmmo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string textToDisplay = $"{GameManager.Instance.LoadedPlayerData.ammo[ammoType].amount}";
+        string textToDisplay = $"{GameManager.Instance.LoadedGameData.ammo[ammoType].amount}";
 
         // Update ammo counter text
         ammoDisplay.text = textToDisplay;
@@ -28,6 +28,6 @@ public class DebugDisplayAmmo : MonoBehaviour
 
     public void AddAmmo(int value = 10)
     {
-        GameManager.Instance.LoadedPlayerData.ammo[ammoType].amount += value;
+        GameManager.Instance.LoadedGameData.ammo[ammoType].amount += value;
     }
 }

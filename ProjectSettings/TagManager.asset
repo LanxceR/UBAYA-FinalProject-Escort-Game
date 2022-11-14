@@ -13,6 +13,7 @@ TagManager:
   - UICamera
   - Ally
   - VehicleMount
+  - Aim
   layers:
   - Default
   - TransparentFX

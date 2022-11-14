@@ -18,6 +18,7 @@ public class InventoryScript : MonoBehaviour
     private GameObject inventoryHolder;
 
     // Variables
+    [SerializeField]
     internal List<IEquipmentItem> equipments;
 
     [SerializeField]
@@ -36,8 +37,6 @@ public class InventoryScript : MonoBehaviour
 
         // Switch equipment
         SwitchEquipment(nextWeaponIndex);
-
-        OnEquipmentSwitch.Invoke();
     }
 
     // OnPWeapon1 listener from InputAction "MainPlayerInput.inputaction"
@@ -47,8 +46,6 @@ public class InventoryScript : MonoBehaviour
 
         // Switch to equipment 1 (index = 0)
         SwitchEquipment(0);
-
-        OnEquipmentSwitch.Invoke();
     }
 
     // OnPWeapon1 listener from InputAction "MainPlayerInput.inputaction"
@@ -58,8 +55,6 @@ public class InventoryScript : MonoBehaviour
 
         // Switch to equipment 2 (index = 1)
         SwitchEquipment(1);
-
-        OnEquipmentSwitch.Invoke();
     }
 
     // OnPWeapon1 listener from InputAction "MainPlayerInput.inputaction"
@@ -69,8 +64,6 @@ public class InventoryScript : MonoBehaviour
 
         // Switch to equipment 3 (index = 2)
         SwitchEquipment(2);
-
-        OnEquipmentSwitch.Invoke();
     }
     #endregion
 
@@ -119,6 +112,9 @@ public class InventoryScript : MonoBehaviour
         // Use try catch to prevent index out of bounds exception
         try
         {
+            // If player attempts to switch to an empty inventory slot, do nothing
+            if (index > equipments.Count - 1) return;
+
             // If player changes to the currently equipped weapon, do nothing
             if (equippedItemIndex == index) return;
 
@@ -135,14 +131,21 @@ public class InventoryScript : MonoBehaviour
                 {
                     equippedItemIndex = index;
                     obj.SetActive(true);
+
+                    OnEquipmentSwitch.Invoke();
                 }
 
                 // Deactivate everything else
                 else obj.SetActive(false);
             }
         }
-        catch (IndexOutOfRangeException)
+        catch (IndexOutOfRangeException e)
         {
+            Debug.LogError("Selected item index out of range \n" + 
+                            $"Equipment 0: {equipments[0].GetGameObject().name} \n" +
+                            $"Equipment 1: {equipments[1].GetGameObject().name} \n" +
+                            $"Equipment 2: {equipments[2].GetGameObject().name} \n" +
+                            e);
             return;
         }
         catch (Exception e)

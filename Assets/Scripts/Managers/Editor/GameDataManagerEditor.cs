@@ -28,16 +28,16 @@ public class GameDataManagerEditor : Editor
 
         if (GUILayout.Button("Load All"))
         {
-            gameDataManager.gameManager.PlayerDatas = gameDataManager.LoadGamesFromFiles();
+            gameDataManager.gameManager.GameDatas = gameDataManager.LoadGamesFromFiles();
         }
 
-        indexToLoad = EditorGUILayout.IntSlider("Index to Load", indexToLoad, 0, gameDataManager.gameManager.PlayerDatas.Length - 1);
+        indexToLoad = EditorGUILayout.IntSlider("Index to Load", indexToLoad, 0, gameDataManager.gameManager.GameDatas.Length - 1);
         if (GUILayout.Button($"Load savegame_{indexToLoad}"))
         {
             gameDataManager.LoadGame(indexToLoad);
         }
 
-        if (GUILayout.Button($"Save Game {gameDataManager.gameManager.LoadedPlayerData.index}"))
+        if (GUILayout.Button($"Save Game {gameDataManager.gameManager.LoadedGameData.index}"))
         {
             gameDataManager.SaveGame();
         }

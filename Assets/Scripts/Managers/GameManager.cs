@@ -48,9 +48,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [Header("Player Datas")]
-    [SerializeField] private PlayerData[] playerDatas = new PlayerData[3];
-    public PlayerData[] PlayerDatas { get => playerDatas; 
+    [Header("Escortee Prefabs")]
+    [SerializeField] private EscorteeScript escorteePrefab; // Escortee prefab to spawn
+    public EscorteeScript EscorteePrefab { get => escorteePrefab; set => escorteePrefab = value; }
+    [SerializeField] private EscorteeScript activeEscortee; // Stored active escortee
+    internal EscorteeScript ActiveEscortee { get => activeEscortee; set => activeEscortee = value; }
+
+    [Header("Game Datas")]
+    [SerializeField] private PlayerData[] gameDatas = new PlayerData[3];
+    public PlayerData[] GameDatas { get => gameDatas; 
         set
         {
             /** DEPRECATED
@@ -65,11 +71,11 @@ public class GameManager : MonoBehaviour
                 }
             }
             */
-            playerDatas = value;
+            gameDatas = value;
         }
     }
-    [SerializeField] private PlayerData loadedPlayerData;
-    public PlayerData LoadedPlayerData { get => loadedPlayerData; set => loadedPlayerData = value; }
+    [SerializeField] private PlayerData loadedGameData;
+    public PlayerData LoadedGameData { get => loadedGameData; set => loadedGameData = value; }
 
 
     [Header("Cameras Prefab")]
@@ -93,6 +99,8 @@ public class GameManager : MonoBehaviour
     internal GameDataManager gameData;
     [SerializeField]
     internal GamePlayerManager gamePlayer;
+    [SerializeField]
+    internal GameEscorteeManager gameEscortee;
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -120,11 +128,6 @@ public class GameManager : MonoBehaviour
     {
         InitializeCameras();
         InitializeUI();
-    }
-
-    public void GameOver(GameObject killer)
-    {
-        // TODO: Implement GameOver events here
     }
 
     // Find an active Cameras object in hirearchy
