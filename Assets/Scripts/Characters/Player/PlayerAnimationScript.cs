@@ -10,7 +10,7 @@ enum PlayerIsFacing {NORTH, EAST, SOUTH, WEST }
 /// </summary>
 /// 
 [RequireComponent(typeof(PlayerScript))]
-public class PlayerAnimationScript : MonoBehaviour
+public class PlayerAnimationScript : MonoBehaviour, IAnimation
 {
     // Reference to the main player script
     [SerializeField]
@@ -74,7 +74,7 @@ public class PlayerAnimationScript : MonoBehaviour
 
     #region Core transition functions
     // Method to change animation state
-    internal void ChangeAnimationState(string newState)
+    public void ChangeAnimationState(string newState)
     {
         // If animator speed is 0, then return
         if (animator.speed == 0) return;
@@ -93,7 +93,7 @@ public class PlayerAnimationScript : MonoBehaviour
     }
 
     // Method to change animation state to another state and make it uninterruptible
-    private IEnumerator ChangeAnimationStateUninterruptible(string newState, bool stopAfterAnimEnd)
+    public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool stopAfterAnimEnd)
     {
         // Anim transition
         ChangeAnimationState(newState);
@@ -102,7 +102,7 @@ public class PlayerAnimationScript : MonoBehaviour
         // NOTE: Using return value from StartCoroutine() sometimes doesn't work in this instance for some reason
         uninterruptibleCoroutineRunning = true;
 
-        // Wait until hurt animations finishes
+        // Wait until played animations finishes
         while (!AnimatorHasFinishedPlaying(newState))
         {
             yield return null;

@@ -560,7 +560,8 @@ MonoBehaviour:
   enemyScript: {fileID: 1267373589}
   aimHelper: {fileID: 8235225914585798712}
   weapon: {fileID: 5622822350929943737}
-  attackDelay: 0.75
+  attackDelay: 0.2
+  attackCooldown: 0.75
   executeAttackRange: 0.2
   drawGizmo: 1
 --- !u!114 &1561224701167398412
@@ -703,6 +704,7 @@ MonoBehaviour:
   - Player
   - Ally
   target: {fileID: 0}
+  targetCol: {fileID: 0}
   drawGizmo: 1
 --- !u!1 &8235225914585798715
 GameObject:

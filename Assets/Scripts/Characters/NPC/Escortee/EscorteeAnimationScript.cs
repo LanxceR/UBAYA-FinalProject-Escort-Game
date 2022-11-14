@@ -3,50 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// The weapon animation script (handles all weapon model animations)
+/// The escortee animation script (handles all escortee model animations)
 /// </summary>
-[RequireComponent(typeof(WeaponScript))]
-public class WeaponAnimationScript : MonoBehaviour, IAnimation
+public class EscorteeAnimationScript : MonoBehaviour, IAnimation
 {
     // Reference to the main player script
     [SerializeField]
-    private WeaponScript weaponScript;
+    private EscorteeScript escorteeScript;
 
     // Components
     [SerializeField]
     private Animator animator;
 
-    // TODO: Add weapon reload anim
     // Animation States
-    public const string WEAPON_IDLE = "Weapon Idle";
-    public const string WEAPON_ATTACK = "Weapon Attack";
-
-    // Settings
-    [SerializeField] private int frameToExecuteAttack;
+    public const string ESCORTEE_IDLE = "Idle";
+    public const string ESCORTEE_MOVING = "Moving";
+    public const string ESCORTEE_HURT = "Hurt";
 
     // Variables
     private string currentState;
     private bool uninterruptibleCoroutineRunning = false;
 
+    #region Initialization
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("WeaponAnimationScript starting");
-    }
+        Debug.Log("EscorteeAnimationScript starting");
+
+        if (escorteeScript.healthScript)
+        {
+            // Add listener to Health's OnHit UnityEvent          
+            escorteeScript.healthScript.OnHit.AddListener(EscorteeHurt);
+        }
+    } 
+    #endregion
 
     #region State machine
     // Update is called once per frame
     void Update()
     {
-        // Always default to Idle after any animation has finished playing
-        if (!AnimatorIsPlaying(WEAPON_IDLE) && AnimatorHasFinishedPlaying())
-        {
-            ChangeAnimationState(WEAPON_IDLE);
-        }
-    }
+        UpdateAnimationState();
+    } 
     #endregion
 
-    #region Core transition functions
+    #region Core transition function
     // Method to change animation state
     public void ChangeAnimationState(string newState)
     {
@@ -118,31 +118,30 @@ public class WeaponAnimationScript : MonoBehaviour, IAnimation
     #endregion
 
     #region Transitions
-    // Coroutine to return to idle anim after the end of whatever anim clip is currently playing
-    private IEnumerator ReturnToIdleCoroutine()
+    // Play hurt animation
+    private void EscorteeHurt()
     {
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
-        ChangeAnimationState(WEAPON_IDLE);
+        if (!uninterruptibleCoroutineRunning)
+        {
+            StartCoroutine(ChangeAnimationStateUninterruptible(ESCORTEE_HURT, false));
+        }
     }
 
-    // Coroutine to return to idle anim after the end of whatever anim clip is currently playing
-    private IEnumerator ExitTransitionCoroutine()
+    // Update anim state based off of vehicle speed
+    private void UpdateAnimationState()
     {
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        // For abbreviation
+        EscorteeMovementScript move = escorteeScript.escorteeMovementScript;
 
-        ChangeAnimationState(WEAPON_IDLE);
-    }
-
-    // Trigger attack anim
-    internal void AttackAnimation()
-    {
-        ChangeAnimationState(WEAPON_ATTACK);
-
-        // TODO: Implement shoot/attack timed on a specific frame on an animation clip
-        // For now shooting / attacking (for melee) is handled through animation clips
-        // Call Execute Attack method
-        weaponScript.weaponAttackScript.ExecuteAttack();
+        // TODO: Maybe implement changing animator speed based off of speed
+        if (move.speedStage == 0)
+        {
+            ChangeAnimationState(ESCORTEE_IDLE);
+        }
+        else
+        {
+            ChangeAnimationState(ESCORTEE_MOVING);
+        }
     }
     #endregion
 }

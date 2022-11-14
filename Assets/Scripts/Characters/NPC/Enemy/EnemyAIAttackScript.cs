@@ -18,7 +18,8 @@ public class EnemyAIAttackScript : MonoBehaviour
     private WeaponScript weapon;
 
     [Header("Stats Settings")]
-    [SerializeField] internal float attackDelay = 1f;
+    [SerializeField] internal float attackDelay = 0.2f; // Delay before executing attack
+    [SerializeField] internal float attackCooldown = 1f; // Attack cooldown (attack freq)
     [SerializeField] private float executeAttackRange = 0.16f; // Melee range
 
     [Header("Misc Settings")]
@@ -76,12 +77,19 @@ public class EnemyAIAttackScript : MonoBehaviour
     {
         if (cooldown <= 0f)
         {
-            enemyScript.enemyAnimationScript.AttackAnimation();
-            weapon.weaponAttackScript.BeginAttack();
-
-            // Set Cooldown
-            cooldown = attackDelay;
+            StartCoroutine(AttackCoroutine());
         }
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        yield return new WaitForSeconds(attackDelay);
+
+        enemyScript.enemyAnimationScript.AttackAnimation();
+        weapon.weaponAttackScript.BeginAttack();
+
+        // Set Cooldown
+        cooldown = attackCooldown;
     }
 
 #if UNITY_EDITOR
