@@ -17,7 +17,7 @@ public class ReceiveAggroScript : MonoBehaviour
     [SerializeField]
     private float radius = 10f;
     [SerializeField]
-    private LayerMask aggroLayers = 1 << 6;
+    private LayerMask aggroLayers = 1 << 6; // ActorBody
     [SerializeField]
     private string[] targetTags;
 
@@ -25,6 +25,8 @@ public class ReceiveAggroScript : MonoBehaviour
     [Header("Targets")]
     [SerializeField]
     internal Transform target;
+    [SerializeField]
+    internal Collider2D targetCol;
 
     [Header("Misc Settings")]
     [SerializeField]
@@ -75,6 +77,7 @@ public class ReceiveAggroScript : MonoBehaviour
                         {
                             // Set new target
                             target = aggressor.transform;
+                            targetCol = hit;
                         }
                     }
                 }
@@ -91,6 +94,14 @@ public class ReceiveAggroScript : MonoBehaviour
 
         // Set new target
         this.target = target.transform;
+
+        // Set new target collider
+        Collider2D[] cols = target.GetComponentsInChildren<Collider2D>();
+        this.targetCol = cols[0];
+        foreach (Collider2D c in cols)
+        {
+            if (c.gameObject.layer == 6) this.targetCol = c;
+        }
 
         yield return new WaitForSeconds(duration);
 

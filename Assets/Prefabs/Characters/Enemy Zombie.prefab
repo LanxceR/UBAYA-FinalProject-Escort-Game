@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
-  baseSpeed: 0.5
+  baseSpeed: 1
   knockbackImmune: 0
   enemyAnimationScript: {fileID: 1449538883933793047}
   enemyMovementScript: {fileID: 3535479030037364304}

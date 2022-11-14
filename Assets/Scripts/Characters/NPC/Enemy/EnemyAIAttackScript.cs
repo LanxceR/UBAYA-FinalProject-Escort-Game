@@ -41,13 +41,24 @@ public class EnemyAIAttackScript : MonoBehaviour
             if (enemyScript.recAggroScript.target)
             {
                 Transform target = enemyScript.recAggroScript.target;
+                Collider2D targetCol = enemyScript.recAggroScript.targetCol;
+
+                // TODO: Aim towards the target's hitbox closest point instead
 
                 // Aims toward target
-                aimHelper.transform.position = target.position;
+                if (targetCol)
+                {
+                    Vector2 aimPos = targetCol.ClosestPoint(transform.position);
+                    aimHelper.position = aimPos;
+                }
+                else
+                {
+                    aimHelper.position = target.position;
+                }
 
                 // Range detection
                 // Use layerMask ActorHitbox ( 1 << 7 )
-                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, target.position - transform.position, executeAttackRange, 1 << 7);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, aimHelper.position - transform.position, executeAttackRange, 1 << 7);
 
                 foreach (RaycastHit2D h in hits)
                 {
