@@ -26,6 +26,7 @@ public class PlayerScript : MonoBehaviour, ICharacter
     internal PlayerAnimationScript playerAnimationScript;
     [SerializeField]
     internal PlayerInteractScript playerInteractScript;
+    // General sub-scripts
     [SerializeField]
     internal HealthScript healthScript;
     [SerializeField]

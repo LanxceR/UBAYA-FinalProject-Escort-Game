@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,9 @@ public class EscorteeMovementScript : MonoBehaviour
         Debug.Log("PlayerMovementScript starting");
         moveableComp = GetComponent<MoveableScript>();
         currentMaxSpeed = escorteeScript.maxSpeed;
+
+        // Add listener to Health's OnHealthReachedZero UnityEvent
+        escorteeScript.healthScript.OnHealthReachedZero.AddListener(EscorteeDeath);
     }
 
     // This function is called every fixed framerate frame, if the MonoBehaviour is enabled
@@ -67,6 +71,13 @@ public class EscorteeMovementScript : MonoBehaviour
         // Move using moveable
         moveableComp.SetDirection(dir);
     }
+
+    private void EscorteeDeath()
+    {
+        // Stop the escortee
+        StartSpeedChangeCoroutine(0, escorteeScript.deceleration);
+    }
+
 
     private IEnumerator ChangeSpeedStage(bool speedUp)
     {

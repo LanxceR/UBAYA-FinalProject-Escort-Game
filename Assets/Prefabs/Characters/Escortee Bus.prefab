@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 3733317801578298789}
   - component: {fileID: 3733317801578298792}
   - component: {fileID: 3733317801578298788}
+  - component: {fileID: 3261454376802948033}
   - component: {fileID: 3733317801578298793}
   m_Layer: 0
   m_Name: Escortee Bus
@@ -309,13 +310,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6357e59fa6b0951408692b271aca720e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 5
   maxSpeed: 1.5
   acceleration: 0.5
   deceleration: 0.7
   escorteeInputScript: {fileID: 3733317801578298790}
   escorteeMovementScript: {fileID: 3733317801578298789}
   escorteeInteractScript: {fileID: 3733317801578298792}
+  healthScript: {fileID: 3261454376802948033}
   emitAggroScript: {fileID: 3733317801578298793}
 --- !u!114 &3733317801578298790
 MonoBehaviour:
@@ -374,6 +376,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29900944d710574f8779d38ef45f758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3261454376802948033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3733317801578298785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc0acb03433ece740baa2b5a2335ce31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0
+  corpseLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  colliders:
+  - {fileID: 280506156}
+  - {fileID: 3733317801136575021}
+  - {fileID: 3733317801237209944}
 --- !u!114 &3733317801578298793
 MonoBehaviour:
   m_ObjectHideFlags: 0

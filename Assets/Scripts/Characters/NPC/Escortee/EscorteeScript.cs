@@ -20,7 +20,7 @@ public class EscorteeScript : MonoBehaviour, ICharacter
     [SerializeField]
     internal float deceleration = 0.5f; // Otherwise known as braking power
 
-    // TODO: Implement escortee Health
+    // TODO: Add animation for escortee
     // References of the player's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]
@@ -29,6 +29,9 @@ public class EscorteeScript : MonoBehaviour, ICharacter
     internal EscorteeMovementScript escorteeMovementScript;
     [SerializeField]
     internal EscorteeInteractScript escorteeInteractScript;
+    // General sub-scripts
+    [SerializeField]
+    internal HealthScript healthScript;
     [SerializeField]
     internal EmitAggroScript emitAggroScript;
 
@@ -36,6 +39,24 @@ public class EscorteeScript : MonoBehaviour, ICharacter
     void Start()
     {
         Debug.Log("Main EscorteeScript starting");
+
+        // Set health
+        healthScript.MaxHealth = health;
+
+        // Add listener to Health's OnHealthReachedZero UnityEvent
+        healthScript.OnHealthReachedZero.AddListener(EscorteeDeath);
+    }
+
+    void EscorteeDeath()
+    {
+        if (escorteeInputScript)
+            escorteeInputScript.enabled = false;
+
+        if (escorteeInteractScript)
+            escorteeInteractScript.enabled = false;
+
+        if (emitAggroScript)
+            emitAggroScript.enabled = false;
     }
 
     public GameObject GetGameObject()
