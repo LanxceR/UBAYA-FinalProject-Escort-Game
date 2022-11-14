@@ -57,7 +57,7 @@ public class HUDAmmoScript : MonoBehaviour
                     return;
                 }
 
-                textToDisplay += $"{GameManager.Instance.LoadedPlayerData.ammo[playerWeaponScript.ammoType].amount}";
+                textToDisplay += $"{GameManager.Instance.LoadedGameData.ammo[playerWeaponScript.ammoType].amount}";
             }
 
             // Update ammo counter text

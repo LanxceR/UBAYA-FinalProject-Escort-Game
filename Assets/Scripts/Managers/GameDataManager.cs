@@ -15,7 +15,7 @@ public class GameDataManager : MonoBehaviour
     private void Start()
     {
         // TODO: Implement the rest of the saving and loading system of the game (autosave, creation, deletion, etc)
-        gameManager.PlayerDatas = LoadGamesFromFiles();
+        gameManager.GameDatas = LoadGamesFromFiles();
         LoadGame(0);
     }
 
@@ -31,7 +31,7 @@ public class GameDataManager : MonoBehaviour
         )
     {
         // Create new player data and store in game manager array
-        gameManager.PlayerDatas[index] = new PlayerData(
+        gameManager.GameDatas[index] = new PlayerData(
             index, 
             difficulty, 
             money, 
@@ -46,9 +46,9 @@ public class GameDataManager : MonoBehaviour
     public void SaveGame()
     {
         // Fetch loaded player data
-        PlayerData data = gameManager.LoadedPlayerData;
+        PlayerData data = gameManager.LoadedGameData;
         // Store data in game manager player datas array
-        gameManager.PlayerDatas[data.index] = data;
+        gameManager.GameDatas[data.index] = data;
         // Save loaded player data
         SaveSystem.SaveGame($"savegame_{data.index}", data);
     }
@@ -56,23 +56,23 @@ public class GameDataManager : MonoBehaviour
     // Load a save and store in game manager loaded save
     public void LoadGame(int index)
     {
-        gameManager.LoadedPlayerData = gameManager.PlayerDatas[index];
+        gameManager.LoadedGameData = gameManager.GameDatas[index];
         Debug.Log($"Loaded stored player data at index = {index}");
     }
 
     // Unload the game manager loaded save
     public void UnloadGame()
     {
-        gameManager.LoadedPlayerData.Empty();
+        gameManager.LoadedGameData.Empty();
     }
 
     // Delete (and unload) current loaded save
     internal void DeleteSave()
     {
         // Fetch loaded player data
-        PlayerData data = gameManager.LoadedPlayerData;
+        PlayerData data = gameManager.LoadedGameData;
         // Empty that data
-        gameManager.PlayerDatas[data.index].Empty();
+        gameManager.GameDatas[data.index].Empty();
         data.Empty();
         // Save the empty data slot
         SaveGame();
@@ -85,10 +85,10 @@ public class GameDataManager : MonoBehaviour
         PlayerData[] loadedDatas = LoadGamesFromFiles();
         for (int i = 0; i < loadedDatas.Length; i++)
         {
-            gameManager.PlayerDatas[i].index = i;
-            if (!gameManager.PlayerDatas[i].Equals(loadedDatas[i]))
+            gameManager.GameDatas[i].index = i;
+            if (!gameManager.GameDatas[i].Equals(loadedDatas[i]))
             {
-                SaveSystem.SaveGame($"savegame_{i}", gameManager.PlayerDatas[i]);
+                SaveSystem.SaveGame($"savegame_{i}", gameManager.GameDatas[i]);
                 continue;
             }
 
@@ -99,8 +99,8 @@ public class GameDataManager : MonoBehaviour
     // Load all games / data
     public PlayerData[] LoadGamesFromFiles()
     {
-        PlayerData[] datas = new PlayerData[gameManager.PlayerDatas.Length];
-        for (int i = 0; i < gameManager.PlayerDatas.Length; i++)
+        PlayerData[] datas = new PlayerData[gameManager.GameDatas.Length];
+        for (int i = 0; i < gameManager.GameDatas.Length; i++)
         {
             datas[i] = SaveSystem.LoadGame($"savegame_{i}");
             if (datas[i] != null) datas[i].index = i;

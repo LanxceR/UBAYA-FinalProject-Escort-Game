@@ -36,6 +36,5 @@ public class EscorteeInputScript : MonoBehaviour
         if (!GameManager.Instance.GameIsPlaying) return;
 
         Input_SpeedUp = value.Get<float>();
-        Debug.Log(Input_SpeedUp);
     }
 }

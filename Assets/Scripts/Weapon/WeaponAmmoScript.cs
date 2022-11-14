@@ -42,7 +42,7 @@ public class WeaponAmmoScript : MonoBehaviour
 
         if (weaponScript.weaponInputScript.Input_Reload == 1)
         {
-            if (GameManager.Instance.LoadedPlayerData.ammo[weaponScript.ammoType].amount <= 0)
+            if (GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].amount <= 0)
             {
                 // Invoke no ammo alert event
                 NoAmmoAlert?.Invoke();
@@ -58,7 +58,7 @@ public class WeaponAmmoScript : MonoBehaviour
         {
             if (loadedAmmo <= 0 && reloadCoroutine == null)
             {
-                if (GameManager.Instance.LoadedPlayerData.ammo[weaponScript.ammoType].amount <= 0)
+                if (GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].amount <= 0)
                 {
                     // Invoke no ammo alert event
                     NoAmmoAlert?.Invoke();
@@ -74,7 +74,7 @@ public class WeaponAmmoScript : MonoBehaviour
 
     internal void SaveLoadedAmmoToPlayerData()
     {
-        GameManager.Instance.LoadedPlayerData.ammo[weaponScript.ammoType].amount += loadedAmmo;
+        GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].amount += loadedAmmo;
     }
 
     // To update ammo count
@@ -99,11 +99,11 @@ public class WeaponAmmoScript : MonoBehaviour
         {
             if (weaponScript.ammoType == AmmoType.NONE) return;
 
-            amountToAdd = amountToAdd > GameManager.Instance.LoadedPlayerData.ammo[weaponScript.ammoType].amount ? 
-                GameManager.Instance.LoadedPlayerData.ammo[weaponScript.ammoType].amount :
+            amountToAdd = amountToAdd > GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].amount ? 
+                GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].amount :
                 amountToAdd;
 
-            GameManager.Instance.LoadedPlayerData.ammo[weaponScript.ammoType].amount -= amountToAdd;
+            GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].amount -= amountToAdd;
 
             loadedAmmo += amountToAdd;
         }
@@ -116,11 +116,11 @@ public class WeaponAmmoScript : MonoBehaviour
         {
             if (weaponScript.ammoType == AmmoType.NONE) return;
 
-            value = value > GameManager.Instance.LoadedPlayerData.ammo[weaponScript.ammoType].amount ?
-                GameManager.Instance.LoadedPlayerData.ammo[weaponScript.ammoType].amount :
+            value = value > GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].amount ?
+                GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].amount :
                 value;
 
-            GameManager.Instance.LoadedPlayerData.ammo[weaponScript.ammoType].amount -= value;
+            GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].amount -= value;
 
             loadedAmmo += value;
         }

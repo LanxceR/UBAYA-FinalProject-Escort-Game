@@ -16,10 +16,23 @@ public class GameStateManager : MonoBehaviour
 
     // TODO: Decide if UnityAction or UnityEvents are to be used here
     // Unity Events
-    // Subbed at:
+    // Subbed at: InGamePauseUIScript
     internal UnityAction OnPauseAction;
-    // Subbed at:
+    // Subbed at: InGamePauseUIScript
     internal UnityAction OnResumeAction;
+    // Subbed at: InGameGameOverUIScript
+    internal UnityAction OnGameOver;
+
+    // Start is called just before any of the Update methods is called the first time
+    private void Start()
+    {
+        // Add on death listeners to both active player and escortee
+        if (gameManager.ActivePlayer)
+            gameManager.ActivePlayer.healthScript.OnHealthReachedZero.AddListener(GameOver);
+
+        if (gameManager.ActiveEscortee)
+            gameManager.ActiveEscortee.healthScript.OnHealthReachedZero.AddListener(GameOver);
+    }
 
     // Update is called every frame, if the MonoBehaviour is enabled
     private void Update()
@@ -31,6 +44,15 @@ public class GameStateManager : MonoBehaviour
         {
             UpdateTimeScale(gameManager.GameTimeScale);
         }
+    }
+
+    private void GameOver()
+    {
+        // TODO: Implement GameOver events here
+        Debug.Log("GAME OVER!");
+
+        // Invoke OnGameOver event
+        OnGameOver?.Invoke();
     }
 
     internal void UpdateTimeScale(float timeScale)

@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6357e59fa6b0951408692b271aca720e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 50
   maxSpeed: 1.5
   acceleration: 0.5
   deceleration: 0.7
@@ -392,10 +392,9 @@ MonoBehaviour:
   currentHealth: 0
   corpseLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 2048
   colliders:
   - {fileID: 280506156}
-  - {fileID: 3733317801136575021}
   - {fileID: 3733317801237209944}
 --- !u!114 &3733317801578298793
 MonoBehaviour:
