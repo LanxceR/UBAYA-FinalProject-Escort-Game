@@ -60,3 +60,27 @@ TagManager:
   - name: Foreground
     uniqueID: 1617165873
     locked: 0
+  - name: Street
+    uniqueID: 2182845543
+    locked: 0
+  - name: Street Overlays
+    uniqueID: 2347088417
+    locked: 0
+  - name: Building Layer 1
+    uniqueID: 2145585275
+    locked: 0
+  - name: Building Layer 2
+    uniqueID: 1172712047
+    locked: 0
+  - name: Street Props
+    uniqueID: 417431331
+    locked: 0
+  - name: Street Props 2
+    uniqueID: 2544407773
+    locked: 0
+  - name: Building Layer 3
+    uniqueID: 3810104819
+    locked: 0
+  - name: Building Layer 4
+    uniqueID: 2328588239
+    locked: 0
