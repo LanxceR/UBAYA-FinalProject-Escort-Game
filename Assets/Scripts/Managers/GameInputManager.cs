@@ -16,6 +16,8 @@ public class GameInputManager : MonoBehaviour
     // Mapped in UI
     void OnCancel(InputValue moveValue)
     {
-        gameManager.gameState.PauseAndResumeGame();
+        // If gameState is enabled, pause/resume the game
+        if (gameManager.gameState.isActiveAndEnabled)
+            gameManager.gameState.PauseAndResumeGame();
     }
 }

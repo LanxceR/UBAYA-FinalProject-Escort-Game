@@ -44,7 +44,7 @@ public class GamePlayerManager : MonoBehaviour
         if (!gameManager.ActivePlayer)
         {
             gameManager.ActivePlayer = Instantiate(gameManager.PlayerPrefab, spawnPoint.position, Quaternion.identity);
-            gameManager.Cameras.AssignCameraTargetGroup(true);
+            gameManager.InGameCameras.AssignCameraTargetGroup(true);
         }
         else
         {
@@ -56,7 +56,7 @@ public class GamePlayerManager : MonoBehaviour
                 behaviour.enabled = true;
             }
             */
-            gameManager.Cameras.AssignCameraTargetGroup(true);
+            gameManager.InGameCameras.AssignCameraTargetGroup(true);
         }
     }
 }
