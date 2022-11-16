@@ -7407,9 +7407,14 @@ MonoBehaviour:
   - {x: -14, y: 1, z: 0}
   - {x: 2, y: 1, z: 0}
   - {x: 2, y: -13, z: 0}
-  m_ShapePathHash: -208276203
+  - {x: 1.7494373, y: -13.001293, z: 0}
+  - {x: 1.7537196, y: -12.872829, z: 0}
+  - {x: -12.863832, y: -12.873385, z: 0}
+  - {x: -13.673342, y: -12.8694935, z: 0}
+  - {x: -13.673342, y: -12.997926, z: 0}
+  m_ShapePathHash: -781005953
   m_Mesh: {fileID: 0}
-  m_InstanceId: 82292
+  m_InstanceId: 58428
 --- !u!1 &7271077811739459718
 GameObject:
   m_ObjectHideFlags: 0
