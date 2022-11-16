@@ -54,15 +54,6 @@ TagManager:
   - name: Street
     uniqueID: 2182845543
     locked: 0
-  - name: Background
-    uniqueID: 717048945
-    locked: 0
-  - name: Middleground
-    uniqueID: 2997578415
-    locked: 0
-  - name: Foreground
-    uniqueID: 1617165873
-    locked: 0
   - name: Building Layer Top
     uniqueID: 1172712047
     locked: 0
@@ -74,4 +65,7 @@ TagManager:
     locked: 0
   - name: Building Layer Bottom
     uniqueID: 3810104819
+    locked: 0
+  - name: Foreground
+    uniqueID: 1617165873
     locked: 0
