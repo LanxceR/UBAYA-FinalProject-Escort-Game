@@ -118,8 +118,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1297388881
-  m_SortingLayer: 0
+  m_SortingLayerID: 417431331
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: a09f2979c8ccb5948b782d5190f9ffb2, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.2509804}
@@ -335,7 +335,7 @@ Animator:
   m_GameObject: {fileID: 8235225913366474086}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 1238b0cc6098ef14a825094cc172df3f, type: 2}
+  m_Controller: {fileID: 22100000, guid: d8629a7160469624194f1c9325457bf8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66712dbb5d325543a7a75f4b145a45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 18
   baseSpeed: 1
   knockbackImmune: 0
   enemyAnimationScript: {fileID: 1449538883933793047}

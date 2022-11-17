@@ -11,21 +11,25 @@ public enum HazardRating { NORMAL, INFESTED, OVERRUN}
 public class MissionData
 {
     #region Data fields
-
-    public GameObject vehicle;
+    // TODO: Implement zombie types to spawn checks
+    public EscorteeScript vehicle;
     public bool escorteeHasWeapon;
     public int zombieCount;
     public float baseReward;
 
+    public List<Spawnable> enemies;
+
     #endregion
 
     #region Constructors
-    public MissionData(GameObject vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward)
+    public MissionData(EscorteeScript vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward, List<Spawnable> enemies)
     {
         this.vehicle = vehicle;
         this.escorteeHasWeapon = escorteeHasWeapon;
         this.zombieCount = zombieCount;
         this.baseReward = baseReward;
+
+        this.enemies = enemies;
     }
     #endregion
 
@@ -41,7 +45,8 @@ public class MissionData
         return (vehicle == data.vehicle) &&
             (escorteeHasWeapon == data.escorteeHasWeapon) &&
             (zombieCount == data.zombieCount) &&
-            (baseReward == data.baseReward);
+            (baseReward == data.baseReward) &&
+            (enemies == data.enemies);
     }
 
     public bool Equals(MissionData data)
@@ -52,6 +57,7 @@ public class MissionData
         return (vehicle == data.vehicle) &&
             (escorteeHasWeapon == data.escorteeHasWeapon) &&
             (zombieCount == data.zombieCount) &&
-            (baseReward == data.baseReward);
+            (baseReward == data.baseReward) &&
+            (enemies == data.enemies);
     }
 }
