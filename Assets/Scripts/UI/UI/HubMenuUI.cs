@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class HubMenuUI : MonoBehaviour
 {
     Animator anim;
+    public GameObject UI;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,23 @@ public class HubMenuUI : MonoBehaviour
         Debug.Log("Hover is true");
     }
 
+    //
+    //DOES NOT WORK ON BUTTONS
+    //WILL PLAY SOUND WHEN HOVER OVER DIEGETIC UI ELEMENTS 
+    //EX: ARMORY, GARAGE, JOB BOARD
+    void OnMouseEnter()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Hover");
+    }
+
+    //
+    //DOES NOT WORK ON SPRITE WITH COLLISIONS
+    //WILL PLAY SOUND WHEN HOVER OVER BUTTONS
+    public void OnPointerOver()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Hover");
+    }
+
     void OnMouseExit()
     {
         anim.SetBool("Hover", false);
@@ -32,5 +50,33 @@ public class HubMenuUI : MonoBehaviour
     public void RedirectToJobBoard()
     {
         SceneManager.LoadScene("Test Scene");
+    }
+
+    public void OpenCanvas()
+    {
+        GameObject[] diegeticObjs;
+        diegeticObjs = GameObject.FindGameObjectsWithTag("Diegetic");
+        foreach (GameObject script in diegeticObjs)
+        {
+            script.GetComponent<HubMenuUI>().enabled = false;
+            script.GetComponent<PolygonCollider2D>().enabled = false;
+        }
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        UI.SetActive(true);
+    }
+
+    public void CloseCanvas()
+    {
+        GameObject[] diegeticObjs;
+        diegeticObjs = GameObject.FindGameObjectsWithTag("Diegetic");
+        foreach (GameObject script in diegeticObjs)
+        {
+            script.GetComponent<HubMenuUI>().enabled = true;
+            script.GetComponent<PolygonCollider2D>().enabled = true;
+        }
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        UI.SetActive(false);
     }
 }

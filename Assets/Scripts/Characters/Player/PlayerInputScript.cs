@@ -30,6 +30,12 @@ public class PlayerInputScript : MonoBehaviour
     {
         if (!GameManager.Instance.GameIsPlaying) return;
 
+        //FOOTSTEPS ADDITION, STILL BUGGY
+        /*FMOD.Studio.EventInstance footsteps = 
+            FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Survivor/Footstep");
+        footsteps.start();
+        footsteps.release();*/
+
         // Get input value
         Vector2 moveVector = moveValue.Get<Vector2>();
 

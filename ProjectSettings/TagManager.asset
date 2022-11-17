@@ -14,6 +14,7 @@ TagManager:
   - Ally
   - VehicleMount
   - Aim
+  - Diegetic
   layers:
   - Default
   - TransparentFX
