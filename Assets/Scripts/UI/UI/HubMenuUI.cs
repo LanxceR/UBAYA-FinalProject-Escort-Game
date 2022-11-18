@@ -13,14 +13,14 @@ public class HubMenuUI : MonoBehaviour
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
-        Debug.Log(anim);
+        //Debug.Log(anim);
         //this.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
     }
 
     void OnMouseOver()
     {
         anim.SetBool("Hover", true);
-        Debug.Log("Hover is true");
+        //Debug.Log("Hover is true");
     }
 
     //
@@ -30,6 +30,12 @@ public class HubMenuUI : MonoBehaviour
     void OnMouseEnter()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Hover");
+    }
+
+    void OnMouseDown()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/ClickDiegetic");
+        OpenCanvas();
     }
 
     //
@@ -43,7 +49,7 @@ public class HubMenuUI : MonoBehaviour
     void OnMouseExit()
     {
         anim.SetBool("Hover", false);
-        Debug.Log("Hover is false");
+        //Debug.Log("Hover is false");
     }
 
     // Update is called once per frame
@@ -62,7 +68,19 @@ public class HubMenuUI : MonoBehaviour
             script.GetComponent<PolygonCollider2D>().enabled = false;
         }
 
-        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        List<string> list = new List<string> { "GarageUI", "ArmoryUI", "JobBoardUI"};
+
+        if(!list.Contains(UI.name))
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        } 
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/ClickDiegetic");
+        }
+
+        //GameObject game = game.GetComponent<GarageConvoyInfo>().
+        
         UI.SetActive(true);
     }
 

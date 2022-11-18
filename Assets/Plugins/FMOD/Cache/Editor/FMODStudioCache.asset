@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638043414454123253
+  lastModified: 638044003404556148
   FileSizes: []
   Exists: 1
 --- !u!114 &-8029575113104212662
@@ -61,7 +61,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638043414454798924
+  lastModified: 638044003405886439
   FileSizes: []
   Exists: 1
 --- !u!114 &-5878436196734742892
@@ -132,7 +132,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Gameplay.bank
   Name: Gameplay
   StudioPath: bank:/Gameplay
-  lastModified: 638043414454623706
+  lastModified: 638044003404525203
   FileSizes: []
   Exists: 1
 --- !u!114 &-3679953863347738366
@@ -179,11 +179,38 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638043414454123253
+  lastModified: 638044003404565246
   FileSizes:
   - Name: 
-    Value: 1872
+    Value: 1922
   Exists: 1
+--- !u!114 &-2424506622028619460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/ClickDiegetic
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/ClickDiegetic
+  Guid:
+    Data1: 388733679
+    Data2: 1103258903
+    Data3: 107039932
+    Data4: -1376571491
+  Banks:
+  - {fileID: -6192649352618610893}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 378
 --- !u!114 &-2373221317663402205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,12 +348,13 @@ MonoBehaviour:
   - {fileID: -5878436196734742892}
   - {fileID: -419468973635884389}
   - {fileID: -8029575113104212662}
+  - {fileID: -2424506622028619460}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8410806887097065527}
   StringsBanks:
   - {fileID: -3247003094679002036}
-  cacheTime: 638043414455199278
+  cacheTime: 638044003405886439
   cacheVersion: 131593
 --- !u!114 &2422948965619628952
 MonoBehaviour:
@@ -421,7 +449,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638043414455029130
+  lastModified: 638044003405035671
   FileSizes: []
   Exists: 1
 --- !u!114 &8393815413211621361
@@ -490,7 +518,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638043414455199278
+  lastModified: 638044003403674425
   FileSizes: []
   Exists: 1
 --- !u!114 &8874709602837240393

@@ -15,6 +15,7 @@ public class ConvoySoundScript : MonoBehaviour
     void Start()
     {
         instance = FMODUnity.RuntimeManager.CreateInstance(fmodEvent);
+        instance.setParameterByName("RPM", 0);
         instance.start();
     }
 
