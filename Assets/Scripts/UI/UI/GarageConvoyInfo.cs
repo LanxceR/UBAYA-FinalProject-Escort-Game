@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 [System.Serializable]
 public class Convoy
@@ -24,10 +25,11 @@ public class GarageConvoyInfo : MonoBehaviour
     #region Attached GameObjects
 
         public GameObject nameObject;
-        public GameObject priceObject;
+        public GameObject priceButtonObject;
         public GameObject imageObject;
         public GameObject healthSliderObject;
         public GameObject maxSpeedSliderObject;
+        public GameObject equipButtonObject;
 
     #endregion
 
@@ -36,22 +38,19 @@ public class GarageConvoyInfo : MonoBehaviour
         //Seek through convoy list to find which convoy is currently being equipped
         for (int i = 0; i < convoys.Length; i++)
         {
+            Transform childPrice = priceButtonObject.transform.Find("Price");
+            Transform childPurchased = priceButtonObject.transform.Find("Text");
+
             if (convoys[i].isEquipped == true)
             {
                 //update convoy name
                 nameObject.GetComponent<TextMeshProUGUI>().text = convoys[i].convoyName;
 
-                //update convoy price
-                if (convoys[i].isPurchased == true)
-                {
-                    priceObject.GetComponent<TextMeshProUGUI>().text = "Owned";
-                    priceObject.GetComponentInParent<Button>().interactable = false;
-                }
-                else
-                {
-                    priceObject.GetComponent<TextMeshProUGUI>().text = "$" + convoys[i].convoyPrice.ToString();
-                    priceObject.GetComponentInParent<Button>().interactable = true;
-                }
+                //update convoy price and button
+                childPrice.GetComponent<TextMeshProUGUI>().text = "Owned";
+                childPrice.GetComponentInParent<Button>().interactable = false;
+
+                childPurchased.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);
 
                 //update convoy image
                 imageObject.GetComponent<Image>().sprite = convoys[i].convoyImage;
@@ -62,6 +61,11 @@ public class GarageConvoyInfo : MonoBehaviour
                 //maxspd
                 maxSpeedSliderObject.GetComponent<Slider>().value = convoys[i].maxSpeedValue;
 
+                //isEquipped button disable
+                equipButtonObject.GetComponent<Button>().interactable = false;
+                equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().text = "IN USE";
+                equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);
+
                 currentIndex = i;
 
                 break;
@@ -71,20 +75,16 @@ public class GarageConvoyInfo : MonoBehaviour
             #region code
             nameObject.GetComponent<TextMeshProUGUI>().text = convoys[0].convoyName;
 
-            if (convoys[0].isPurchased == true)
-            {
-                priceObject.GetComponent<TextMeshProUGUI>().text = "Owned";
-                priceObject.GetComponentInParent<Button>().interactable = false;
-            }
-            else
-            {
-                priceObject.GetComponent<TextMeshProUGUI>().text = "$" + convoys[0].convoyPrice.ToString();
-                priceObject.GetComponentInParent<Button>().interactable = true;
-            }
+            childPrice.GetComponent<TextMeshProUGUI>().text = "Owned";
+            childPrice.GetComponentInParent<Button>().interactable = false;
+            childPurchased.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);
 
             imageObject.GetComponent<Image>().sprite = convoys[0].convoyImage;
             healthSliderObject.GetComponent<Slider>().value = convoys[0].healthValue;
             maxSpeedSliderObject.GetComponent<Slider>().value = convoys[0].maxSpeedValue;
+            equipButtonObject.GetComponent<Button>().interactable = false;
+            equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().text = "IN USE";
+            equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);
 
             currentIndex = 0;
             #endregion
@@ -93,9 +93,7 @@ public class GarageConvoyInfo : MonoBehaviour
 
     public void CycleLeft()
     {
-        Debug.Log("Current Index: " + currentIndex);
         currentIndex--;
-        Debug.Log("Current Index: " + currentIndex);
 
         //Make sure that array index is not below 0
         if (currentIndex < 0)
@@ -103,24 +101,7 @@ public class GarageConvoyInfo : MonoBehaviour
             currentIndex = 2;
         }
 
-        #region code
-        nameObject.GetComponent<TextMeshProUGUI>().text = convoys[currentIndex].convoyName;
-
-        if (convoys[currentIndex].isPurchased == true)
-        {
-            priceObject.GetComponent<TextMeshProUGUI>().text = "Owned";
-            priceObject.GetComponentInParent<Button>().interactable = false;
-        }
-        else
-        {
-            priceObject.GetComponent<TextMeshProUGUI>().text = "$" + convoys[currentIndex].convoyPrice.ToString();
-            priceObject.GetComponentInParent<Button>().interactable = true;
-        }
-
-        imageObject.GetComponent<Image>().sprite = convoys[currentIndex].convoyImage;
-        healthSliderObject.GetComponent<Slider>().value = convoys[currentIndex].healthValue;
-        maxSpeedSliderObject.GetComponent<Slider>().value = convoys[currentIndex].maxSpeedValue;
-        #endregion
+        Refresh(currentIndex);
     }
 
     public void CycleRight()
@@ -133,28 +114,80 @@ public class GarageConvoyInfo : MonoBehaviour
             currentIndex = 0;
         }
 
-        #region code
-        nameObject.GetComponent<TextMeshProUGUI>().text = convoys[currentIndex].convoyName;
+        Refresh(currentIndex);
+    }
 
-        if (convoys[currentIndex].isPurchased == true)
+    private void Refresh(int i)
+    {
+        #region code
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+
+        //FIND CHILD OF THE PURCHASE BUTTONS (purchase and price)
+        Transform childPrice = priceButtonObject.transform.Find("Price");
+        Transform childPurchased = priceButtonObject.transform.Find("Text");
+
+        nameObject.GetComponent<TextMeshProUGUI>().text = convoys[i].convoyName;
+
+        if (convoys[i].isPurchased == true)
         {
-            priceObject.GetComponent<TextMeshProUGUI>().text = "Owned";
-            priceObject.GetComponentInParent<Button>().interactable = false;
+            childPrice.GetComponent<TextMeshProUGUI>().text = "Owned";
+            childPrice.GetComponentInParent<Button>().interactable = false;
+            childPurchased.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);
+
+            if (convoys[i].isEquipped == true)
+            {
+                equipButtonObject.GetComponent<Button>().interactable = false;
+                equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().text = "IN USE";
+                equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);
+            }
+            else
+            {
+                equipButtonObject.GetComponent<Button>().interactable = true;
+                equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().text = "SELECT AS MAIN CONVOY";
+                equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
+            }
         }
         else
         {
-            priceObject.GetComponent<TextMeshProUGUI>().text = "$" + convoys[currentIndex].convoyPrice.ToString();
-            priceObject.GetComponentInParent<Button>().interactable = true;
+            childPrice.GetComponent<TextMeshProUGUI>().text = "$" + convoys[i].convoyPrice.ToString();
+            childPrice.GetComponentInParent<Button>().interactable = true;
+            childPurchased.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
+
+            //LOCK AWAY THE BUTTON TO EQUIP
+            equipButtonObject.GetComponent<Button>().interactable = false;
+            equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().text = "NOT BOUGHT";
+            equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);
         }
 
-        imageObject.GetComponent<Image>().sprite = convoys[currentIndex].convoyImage;
-        healthSliderObject.GetComponent<Slider>().value = convoys[currentIndex].healthValue;
-        maxSpeedSliderObject.GetComponent<Slider>().value = convoys[currentIndex].maxSpeedValue;
+        imageObject.GetComponent<Image>().sprite = convoys[i].convoyImage;
+        healthSliderObject.GetComponent<Slider>().value = convoys[i].healthValue;
+        maxSpeedSliderObject.GetComponent<Slider>().value = convoys[i].maxSpeedValue;
+
         #endregion
     }
 
     void Update()
     {
-        
+        if (Input.GetMouseButtonUp(0))
+         {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
     }
+
+    public void SelectAsMain()
+    {
+        for (int i = 0; i < convoys.Length; i++)
+        {
+            if(i != currentIndex)
+            {
+                convoys[i].isEquipped = false;
+            }
+            else
+            {
+                convoys[i].isEquipped = true;
+            }
+        }
+        Refresh(currentIndex);
+    }
+
 }
