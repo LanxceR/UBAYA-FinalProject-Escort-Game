@@ -48,9 +48,12 @@ public class PlayerHUDReloadIndicatorScript : MonoBehaviour
     void Update()
     {
         // Add listener to NoAmmoAlert
-        if (playerWeaponScript.weaponAmmoScript.NoAmmoAlert != null)
-            playerWeaponScript.weaponAmmoScript.NoAmmoAlert?.RemoveListener(NoAmmoAlert);
-        playerWeaponScript.weaponAmmoScript.NoAmmoAlert?.AddListener(NoAmmoAlert);
+        if (playerWeaponScript)
+        {
+            if (playerWeaponScript.weaponAmmoScript.NoAmmoAlert != null)
+                playerWeaponScript.weaponAmmoScript.NoAmmoAlert?.RemoveListener(NoAmmoAlert);
+            playerWeaponScript.weaponAmmoScript.NoAmmoAlert?.AddListener(NoAmmoAlert);
+        }
 
         if (playerWeaponScript.reloadElapsedTime > 0)
         {

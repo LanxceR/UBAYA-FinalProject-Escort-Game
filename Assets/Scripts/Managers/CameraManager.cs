@@ -28,7 +28,7 @@ public class CameraManager : MonoBehaviour
     // Assign a new target group for the camera
     internal void AssignCameraTargetGroup(bool centerAroundPlayer)
     {
-        PlayerScript player = GameManager.Instance.ActivePlayer;
+        PlayerScript player = GameManager.Instance.gamePlayer.ActivePlayer;
         if (centerAroundPlayer && player)
         {
             // Set up player and aimHelper's target

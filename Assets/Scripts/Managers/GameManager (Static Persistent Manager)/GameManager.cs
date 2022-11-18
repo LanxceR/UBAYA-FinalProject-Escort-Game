@@ -8,6 +8,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // TODO: Enemy AI, spawning, etc
+    // TODO: Try storing ALL prefabs in a ScriptableObject or other methods
     // TODO: Procgenerated map
 
     // Singleton instance
@@ -30,27 +31,7 @@ public class GameManager : MonoBehaviour
     private float gameTimeScale = 1f;
     internal bool GameIsPlaying { get => gameIsPlaying; set => gameIsPlaying = value; }
     public float GameTimeScale { get => gameTimeScale; set => gameTimeScale = value; }
-
-
-    [Header("Player Prefabs")]
-    [SerializeField] private PlayerScript playerPrefab; // Player prefab to spawn
-    [SerializeField] private PlayerScript activePlayer; // Stored active player
-    public PlayerScript PlayerPrefab { get => playerPrefab; set => playerPrefab = value; }
-    internal PlayerScript ActivePlayer { get => activePlayer; 
-        set
-        {
-            activePlayer = value;
-            InGameUI.HUDScript.hudAmmoScript.AssignWeaponScript();
-        }
-    }
-
-
-    [Header("Escortee Prefabs")]
-    [SerializeField] private EscorteeScript[] escorteePrefabs; // Escortee prefab to spawn
-    [SerializeField] private EscorteeScript activeEscortee; // Stored active escortee
-    public EscorteeScript[] EscorteePrefabs { get => escorteePrefabs; set => escorteePrefabs = value; }
-    internal EscorteeScript ActiveEscortee { get => activeEscortee; set => activeEscortee = value; }
-
+    
 
     [Header("Game Datas")]
     [SerializeField] private PlayerData[] gameDatas = new PlayerData[3];

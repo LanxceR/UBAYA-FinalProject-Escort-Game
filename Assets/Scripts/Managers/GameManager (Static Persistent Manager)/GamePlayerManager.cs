@@ -11,6 +11,22 @@ public class GamePlayerManager : MonoBehaviour
     [SerializeField]
     internal GameManager gameManager;
 
+
+    [Header("All Player Prefabs")]
+    [SerializeField] private PlayerScript playerPrefab; // Player prefab to spawn
+    [SerializeField] private PlayerScript activePlayer; // Stored active player
+    public PlayerScript PlayerPrefab { get => playerPrefab; set => playerPrefab = value; }
+    internal PlayerScript ActivePlayer
+    {
+        get => activePlayer;
+        set
+        {
+            activePlayer = value;
+            gameManager.InGameUI.HUDScript.hudAmmoScript.AssignWeaponScript();
+        }
+    }
+
+
     // Start is called just before any of the Update methods is called the first time
     private void Start()
     {
@@ -29,7 +45,7 @@ public class GamePlayerManager : MonoBehaviour
 
         if (activePlayer)
         {
-            gameManager.ActivePlayer = activePlayer;
+            ActivePlayer = activePlayer;
         }
     }
 
@@ -37,21 +53,21 @@ public class GamePlayerManager : MonoBehaviour
     public void SpawnPlayer()
     {
         // TODO: Spawn point for player
-        SpawnPlayer(gameManager.PlayerPrefab.transform);
+        SpawnPlayer(PlayerPrefab.transform);
     }
     public void SpawnPlayer(Transform spawnPoint)
     {
-        if (!gameManager.ActivePlayer)
+        if (!ActivePlayer)
         {
-            gameManager.ActivePlayer = Instantiate(gameManager.PlayerPrefab, spawnPoint.position, Quaternion.identity);
+            ActivePlayer = Instantiate(PlayerPrefab, spawnPoint.position, Quaternion.identity);
             gameManager.InGameCameras.AssignCameraTargetGroup(true);
         }
         else
         {
-            gameManager.ActivePlayer.gameObject.SetActive(true);
-            gameManager.ActivePlayer.transform.position = spawnPoint.position;
+            ActivePlayer.gameObject.SetActive(true);
+            ActivePlayer.transform.position = spawnPoint.position;
             /*
-            foreach (var behaviour in gameManager.ActivePlayer.GetComponents<Behaviour>())
+            foreach (var behaviour in gameManager.gamePlayer.ActivePlayer.GetComponents<Behaviour>())
             {
                 behaviour.enabled = true;
             }

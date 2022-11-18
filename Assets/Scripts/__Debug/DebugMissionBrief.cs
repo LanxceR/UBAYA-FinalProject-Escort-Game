@@ -23,6 +23,7 @@ public class DebugMissionBrief : MonoBehaviour
         {
             if (!missionDisplays[i]) continue;
 
+            #region Mission details
             // Display escortee
             missionDisplays[i].vehicle.ClearOptions();
             List<string> vehicles = new List<string>();
@@ -50,6 +51,17 @@ public class DebugMissionBrief : MonoBehaviour
                 enemiesString += $"{e.prefab.name}";
             }
             missionDisplays[i].enemies.text = enemiesString;
+            #endregion
+
+
+            #region Equipments
+            PlayerData pData = GameManager.Instance.LoadedGameData;
+
+            foreach (WeaponID w in GameManager.Instance.LoadedGameData.ownedWeapons)
+            {
+                
+            }
+            #endregion
         }
     }
 }

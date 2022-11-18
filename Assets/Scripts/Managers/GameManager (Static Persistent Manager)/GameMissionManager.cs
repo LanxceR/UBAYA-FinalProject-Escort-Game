@@ -13,9 +13,13 @@ public class GameMissionManager : MonoBehaviour
     internal GameManager gameManager;
 
     // Enemy Prefabs
-    [Header("Enemy Prefabs")]
+    [Header("All Enemy Prefabs")]
     [SerializeField] private EnemyScript[] enemyPrefabs; // List of ALL enemy prefabs possible to spawn
-    
+
+    // Enemy Prefabs
+    [Header("All Weapon Prefabs")]
+    [SerializeField] private WeaponScript[] weaponPrefabs; // List of ALL enemy prefabs possible to spawn
+
     private EnemyScript GetEnemy(EnemyID enemyType)
     {
         // Find an enemy of a certain type
@@ -181,7 +185,7 @@ public class GameMissionManager : MonoBehaviour
         if (randomizeEscortee)
         {
             // Choose random vehicle
-            vehicle = gameManager.EscorteePrefabs[Random.Range(0, gameManager.EscorteePrefabs.Length)];
+            vehicle = gameManager.gameEscortee.EscorteePrefabs[Random.Range(0, gameManager.gameEscortee.EscorteePrefabs.Length)];
 
             // Store mission to it's index
             gameManager.MissionDatas[index] = new MissionData(vehicle, escorteeHasWeapon, zombieCount, baseReward, enemies);

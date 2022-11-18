@@ -27,7 +27,7 @@ public class HUDAmmoScript : MonoBehaviour
     {
         Debug.Log("HUDAmmoScript starting");
 
-        activePlayer = GameManager.Instance.ActivePlayer;
+        activePlayer = GameManager.Instance.gamePlayer.ActivePlayer;
 
         if (activePlayer)
         {
@@ -67,7 +67,7 @@ public class HUDAmmoScript : MonoBehaviour
 
     internal void AssignWeaponScript()
     {
-        InventoryScript inv = GameManager.Instance.ActivePlayer.inventoryScript;
+        InventoryScript inv = GameManager.Instance.gamePlayer.ActivePlayer.inventoryScript;
 
         // Assign to show currently equipped item
         playerWeaponScript = inv.GetCurrentEquippedItem() as WeaponScript;

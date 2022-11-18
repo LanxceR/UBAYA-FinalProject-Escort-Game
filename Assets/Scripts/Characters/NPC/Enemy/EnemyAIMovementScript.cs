@@ -88,8 +88,8 @@ public class EnemyAIMovementScript : MonoBehaviour
         // Assign target for AI
         if (enemyScript.recAggroScript)
             Target = enemyScript.recAggroScript.target;
-        else if (Target == null && GameManager.Instance.ActivePlayer)
-            Target = GameManager.Instance.ActivePlayer.transform;
+        else if (Target == null && GameManager.Instance.gamePlayer.ActivePlayer)
+            Target = GameManager.Instance.gamePlayer.ActivePlayer.transform;
     }
 
     private void AIPathMovement()

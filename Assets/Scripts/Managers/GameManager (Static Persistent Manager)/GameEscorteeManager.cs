@@ -11,6 +11,14 @@ public class GameEscorteeManager : MonoBehaviour
     [SerializeField]
     internal GameManager gameManager;
 
+
+    [Header("All Escortee Prefabs")]
+    [SerializeField] private EscorteeScript[] escorteePrefabs; // Escortee prefab to spawn
+    [SerializeField] private EscorteeScript activeEscortee; // Stored active escortee
+    public EscorteeScript[] EscorteePrefabs { get => escorteePrefabs; set => escorteePrefabs = value; }
+    internal EscorteeScript ActiveEscortee { get => activeEscortee; set => activeEscortee = value; }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +36,7 @@ public class GameEscorteeManager : MonoBehaviour
 
         if (activeEscortee)
         {
-            gameManager.ActiveEscortee = activeEscortee;
+            ActiveEscortee = activeEscortee;
         }
     }
 
@@ -40,16 +48,16 @@ public class GameEscorteeManager : MonoBehaviour
     }
     public void SpawnEscortee(Transform spawnPoint)
     {
-        if (!gameManager.ActiveEscortee)
+        if (!ActiveEscortee)
         {
-            gameManager.ActiveEscortee = Instantiate(gameManager.LoadedMissionData.vehicle, spawnPoint.position, Quaternion.identity);
+            ActiveEscortee = Instantiate(gameManager.LoadedMissionData.vehicle, spawnPoint.position, Quaternion.identity);
         }
         else
         {
-            gameManager.ActiveEscortee.gameObject.SetActive(true);
-            gameManager.ActiveEscortee.transform.position = spawnPoint.position;
+            ActiveEscortee.gameObject.SetActive(true);
+            ActiveEscortee.transform.position = spawnPoint.position;
             /*
-            foreach (var behaviour in gameManager.ActiveEscortee.GetComponents<Behaviour>())
+            foreach (var behaviour in ActiveEscortee.GetComponents<Behaviour>())
             {
                 behaviour.enabled = true;
             }

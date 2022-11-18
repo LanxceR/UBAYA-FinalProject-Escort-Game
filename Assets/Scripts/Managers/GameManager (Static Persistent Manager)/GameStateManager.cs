@@ -33,20 +33,25 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     internal UnityAction OnGameOver;
 
-    // Start is called just before any of the Update methods is called the first time
-    private void Start()
-    {
-        // Add on death listeners to both active player and escortee
-        if (gameManager.ActivePlayer)
-            gameManager.ActivePlayer.healthScript.OnHealthReachedZero.AddListener(GameOver);
-
-        if (gameManager.ActiveEscortee)
-            gameManager.ActiveEscortee.healthScript.OnHealthReachedZero.AddListener(GameOver);
-    }
-
     // Update is called every frame, if the MonoBehaviour is enabled
     private void Update()
     {
+        // Add on death listeners to both active player and escortee
+        if (gameManager.gamePlayer.ActivePlayer)
+        {
+            if (gameManager.gamePlayer.ActivePlayer.healthScript.OnHealthReachedZero != null)
+                gameManager.gamePlayer.ActivePlayer.healthScript.OnHealthReachedZero?.RemoveListener(GameOver);
+            gameManager.gamePlayer.ActivePlayer.healthScript.OnHealthReachedZero?.AddListener(GameOver);
+        }
+
+        if (gameManager.gameEscortee.ActiveEscortee)
+        {
+            if (gameManager.gameEscortee.ActiveEscortee.healthScript.OnHealthReachedZero != null)
+                gameManager.gameEscortee.ActiveEscortee.healthScript.OnHealthReachedZero?.RemoveListener(GameOver);
+            gameManager.gameEscortee.ActiveEscortee.healthScript.OnHealthReachedZero.AddListener(GameOver);
+        }
+
+        // State Update
         if (!gameManager.GameIsPlaying)
         {
             UpdateTimeScale(0f);
