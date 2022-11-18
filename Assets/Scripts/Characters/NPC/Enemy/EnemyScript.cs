@@ -62,6 +62,10 @@ public class EnemyScript : MonoBehaviour, ICharacter
 
     void EnemyDeath()
     {
+        if (enemyAttackScript)
+        {
+            enemyAttackScript.enabled = false;
+        }
         if (pathfindingScript)
         {
             pathfindingScript.enabled = false;

@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66712dbb5d325543a7a75f4b145a45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  id: 0
   health: 18
   baseSpeed: 1
   knockbackImmune: 0
@@ -706,7 +706,7 @@ MonoBehaviour:
   - Ally
   target: {fileID: 0}
   targetCol: {fileID: 0}
-  drawGizmo: 1
+  drawGizmo: 0
 --- !u!1 &8235225914585798715
 GameObject:
   m_ObjectHideFlags: 0

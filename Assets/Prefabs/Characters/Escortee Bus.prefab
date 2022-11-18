@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6357e59fa6b0951408692b271aca720e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   health: 50
   maxSpeed: 1.5
   acceleration: 0.5
@@ -522,7 +523,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &478354211
 Animator:
   serializedVersion: 4

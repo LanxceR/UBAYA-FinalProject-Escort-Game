@@ -706,7 +706,7 @@ MonoBehaviour:
   - Ally
   target: {fileID: 0}
   targetCol: {fileID: 0}
-  drawGizmo: 1
+  drawGizmo: 0
 --- !u!1 &8235225914585798715
 GameObject:
   m_ObjectHideFlags: 0
