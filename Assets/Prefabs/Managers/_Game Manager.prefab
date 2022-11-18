@@ -101,6 +101,8 @@ MonoBehaviour:
   activePlayer: {fileID: 0}
   escorteePrefabs:
   - {fileID: 3733317801578298791, guid: a693728d74f86bc4d891ef2561e7b9b2, type: 3}
+  - {fileID: 3733317801578298791, guid: c16e235917fe0164aaf46b7cff311bf7, type: 3}
+  - {fileID: 3733317801578298791, guid: 52b5abf626e982849960b36f805dffc1, type: 3}
   activeEscortee: {fileID: 0}
   gameDatas:
   - isEmpty: 1

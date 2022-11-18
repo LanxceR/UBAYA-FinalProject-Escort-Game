@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Convoy Pickup Truck
+  m_Controller: {fileID: 9100000, guid: b61f0e2de2c550042a70cf374baa9f3b, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 77765c24e0c831243abecb228b4ad47c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 91a539caadc41934eacea9a3bcf7e5e3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 289c26d3cbeba6541b83bc1f51e6b669, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6a4d344d3a484b1479b6a76268b1afad, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f246503fc489a9e498311852373591c8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9c04245e6e60a0a488b2ae3ee1885e5a, type: 2}
