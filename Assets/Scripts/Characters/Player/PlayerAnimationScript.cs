@@ -48,10 +48,10 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
         if (playerScript.healthScript)
         {
             // Add listener to Health's OnHit UnityEvent          
-            playerScript.healthScript.OnHit.AddListener(PlayerHurt);
+            playerScript.healthScript.OnHit?.AddListener(PlayerHurt);
 
             // Add listener to Health's OnHealthReachedZero UnityEvent          
-            playerScript.healthScript.OnHealthReachedZero.AddListener(PlayerDeath);
+            playerScript.healthScript.OnHealthReachedZero?.AddListener(PlayerDeath);
         }
     }
     #endregion
@@ -68,13 +68,24 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
     // Central process to handle all anim state update
     void UpdateAnimationState()
     {
+        // To double-check that death animation is played on dying
+        if (playerScript.healthScript)
+        {
+            if (playerScript.healthScript.IsDead)
+            {
+                if (currentState != PLAYER_DEATH)
+                    PlayerDeath();
+            }
+        }
+
+
         UpdateAnimationDirection();
     }
     #endregion
 
     #region Core transition functions
     // Method to change animation state
-    public void ChangeAnimationState(string newState)
+    public void ChangeAnimationState(string newState, bool forceStart)
     {
         // If animator speed is 0, then return
         if (animator.speed == 0) return;
@@ -83,7 +94,7 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
         if (currentState == newState) return;
 
         // If there's an uninterruptible animation currently running, return
-        if (uninterruptibleCoroutineRunning) return;
+        if (uninterruptibleCoroutineRunning && !forceStart) return;
 
         // Play the animation
         animator.Play(newState);
@@ -95,11 +106,8 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
     // Method to change animation state to another state and make it uninterruptible
     public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool forceStart, bool stopAfterAnimEnd)
     {
-        // If forced to start, then change uninterruptibleCoroutine flag to false
-        if (forceStart) uninterruptibleCoroutineRunning = false;
-
         // Anim transition
-        ChangeAnimationState(newState);
+        ChangeAnimationState(newState, forceStart);
 
         // Uses a bool to indicate if there's an uninterrupted anim running
         // NOTE: Using return value from StartCoroutine() sometimes doesn't work in this instance for some reason
@@ -220,7 +228,7 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
                     playerDir = PLAYER_IDLE_FRONT;
             }
 
-            ChangeAnimationState(playerDir);
+            ChangeAnimationState(playerDir, false);
         }
         else
         {
@@ -261,7 +269,7 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
                     playerDir = PLAYER_IDLE_FRONT;
             }
 
-            ChangeAnimationState(playerDir);
+            ChangeAnimationState(playerDir, false);
         }
     }
     #endregion

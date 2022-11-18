@@ -33,7 +33,7 @@ public class EscorteeAnimationScript : MonoBehaviour, IAnimation
         if (escorteeScript.healthScript)
         {
             // Add listener to Health's OnHit UnityEvent          
-            escorteeScript.healthScript.OnHit.AddListener(EscorteeHurt);
+            escorteeScript.healthScript.OnHit?.AddListener(EscorteeHurt);
         }
     } 
     #endregion
@@ -48,7 +48,7 @@ public class EscorteeAnimationScript : MonoBehaviour, IAnimation
 
     #region Core transition function
     // Method to change animation state
-    public void ChangeAnimationState(string newState)
+    public void ChangeAnimationState(string newState, bool forceStart)
     {
         // If animator speed is 0, then return
         if (animator.speed == 0) return;
@@ -69,11 +69,8 @@ public class EscorteeAnimationScript : MonoBehaviour, IAnimation
     // Method to change animation state to another state and make it uninterruptible
     public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool forceStart, bool stopAfterAnimEnd)
     {
-        // If forced to start, then change uninterruptibleCoroutine flag to false
-        if (forceStart) uninterruptibleCoroutineRunning = false;
-
         // Anim transition
-        ChangeAnimationState(newState);
+        ChangeAnimationState(newState, forceStart);
 
         // Uses a bool to indicate if there's an uninterrupted anim running
         // NOTE: Using return value from StartCoroutine() sometimes doesn't work in this instance for some reason
@@ -139,11 +136,11 @@ public class EscorteeAnimationScript : MonoBehaviour, IAnimation
         // TODO: Maybe implement changing animator speed based off of speed
         if (move.speedStage == 0)
         {
-            ChangeAnimationState(ESCORTEE_IDLE);
+            ChangeAnimationState(ESCORTEE_IDLE, false);
         }
         else
         {
-            ChangeAnimationState(ESCORTEE_MOVING);
+            ChangeAnimationState(ESCORTEE_MOVING, false);
         }
     }
     #endregion

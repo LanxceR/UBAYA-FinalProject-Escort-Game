@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Weapon Baseball Bat
+  m_Controller: {fileID: 9100000, guid: b7de7b27403a95e489d3a59030e7f70f, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d78bcc02f3f94584fa9e12224dd64e93, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1dd2ed9dce1fc614c9f474045410af85, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 958d888f63871b1428072ddabe1439af, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7dd5d72e41d0f1149b3c96a73fe9e3b6, type: 2}
