@@ -8,7 +8,8 @@ public enum SceneName
 {
     TITLE_SCREEN,
     MAIN_HUB,
-    TEST_SCENE
+    TEST_ESCORT_SCENE,
+    TEST_MISSION_SCENE
 }
 
 /// <summary>
@@ -126,17 +127,15 @@ public class GameSceneManager : MonoBehaviour
 
         switch (currentScene)
         {
-            case SceneName.TITLE_SCREEN | SceneName.MAIN_HUB:
+            case SceneName.TITLE_SCREEN | SceneName.MAIN_HUB | SceneName.TEST_MISSION_SCENE:
                 gameManager.gameState.enabled = false;
                 gameManager.gamePlayer.enabled = false;
                 gameManager.gameEscortee.enabled = false;
-                gameManager.gameData.enabled = true;
                 break;
-            case SceneName.TEST_SCENE:
+            case SceneName.TEST_ESCORT_SCENE:
                 gameManager.gameState.enabled = true;
                 gameManager.gamePlayer.enabled = true;
                 gameManager.gameEscortee.enabled = true;
-                gameManager.gameData.enabled = true;
 
                 // Initialize In-Game UI & Camera
                 gameManager.InitializeCameras();
@@ -146,7 +145,6 @@ public class GameSceneManager : MonoBehaviour
                 gameManager.gameState.enabled = false;
                 gameManager.gamePlayer.enabled = false;
                 gameManager.gameEscortee.enabled = false;
-                gameManager.gameData.enabled = true;
                 gameManager.gameInput.enabled = true;
                 break;
         }

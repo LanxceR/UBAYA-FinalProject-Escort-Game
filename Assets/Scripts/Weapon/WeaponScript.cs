@@ -3,12 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+public enum WeaponID
+{
+    MELEE_INVISIBILE,
+    RANGED_INVISIBLE,
+    PIPE,
+    KNIFE,
+    BASEBALL_BAT,
+    MACHETE,
+    PISTOL,
+    SHOTGUN,
+    SMG,
+    RIFLE
+}
+
+public enum AmmoType { NONE, LIGHT, SHOTGUN, HEAVY }
+
 /// <summary>
 /// The main weapon script (or the hub)
 /// </summary>
-public enum AmmoType { NONE, LIGHT, SHOTGUN, HEAVY }
 public class WeaponScript : MonoBehaviour, IEquipmentItem
 {
+    // Weapon type
+    [Header("Weapon ID")]
+    [SerializeField]
+    internal WeaponID id;
+
     // Settings
     [Header("Parent Settings")]
     [SerializeField] internal GameObject parentHolder;

@@ -27,7 +27,8 @@ public class GameDataManager : MonoBehaviour
         int daysPassed,
         int missionsCompleted,
         int missionsFailed,
-        float ammo_LIGHT, float ammo_SHOTGUN, float ammo_HEAVY
+        float ammo_LIGHT, float ammo_SHOTGUN, float ammo_HEAVY,
+        List<WeaponID> ownedWeapons, List<EscorteeID> ownedVehicles
         )
     {
         // Create new player data and store in game manager array
@@ -38,7 +39,8 @@ public class GameDataManager : MonoBehaviour
             daysPassed, 
             missionsCompleted, 
             missionsFailed, 
-            ammo_LIGHT, ammo_SHOTGUN, ammo_HEAVY
+            ammo_LIGHT, ammo_SHOTGUN, ammo_HEAVY,
+            ownedWeapons, ownedVehicles
             );
     }
 

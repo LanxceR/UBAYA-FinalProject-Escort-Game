@@ -503,6 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66712dbb5d325543a7a75f4b145a45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 1
   health: 12
   baseSpeed: 1.8
   knockbackImmune: 0

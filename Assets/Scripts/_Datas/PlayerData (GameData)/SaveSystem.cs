@@ -33,7 +33,9 @@ public static class SaveSystem
         int daysPassed,
         int missionsCompleted,
         int missionsFailed,
-        float ammo_LIGHT, float ammo_SHOTGUN, float ammo_HEAVY)
+        float ammo_LIGHT, float ammo_SHOTGUN, float ammo_HEAVY,
+        List<WeaponID> ownedWeapons, List<EscorteeID> ownedVehicles
+        )
     {
         // Prepare a playerData object
         PlayerData savegame = new PlayerData(
@@ -43,7 +45,8 @@ public static class SaveSystem
             daysPassed,
             missionsCompleted,
             missionsFailed,
-            ammo_LIGHT, ammo_SHOTGUN, ammo_HEAVY
+            ammo_LIGHT, ammo_SHOTGUN, ammo_HEAVY,
+            ownedWeapons, ownedVehicles
             );
 
         // Setup a BinaryFormatter object
@@ -94,7 +97,7 @@ public static class SaveSystem
                 // Setup a BinaryFormatter object
                 BinaryFormatter formatter = new BinaryFormatter();
                 // Create a new filestream to open a savefile
-                FileStream stream = new FileStream(path, FileMode.Open);
+                using FileStream stream = new FileStream(path, FileMode.Open);
 
                 // Read data from file, then close stream
                 PlayerData savegame = formatter.Deserialize(stream) as PlayerData;

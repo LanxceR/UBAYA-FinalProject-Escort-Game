@@ -110,6 +110,8 @@ MonoBehaviour:
     daysPassed: 0
     missionsCompleted: 0
     missionsFailed: 0
+    ownedWeapons: 
+    ownedVehicles: 
   - isEmpty: 1
     index: 0
     difficulty: 0
@@ -117,6 +119,8 @@ MonoBehaviour:
     daysPassed: 0
     missionsCompleted: 0
     missionsFailed: 0
+    ownedWeapons: 
+    ownedVehicles: 
   - isEmpty: 1
     index: 0
     difficulty: 0
@@ -124,6 +128,8 @@ MonoBehaviour:
     daysPassed: 0
     missionsCompleted: 0
     missionsFailed: 0
+    ownedWeapons: 
+    ownedVehicles: 
   loadedGameData:
     isEmpty: 1
     index: 0
@@ -132,6 +138,8 @@ MonoBehaviour:
     daysPassed: 0
     missionsCompleted: 0
     missionsFailed: 0
+    ownedWeapons: 
+    ownedVehicles: 
   missionDatas:
   - vehicle: {fileID: 0}
     escorteeHasWeapon: 0
@@ -231,6 +239,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 3476358989919382763}
+  enemyPrefabs:
+  - {fileID: 1267373589, guid: 556d4f4077c8ce74083228113bc78dfa, type: 3}
+  - {fileID: 1267373589, guid: 1f0617b747f30444ea2edd7e52a41781, type: 3}
+  - {fileID: 1267373589, guid: 75e29d566f4386a4fa51e182524ff64b, type: 3}
 --- !u!114 &6291330310439833848
 MonoBehaviour:
   m_ObjectHideFlags: 0

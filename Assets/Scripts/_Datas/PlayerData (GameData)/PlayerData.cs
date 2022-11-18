@@ -20,6 +20,10 @@ public class PlayerData
     public int missionsCompleted;
     public int missionsFailed;
 
+    public List<WeaponID> ownedWeapons;
+    public List<EscorteeID> ownedVehicles;
+    
+
     public Dictionary<AmmoType, Ammo> ammo = new Dictionary<AmmoType, Ammo>
     {
         {AmmoType.LIGHT, new Ammo(AmmoType.LIGHT, 0) },
@@ -34,7 +38,8 @@ public class PlayerData
     {
         isEmpty = true;
     }
-    public PlayerData(int index, Difficulty difficulty, float money, int daysPassed, int missionsCompleted, int missionsFailed, float ammo_LIGHT, float ammo_SHOTGUN, float ammo_HEAVY)
+    public PlayerData(int index, Difficulty difficulty, float money, int daysPassed, int missionsCompleted, int missionsFailed, float ammo_LIGHT, float ammo_SHOTGUN, float ammo_HEAVY,
+                      List<WeaponID> ownedWeapons, List<EscorteeID> ownedVehicles)
     {
         this.isEmpty = false;
         this.index = index;
@@ -46,6 +51,9 @@ public class PlayerData
         this.ammo[AmmoType.LIGHT].amount = ammo_LIGHT;
         this.ammo[AmmoType.SHOTGUN].amount = ammo_SHOTGUN;
         this.ammo[AmmoType.HEAVY].amount = ammo_HEAVY;
+
+        this.ownedWeapons = ownedWeapons;
+        this.ownedVehicles = ownedVehicles;
     }
     #endregion
 
@@ -58,6 +66,9 @@ public class PlayerData
         this.daysPassed = 0;
         this.missionsCompleted = 0;
         this.missionsFailed = 0;
+
+        this.ownedWeapons.Clear();
+        this.ownedVehicles.Clear();
     }
 
     public override bool Equals(System.Object obj)
@@ -75,7 +86,9 @@ public class PlayerData
             (money == data.money) &&
             (daysPassed == data.daysPassed) &&
             (missionsCompleted == data.missionsCompleted) &&
-            (missionsFailed == data.missionsFailed);
+            (missionsFailed == data.missionsFailed) &&
+            (ownedWeapons == data.ownedWeapons) &&
+            (ownedVehicles == data.ownedVehicles);
     }
 
     public bool Equals(PlayerData data)
@@ -89,7 +102,9 @@ public class PlayerData
             (money == data.money) &&
             (daysPassed == data.daysPassed) &&
             (missionsCompleted == data.missionsCompleted) &&
-            (missionsFailed == data.missionsFailed);
+            (missionsFailed == data.missionsFailed) &&
+            (ownedWeapons == data.ownedWeapons) &&
+            (ownedVehicles == data.ownedVehicles);
     }
 
     public override int GetHashCode()
@@ -100,6 +115,8 @@ public class PlayerData
             money.GetHashCode() ^
             daysPassed.GetHashCode() ^
             missionsCompleted.GetHashCode() ^
-            missionsFailed.GetHashCode();
+            missionsFailed.GetHashCode() ^
+            ownedWeapons.GetHashCode() ^
+            ownedVehicles.GetHashCode();
     }
 }

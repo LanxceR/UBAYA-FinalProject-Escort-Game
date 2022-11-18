@@ -6,7 +6,7 @@ using System;
 /// <summary>
 /// Class for serializing mission data/details (use this to pass to a level manager)
 /// </summary>
-public enum HazardRating { NORMAL, INFESTED, OVERRUN}
+public enum HazardRating { NORMAL, INFESTED, OVERRUN, APOCALYPSE}
 [Serializable]
 public class MissionData
 {
@@ -25,6 +25,14 @@ public class MissionData
     public MissionData(EscorteeScript vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward, List<Spawnable> enemies)
     {
         this.vehicle = vehicle;
+        this.escorteeHasWeapon = escorteeHasWeapon;
+        this.zombieCount = zombieCount;
+        this.baseReward = baseReward;
+
+        this.enemies = enemies;
+    }
+    public MissionData(bool escorteeHasWeapon, int zombieCount, float baseReward, List<Spawnable> enemies)
+    {
         this.escorteeHasWeapon = escorteeHasWeapon;
         this.zombieCount = zombieCount;
         this.baseReward = baseReward;
