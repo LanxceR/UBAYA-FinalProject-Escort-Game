@@ -42,14 +42,16 @@ public class PlayerHUDReloadIndicatorScript : MonoBehaviour
 
         // Assign weapon script at start
         AssignWeaponScript();
-
-        // Add listener to NoAmmoAlert
-        playerWeaponScript.weaponAmmoScript.NoAmmoAlert?.AddListener(NoAmmoAlert);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Add listener to NoAmmoAlert
+        if (playerWeaponScript.weaponAmmoScript.NoAmmoAlert != null)
+            playerWeaponScript.weaponAmmoScript.NoAmmoAlert?.RemoveListener(NoAmmoAlert);
+        playerWeaponScript.weaponAmmoScript.NoAmmoAlert?.AddListener(NoAmmoAlert);
+
         if (playerWeaponScript.reloadElapsedTime > 0)
         {
             // Player is reloading

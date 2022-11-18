@@ -9,7 +9,8 @@ using UnityEngine;
 // Enum for pool object type
 public enum PoolObjectType
 {
-    GENERIC_PROJECTILE
+    GENERIC_PROJECTILE_PLACEHOLDER,
+    PROJECTILE_BULLET
 }
 public class PoolObject : MonoBehaviour
 {

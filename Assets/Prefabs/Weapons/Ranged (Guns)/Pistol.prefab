@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2841505594726194214}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.03, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0.03, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 417431331
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 710018487, guid: c554361c3c93efd4a9c14b61734aaa4c, type: 3}
+  m_Sprite: {fileID: -544544735, guid: e174d9aac999f614092f833cb3bde847, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 2841505594726194214}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 2c354ce3ea8acb84eb1848148adffc50, type: 2}
+  m_Controller: {fileID: 22100000, guid: 4d185528d7140674fa82034b032387cf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -129,7 +129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2841505594858512615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.049999982, y: 0.29, z: 0}
+  m_LocalPosition: {x: 0.000000016763806, y: 0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -358,15 +358,14 @@ MonoBehaviour:
   - {fileID: 2841505596119360403}
   fireRateDelay: 0.25
   damage: 1
-  range: 5
+  range: 1.5
   velocity: 10
   knockbackForce: 5
   spread: 5
   isFullAuto: 0
   isBurstFire: 0
-  reloadTime: 1
-  burstAmount: 3
-  burstDelay: 0.03
+  burstAmount: 0
+  burstDelay: 0
   drawGizmo: 1
 --- !u!114 &2841505596119360403
 MonoBehaviour:

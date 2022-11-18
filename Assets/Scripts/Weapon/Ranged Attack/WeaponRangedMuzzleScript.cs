@@ -41,10 +41,10 @@ public class WeaponRangedMuzzleScript : MonoBehaviour
             projectile.projectileAnimationScript.projectileModel.transform.rotation = rotation;
             projectile.collisionScript.col.transform.rotation = rotation;
 
+            // TODO: Fix projectile direction deviation properly
             // Set projectile direction
             Vector2 direction = GetMuzzleDirection(muzzle);
             projectile.projectileMovementScript.SetDirection(direction);
-            TryGetComponent(out HealthScript _);
 
             // Stats for projectile
             projectile.SetDamage(damage);

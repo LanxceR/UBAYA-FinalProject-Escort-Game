@@ -93,8 +93,11 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
     }
 
     // Method to change animation state to another state and make it uninterruptible
-    public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool stopAfterAnimEnd)
+    public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool forceStart, bool stopAfterAnimEnd)
     {
+        // If forced to start, then change uninterruptibleCoroutine flag to false
+        if (forceStart) uninterruptibleCoroutineRunning = false;
+
         // Anim transition
         ChangeAnimationState(newState);
 
@@ -147,17 +150,14 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
     {
         if (!uninterruptibleCoroutineRunning)
         {
-            StartCoroutine(ChangeAnimationStateUninterruptible(PLAYER_HURT, false));
+            StartCoroutine(ChangeAnimationStateUninterruptible(PLAYER_HURT, false, false));
         }
     }
 
     // Play death animation
     private void PlayerDeath()
     {
-        if (!uninterruptibleCoroutineRunning)
-        {
-            StartCoroutine(ChangeAnimationStateUninterruptible(PLAYER_DEATH, true));
-        }
+        StartCoroutine(ChangeAnimationStateUninterruptible(PLAYER_DEATH, true, true));
     }
 
     private float GetPlayerFacingDirection()

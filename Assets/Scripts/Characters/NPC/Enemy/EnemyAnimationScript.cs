@@ -93,8 +93,11 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
     }
 
     // Method to change animation state to another state and make it uninterruptible
-    public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool stopAfterAnimEnd)
+    public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool forceStart, bool stopAfterAnimEnd)
     {
+        // If forced to start, then change uninterruptibleCoroutine flag to false
+        if (forceStart) uninterruptibleCoroutineRunning = false;
+
         // Anim transition
         ChangeAnimationState(newState);
 
@@ -147,17 +150,14 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
     {
         if (!uninterruptibleCoroutineRunning)
         {
-            StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_HURT, false));
+            StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_HURT, false, false));
         }
     }
 
     // Play death animation
     private void EnemyDeath()
     {
-        if (!uninterruptibleCoroutineRunning)
-        {
-            StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_DEATH, true));
-        }
+        StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_DEATH, true, true));
     }
 
     private float GetFacingDirection()
@@ -195,7 +195,7 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
 
         // TODO: Implement shoot/attack timed on a specific frame on an animation clip
         // For now shooting / attacking (for melee) is handled through animation clips
-        StartCoroutine(ChangeAnimationStateUninterruptible(enemyDir, false));
+        StartCoroutine(ChangeAnimationStateUninterruptible(enemyDir, true, false));
     }
 
     private void UpdateAnimationDirection()

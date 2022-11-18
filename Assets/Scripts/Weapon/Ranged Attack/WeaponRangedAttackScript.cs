@@ -14,7 +14,7 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
     private WeaponScript weaponScript;
 
     [SerializeField]
-    private List<WeaponRangedMuzzleScript> weaponMuzzleScripts; //List of muzzleScripts for multiple shooting mechanics (shotgun, different firing modes)
+    private List<WeaponRangedMuzzleScript> weaponMuzzleScripts; //List of muzzleScripts for multiple shooting mechanics (alternate fires)
        
     // Weapon stats
     [Header("Weapon Stats")]
@@ -26,7 +26,6 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
     [Range(0, 359)] [SerializeField] internal float spread = 0f;
     [SerializeField] internal bool isFullAuto = false;
     [SerializeField] internal bool isBurstFire = false;
-    [SerializeField] internal float reloadTime = 1f;
     [SerializeField] internal int burstAmount = 3;
     [SerializeField] internal float burstDelay = 0.03f;
 

@@ -9,5 +9,5 @@ public interface IAnimation
 {
     void ChangeAnimationState(string newState);
 
-    IEnumerator ChangeAnimationStateUninterruptible(string newState, bool stopAfterAnimEnd);
+    IEnumerator ChangeAnimationStateUninterruptible(string newState, bool forceStart, bool stopAfterAnimEnd);
 }

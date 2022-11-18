@@ -67,8 +67,11 @@ public class WeaponAnimationScript : MonoBehaviour, IAnimation
     }
 
     // Method to change animation state to another state and make it uninterruptible
-    public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool stopAfterAnimEnd)
+    public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool forceStart, bool stopAfterAnimEnd)
     {
+        // If forced to start, then change uninterruptibleCoroutine flag to false
+        if (forceStart) uninterruptibleCoroutineRunning = false;
+
         // Anim transition
         ChangeAnimationState(newState);
 
