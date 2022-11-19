@@ -2478,7 +2478,7 @@ GameObject:
   m_Component:
   - component: {fileID: 255922779}
   m_Layer: 5
-  m_Name: BottomSect
+  m_Name: MenuBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2734,7 +2734,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5826,7 +5826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 519.3443, y: 1721.3115}
+  m_AnchoredPosition: {x: -459.23663, y: 840.30536}
   m_SizeDelta: {x: 280, y: 62.169983}
   m_Pivot: {x: 0.5, y: -0.25}
 --- !u!114 &532242945
@@ -5980,7 +5980,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BACK TO GARAGE
+  m_text: BACK TO ARMORY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
   m_sharedMaterial: {fileID: -1902761211414793623, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
@@ -6258,7 +6258,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.4, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7012,7 +7012,7 @@ GameObject:
   - component: {fileID: 685313834}
   - component: {fileID: 685313832}
   m_Layer: 5
-  m_Name: Button_Purchase
+  m_Name: Button_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7114,9 +7114,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GaragePurchaseScript, Assembly-CSharp
-        m_MethodName: Purchase
+      - m_Target: {fileID: 1066024721}
+        m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+        m_MethodName: Equip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1066024721}
+        m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+        m_MethodName: OpenWeaponPurchasePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7691,8 +7703,8 @@ RectTransform:
   m_Father: {fileID: 1141957372}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.4, y: 0}
+  m_AnchorMax: {x: 0.4, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10190,7 +10202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1066024717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10298,11 +10310,12 @@ MonoBehaviour:
   purchasePanel: {fileID: 1450887359}
   ammoPurchasePanel: {fileID: 230663290}
   nameObject: {fileID: 1007180419}
-  priceButtonObject: {fileID: 685313830}
   imageObject: {fileID: 2057208427}
+  buttonTopObject: {fileID: 685313830}
+  buttonBottomObject: {fileID: 2043394329}
+  buttonPurchaseAmmo: {fileID: 1941210472}
   parameterOneObject: {fileID: 2050854596}
   parameterTwoObject: {fileID: 1137812217}
-  equipButtonObject: {fileID: 2043394329}
   ammoPanel: {fileID: 1646738665}
   ammoCount: {fileID: 83724467}
 --- !u!1 &1066943694
@@ -10721,6 +10734,7 @@ GameObject:
   - component: {fileID: 1122066683}
   - component: {fileID: 1122066682}
   - component: {fileID: 1122066681}
+  - component: {fileID: 1122066684}
   m_Layer: 5
   m_Name: Button_Cancel
   m_TagString: Untagged
@@ -10794,9 +10808,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GaragePurchaseScript, Assembly-CSharp
-        m_MethodName: CancelPurchase
+      - m_Target: {fileID: 1066024721}
+        m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+        m_MethodName: CloseAmmoPurchasePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10844,6 +10858,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1122066679}
   m_CullTransparentMesh: 1
+--- !u!114 &1122066684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122066679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1066024721}
+          m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+          m_MethodName: OnPointerOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1130276296
 GameObject:
   m_ObjectHideFlags: 0
@@ -13563,11 +13606,12 @@ MonoBehaviour:
   purchasePanel: {fileID: 0}
   ammoPurchasePanel: {fileID: 0}
   nameObject: {fileID: 0}
-  priceButtonObject: {fileID: 0}
   imageObject: {fileID: 0}
+  buttonTopObject: {fileID: 0}
+  buttonBottomObject: {fileID: 0}
+  buttonPurchaseAmmo: {fileID: 0}
   parameterOneObject: {fileID: 0}
   parameterTwoObject: {fileID: 0}
-  equipButtonObject: {fileID: 0}
   ammoPanel: {fileID: 0}
   ammoCount: {fileID: 0}
 --- !u!114 &1481253747
@@ -14768,6 +14812,7 @@ GameObject:
   - component: {fileID: 1573351615}
   - component: {fileID: 1573351614}
   - component: {fileID: 1573351613}
+  - component: {fileID: 1573351616}
   m_Layer: 5
   m_Name: Button_Purchase
   m_TagString: Untagged
@@ -14842,9 +14887,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573351611}
-        m_TargetAssemblyTypeName: HubMenuUI, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1066024721}
+        m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+        m_MethodName: ConfirmWeaponPurchase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14892,6 +14937,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573351611}
   m_CullTransparentMesh: 1
+--- !u!114 &1573351616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573351611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1066024721}
+          m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+          m_MethodName: OnPointerOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1577809581
 GameObject:
   m_ObjectHideFlags: 0
@@ -15354,7 +15428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BACK TO GARAGE
+  m_text: BACK TO ARMORY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
   m_sharedMaterial: {fileID: -1902761211414793623, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
@@ -16105,8 +16179,8 @@ RectTransform:
   m_Father: {fileID: 1524096287}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16414,6 +16488,7 @@ GameObject:
   - component: {fileID: 1920260655}
   - component: {fileID: 1920260654}
   - component: {fileID: 1920260653}
+  - component: {fileID: 1920260656}
   m_Layer: 5
   m_Name: Button_Purchase
   m_TagString: Untagged
@@ -16488,9 +16563,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1920260651}
-        m_TargetAssemblyTypeName: HubMenuUI, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1066024721}
+        m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+        m_MethodName: ConfirmPurchaseAmmo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16538,6 +16613,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920260651}
   m_CullTransparentMesh: 1
+--- !u!114 &1920260656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920260651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1066024721}
+          m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+          m_MethodName: OnPointerOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1932799855
 GameObject:
   m_ObjectHideFlags: 0
@@ -16626,8 +16730,7 @@ GameObject:
   - component: {fileID: 1941210478}
   - component: {fileID: 1941210477}
   - component: {fileID: 1941210476}
-  - component: {fileID: 1941210475}
-  - component: {fileID: 1941210474}
+  - component: {fileID: 1941210479}
   m_Layer: 5
   m_Name: Button_PurchaseAmmo
   m_TagString: Untagged
@@ -16658,54 +16761,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: -57.9245}
   m_SizeDelta: {x: 471.5, y: 81.2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1941210474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1941210472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1941210475}
-          m_TargetAssemblyTypeName: GarageUIScript, Assembly-CSharp
-          m_MethodName: OnPointerOver
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &1941210475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1941210472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed5a937922fee6a4fba28679b07bd98b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  purchasePanel: {fileID: 0}
-  nameObject: {fileID: 0}
-  priceButtonObject: {fileID: 0}
-  imageObject: {fileID: 0}
-  healthSliderObject: {fileID: 0}
-  maxSpeedSliderObject: {fileID: 0}
-  equipButtonObject: {fileID: 0}
 --- !u!114 &1941210476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16750,9 +16805,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GarageConvoyInfo, Assembly-CSharp
-        m_MethodName: SelectAsMain
+      - m_Target: {fileID: 1066024721}
+        m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+        m_MethodName: OpenAmmoPurchasePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16800,6 +16855,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941210472}
   m_CullTransparentMesh: 1
+--- !u!114 &1941210479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941210472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1066024721}
+          m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+          m_MethodName: OnPointerOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1941218582
 GameObject:
   m_ObjectHideFlags: 0
@@ -17977,7 +18061,7 @@ GameObject:
   - component: {fileID: 2043394332}
   - component: {fileID: 2043394330}
   m_Layer: 5
-  m_Name: Button_Equip
+  m_Name: Button_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18056,9 +18140,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1066024714}
-        m_TargetAssemblyTypeName: GarageConvoyInfo, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1066024721}
+        m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+        m_MethodName: Equip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18659,6 +18743,7 @@ GameObject:
   - component: {fileID: 2108021583}
   - component: {fileID: 2108021582}
   - component: {fileID: 2108021581}
+  - component: {fileID: 2108021584}
   m_Layer: 5
   m_Name: Button_Cancel
   m_TagString: Untagged
@@ -18732,9 +18817,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GaragePurchaseScript, Assembly-CSharp
-        m_MethodName: CancelPurchase
+      - m_Target: {fileID: 1066024721}
+        m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+        m_MethodName: CloseWeaponPurchasePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18782,6 +18867,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108021579}
   m_CullTransparentMesh: 1
+--- !u!114 &2108021584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108021579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1066024721}
+          m_TargetAssemblyTypeName: ArmoryUIScript, Assembly-CSharp
+          m_MethodName: OnPointerOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2111178629
 GameObject:
   m_ObjectHideFlags: 0

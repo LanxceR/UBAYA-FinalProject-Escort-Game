@@ -43,7 +43,7 @@ public class GarageUIScript : MonoBehaviour
                 Transform childPurchased = priceButtonObject.transform.Find("Text");
                 Transform childImage = escorteeList[i].transform.Find("Model");
 
-                nameObject.GetComponent<TextMeshProUGUI>().text = escorteeList[i].id.ToString();
+                nameObject.GetComponent<TextMeshProUGUI>().text = escorteeList[i].id.ToString().Replace('_', ' ');
 
                 childPrice.GetComponent<TextMeshProUGUI>().text = "Owned";
                 childPrice.GetComponentInParent<Button>().interactable = false;
@@ -114,7 +114,7 @@ public class GarageUIScript : MonoBehaviour
         Transform childPurchased = priceButtonObject.transform.Find("Text");
         Transform childImage = escorteeList[currentIndex].transform.Find("Model");
 
-        nameObject.GetComponent<TextMeshProUGUI>().text = escorteeList[currentIndex].id.ToString();
+        nameObject.GetComponent<TextMeshProUGUI>().text = escorteeList[currentIndex].id.ToString().Replace('_',' ');
 
         imageObject.GetComponent<Image>().sprite = childImage.GetComponent<SpriteRenderer>().sprite;
         healthSliderObject.GetComponent<Slider>().value = escorteeList[currentIndex].health;
@@ -203,6 +203,8 @@ public class GarageUIScript : MonoBehaviour
     public void OpenPurchasePanel()
     {
         purchasePanel.SetActive(true);
+        Transform escorteeName = purchasePanel.transform.Find("PurchasedConvoyName");
+        escorteeName.GetComponent<TextMeshProUGUI>().text = escorteeList[currentIndex].id.ToString().Replace('_', ' ');
     }
 
     //PURCHASE AND SET OWNED
