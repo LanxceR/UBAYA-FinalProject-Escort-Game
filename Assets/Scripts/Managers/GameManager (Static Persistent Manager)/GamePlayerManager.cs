@@ -26,20 +26,8 @@ public class GamePlayerManager : MonoBehaviour
         }
     }
 
-
-    // Start is called just before any of the Update methods is called the first time
-    private void Start()
-    {
-        // Find any preexisting players first
-        FindPlayer();
-        // TODO: Spawn player using other method (such as after generating the map)
-        // Attempt to spawn Player
-        SpawnPlayer();
-    }
-
-
     // Find a player object in hirearchy
-    private void FindPlayer()
+    public void FindPlayer()
     {
         var activePlayer = FindObjectOfType<PlayerScript>();
 
@@ -50,12 +38,12 @@ public class GamePlayerManager : MonoBehaviour
     }
 
     // Spawn player
-    public void SpawnPlayer()
+    public void TrySpawnPlayer()
     {
         // TODO: Spawn point for player
-        SpawnPlayer(PlayerPrefab.transform);
+        TrySpawnPlayer(PlayerPrefab.transform);
     }
-    public void SpawnPlayer(Transform spawnPoint)
+    public void TrySpawnPlayer(Transform spawnPoint)
     {
         if (!ActivePlayer)
         {

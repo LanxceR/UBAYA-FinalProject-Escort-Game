@@ -69,18 +69,8 @@ public class GameEscorteeManager : MonoBehaviour
     #endregion
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Find any preexisting players first
-        FindEscorteeInScene();
-        // TODO: Spawn player using other method (such as after generating the map)
-        // Attempt to spawn Player
-        //SpawnEscortee();
-    }
-
     // Find a player object in hirearchy
-    private void FindEscorteeInScene()
+    public void FindEscorteeInScene()
     {
         var activeEscortee = FindObjectOfType<EscorteeScript>();
 
@@ -91,12 +81,12 @@ public class GameEscorteeManager : MonoBehaviour
     }
 
     // Spawn player
-    public void SpawnEscortee()
+    public void TrySpawnEscortee()
     {
         // TODO: Spawn point for escortee & Assign loaded mission escortee
-        SpawnEscortee(gameManager.LoadedMissionData.vehicle.transform);
+        TrySpawnEscortee(gameManager.LoadedMissionData.vehicle.transform);
     }
-    public void SpawnEscortee(Transform spawnPoint)
+    public void TrySpawnEscortee(Transform spawnPoint)
     {
         if (!ActiveEscortee)
         {
