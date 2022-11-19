@@ -28,13 +28,7 @@ public class GameManager : MonoBehaviour
     internal bool GameIsPlaying { get => gameIsPlaying; set => gameIsPlaying = value; }
     [SerializeField] [Range(0f, 2f)]
     private float gameTimeScale = 1f;
-    public float GameTimeScale { get => gameTimeScale; 
-        set 
-        {
-            gameTimeScale = value;
-            gameState.UpdateTimeScale(gameTimeScale);
-        } 
-    }
+    public float GameTimeScale { get => gameTimeScale; set => gameTimeScale = value; }
 
     [Header("Player Prefabs")]
     [SerializeField] private PlayerScript playerPrefab; // Player prefab to spawn
@@ -44,7 +38,7 @@ public class GameManager : MonoBehaviour
         set
         {
             activePlayer = value;
-            UI.HUDScript.hudAmmoScript.AssignWeaponScript();
+            InGameUI.HUDScript.hudAmmoScript.AssignWeaponScript();
         }
     }
 
@@ -79,18 +73,20 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Cameras Prefab")]
-    [SerializeField] private CameraManager camerasPrefab;
-    [SerializeField] private CameraManager activeCameras;
-    public CameraManager Cameras { get => activeCameras; private set => activeCameras = value; }
+    [SerializeField] private CameraManager inGameCamerasPrefab;
+    [SerializeField] private CameraManager inGameActiveCameras;
+    public CameraManager InGameCameras { get => inGameActiveCameras; private set => inGameActiveCameras = value; }
 
     [Header("UI Prefab")]
-    [SerializeField] private UIManager uiPrefab;
-    [SerializeField] private UIManager activeUI;
-    public UIManager UI { get => activeUI; private set => activeUI = value; }
+    [SerializeField] private UIManager inGameUIPrefab;
+    [SerializeField] private UIManager inGameActiveUI;
+    public UIManager InGameUI { get => inGameActiveUI; private set => inGameActiveUI = value; }
 
 
     [Header("Service Locators (Other managers)")]
     // TODO: Put other managers here. GameManager is going to act as the main entryway for accessing these managers
+    [SerializeField]
+    internal GameSceneManager gameScene;
     [SerializeField]
     internal GameStateManager gameState;
     [SerializeField]
@@ -119,71 +115,65 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this);
 
+        // Find active in-game cameras & UI (if one exists)
         FindActiveCameras();
         FindActiveUI();
     }
 
-    // Start is called just before any of the Update methods is called the first time
-    private void Start()
-    {
-        InitializeCameras();
-        InitializeUI();
-    }
-
-    // Find an active Cameras object in hirearchy
+    // Find an active In-Game Cameras object in hirearchy
     private void FindActiveCameras()
     {
         var activeCameras = FindObjectOfType<CameraManager>();
 
         if (activeCameras)
         {
-            Cameras = activeCameras;
+            InGameCameras = activeCameras;
         }
     }
-    // Find an active UI object in hirearchy
+    // Find an active In-Game UI object in hirearchy
     private void FindActiveUI()
     {
         var activeUI = FindObjectOfType<UIManager>();
 
         if (activeUI)
         {
-            UI = activeUI;
+            InGameUI = activeUI;
         }
     }
 
-    // Initialize Cameras
+    // Initialize In-Game Cameras
     public void InitializeCameras()
     {
-        InitializeCameras(camerasPrefab.transform);
+        InitializeCameras(inGameCamerasPrefab.transform);
     }
     public void InitializeCameras(Transform spawnPoint)
     {
-        if (!Cameras)
+        if (!InGameCameras)
         {
-            Cameras = Instantiate(camerasPrefab, spawnPoint.position, Quaternion.identity);
+            InGameCameras = Instantiate(inGameCamerasPrefab, spawnPoint.position, Quaternion.identity);
         }
         else
         {
-            Cameras.gameObject.SetActive(true);
-            Cameras.transform.position = spawnPoint.position;
+            InGameCameras.gameObject.SetActive(true);
+            InGameCameras.transform.position = spawnPoint.position;
         }
     }
 
-    // Initialize UI
+    // Initialize In-Game UI
     public void InitializeUI()
     {
-        InitializeUI(uiPrefab.transform);
+        InitializeUI(inGameUIPrefab.transform);
     }
     public void InitializeUI(Transform spawnPoint)
     {
-        if (!UI)
+        if (!InGameUI)
         {
-            UI = Instantiate(uiPrefab, spawnPoint.position, Quaternion.identity);
+            InGameUI = Instantiate(inGameUIPrefab, spawnPoint.position, Quaternion.identity);
         }
         else
         {
-            UI.gameObject.SetActive(true);
-            UI.transform.position = spawnPoint.position;
+            InGameUI.gameObject.SetActive(true);
+            InGameUI.transform.position = spawnPoint.position;
         }
     }
 }

@@ -20,9 +20,9 @@ public class EscorteeMovementScript : MonoBehaviour
     [SerializeField]
     private float currentMaxSpeed; // To store current calculated speed in respect to other possible modifiers
     [SerializeField]
-    private float actualSpeed; // To store current actual speed instead of player's base speed
+    internal float actualSpeed; // To store current actual speed instead of player's base speed
     [SerializeField] [Range(0,3)]
-    private float speedStage; // Speed stages (0 = stop)
+    internal float speedStage; // Speed stages (0 = stop)
 
     internal Vector2 dir;
 

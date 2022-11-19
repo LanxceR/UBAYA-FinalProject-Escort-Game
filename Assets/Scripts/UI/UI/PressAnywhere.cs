@@ -17,7 +17,8 @@ public class PressAnywhere : MonoBehaviour
         if (Input.anyKeyDown)
         {
             Debug.Log("Button has been pressed");
-            SceneManager.LoadScene("Main Hub");
+
+            GameManager.Instance.gameScene.GotoScene(SceneName.MAIN_HUB);
         }
     }
 }

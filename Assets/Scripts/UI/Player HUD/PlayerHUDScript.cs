@@ -24,6 +24,6 @@ public class PlayerHUDScript : MonoBehaviour
         Debug.Log("Main PlayerHUDScript starting");
 
         // Assign world space event camera
-        canvas.worldCamera = GameManager.Instance.Cameras.MainCamera;
+        canvas.worldCamera = GameManager.Instance.InGameCameras.MainCamera;
     }
 }

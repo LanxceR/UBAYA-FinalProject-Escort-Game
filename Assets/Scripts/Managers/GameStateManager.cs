@@ -15,12 +15,22 @@ public class GameStateManager : MonoBehaviour
     internal GameManager gameManager;
 
     // TODO: Decide if UnityAction or UnityEvents are to be used here
+
     // Unity Events
     // Subbed at: InGamePauseUIScript
+    /// <summary>
+    /// Event invoked when pausing the game
+    /// </summary>
     internal UnityAction OnPauseAction;
     // Subbed at: InGamePauseUIScript
+    /// <summary>
+    /// Event invoked when resuming the game
+    /// </summary>
     internal UnityAction OnResumeAction;
     // Subbed at: InGameGameOverUIScript
+    /// <summary>
+    /// Event invoked when there's a game over
+    /// </summary>
     internal UnityAction OnGameOver;
 
     // Start is called just before any of the Update methods is called the first time
