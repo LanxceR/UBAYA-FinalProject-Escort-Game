@@ -114,6 +114,12 @@ public class WeaponAmmoScript : MonoBehaviour
 
             loadedAmmo += amountToAdd;
         }
+        else
+        {
+            if (weaponScript.ammoType == AmmoType.NONE) return;
+
+            loadedAmmo += amountToAdd;
+        }
     }
     internal void ReloadLoadedAmmo(float value, bool takeFromReserveAmmo)
     {
@@ -128,6 +134,12 @@ public class WeaponAmmoScript : MonoBehaviour
                 value;
 
             GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].amount -= value;
+
+            loadedAmmo += value;
+        }
+        else
+        {
+            if (weaponScript.ammoType == AmmoType.NONE) return;
 
             loadedAmmo += value;
         }

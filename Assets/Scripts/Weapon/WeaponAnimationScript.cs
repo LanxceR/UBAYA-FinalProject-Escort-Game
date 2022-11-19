@@ -41,14 +41,14 @@ public class WeaponAnimationScript : MonoBehaviour, IAnimation
         // Always default to Idle after any animation has finished playing
         if (!AnimatorIsPlaying(WEAPON_IDLE) && AnimatorHasFinishedPlaying())
         {
-            ChangeAnimationState(WEAPON_IDLE);
+            ChangeAnimationState(WEAPON_IDLE, false);
         }
     }
     #endregion
 
     #region Core transition functions
     // Method to change animation state
-    public void ChangeAnimationState(string newState)
+    public void ChangeAnimationState(string newState, bool forceStart)
     {
         // If animator speed is 0, then return
         if (animator.speed == 0) return;
@@ -56,8 +56,8 @@ public class WeaponAnimationScript : MonoBehaviour, IAnimation
         // Prevent the same animation from interrupting itself
         if (AnimatorIsPlaying(newState)) return;
 
-        // If there's an uninterruptible animation currently running, return
-        if (uninterruptibleCoroutineRunning) return;
+        // If there's an uninterruptible animation currently running and is NOT forced to start an anim, return
+        if (uninterruptibleCoroutineRunning && !forceStart) return;
 
         // Play the animation
         animator.Play(newState);
@@ -67,10 +67,10 @@ public class WeaponAnimationScript : MonoBehaviour, IAnimation
     }
 
     // Method to change animation state to another state and make it uninterruptible
-    public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool stopAfterAnimEnd)
+    public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool forceStart, bool stopAfterAnimEnd)
     {
         // Anim transition
-        ChangeAnimationState(newState);
+        ChangeAnimationState(newState, forceStart);
 
         // Uses a bool to indicate if there's an uninterrupted anim running
         // NOTE: Using return value from StartCoroutine() sometimes doesn't work in this instance for some reason
@@ -123,7 +123,7 @@ public class WeaponAnimationScript : MonoBehaviour, IAnimation
     {
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
-        ChangeAnimationState(WEAPON_IDLE);
+        ChangeAnimationState(WEAPON_IDLE, false);
     }
 
     // Coroutine to return to idle anim after the end of whatever anim clip is currently playing
@@ -131,13 +131,13 @@ public class WeaponAnimationScript : MonoBehaviour, IAnimation
     {
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
-        ChangeAnimationState(WEAPON_IDLE);
+        ChangeAnimationState(WEAPON_IDLE, false);
     }
 
     // Trigger attack anim
     internal void AttackAnimation()
     {
-        ChangeAnimationState(WEAPON_ATTACK);
+        ChangeAnimationState(WEAPON_ATTACK, false);
 
         // TODO: Implement shoot/attack timed on a specific frame on an animation clip
         // For now shooting / attacking (for melee) is handled through animation clips

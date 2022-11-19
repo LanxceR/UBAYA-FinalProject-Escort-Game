@@ -156,13 +156,13 @@ public class EscorteeMovementScript : MonoBehaviour
 
         // Calculate the velocity change total time/duration (by dividing delta with acceleration)
         // v ÷ a = t
-        float totalTime = velDelta / acceleration;
+        float totalTime = Mathf.Abs(velDelta / acceleration);
 
         // Gradually accelerate / decelerate
         float elapsedTime = 0f;
         while (elapsedTime <= totalTime)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.fixedDeltaTime;
 
             float t = elapsedTime / totalTime;
 

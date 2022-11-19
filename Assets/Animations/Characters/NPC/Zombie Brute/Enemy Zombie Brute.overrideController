@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Enemy Zombie Brute
+  m_Controller: {fileID: 9100000, guid: 6aac5cbfdb66a2d419994303fa15403e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d0a560439aea2054986ba6c739d02c0a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7bb5df55ce0e3c048b0bae9c9157bc08, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 40be657a0443a7448a5b53cc1a73d94f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1bfa89a4ec0391540985b1d5c5efece8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3642af18b0b25444b9998c79f1340aa1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d5535a8a0ea76044fa9fde4b324ea6d8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b6131d7d70d1e1c4ea30aef8cc7c6c03, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2c055a36fbba9e841a5e213af36363ec, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6817d6b99f808b144bea3b3d58cf2ce5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bef46734e29aae34bbb38b64b8b33685, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 71bea54173e6ccf40b1417867df6330c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b34fc572ed5802b4eafb95a979b06f49, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7b12ce8c8aaff0441a5e5e764fb8fcc8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 01adf78ea52c2ba478b39b9aba592fd6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 59e4584827f83964d95c6197d4a9aac2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c25d5286c0f7a204491c34d59864f354, type: 2}

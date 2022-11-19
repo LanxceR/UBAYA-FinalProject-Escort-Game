@@ -2,11 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyID 
+{
+    ZOMBIE,
+    Z_RUNNER,
+    Z_BRUTE
+}
+
 /// <summary>
 /// The main enemy script (or the hub)
 /// </summary>
 public class EnemyScript : MonoBehaviour, ICharacter
 {
+    // Enemy type
+    [Header("Enemy ID")]
+    [SerializeField]
+    internal EnemyID id;
+
     // Enemy stats
     [Header("Enemy Stats")]
     [SerializeField]
@@ -50,6 +62,10 @@ public class EnemyScript : MonoBehaviour, ICharacter
 
     void EnemyDeath()
     {
+        if (enemyAttackScript)
+        {
+            enemyAttackScript.enabled = false;
+        }
         if (pathfindingScript)
         {
             pathfindingScript.enabled = false;

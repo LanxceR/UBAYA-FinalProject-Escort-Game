@@ -7,6 +7,56 @@ using UnityEngine;
 /// </summary>
 public static class Utilities
 {
+    /// <summary>
+    /// Compare if two lists have the same contents regardless of order/index
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="listA"></param>
+    /// <param name="listB"></param>
+    /// <returns></returns>
+    public static bool IsListContentEquals<T>(List<T> listA, List<T> listB)
+    {
+        if (listA.Count != listB.Count)
+            return false;
+
+        for (int n = 0; n < listA.Count; n++)
+        {
+            bool found = false;
+            for (int m = 0; m < listB.Count; m++)
+            {
+                if (EqualityComparer<T>.Default.Equals(listA[n], listB[m]))
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /// <summary>
+    /// Compare if two lists have the exact same contents (taking order/index into account)
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="listA"></param>
+    /// <param name="listB"></param>
+    /// <returns></returns>
+    public static bool IsListEquals<T>(List<T> listA, List<T> listB)
+    {
+        if (listA.Count != listB.Count)
+            return false;
+        for (int i = 0; i < listB.Count; i++)
+        {
+            if (!EqualityComparer<T>.Default.Equals(listA[i], listB[i]))
+                return false;
+        }
+        return true;
+    }
+
     // Converts given bitmask to layer number
     public static int ToLayer(int bitmask)
     {
