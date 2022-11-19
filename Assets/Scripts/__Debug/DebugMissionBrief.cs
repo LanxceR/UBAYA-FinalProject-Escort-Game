@@ -9,6 +9,12 @@ public class DebugMissionBrief : MonoBehaviour
     [SerializeField]
     private DebugMissionDetail[] missionDisplays = new DebugMissionDetail[3];
 
+    // Start is called just before any of the Update methods is called the first time
+    private void Start()
+    {
+        OnGenMissions();
+    }
+
     public void OnGenMissions()
     {
         GameManager.Instance.gameMission.GenerateMissions(GameManager.Instance.LoadedGameData.daysPassed);
@@ -64,7 +70,7 @@ public class DebugMissionBrief : MonoBehaviour
             missionDisplays[i].ranged2.ClearOptions();
             foreach (WeaponID w in GameManager.Instance.LoadedGameData.ownedWeapons)
             {
-                WeaponScript wpn = GameManager.Instance.gameMission.GetWeapon(w);
+                WeaponScript wpn = GameManager.Instance.gameWeapon.GetWeapon(w);
                 wpn.AssignComponents();
 
                 // Display owned melee weapons

@@ -20,6 +20,11 @@ public class GameEscorteeManager : MonoBehaviour
 
     #region Prefab Utilities
     // TODO: (DUPLICATE) Maybe put these methods in their corresponding scripts and load using Resources.Load
+    /// <summary>
+    /// Get an escortee instance of a type
+    /// </summary>
+    /// <param name="escorteeType">The escortee type</param>
+    /// <returns></returns>
     public EscorteeScript GetEscortee(EscorteeID escorteeType)
     {
         // Find an enemy of a certain type
@@ -30,8 +35,39 @@ public class GameEscorteeManager : MonoBehaviour
 
         // If nothing is found, return null
         return null;
-    } 
+    }
+    public void UpdateAllEscorteeFlags()
+    {
+
+        foreach (EscorteeScript e in EscorteePrefabs)
+        {
+            // First set ALL escortees flags to false
+            e.isOwned = false;
+            e.isEquipped = false;
+        }
+
+        // Set all isOwned flags
+        foreach (EscorteeID w in gameManager.LoadedGameData.ownedVehicles)
+        {
+            // Then set owned isOwned flags to true
+            GetEscortee(w).isOwned = true;
+        }
+
+        // Set all isEquipped flags
+        EscorteeID equippedEscortee;
+        equippedEscortee = gameManager.LoadedGameData.equippedVehicle;
+        GetEscortee(equippedEscortee).isEquipped = true;
+    }
+    public void SetEscorteeOwnedFlag(EscorteeID escorteeType, bool isOwned)
+    {
+        GetEscortee(escorteeType).isOwned = isOwned;
+    }
+    public void SetEscorteeEquippedFlag(EscorteeID escorteeType, bool isEquipped)
+    {
+        GetEscortee(escorteeType).isEquipped = isEquipped;
+    }
     #endregion
+
 
     // Start is called before the first frame update
     void Start()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum EscorteeID
 {
+    NONE,
     BUS,
     PICKUP_TRUCK,
     MILITARY_TRUCK
@@ -30,6 +31,13 @@ public class EscorteeScript : MonoBehaviour, ICharacter
     internal float acceleration = 0.2f;
     [SerializeField]
     internal float deceleration = 0.5f; // Otherwise known as braking power
+
+    [Header("Price")]
+    [SerializeField] internal float price = 4000f;
+
+    [Header("Flags")]
+    [SerializeField] internal bool isOwned;
+    [SerializeField] internal bool isEquipped;
 
     // References of the player's sub-scripts
     [Header("Sub-scripts")]

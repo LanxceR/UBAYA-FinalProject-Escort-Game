@@ -28,7 +28,11 @@ public class GameDataManager : MonoBehaviour
         int missionsCompleted,
         int missionsFailed,
         float ammo_LIGHT, float ammo_SHOTGUN, float ammo_HEAVY,
-        List<WeaponID> ownedWeapons, List<EscorteeID> ownedVehicles
+        List<WeaponID> ownedWeapons, List<EscorteeID> ownedVehicles,
+        WeaponID equippedMeleeWeapon,
+        WeaponID equippedRangedWeapon1,
+        WeaponID equippedRangedWeapon2,
+        EscorteeID equippedVehicle
         )
     {
         // Create new player data and store in game manager array
@@ -40,7 +44,11 @@ public class GameDataManager : MonoBehaviour
             missionsCompleted, 
             missionsFailed, 
             ammo_LIGHT, ammo_SHOTGUN, ammo_HEAVY,
-            ownedWeapons, ownedVehicles
+            ownedWeapons, ownedVehicles,
+            equippedMeleeWeapon,
+            equippedRangedWeapon1,
+            equippedRangedWeapon2,
+            equippedVehicle
             );
     }
 
@@ -59,6 +67,10 @@ public class GameDataManager : MonoBehaviour
     public void LoadGame(int index)
     {
         gameManager.LoadedGameData = gameManager.GameDatas[index];
+
+        if (gameManager.gameWeapon) gameManager.gameWeapon.UpdateAllWeaponFlags();
+        if (gameManager.gameEscortee) gameManager.gameEscortee.UpdateAllEscorteeFlags();
+
         Debug.Log($"Loaded stored player data at index = {index}");
     }
 

@@ -289,12 +289,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5709b6dd2479b041bd832aa3182c493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 9
+  id: 10
   parentHolder: {fileID: 0}
   parentAttach: {fileID: 0}
   reloadTime: 3
   ammoType: 3
   ammoMagSize: 6
+  price: 3000
+  isOwned: 0
+  isEquipped: 0
   weaponInputScript: {fileID: 2841505596119360413}
   weaponSpriteScript: {fileID: 2841505596119360402}
   weaponAnimationScript: {fileID: 2841505596119360414}

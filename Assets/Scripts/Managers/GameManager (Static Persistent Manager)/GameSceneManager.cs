@@ -131,11 +131,15 @@ public class GameSceneManager : MonoBehaviour
                 gameManager.gameState.enabled = false;
                 gameManager.gamePlayer.enabled = false;
                 gameManager.gameEscortee.enabled = false;
+                gameManager.gameWeapon.enabled = false;
+                gameManager.gameEnemy.enabled = false;
                 break;
             case SceneName.TEST_ESCORT_SCENE:
                 gameManager.gameState.enabled = true;
                 gameManager.gamePlayer.enabled = true;
                 gameManager.gameEscortee.enabled = true;
+                gameManager.gameWeapon.enabled = true;
+                gameManager.gameEnemy.enabled = true;
 
                 // Initialize In-Game UI & Camera
                 gameManager.InitializeCameras();

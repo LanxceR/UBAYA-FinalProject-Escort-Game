@@ -38,14 +38,19 @@ public class DebugMissionDetail : MonoBehaviour
 
         // Get weapons
         Enum.TryParse(melee.captionText.text, out WeaponID mID);
-        WeaponScript meleeWeapon = GameManager.Instance.gameMission.GetWeapon(mID);
+        WeaponScript meleeWeapon = GameManager.Instance.gameWeapon.GetWeapon(mID);
 
         Enum.TryParse(ranged1.captionText.text, out WeaponID rID1);
-        WeaponScript rangedWeapon1 = GameManager.Instance.gameMission.GetWeapon(rID1);
+        WeaponScript rangedWeapon1 = GameManager.Instance.gameWeapon.GetWeapon(rID1);
 
         Enum.TryParse(ranged2.captionText.text, out WeaponID rID2);
-        WeaponScript rangedWeapon2 = GameManager.Instance.gameMission.GetWeapon(rID2);
+        WeaponScript rangedWeapon2 = GameManager.Instance.gameWeapon.GetWeapon(rID2);
 
         GameManager.Instance.gameMission.LoadMission(index, escortee, meleeWeapon, rangedWeapon1, rangedWeapon2);
+
+
+        // TODO: Work on scene transition
+        // Transition into Escort Scene
+        //GameManager.Instance.gameScene.GotoScene(SceneName.TEST_ESCORT_SCENE);
     }
 }

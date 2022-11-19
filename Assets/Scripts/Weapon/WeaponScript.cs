@@ -5,6 +5,7 @@ using UnityEditor;
 
 public enum WeaponID
 {
+    NONE,
     MELEE_INVISIBILE,
     RANGED_INVISIBLE,
     PIPE,
@@ -38,6 +39,13 @@ public class WeaponScript : MonoBehaviour, IEquipmentItem
     [SerializeField] internal float reloadTime = 1f;
     [SerializeField] internal AmmoType ammoType;
     [SerializeField] internal float ammoMagSize = Mathf.Infinity;
+
+    [Header("Price")]
+    [SerializeField] internal float price = 1000f;
+
+    [Header("Flags")]
+    [SerializeField] internal bool isOwned;
+    [SerializeField] internal bool isEquipped;
 
     // References of the weapon's sub-scripts
     [Header("Sub-scripts")]

@@ -22,6 +22,11 @@ public class PlayerData
 
     public List<WeaponID> ownedWeapons;
     public List<EscorteeID> ownedVehicles;
+
+    public WeaponID equippedMeleeWeapon;
+    public WeaponID equippedRangedWeapon1;
+    public WeaponID equippedRangedWeapon2;
+    public EscorteeID equippedVehicle;
     
 
     public Dictionary<AmmoType, Ammo> ammo = new Dictionary<AmmoType, Ammo>
@@ -39,7 +44,7 @@ public class PlayerData
         isEmpty = true;
     }
     public PlayerData(int index, Difficulty difficulty, float money, int daysPassed, int missionsCompleted, int missionsFailed, float ammo_LIGHT, float ammo_SHOTGUN, float ammo_HEAVY,
-                      List<WeaponID> ownedWeapons, List<EscorteeID> ownedVehicles)
+                      List<WeaponID> ownedWeapons, List<EscorteeID> ownedVehicles, WeaponID equippedMeleeWeapon, WeaponID equippedRangedWeapon1, WeaponID equippedRangedWeapon2, EscorteeID equippedVehicle)
     {
         this.isEmpty = false;
         this.index = index;
@@ -54,6 +59,11 @@ public class PlayerData
 
         this.ownedWeapons = ownedWeapons;
         this.ownedVehicles = ownedVehicles;
+
+        this.equippedMeleeWeapon = equippedMeleeWeapon;
+        this.equippedRangedWeapon1 = equippedRangedWeapon1;
+        this.equippedRangedWeapon2 = equippedRangedWeapon2;
+        this.equippedVehicle = equippedVehicle;
     }
     #endregion
 
@@ -87,8 +97,12 @@ public class PlayerData
             (daysPassed == data.daysPassed) &&
             (missionsCompleted == data.missionsCompleted) &&
             (missionsFailed == data.missionsFailed) &&
-            (ownedWeapons == data.ownedWeapons) &&
-            (ownedVehicles == data.ownedVehicles);
+            Utilities.IsListContentEquals(ownedWeapons, data.ownedWeapons) &&
+            Utilities.IsListContentEquals(ownedVehicles, data.ownedVehicles) &&
+            (equippedMeleeWeapon == data.equippedMeleeWeapon) &&
+            (equippedRangedWeapon1 == data.equippedRangedWeapon1) &&
+            (equippedRangedWeapon2 == data.equippedRangedWeapon2) &&
+            (equippedVehicle == data.equippedVehicle);
     }
 
     public bool Equals(PlayerData data)
@@ -98,13 +112,17 @@ public class PlayerData
 
         return (isEmpty == data.isEmpty) &&
             (index == data.index) &&
-            (difficulty == data.difficulty) &&
+            ((int)difficulty == (int)data.difficulty) &&
             (money == data.money) &&
             (daysPassed == data.daysPassed) &&
             (missionsCompleted == data.missionsCompleted) &&
             (missionsFailed == data.missionsFailed) &&
-            (ownedWeapons == data.ownedWeapons) &&
-            (ownedVehicles == data.ownedVehicles);
+            Utilities.IsListContentEquals(ownedWeapons, data.ownedWeapons) &&
+            Utilities.IsListContentEquals(ownedVehicles, data.ownedVehicles) &&
+            ((int)equippedMeleeWeapon == (int)data.equippedMeleeWeapon) &&
+            ((int)equippedRangedWeapon1 == (int)data.equippedRangedWeapon1) &&
+            ((int)equippedRangedWeapon2 == (int)data.equippedRangedWeapon2) &&
+            ((int)equippedVehicle == (int)data.equippedVehicle);
     }
 
     public override int GetHashCode()
@@ -117,6 +135,10 @@ public class PlayerData
             missionsCompleted.GetHashCode() ^
             missionsFailed.GetHashCode() ^
             ownedWeapons.GetHashCode() ^
-            ownedVehicles.GetHashCode();
+            ownedVehicles.GetHashCode() ^
+            equippedMeleeWeapon.GetHashCode() ^
+            equippedRangedWeapon1.GetHashCode() ^
+            equippedRangedWeapon2.GetHashCode() ^
+            equippedVehicle.GetHashCode();
     }
 }

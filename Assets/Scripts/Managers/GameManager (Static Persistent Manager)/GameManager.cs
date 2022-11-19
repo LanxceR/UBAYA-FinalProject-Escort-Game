@@ -91,6 +91,10 @@ public class GameManager : MonoBehaviour
     internal GamePlayerManager gamePlayer;
     [SerializeField]
     internal GameEscorteeManager gameEscortee;
+    [SerializeField]
+    internal GameWeaponManager gameWeapon;
+    [SerializeField]
+    internal GameEnemyManager gameEnemy;
 
     // Awake is called when the script instance is being loaded
     private void Awake()

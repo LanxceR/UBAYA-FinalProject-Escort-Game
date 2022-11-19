@@ -34,7 +34,11 @@ public static class SaveSystem
         int missionsCompleted,
         int missionsFailed,
         float ammo_LIGHT, float ammo_SHOTGUN, float ammo_HEAVY,
-        List<WeaponID> ownedWeapons, List<EscorteeID> ownedVehicles
+        List<WeaponID> ownedWeapons, List<EscorteeID> ownedVehicles,
+        WeaponID equippedMeleeWeapon,
+        WeaponID equippedRangedWeapon1,
+        WeaponID equippedRangedWeapon2,
+        EscorteeID equippedVehicle
         )
     {
         // Prepare a playerData object
@@ -46,7 +50,11 @@ public static class SaveSystem
             missionsCompleted,
             missionsFailed,
             ammo_LIGHT, ammo_SHOTGUN, ammo_HEAVY,
-            ownedWeapons, ownedVehicles
+            ownedWeapons, ownedVehicles,
+            equippedMeleeWeapon,
+            equippedRangedWeapon1,
+            equippedRangedWeapon2,
+            equippedVehicle
             );
 
         // Setup a BinaryFormatter object

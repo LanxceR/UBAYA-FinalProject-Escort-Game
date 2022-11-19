@@ -326,12 +326,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5709b6dd2479b041bd832aa3182c493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 3
+  id: 4
   parentHolder: {fileID: 0}
   parentAttach: {fileID: 0}
   reloadTime: 0
   ammoType: 0
   ammoMagSize: Infinity
+  price: 500
+  isOwned: 0
+  isEquipped: 0
   weaponInputScript: {fileID: 2841505596119360413}
   weaponSpriteScript: {fileID: 2841505596119360402}
   weaponAnimationScript: {fileID: 2841505596119360414}
@@ -394,7 +397,7 @@ MonoBehaviour:
   weaponMeleeHitScript: {fileID: 3983509067198406285}
   attackDelay: 0.5
   damage: 10
-  knockbackForce: 2
+  knockbackForce: 0
   isFullAuto: 0
   drawGizmo: 0
 --- !u!114 &3983509067198406285

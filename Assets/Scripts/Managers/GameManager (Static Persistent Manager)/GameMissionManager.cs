@@ -11,40 +11,7 @@ public class GameMissionManager : MonoBehaviour
     // Reference to the game manager script
     [SerializeField]
     internal GameManager gameManager;
-
-    // Enemy Prefabs
-    [Header("All Enemy Prefabs")]
-    [SerializeField] private EnemyScript[] enemyPrefabs; // List of ALL enemy prefabs possible to spawn
-
-    // Enemy Prefabs
-    [Header("All Weapon Prefabs")]
-    [SerializeField] private WeaponScript[] weaponPrefabs; // List of ALL enemy prefabs possible to spawn
-
-    #region Prefab Utilities
-    // TODO: (DUPLICATE) Maybe put these methods in their corresponding scripts and load using Resources.Load
-    public EnemyScript GetEnemy(EnemyID enemyType)
-    {
-        // Find an enemy of a certain type
-        foreach (EnemyScript e in enemyPrefabs)
-        {
-            if (e.id == enemyType) return e;
-        }
-
-        // If nothing is found, return null
-        return null;
-    }
-    public WeaponScript GetWeapon(WeaponID weaponType)
-    {
-        // Find a weapon of a certain type
-        foreach (WeaponScript w in weaponPrefabs)
-        {
-            if (w.id == weaponType) return w;
-        }
-
-        // If nothing is found, return null
-        return null;
-    } 
-    #endregion
+    
 
     // Load a save and store in game manager loaded save
     public void LoadMission(int index, 
@@ -144,7 +111,7 @@ public class GameMissionManager : MonoBehaviour
     /// <para><b>Note:</b> Use difficulty "FINAL" and hazard "APOCALYPSE" for final missions.</para>
     /// </summary>
     /// <param name="difficulty">The "difficulty" of the mission, determining which type of enemies can appear. Use this to introduce different enemy types at a certain stage of the game.</param>
-    /// <param name="hazard">The hazard rating of the mission, determining the total amount of zombie to be spawned in a mission. Use this for mission variety in a single day.</param>
+    /// <param name="hazard">The hazard rating of the mission, determining the total amount of zombie to be spawned in a mission. Use this for mission variety options in a single day.</param>
     /// <param name="index">The index to store this mission in. Generally proportional with HazardRating, e.g 0 = NORMAL, 1 = INFESTED, 2 = OVERRUN</param>
     public void CreateMission(MissionDifficulty difficulty, HazardRating hazard, int index)
     {
@@ -184,33 +151,33 @@ public class GameMissionManager : MonoBehaviour
         switch (difficulty)
         {
             case MissionDifficulty.EASY:
-                enemies.Add(new Spawnable(GetEnemy(EnemyID.ZOMBIE).gameObject, 100));
+                enemies.Add(new Spawnable(gameManager.gameEnemy.gameManager.gameEnemy.GetEnemy(EnemyID.ZOMBIE).gameObject, 100));
                 // Randomize escortee selection
                 randomizeEscortee = Random.Range(0, 2) == 1 ? true : false;
                 break;
             case MissionDifficulty.INTERMEDIATE:
-                enemies.Add(new Spawnable(GetEnemy(EnemyID.ZOMBIE).gameObject, 80));
-                enemies.Add(new Spawnable(GetEnemy(EnemyID.Z_BRUTE).gameObject, 20));
+                enemies.Add(new Spawnable(gameManager.gameEnemy.GetEnemy(EnemyID.ZOMBIE).gameObject, 80));
+                enemies.Add(new Spawnable(gameManager.gameEnemy.GetEnemy(EnemyID.Z_BRUTE).gameObject, 20));
                 // Randomize escortee selection
                 randomizeEscortee = Random.Range(0, 2) == 1 ? true : false;
                 break;
             case MissionDifficulty.HARD:
-                enemies.Add(new Spawnable(GetEnemy(EnemyID.ZOMBIE).gameObject, 60));
-                enemies.Add(new Spawnable(GetEnemy(EnemyID.Z_BRUTE).gameObject, 20));
-                enemies.Add(new Spawnable(GetEnemy(EnemyID.Z_RUNNER).gameObject, 20));
+                enemies.Add(new Spawnable(gameManager.gameEnemy.GetEnemy(EnemyID.ZOMBIE).gameObject, 60));
+                enemies.Add(new Spawnable(gameManager.gameEnemy.GetEnemy(EnemyID.Z_BRUTE).gameObject, 20));
+                enemies.Add(new Spawnable(gameManager.gameEnemy.GetEnemy(EnemyID.Z_RUNNER).gameObject, 20));
                 // Randomize escortee selection
                 randomizeEscortee = Random.Range(0, 2) == 1 ? true : false;
                 break;
             case MissionDifficulty.FINAL:
-                enemies.Add(new Spawnable(GetEnemy(EnemyID.ZOMBIE).gameObject, 40));
-                enemies.Add(new Spawnable(GetEnemy(EnemyID.Z_BRUTE).gameObject, 30));
-                enemies.Add(new Spawnable(GetEnemy(EnemyID.Z_RUNNER).gameObject, 30));
+                enemies.Add(new Spawnable(gameManager.gameEnemy.GetEnemy(EnemyID.ZOMBIE).gameObject, 40));
+                enemies.Add(new Spawnable(gameManager.gameEnemy.GetEnemy(EnemyID.Z_BRUTE).gameObject, 30));
+                enemies.Add(new Spawnable(gameManager.gameEnemy.GetEnemy(EnemyID.Z_RUNNER).gameObject, 30));
                 // NO RANDOM ESCORTEE FOR FINAL MISSION
                 break;
             default:
-                enemies.Add(new Spawnable(GetEnemy(EnemyID.ZOMBIE).gameObject, 60));
-                enemies.Add(new Spawnable(GetEnemy(EnemyID.Z_BRUTE).gameObject, 20));
-                enemies.Add(new Spawnable(GetEnemy(EnemyID.Z_RUNNER).gameObject, 20));
+                enemies.Add(new Spawnable(gameManager.gameEnemy.GetEnemy(EnemyID.ZOMBIE).gameObject, 60));
+                enemies.Add(new Spawnable(gameManager.gameEnemy.GetEnemy(EnemyID.Z_BRUTE).gameObject, 20));
+                enemies.Add(new Spawnable(gameManager.gameEnemy.GetEnemy(EnemyID.Z_RUNNER).gameObject, 20));
                 // Randomize escortee selection
                 randomizeEscortee = Random.Range(0, 2) == 1 ? true : false;
                 break;

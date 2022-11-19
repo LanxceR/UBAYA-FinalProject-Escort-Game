@@ -225,11 +225,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6357e59fa6b0951408692b271aca720e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
+  id: 3
   health: 100
   maxSpeed: 1.2
   acceleration: 0.3
   deceleration: 0.5
+  price: 5000
+  isOwned: 0
+  isEquipped: 0
   escorteeInputScript: {fileID: 3733317801578298790}
   escorteeMovementScript: {fileID: 3733317801578298789}
   escorteeAnimationScript: {fileID: 2673107271732985192}
