@@ -47,16 +47,18 @@ public class GameEscorteeManager : MonoBehaviour
         }
 
         // Set all isOwned flags
-        foreach (EscorteeID w in gameManager.LoadedGameData.ownedVehicles)
+        foreach (EscorteeID e in gameManager.LoadedGameData.ownedVehicles)
         {
             // Then set owned isOwned flags to true
-            GetEscortee(w).isOwned = true;
+            if (GetEscortee(e))
+                GetEscortee(e).isOwned = true;
         }
 
         // Set all isEquipped flags
         EscorteeID equippedEscortee;
         equippedEscortee = gameManager.LoadedGameData.equippedVehicle;
-        GetEscortee(equippedEscortee).isEquipped = true;
+        if (GetEscortee(equippedEscortee))
+            GetEscortee(equippedEscortee).isEquipped = true;
     }
     public void SetEscorteeOwnedFlag(EscorteeID escorteeType, bool isOwned)
     {
