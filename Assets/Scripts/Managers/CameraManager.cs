@@ -19,10 +19,10 @@ public class CameraManager : MonoBehaviour
 
     internal CinemachineTargetGroup mainCameraTargetGroup;
 
-    // Start is called just before any of the Update methods is called the first time
-    private void Start()
+    // Awake is called when the script instance is being loaded
+    private void Awake()
     {
-        mainCameraTargetGroup = mainCamera.GetComponentInChildren<CinemachineTargetGroup>();
+        mainCameraTargetGroup = MainCamera.GetComponentInChildren<CinemachineTargetGroup>();
     }
 
     // Assign a new target group for the camera

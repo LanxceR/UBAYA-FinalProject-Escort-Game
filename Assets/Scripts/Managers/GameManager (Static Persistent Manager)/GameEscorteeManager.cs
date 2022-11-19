@@ -47,16 +47,18 @@ public class GameEscorteeManager : MonoBehaviour
         }
 
         // Set all isOwned flags
-        foreach (EscorteeID w in gameManager.LoadedGameData.ownedVehicles)
+        foreach (EscorteeID e in gameManager.LoadedGameData.ownedVehicles)
         {
             // Then set owned isOwned flags to true
-            GetEscortee(w).isOwned = true;
+            if (GetEscortee(e))
+                GetEscortee(e).isOwned = true;
         }
 
         // Set all isEquipped flags
         EscorteeID equippedEscortee;
         equippedEscortee = gameManager.LoadedGameData.equippedVehicle;
-        GetEscortee(equippedEscortee).isEquipped = true;
+        if (GetEscortee(equippedEscortee))
+            GetEscortee(equippedEscortee).isEquipped = true;
     }
     public void SetEscorteeOwnedFlag(EscorteeID escorteeType, bool isOwned)
     {
@@ -69,18 +71,8 @@ public class GameEscorteeManager : MonoBehaviour
     #endregion
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Find any preexisting players first
-        FindEscorteeInScene();
-        // TODO: Spawn player using other method (such as after generating the map)
-        // Attempt to spawn Player
-        //SpawnEscortee();
-    }
-
     // Find a player object in hirearchy
-    private void FindEscorteeInScene()
+    public void FindEscorteeInScene()
     {
         var activeEscortee = FindObjectOfType<EscorteeScript>();
 
@@ -91,12 +83,12 @@ public class GameEscorteeManager : MonoBehaviour
     }
 
     // Spawn player
-    public void SpawnEscortee()
+    public void TrySpawnEscortee()
     {
         // TODO: Spawn point for escortee & Assign loaded mission escortee
-        SpawnEscortee(gameManager.LoadedMissionData.vehicle.transform);
+        TrySpawnEscortee(gameManager.LoadedMissionData.vehicle.transform);
     }
-    public void SpawnEscortee(Transform spawnPoint)
+    public void TrySpawnEscortee(Transform spawnPoint)
     {
         if (!ActiveEscortee)
         {

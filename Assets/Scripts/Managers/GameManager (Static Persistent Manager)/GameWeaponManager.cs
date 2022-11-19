@@ -46,17 +46,21 @@ public class GameWeaponManager : MonoBehaviour
         foreach (WeaponID w in gameManager.LoadedGameData.ownedWeapons)
         {
             // Then set owned isOwned flags to true
-            GetWeapon(w).isOwned = true;
+            if (GetWeapon(w))
+                GetWeapon(w).isOwned = true;
         }
 
         // Set all isEquipped flags
         WeaponID equippedWeapon;
         equippedWeapon = gameManager.LoadedGameData.equippedMeleeWeapon;
-        GetWeapon(equippedWeapon).isEquipped = true;
+        if (GetWeapon(equippedWeapon))
+            GetWeapon(equippedWeapon).isEquipped = true;
         equippedWeapon = gameManager.LoadedGameData.equippedRangedWeapon1;
-        GetWeapon(equippedWeapon).isEquipped = true;
+        if (GetWeapon(equippedWeapon))
+            GetWeapon(equippedWeapon).isEquipped = true;
         equippedWeapon = gameManager.LoadedGameData.equippedRangedWeapon2;
-        GetWeapon(equippedWeapon).isEquipped = true;
+        if (GetWeapon(equippedWeapon))
+            GetWeapon(equippedWeapon).isEquipped = true;
     }
     public void SetWeaponOwnedFlag(WeaponID weaponType, bool isOwned)
     {

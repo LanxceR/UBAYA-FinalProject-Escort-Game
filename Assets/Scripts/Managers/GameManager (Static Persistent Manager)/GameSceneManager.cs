@@ -26,7 +26,7 @@ public class GameSceneManager : MonoBehaviour
     /// <summary>
     /// Event invoked when there's a scene change (accepts float argument acting as the invoke delay)
     /// </summary>
-    internal UnityAction<float> OnSceneChange;
+    //internal UnityAction<float> OnSceneChange;
 
     // Variables
     [SerializeField] private string defaultSceneTarget;
@@ -35,9 +35,10 @@ public class GameSceneManager : MonoBehaviour
     private void Awake()
     {
         // Manage GameManager's components at start
-        ManageGMComponents();
+        //ManageGMComponents();
 
-        OnSceneChange += ManageGMComponents;
+        //OnSceneChange += ManageGMComponents;
+        SceneManager.sceneLoaded += ManageGMComponents;
     }
 
     #region Main Functions
@@ -88,40 +89,52 @@ public class GameSceneManager : MonoBehaviour
     // Load scene coroutine
     private IEnumerator LoadSceneCoroutine(SceneName scene, float delay)
     {
-        // Reset Timescale now (IMPORTANT: Coroutines wont run if timescale = 0)
-        Time.timeScale = 1f;
+        yield return new WaitForSecondsRealtime(delay);
+
+        /** Transition animation / load screen
+        // Transition Animation
+        animator.SetTrigger("Entrance");
+
+        yield return new WaitForSecondsRealtime(1f);
+        */
+
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync((int)scene);
+        yield return new WaitUntil(() => (asyncLoadLevel.isDone));
+
+        yield return new WaitForEndOfFrame();
+
+        // Reset Timescale
+        gameManager.gameState.ResumeGame();
 
         // Invoke OnSceneChange event
-        OnSceneChange?.Invoke(delay);
-
-        yield return new WaitForSeconds(delay);
-
-        // Transition Animation
-        //animator.SetTrigger("Entrance");
-
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadSceneAsync((int)scene);
+        //OnSceneChange?.Invoke(delay);
     }
     private IEnumerator LoadSceneCoroutine(string sceneName, float delay)
     {
-        // Reset Timescale now (IMPORTANT: Coroutines wont run if timescale = 0)
-        Time.timeScale = 1f;
+        yield return new WaitForSecondsRealtime(delay);
+
+        /** Transition animation / load screen
+        // Transition Animation
+        animator.SetTrigger("Entrance");
+
+        yield return new WaitForSecondsRealtime(1f);
+        */
+
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(sceneName);
+        yield return new WaitUntil(() => (asyncLoadLevel.isDone));
+
+        yield return new WaitForEndOfFrame();
+
+        // Reset Timescale
+        gameManager.gameState.ResumeGame();
 
         // Invoke OnSceneChange event
-        OnSceneChange?.Invoke(delay);
-
-        yield return new WaitForSeconds(delay);
-
-        // Transition Animation
-        //animator.SetTrigger("Entrance");
-
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadSceneAsync(sceneName);
+        //OnSceneChange?.Invoke(delay);
     }
     #endregion
 
     #region Component Manager
-    private void ManageGMComponents()
+    private void OnSceneLoaded()
     {
         SceneName currentScene = (SceneName)GetCurrentScene().buildIndex;
 
@@ -141,9 +154,24 @@ public class GameSceneManager : MonoBehaviour
                 gameManager.gameWeapon.enabled = true;
                 gameManager.gameEnemy.enabled = true;
 
-                // Initialize In-Game UI & Camera
-                gameManager.InitializeCameras();
-                gameManager.InitializeUI();
+                // Find active in-game cameras & UI (if one exists)
+                gameManager.FindActiveInGameCameras();
+                gameManager.FindActiveInGameUI();
+                // Try to initialize In-Game UI & Camera
+                gameManager.TryInitializeInGameCameras();
+                gameManager.TryInitializeInGameUI();
+
+                // Find any preexisting players first
+                gameManager.gamePlayer.FindPlayer();
+                // TODO: Spawn player using other method (such as after generating the map)
+                // Attempt to spawn Player
+                gameManager.gamePlayer.TrySpawnPlayer();
+
+                // Find any preexisting escortees first
+                gameManager.gameEscortee.FindEscorteeInScene();
+                // TODO: Spawn escortee using other method (such as after generating the map)
+                // Attempt to spawn Player
+                //gameManager.gameEscorteeSpawnEscortee();
                 break;
             default:
                 gameManager.gameState.enabled = false;
@@ -153,9 +181,9 @@ public class GameSceneManager : MonoBehaviour
                 break;
         }
     }
-    private void ManageGMComponents(float delay)
+    private void ManageGMComponents(Scene scene, LoadSceneMode loadSceneMode)
     {
-        ManageGMComponents();
+        OnSceneLoaded();
     }
     #endregion
 }

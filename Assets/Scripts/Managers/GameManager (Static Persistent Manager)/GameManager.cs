@@ -112,14 +112,10 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this);
-
-        // Find active in-game cameras & UI (if one exists)
-        FindActiveCameras();
-        FindActiveUI();
     }
 
     // Find an active In-Game Cameras object in hirearchy
-    private void FindActiveCameras()
+    public void FindActiveInGameCameras()
     {
         var activeCameras = FindObjectOfType<CameraManager>();
 
@@ -129,7 +125,7 @@ public class GameManager : MonoBehaviour
         }
     }
     // Find an active In-Game UI object in hirearchy
-    private void FindActiveUI()
+    public void FindActiveInGameUI()
     {
         var activeUI = FindObjectOfType<UIManager>();
 
@@ -140,11 +136,11 @@ public class GameManager : MonoBehaviour
     }
 
     // Initialize In-Game Cameras
-    public void InitializeCameras()
+    public void TryInitializeInGameCameras()
     {
-        InitializeCameras(inGameCamerasPrefab.transform);
+        TryInitializeInGameCameras(inGameCamerasPrefab.transform);
     }
-    public void InitializeCameras(Transform spawnPoint)
+    public void TryInitializeInGameCameras(Transform spawnPoint)
     {
         if (!InGameCameras)
         {
@@ -158,11 +154,11 @@ public class GameManager : MonoBehaviour
     }
 
     // Initialize In-Game UI
-    public void InitializeUI()
+    public void TryInitializeInGameUI()
     {
-        InitializeUI(inGameUIPrefab.transform);
+        TryInitializeInGameUI(inGameUIPrefab.transform);
     }
-    public void InitializeUI(Transform spawnPoint)
+    public void TryInitializeInGameUI(Transform spawnPoint)
     {
         if (!InGameUI)
         {
