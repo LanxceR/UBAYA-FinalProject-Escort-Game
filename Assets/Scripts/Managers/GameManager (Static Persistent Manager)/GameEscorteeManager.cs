@@ -18,19 +18,33 @@ public class GameEscorteeManager : MonoBehaviour
     public EscorteeScript[] EscorteePrefabs { get => escorteePrefabs; set => escorteePrefabs = value; }
     internal EscorteeScript ActiveEscortee { get => activeEscortee; set => activeEscortee = value; }
 
+    #region Prefab Utilities
+    // TODO: (DUPLICATE) Maybe put these methods in their corresponding scripts and load using Resources.Load
+    public EscorteeScript GetEscortee(EscorteeID escorteeType)
+    {
+        // Find an enemy of a certain type
+        foreach (EscorteeScript e in EscorteePrefabs)
+        {
+            if (e.id == escorteeType) return e;
+        }
+
+        // If nothing is found, return null
+        return null;
+    } 
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
         // Find any preexisting players first
-        FindEscortee();
+        FindEscorteeInScene();
         // TODO: Spawn player using other method (such as after generating the map)
         // Attempt to spawn Player
-        SpawnEscortee();
+        //SpawnEscortee();
     }
 
     // Find a player object in hirearchy
-    private void FindEscortee()
+    private void FindEscorteeInScene()
     {
         var activeEscortee = FindObjectOfType<EscorteeScript>();
 
@@ -44,7 +58,7 @@ public class GameEscorteeManager : MonoBehaviour
     public void SpawnEscortee()
     {
         // TODO: Spawn point for escortee & Assign loaded mission escortee
-        //SpawnEscortee(gameManager.LoadedMissionData.vehicle.transform);
+        SpawnEscortee(gameManager.LoadedMissionData.vehicle.transform);
     }
     public void SpawnEscortee(Transform spawnPoint)
     {

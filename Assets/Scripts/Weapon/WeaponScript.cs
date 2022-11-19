@@ -60,8 +60,7 @@ public class WeaponScript : MonoBehaviour, IEquipmentItem
     void Start()
     {
         Debug.Log("Main WeaponScript starting");
-
-        weaponAttackScript = GetComponent<IAttackStrategy>();
+        AssignComponents();
     }
 
     // This function is called when the object becomes enabled and active
@@ -69,6 +68,11 @@ public class WeaponScript : MonoBehaviour, IEquipmentItem
     {
         AssignParentHolder();
         AssignParentAttach();
+    }
+
+    internal void AssignComponents()
+    {
+        weaponAttackScript = GetComponent<IAttackStrategy>();
     }
 
     // Try to assign a valid parent that implements the ICharacter interface

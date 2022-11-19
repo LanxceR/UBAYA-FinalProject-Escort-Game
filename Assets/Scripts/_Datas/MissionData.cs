@@ -16,12 +16,28 @@ public class MissionData
     public bool escorteeHasWeapon;
     public int zombieCount;
     public float baseReward;
+    public WeaponScript meleeWeapon;
+    public WeaponScript rangedWeapon1;
+    public WeaponScript rangedWeapon2;
 
     public List<Spawnable> enemies;
 
     #endregion
 
     #region Constructors
+    public MissionData(EscorteeScript vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward, WeaponScript meleeWeapon, WeaponScript rangedWeapon1, WeaponScript rangedWeapon2, List<Spawnable> enemies)
+    {
+        this.vehicle = vehicle;
+        this.escorteeHasWeapon = escorteeHasWeapon;
+        this.zombieCount = zombieCount;
+        this.baseReward = baseReward;
+
+        this.meleeWeapon = meleeWeapon;
+        this.rangedWeapon1 = rangedWeapon1;
+        this.rangedWeapon2 = rangedWeapon2;
+
+        this.enemies = enemies;
+    }
     public MissionData(EscorteeScript vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward, List<Spawnable> enemies)
     {
         this.vehicle = vehicle;

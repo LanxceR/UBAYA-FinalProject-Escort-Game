@@ -36,7 +36,9 @@ public class DebugMissionBrief : MonoBehaviour
             }
             else
                 vehicles.Add(missions[i].vehicle.id.ToString());
+            missionDisplays[i].vehicle.ClearOptions();
             missionDisplays[i].vehicle.AddOptions(vehicles);
+
             // Has Wpn Toggle
             missionDisplays[i].hasWpnToggle.isOn = missions[i].escorteeHasWeapon;
 
@@ -56,10 +58,31 @@ public class DebugMissionBrief : MonoBehaviour
 
             #region Equipments
             PlayerData pData = GameManager.Instance.LoadedGameData;
-
+            List<string> weapons = new List<string>();
+            missionDisplays[i].melee.ClearOptions();
+            missionDisplays[i].ranged1.ClearOptions();
+            missionDisplays[i].ranged2.ClearOptions();
             foreach (WeaponID w in GameManager.Instance.LoadedGameData.ownedWeapons)
             {
-                
+                WeaponScript wpn = GameManager.Instance.gameMission.GetWeapon(w);
+                wpn.AssignComponents();
+
+                // Display owned melee weapons
+                weapons.Clear();
+                if (wpn.weaponAttackScript is WeaponMeleeAttackScript)
+                {
+                    weapons.Add(w.ToString());
+                }
+                missionDisplays[i].melee.AddOptions(weapons);
+
+                // Display owned ranged weapons
+                weapons.Clear();
+                if (wpn.weaponAttackScript is WeaponRangedAttackScript)
+                {
+                    weapons.Add(w.ToString());
+                }
+                missionDisplays[i].ranged1.AddOptions(weapons);
+                missionDisplays[i].ranged2.AddOptions(weapons);
             }
             #endregion
         }

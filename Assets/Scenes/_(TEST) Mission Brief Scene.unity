@@ -2219,7 +2219,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 268374852}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 566508252}
+        m_TargetAssemblyTypeName: DebugMissionDetail, Assembly-CSharp
+        m_MethodName: OnPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &268374852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3052,7 +3064,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 370032110}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1246612030}
+        m_TargetAssemblyTypeName: DebugMissionDetail, Assembly-CSharp
+        m_MethodName: OnPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &370032110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4596,6 +4620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e1afcb9560de84981932ca23a73072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
   vehicle: {fileID: 677116194}
   hasWpnToggle: {fileID: 86270421}
   zCount: {fileID: 959714638}
@@ -7945,6 +7970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e1afcb9560de84981932ca23a73072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 1
   vehicle: {fileID: 2002548323}
   hasWpnToggle: {fileID: 2133056579}
   zCount: {fileID: 630292773}
@@ -14519,6 +14545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e1afcb9560de84981932ca23a73072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 2
   vehicle: {fileID: 1427308805}
   hasWpnToggle: {fileID: 147053412}
   zCount: {fileID: 682484533}
@@ -17516,7 +17543,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1586201638}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 784995903}
+        m_TargetAssemblyTypeName: DebugMissionDetail, Assembly-CSharp
+        m_MethodName: OnPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1586201638
 MonoBehaviour:
   m_ObjectHideFlags: 0

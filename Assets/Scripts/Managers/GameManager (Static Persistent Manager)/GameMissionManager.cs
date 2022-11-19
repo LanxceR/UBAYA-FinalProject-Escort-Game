@@ -20,7 +20,9 @@ public class GameMissionManager : MonoBehaviour
     [Header("All Weapon Prefabs")]
     [SerializeField] private WeaponScript[] weaponPrefabs; // List of ALL enemy prefabs possible to spawn
 
-    private EnemyScript GetEnemy(EnemyID enemyType)
+    #region Prefab Utilities
+    // TODO: (DUPLICATE) Maybe put these methods in their corresponding scripts and load using Resources.Load
+    public EnemyScript GetEnemy(EnemyID enemyType)
     {
         // Find an enemy of a certain type
         foreach (EnemyScript e in enemyPrefabs)
@@ -30,6 +32,37 @@ public class GameMissionManager : MonoBehaviour
 
         // If nothing is found, return null
         return null;
+    }
+    public WeaponScript GetWeapon(WeaponID weaponType)
+    {
+        // Find a weapon of a certain type
+        foreach (WeaponScript w in weaponPrefabs)
+        {
+            if (w.id == weaponType) return w;
+        }
+
+        // If nothing is found, return null
+        return null;
+    } 
+    #endregion
+
+    // Load a save and store in game manager loaded save
+    public void LoadMission(int index, 
+                            EscorteeScript escortee, 
+                            WeaponScript meleeWeapon,
+                            WeaponScript rangedWeapon1,
+                            WeaponScript rangedWeapon2)
+    {
+        // Load mission
+        gameManager.LoadedMissionData = gameManager.MissionDatas[index];
+
+        // Assign weapons & escortee/vehicle
+        gameManager.LoadedMissionData.vehicle = escortee;
+        gameManager.LoadedMissionData.meleeWeapon = meleeWeapon;
+        gameManager.LoadedMissionData.rangedWeapon1 = rangedWeapon1;
+        gameManager.LoadedMissionData.rangedWeapon2 = rangedWeapon2;
+
+        Debug.Log($"Loaded mission data at index = {index}");
     }
 
     // Generate missions for that day
@@ -102,6 +135,8 @@ public class GameMissionManager : MonoBehaviour
             if (gameManager.LoadedGameData.missionsCompleted >= 5)
                 CreateMission(MissionDifficulty.FINAL, HazardRating.APOCALYPSE, 2);
         }
+
+        Debug.Log($"Generated new mission set for day #{day}");
     }
 
     /// <summary>
@@ -111,7 +146,7 @@ public class GameMissionManager : MonoBehaviour
     /// <param name="difficulty">The "difficulty" of the mission, determining which type of enemies can appear. Use this to introduce different enemy types at a certain stage of the game.</param>
     /// <param name="hazard">The hazard rating of the mission, determining the total amount of zombie to be spawned in a mission. Use this for mission variety in a single day.</param>
     /// <param name="index">The index to store this mission in. Generally proportional with HazardRating, e.g 0 = NORMAL, 1 = INFESTED, 2 = OVERRUN</param>
-    internal void CreateMission(MissionDifficulty difficulty, HazardRating hazard, int index)
+    public void CreateMission(MissionDifficulty difficulty, HazardRating hazard, int index)
     {
         // Randomize if escortee have weapons or not
         bool escorteeHasWeapon = Random.Range(0, 2) == 1 ? true : false;
