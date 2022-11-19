@@ -12,11 +12,6 @@ public class GaragePurchaseScript : MonoBehaviour
         UI.SetActive(true);
     }
 
-    public void ConfirmPurchase()
-    {
-
-    }
-
     public void CancelPurchase()
     {
         UI.SetActive(false);
