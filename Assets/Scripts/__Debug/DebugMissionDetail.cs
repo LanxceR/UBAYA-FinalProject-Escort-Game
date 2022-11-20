@@ -12,6 +12,9 @@ public class DebugMissionDetail : MonoBehaviour
 
     [Header("UI Refs")]
     [SerializeField]
+    internal TextMeshProUGUI scene;
+
+    [SerializeField]
     internal TMP_Dropdown vehicle;
     [SerializeField]
     internal Toggle hasWpnToggle;
@@ -51,6 +54,6 @@ public class DebugMissionDetail : MonoBehaviour
 
         // TODO: Work on scene transition
         // Transition into Escort Scene
-        GameManager.Instance.gameScene.GotoScene(SceneName.TEST_ESCORT_SCENE);
+        GameManager.Instance.gameScene.GotoScene(GameManager.Instance.LoadedMissionData.escortScene);
     }
 }

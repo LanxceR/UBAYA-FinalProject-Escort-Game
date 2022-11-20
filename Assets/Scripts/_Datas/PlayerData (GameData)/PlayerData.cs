@@ -34,9 +34,9 @@ public class PlayerData
 
     public Dictionary<AmmoType, Ammo> ammo = new Dictionary<AmmoType, Ammo>
     {
-        {AmmoType.LIGHT, new Ammo(AmmoType.LIGHT, 0) },
-        {AmmoType.SHOTGUN, new Ammo(AmmoType.SHOTGUN, 0) },
-        {AmmoType.HEAVY, new Ammo(AmmoType.HEAVY, 0) }
+        {AmmoType.LIGHT, new Ammo(AmmoType.LIGHT, 0, 120, 30, 100) },
+        {AmmoType.SHOTGUN, new Ammo(AmmoType.SHOTGUN, 0, 24, 10, 50) },
+        {AmmoType.HEAVY, new Ammo(AmmoType.HEAVY, 0, 40, 15, 200) }
     };
 
     #endregion

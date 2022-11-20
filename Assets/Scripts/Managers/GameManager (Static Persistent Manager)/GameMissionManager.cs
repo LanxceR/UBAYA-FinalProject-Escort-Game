@@ -11,7 +11,11 @@ public class GameMissionManager : MonoBehaviour
     // Reference to the game manager script
     [SerializeField]
     internal GameManager gameManager;
-    
+
+    // Escort Scenes
+    [Header("Possible Escort Scenes")]
+    [SerializeField] internal SceneName[] escortScenes; // List of all valid escort scenes
+
 
     // Load a save and store in game manager loaded save
     public void LoadMission(int index, 
@@ -120,6 +124,9 @@ public class GameMissionManager : MonoBehaviour
     /// <param name="index">The index to store this mission in. Generally proportional with HazardRating, e.g 0 = NORMAL, 1 = INFESTED, 2 = OVERRUN</param>
     public void CreateMission(MissionDifficulty difficulty, HazardRating hazard, int index)
     {
+        // Randomize escort scene
+        SceneName scene = escortScenes[Random.Range(0, escortScenes.Length)];
+
         // Randomize if escortee have weapons or not
         bool escorteeHasWeapon = Random.Range(0, 2) == 1 ? true : false;
 
@@ -195,12 +202,12 @@ public class GameMissionManager : MonoBehaviour
             vehicle = gameManager.gameEscortee.EscorteePrefabs[Random.Range(0, gameManager.gameEscortee.EscorteePrefabs.Length)];
 
             // Store mission to it's index
-            gameManager.MissionDatas[index] = new MissionData(vehicle, escorteeHasWeapon, zombieCount, baseReward, enemies);
+            gameManager.MissionDatas[index] = new MissionData(scene, vehicle, escorteeHasWeapon, zombieCount, baseReward, enemies);
         }
         else
         {
             // Store mission to it's index
-            gameManager.MissionDatas[index] = new MissionData(escorteeHasWeapon, zombieCount, baseReward, enemies);
+            gameManager.MissionDatas[index] = new MissionData(scene, escorteeHasWeapon, zombieCount, baseReward, enemies);
         }
     }
 }
