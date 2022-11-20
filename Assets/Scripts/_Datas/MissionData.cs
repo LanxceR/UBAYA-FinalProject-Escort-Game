@@ -11,7 +11,7 @@ public enum HazardRating { NORMAL, INFESTED, OVERRUN, APOCALYPSE}
 public class MissionData
 {
     #region Data fields
-    // TODO: Implement zombie types to spawn checks
+
     public EscorteeScript vehicle;
     public bool escorteeHasWeapon;
     public int zombieCount;
@@ -56,6 +56,29 @@ public class MissionData
         this.enemies = enemies;
     }
     #endregion
+
+    public void Empty()
+    {
+        this.vehicle = null;
+        this.escorteeHasWeapon = false;
+        this.zombieCount = 0;
+        this.baseReward = 0;
+
+        this.meleeWeapon = null;
+        this.rangedWeapon1 = null;
+        this.rangedWeapon2 = null;
+
+        this.enemies.Clear();
+    }
+
+    public bool IsEmpty()
+    {
+        return (vehicle == null) &&
+            (escorteeHasWeapon == false) &&
+            (zombieCount == 0) &&
+            (baseReward == 0) &&
+            (enemies == null || Utilities.IsListContentEquals(enemies, new List<Spawnable>()));
+    }
 
     public override bool Equals(System.Object obj)
     {

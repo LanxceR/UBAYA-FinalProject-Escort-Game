@@ -165,6 +165,14 @@ MonoBehaviour:
     rangedWeapon1: {fileID: 0}
     rangedWeapon2: {fileID: 0}
     enemies: []
+  - vehicle: {fileID: 0}
+    escorteeHasWeapon: 0
+    zombieCount: 0
+    baseReward: 0
+    meleeWeapon: {fileID: 0}
+    rangedWeapon1: {fileID: 0}
+    rangedWeapon2: {fileID: 0}
+    enemies: []
   loadedMissionData:
     vehicle: {fileID: 0}
     escorteeHasWeapon: 0
