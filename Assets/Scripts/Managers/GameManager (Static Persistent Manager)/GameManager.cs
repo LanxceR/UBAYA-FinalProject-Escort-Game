@@ -65,9 +65,9 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Cameras Prefab")]
-    [SerializeField] private CameraManager inGameCamerasPrefab;
-    [SerializeField] private CameraManager inGameActiveCameras;
-    public CameraManager InGameCameras { get => inGameActiveCameras; private set => inGameActiveCameras = value; }
+    [SerializeField] private EscortCameraManager inGameCamerasPrefab;
+    [SerializeField] private EscortCameraManager inGameActiveCameras;
+    public EscortCameraManager InGameCameras { get => inGameActiveCameras; private set => inGameActiveCameras = value; }
 
     [Header("UI Prefab")]
     [SerializeField] private UIManager inGameUIPrefab;
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
     // Find an active In-Game Cameras object in hirearchy
     public void FindActiveInGameCameras()
     {
-        var activeCameras = FindObjectOfType<CameraManager>();
+        var activeCameras = FindObjectOfType<EscortCameraManager>();
 
         if (activeCameras)
         {

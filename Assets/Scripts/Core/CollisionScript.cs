@@ -30,11 +30,13 @@ public class CollisionScript : MonoBehaviour
     // Collider settings
     internal void EnableCollider()
     {
-        col.enabled = true;
+        if (col)
+            col.enabled = true;
     }
     internal void DisableCollider()
     {
-        col.enabled = false;
+        if (col)
+            col.enabled = false;
     }
 
     // Collision Processes

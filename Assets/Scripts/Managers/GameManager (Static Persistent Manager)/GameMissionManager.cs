@@ -61,8 +61,13 @@ public class GameMissionManager : MonoBehaviour
             }
             else if (day == 10)
             {
+                // Empty mission 1-3 first
+                gameManager.MissionDatas[0].Empty();
+                gameManager.MissionDatas[1].Empty();
+                gameManager.MissionDatas[2].Empty();
+
                 // Day 10 (Final Day)
-                CreateMission(MissionDifficulty.FINAL, HazardRating.APOCALYPSE, 0);
+                CreateMission(MissionDifficulty.FINAL, HazardRating.APOCALYPSE, 3);
             }
             else
             {
@@ -100,7 +105,7 @@ public class GameMissionManager : MonoBehaviour
 
             // Generate final mission if the condition is met
             if (gameManager.LoadedGameData.missionsCompleted >= 5)
-                CreateMission(MissionDifficulty.FINAL, HazardRating.APOCALYPSE, 2);
+                CreateMission(MissionDifficulty.FINAL, HazardRating.APOCALYPSE, 3);
         }
 
         Debug.Log($"Generated new mission set for day #{day}");

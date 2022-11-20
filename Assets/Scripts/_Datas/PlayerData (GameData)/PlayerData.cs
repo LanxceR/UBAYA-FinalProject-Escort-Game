@@ -12,6 +12,9 @@ public class PlayerData
 {
     #region Data fields
 
+    /// <summary>
+    /// <b>DEPRECATED - Don't use this flag!</b>
+    /// </summary>
     public bool isEmpty = true;
     public int index;
     public Difficulty difficulty;
@@ -71,7 +74,7 @@ public class PlayerData
     public void Empty()
     {
         this.isEmpty = true;
-        this.difficulty = 0;
+        this.difficulty = Difficulty.CASUAL;
         this.money = 0;
         this.daysPassed = 0;
         this.missionsCompleted = 0;
@@ -79,6 +82,21 @@ public class PlayerData
 
         this.ownedWeapons.Clear();
         this.ownedVehicles.Clear();
+
+        this.equippedMeleeWeapon = WeaponID.NONE;
+        this.equippedRangedWeapon1 = WeaponID.NONE;
+        this.equippedRangedWeapon2 = WeaponID.NONE;
+        this.equippedVehicle = EscorteeID.NONE;
+    }
+
+    public bool IsEmpty()
+    {
+        return (money == 0) &&
+            (daysPassed == 0) &&
+            (missionsCompleted == 0) &&
+            Utilities.IsListContentEquals(ownedWeapons, new List<WeaponID>()) &&
+            Utilities.IsListContentEquals(ownedVehicles, new List<EscorteeID>()) &&
+            (missionsFailed == 0);
     }
 
     public override bool Equals(System.Object obj)
