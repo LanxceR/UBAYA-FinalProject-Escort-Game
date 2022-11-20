@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638045134152405339
+  lastModified: 638045679590147944
   FileSizes: []
   Exists: 1
 --- !u!114 &-8029575113104212662
@@ -61,7 +61,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638045134156174626
+  lastModified: 638045679592923075
   FileSizes: []
   Exists: 1
 --- !u!114 &-5878436196734742892
@@ -159,9 +159,36 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Gameplay.bank
   Name: Gameplay
   StudioPath: bank:/Gameplay
-  lastModified: 638045134152154848
+  lastModified: 638045679590127928
   FileSizes: []
   Exists: 1
+--- !u!114 &-3723885734687191768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/HoverPaper
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/HoverPaper
+  Guid:
+    Data1: 2109441734
+    Data2: 1193798629
+    Data3: 694431421
+    Data4: 2124592668
+  Banks:
+  - {fileID: -6192649352618610893}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 240
 --- !u!114 &-3679953863347738366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,10 +233,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638045134152505426
+  lastModified: 638045679590157953
   FileSizes:
   - Name: 
-    Value: 1960
+    Value: 2008
   Exists: 1
 --- !u!114 &-2424506622028619460
 MonoBehaviour:
@@ -377,12 +404,13 @@ MonoBehaviour:
   - {fileID: -8029575113104212662}
   - {fileID: -2424506622028619460}
   - {fileID: -5838137605808909206}
+  - {fileID: -3723885734687191768}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8410806887097065527}
   StringsBanks:
   - {fileID: -3247003094679002036}
-  cacheTime: 638045134156174626
+  cacheTime: 638045679592923075
   cacheVersion: 131593
 --- !u!114 &2422948965619628952
 MonoBehaviour:
@@ -477,7 +505,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638045134154933493
+  lastModified: 638045679591531795
   FileSizes: []
   Exists: 1
 --- !u!114 &8393815413211621361
@@ -546,7 +574,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638045134148591617
+  lastModified: 638045679585985827
   FileSizes: []
   Exists: 1
 --- !u!114 &8874709602837240393
