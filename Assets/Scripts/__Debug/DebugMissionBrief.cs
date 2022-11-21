@@ -30,6 +30,9 @@ public class DebugMissionBrief : MonoBehaviour
             if (!missionDisplays[i]) continue;
 
             #region Mission details
+            // Display scene target
+            missionDisplays[i].scene.text = missions[i].escortScene.ToString();
+
             // Display escortee
             missionDisplays[i].vehicle.ClearOptions();
             List<string> vehicles = new List<string>();

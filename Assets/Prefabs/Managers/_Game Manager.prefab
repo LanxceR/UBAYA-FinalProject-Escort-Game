@@ -141,7 +141,8 @@ MonoBehaviour:
     equippedRangedWeapon2: 0
     equippedVehicle: 0
   missionDatas:
-  - vehicle: {fileID: 0}
+  - escortScene: 0
+    vehicle: {fileID: 0}
     escorteeHasWeapon: 0
     zombieCount: 0
     baseReward: 0
@@ -149,7 +150,8 @@ MonoBehaviour:
     rangedWeapon1: {fileID: 0}
     rangedWeapon2: {fileID: 0}
     enemies: []
-  - vehicle: {fileID: 0}
+  - escortScene: 0
+    vehicle: {fileID: 0}
     escorteeHasWeapon: 0
     zombieCount: 0
     baseReward: 0
@@ -157,7 +159,8 @@ MonoBehaviour:
     rangedWeapon1: {fileID: 0}
     rangedWeapon2: {fileID: 0}
     enemies: []
-  - vehicle: {fileID: 0}
+  - escortScene: 0
+    vehicle: {fileID: 0}
     escorteeHasWeapon: 0
     zombieCount: 0
     baseReward: 0
@@ -165,7 +168,8 @@ MonoBehaviour:
     rangedWeapon1: {fileID: 0}
     rangedWeapon2: {fileID: 0}
     enemies: []
-  - vehicle: {fileID: 0}
+  - escortScene: 0
+    vehicle: {fileID: 0}
     escorteeHasWeapon: 0
     zombieCount: 0
     baseReward: 0
@@ -174,6 +178,7 @@ MonoBehaviour:
     rangedWeapon2: {fileID: 0}
     enemies: []
   loadedMissionData:
+    escortScene: 0
     vehicle: {fileID: 0}
     escorteeHasWeapon: 0
     zombieCount: 0
@@ -261,6 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 3476358989919382763}
+  escortScenes: 02000000
 --- !u!114 &6291330310439833848
 MonoBehaviour:
   m_ObjectHideFlags: 0

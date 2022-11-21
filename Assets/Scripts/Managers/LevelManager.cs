@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SpawnContext
+{
+    IDLE,
+    SMALL_WAVE,
+    BIG_WAVE
+}
+
 /// <summary>
 /// The level manager script
 /// </summary>
@@ -31,6 +38,11 @@ public class LevelManager : MonoBehaviour
 
     //=============================================================//
 
+    [Header("Enemies")]
+    [SerializeField] private GameObject enemiesParent;
+
+    //=============================================================//
+
     [Header("Map Setting")]
     [SerializeField] private GameObject map;
     [SerializeField] private Bounds mapBounds;
@@ -45,6 +57,12 @@ public class LevelManager : MonoBehaviour
     [Header("In-Game Values")]
     [SerializeField] internal float timePassed;
     internal Coroutine timerCoroutine;
+    [SerializeField] internal int totalEnemyCount;
+    [SerializeField] internal int enemyCountLeft;
+    [SerializeField] internal List<Spawnable> enemiesToSpawn;
+
+    [Header("In-Game Instances")]
+    [SerializeField] internal List<EnemyScript> activeEnemies;
     #endregion
 
     // Start is called before the first frame update
@@ -53,7 +71,13 @@ public class LevelManager : MonoBehaviour
         // Assign Main Camera CinemachineConfiner2D's bounding shape
         GameManager.Instance.InGameCameras.mainCameraConfiner2D.m_BoundingShape2D = worldBound;
 
+        // Initialization
         SetupLevel();
+
+        totalEnemyCount = GameManager.Instance.LoadedMissionData.zombieCount;
+        enemyCountLeft = totalEnemyCount;
+
+        enemiesToSpawn = GameManager.Instance.LoadedMissionData.enemies;
 
         if (timerCoroutine == null)
         {
@@ -115,5 +139,62 @@ public class LevelManager : MonoBehaviour
             timePassed += Time.deltaTime;
             yield return null;
         }
+    }
+
+    private bool SpawnEnemies(SpawnContext context, Vector2 spawnPosition)
+    {
+        int amountToSpawn = 0;
+        bool hasSpawnedSomething = false;
+
+        switch (context)
+        {
+            case SpawnContext.IDLE:
+                amountToSpawn = Mathf.RoundToInt(totalEnemyCount / 0.05f);
+                break;
+            case SpawnContext.SMALL_WAVE:
+                amountToSpawn = Mathf.RoundToInt(totalEnemyCount / (0.45f / spawnTriggers.Count));
+                break;
+            case SpawnContext.BIG_WAVE:
+                amountToSpawn = Mathf.RoundToInt(totalEnemyCount / (0.5f / bigSpawnTriggers.Count));
+                break;
+        }
+
+        // Add total weight
+        int totalWeight = 0;
+        foreach (Spawnable s in enemiesToSpawn)
+        {
+            totalWeight += s.spawnWeight;
+        }
+
+        // Spawn enemies
+        for (int i = 0; i < amountToSpawn; i++)
+        {
+            // Randomize enemy to spawn
+            EnemyScript enemyToSpawn = null;
+
+            // Generate a random number from 1 - totalWeight
+            int rand = Random.Range(1, totalWeight + 1);
+
+            int pos = 0;
+            for (int j = 0; j < enemiesToSpawn.Count; j++)
+            {
+                if (rand <= enemiesToSpawn[j].spawnWeight + pos)
+                {
+                    enemyToSpawn = enemiesToSpawn[j].prefab.GetComponent<EnemyScript>();
+                    break;
+                }
+                pos += enemiesToSpawn[j].spawnWeight;
+            }
+
+            if (enemyToSpawn)
+            {
+                // TODO: Randomize spawn position, also try and spawn from outside the map, OR work on spawn position any other way
+                // If there's an enemy to spawn, then instantiate that enemy
+                activeEnemies.Add(Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity, enemiesParent.transform));
+                hasSpawnedSomething = true;
+            }
+        }
+
+        return hasSpawnedSomething;
     }
 }

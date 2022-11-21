@@ -12,6 +12,8 @@ public class MissionData
 {
     #region Data fields
 
+    public SceneName escortScene = SceneName.TITLE_SCREEN;
+
     public EscorteeScript vehicle;
     public bool escorteeHasWeapon;
     public int zombieCount;
@@ -25,8 +27,10 @@ public class MissionData
     #endregion
 
     #region Constructors
-    public MissionData(EscorteeScript vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward, WeaponScript meleeWeapon, WeaponScript rangedWeapon1, WeaponScript rangedWeapon2, List<Spawnable> enemies)
+    public MissionData(SceneName escortScene, EscorteeScript vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward, WeaponScript meleeWeapon, WeaponScript rangedWeapon1, WeaponScript rangedWeapon2, List<Spawnable> enemies)
     {
+        this.escortScene = escortScene;
+
         this.vehicle = vehicle;
         this.escorteeHasWeapon = escorteeHasWeapon;
         this.zombieCount = zombieCount;
@@ -38,17 +42,22 @@ public class MissionData
 
         this.enemies = enemies;
     }
-    public MissionData(EscorteeScript vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward, List<Spawnable> enemies)
+    public MissionData(SceneName escortScene, EscorteeScript vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward, List<Spawnable> enemies)
     {
+        this.escortScene = escortScene;
+
         this.vehicle = vehicle;
         this.escorteeHasWeapon = escorteeHasWeapon;
         this.zombieCount = zombieCount;
         this.baseReward = baseReward;
 
         this.enemies = enemies;
+        this.escortScene = escortScene;
     }
-    public MissionData(bool escorteeHasWeapon, int zombieCount, float baseReward, List<Spawnable> enemies)
+    public MissionData(SceneName escortScene, bool escorteeHasWeapon, int zombieCount, float baseReward, List<Spawnable> enemies)
     {
+        this.escortScene = escortScene;
+
         this.escorteeHasWeapon = escorteeHasWeapon;
         this.zombieCount = zombieCount;
         this.baseReward = baseReward;
@@ -59,6 +68,8 @@ public class MissionData
 
     public void Empty()
     {
+        this.escortScene = SceneName.TITLE_SCREEN;
+
         this.vehicle = null;
         this.escorteeHasWeapon = false;
         this.zombieCount = 0;
@@ -73,7 +84,8 @@ public class MissionData
 
     public bool IsEmpty()
     {
-        return (vehicle == null) &&
+        return (escortScene == SceneName.TITLE_SCREEN) &&
+            (vehicle == null) &&
             (escorteeHasWeapon == false) &&
             (zombieCount == 0) &&
             (baseReward == 0) &&
