@@ -18,12 +18,18 @@ public class GarageUIScript : MonoBehaviour
     //GAMEOBJECTS
     #region Attached GameObjects
 
-    public GameObject nameObject;
+        public GameObject nameObject;
         public GameObject priceButtonObject;
         public GameObject imageObject;
         public GameObject healthSliderObject;
         public GameObject maxSpeedSliderObject;
         public GameObject equipButtonObject;
+
+        [Header("Cash Text Box")]
+        public TextMeshProUGUI cashOwnedText;
+
+        [Header("Popup")]
+        public GameObject popup;
 
     #endregion
 
@@ -46,7 +52,8 @@ public class GarageUIScript : MonoBehaviour
         {
             if(escorteeList[i].id == equippedEscortee)
             {
-                Transform childPrice = priceButtonObject.transform.Find("Price");
+                #region unused code
+                /*Transform childPrice = priceButtonObject.transform.Find("Price");
                 Transform childPurchased = priceButtonObject.transform.Find("Text");
                 Transform childImage = escorteeList[i].transform.Find("Model");
 
@@ -63,9 +70,13 @@ public class GarageUIScript : MonoBehaviour
 
                 equipButtonObject.GetComponent<Button>().interactable = false;
                 equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().text = "IN USE";
-                equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);
+                equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);*/
+                #endregion
 
+                popup.SetActive(false);
                 currentIndex = i;
+
+                Refresh();
 
                 break;
             }
@@ -76,6 +87,7 @@ public class GarageUIScript : MonoBehaviour
     void Update()
     {
         //AFTER PRESSING BUTTONS IN THE UI, COLOR FADES BACK TO NORMAL
+        cashOwnedText.text = "$" + GameManager.Instance.LoadedGameData.money.ToString();
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -94,7 +106,7 @@ public class GarageUIScript : MonoBehaviour
         {
             currentIndex = 2;
         }
-
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
         Refresh();
     }
 
@@ -107,7 +119,7 @@ public class GarageUIScript : MonoBehaviour
         {
             currentIndex = 0;
         }
-
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
         Refresh();
     }
     #endregion
@@ -115,7 +127,9 @@ public class GarageUIScript : MonoBehaviour
     //REFRESH
     private void Refresh()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        cashOwnedText.text = "$" + GameManager.Instance.LoadedGameData.money.ToString();
+        popup.SetActive(false);
 
         Transform childPrice = priceButtonObject.transform.Find("Price");
         Transform childPurchased = priceButtonObject.transform.Find("Text");
@@ -133,7 +147,6 @@ public class GarageUIScript : MonoBehaviour
             childPrice.GetComponentInParent<Button>().interactable = false;
             childPurchased.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);
 
-               //if (escorteeList[currentIndex].isEquipped == true)
             if (escorteeList[currentIndex].id == GameManager.Instance.LoadedGameData.equippedVehicle)
             {
                 equipButtonObject.GetComponent<Button>().interactable = false;
@@ -169,22 +182,14 @@ public class GarageUIScript : MonoBehaviour
                     "Owned: " + escorteeList[currentIndex].isOwned +
                     "Equipped: " + escorteeList[currentIndex].isEquipped);
         }
+
+        GameManager.Instance.gameData.SaveGame();
     }
 
     public void SelectAsMainEscortee()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
         GameManager.Instance.LoadedGameData.equippedVehicle = escorteeList[currentIndex].id;
-        /*for (int i = 0; i < escorteeList.Length; i++)
-        {
-            if (i != currentIndex)
-            {
-                escorteeList[i].isEquipped = false;
-            }
-            else
-            {
-                escorteeList[i].isEquipped = true;
-            }
-        }*/
         Refresh();
     }
 
@@ -197,29 +202,50 @@ public class GarageUIScript : MonoBehaviour
     {
         GameObject[] diegeticObjs;
         diegeticObjs = GameObject.FindGameObjectsWithTag("Diegetic");
-        foreach (GameObject script in diegeticObjs)
+        foreach (GameObject g in diegeticObjs)
         {
-            script.GetComponent<HubMenuUI>().enabled = true;
-            script.GetComponent<PolygonCollider2D>().enabled = true;
+            g.GetComponent<PolygonCollider2D>().enabled = true;
         }
 
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
         this.gameObject.SetActive(false);
+        popup.SetActive(false);
     }
+    /*
+    public void CloseCanvasFromBriefing()
+    {
+        this.gameObject.SetActive(false);
+    }*/
 
     #region Purchase Methods
     //OPEN PURCHASE PANEL
     public void OpenPurchasePanel()
     {
-        purchasePanel.SetActive(true);
-        Transform escorteeName = purchasePanel.transform.Find("PurchasedConvoyName");
-        escorteeName.GetComponent<TextMeshProUGUI>().text = escorteeList[currentIndex].id.ToString().Replace('_', ' ');
+        if(GameManager.Instance.LoadedGameData.money < escorteeList[currentIndex].price)
+        {
+            StartCoroutine(ShowPopup(.8f));
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+            purchasePanel.SetActive(true);
+            Transform escorteeName = purchasePanel.transform.Find("PurchasedConvoyName");
+            escorteeName.GetComponent<TextMeshProUGUI>().text = escorteeList[currentIndex].id.ToString().Replace('_', ' ');
+
+            Transform escorteePriceText = purchasePanel.transform.Find("Button_Purchase/Price");
+            escorteePriceText.GetComponent<TextMeshProUGUI>().text = "$" + escorteeList[currentIndex].price;
+        }
     }
 
     //PURCHASE AND SET OWNED
     public void ConfirmPurchase()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Purchase");
         escorteeList[currentIndex].isOwned = true;
+
+        GameManager.Instance.LoadedGameData.ownedVehicles.Add(escorteeList[currentIndex].id);
+
+        GameManager.Instance.LoadedGameData.money = (float)GameManager.Instance.LoadedGameData.money - (float)escorteeList[currentIndex].price;
         Refresh();
         ClosePurchasePanel();
     }
@@ -227,7 +253,31 @@ public class GarageUIScript : MonoBehaviour
     //CLOSE PURCHASE PANEL
     public void ClosePurchasePanel()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
         purchasePanel.SetActive(false);
     }
+
+    public void CloseGarageUI()
+    {
+        GameObject[] diegeticObjs;
+        diegeticObjs = GameObject.FindGameObjectsWithTag("Diegetic");
+        foreach (GameObject g in diegeticObjs)
+        {
+            g.GetComponent<PolygonCollider2D>().enabled = true;
+        }
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        this.gameObject.SetActive(false);
+    }
     #endregion
+
+
+    IEnumerator ShowPopup(float delay)
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/PurchaseFail");
+        popup.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        popup.SetActive(false);
+    }
 }

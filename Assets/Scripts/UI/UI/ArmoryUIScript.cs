@@ -36,6 +36,9 @@ public class ArmoryUIScript : MonoBehaviour
     [Header("Cash Text Box")]
     public TextMeshProUGUI cashOwnedText;
 
+    [Header("Popup")]
+    public GameObject popup;
+
     #endregion
 
     // Start is called before the first frame update
@@ -70,6 +73,8 @@ public class ArmoryUIScript : MonoBehaviour
     {
         //AFTER PRESSING BUTTONS IN THE UI, COLOR FADES BACK TO NORMAL
 
+        cashOwnedText.text = "$" + GameManager.Instance.LoadedGameData.money.ToString();
+
         if (Input.GetMouseButtonUp(0))
         {
             EventSystem.current.SetSelectedGameObject(null);
@@ -99,6 +104,7 @@ public class ArmoryUIScript : MonoBehaviour
         RefreshButtons();
         RefreshAmmoPanel();
 
+        GameManager.Instance.gameData.SaveGame();
         #region UNUSED CODE
         /*if (weaponList[currentIndex].isOwned == true)
         {
@@ -361,35 +367,32 @@ public class ArmoryUIScript : MonoBehaviour
         Transform textAmmoStack = buttonPurchaseAmmo.transform.Find("Text");
         Transform textAmmoStackPrice = buttonPurchaseAmmo.transform.Find("Price");
 
-        if (weaponList[currentIndex].ammoType == AmmoType.LIGHT)
-        {
-            textAmmoStack.GetComponent<TextMeshProUGUI>().text = "BUY AMMO X30";
-            textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "$100";
-
-            ammoCount.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount.ToString();
-        }
-        else if (weaponList[currentIndex].ammoType == AmmoType.SHOTGUN)
-        {
-            textAmmoStack.GetComponent<TextMeshProUGUI>().text = "BUY AMMO X10";
-            textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "$50";
-
-            ammoCount.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount.ToString();
-        }
-        else if (weaponList[currentIndex].ammoType == AmmoType.HEAVY)
-        {
-            textAmmoStack.GetComponent<TextMeshProUGUI>().text = "BUY AMMO X15";
-            textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "$200";
-
-            ammoCount.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount.ToString();
-        }
-        else if (weaponList[currentIndex].ammoType == AmmoType.NONE)
+        if(weaponList[currentIndex].ammoType == AmmoType.NONE)
         {
             textAmmoStack.GetComponent<TextMeshProUGUI>().text = "IT'S MELEE...";
             textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "$0";
         }
+        else
+        {
+            textAmmoStack.GetComponent<TextMeshProUGUI>().text = "BUY AMMO X" + GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amountPerStack;
+            textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "$" + GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].price;
 
-        //REFRESHES AMMO COUNT
-        //ammoCount.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount.ToString();
+            ammoCount.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount.ToString();
+        }
+
+        //DISABLE BUTTON IF MAX AMMO HAS BEEN REACHED
+        if(weaponList[currentIndex].ammoType != AmmoType.NONE)
+        {
+            if (GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount == GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].maxAmount)
+            {
+                buttonPurchaseAmmo.GetComponent<Button>().interactable = false;
+                textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "MAXED";
+            }
+        }
+        else
+        {
+            buttonPurchaseAmmo.GetComponent<Button>().interactable = true;
+        }
     }
     #endregion
 
@@ -499,12 +502,19 @@ public class ArmoryUIScript : MonoBehaviour
         if(weaponList[currentIndex].isOwned != true)
         {
             PlayClick();
-            purchasePanel.SetActive(true);
-            Transform weaponText = purchasePanel.transform.Find("PurchasedWeaponName");
-            weaponText.GetComponent<TextMeshProUGUI>().text = weaponList[currentIndex].id.ToString().Replace('_', ' ');
+            if (GameManager.Instance.LoadedGameData.money < weaponList[currentIndex].price)
+            {
+                StartCoroutine(ShowPopup(.8f));
+            }
+            else
+            {
+                purchasePanel.SetActive(true);
+                Transform weaponText = purchasePanel.transform.Find("PurchasedWeaponName");
+                weaponText.GetComponent<TextMeshProUGUI>().text = weaponList[currentIndex].id.ToString().Replace('_', ' ');
 
-            Transform weaponPriceText = purchasePanel.transform.Find("Button_Purchase/Price");
-            weaponPriceText.GetComponent<TextMeshProUGUI>().text = "$" + weaponList[currentIndex].price;
+                Transform weaponPriceText = purchasePanel.transform.Find("Button_Purchase/Price");
+                weaponPriceText.GetComponent<TextMeshProUGUI>().text = "$" + weaponList[currentIndex].price;
+            }
         }
     }
 
@@ -513,6 +523,7 @@ public class ArmoryUIScript : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Purchase");
         weaponList[currentIndex].isOwned = true;
         GameManager.Instance.LoadedGameData.money = (float)GameManager.Instance.LoadedGameData.money - (float)weaponList[currentIndex].price;
+        GameManager.Instance.LoadedGameData.ownedWeapons.Add(weaponList[currentIndex].id);
         Refresh();
         Debug.Log("Purchased weapon " + weaponList[currentIndex].id.ToString());
         CloseWeaponPurchasePanel();
@@ -529,25 +540,38 @@ public class ArmoryUIScript : MonoBehaviour
     public void OpenAmmoPurchasePanel()
     {
         PlayClick();
-        ammoPurchasePanel.SetActive(true);
-        Transform ammoText = ammoPurchasePanel.transform.Find("PurchasedAmmoName");
-        ammoText.GetComponent<TextMeshProUGUI>().text = weaponList[currentIndex].ammoType.ToString() + " AMMO";
+
+        if (GameManager.Instance.LoadedGameData.money < GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].price)
+        {
+            StartCoroutine(ShowPopup(.8f));
+        }
+        else
+        {
+            ammoPurchasePanel.SetActive(true);
+            Transform ammoText = ammoPurchasePanel.transform.Find("PurchasedAmmoName");
+            ammoText.GetComponent<TextMeshProUGUI>().text = weaponList[currentIndex].ammoType.ToString() + " AMMO x" +
+                GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amountPerStack;
+
+            Transform ammoPrice = ammoPurchasePanel.transform.Find("Button_Purchase/Price");
+            ammoPrice.GetComponent<TextMeshProUGUI>().text = "$" + GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].price;
+        }
     }
 
     public void ConfirmPurchaseAmmo()
     {
-        if(weaponList[currentIndex].ammoType == AmmoType.LIGHT)
+        GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount += 
+            GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amountPerStack;
+
+        if(GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount > 
+            GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].maxAmount)
         {
-            GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount += 30;
+            GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount = 
+                GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].maxAmount;
         }
-        else if(weaponList[currentIndex].ammoType == AmmoType.SHOTGUN)
-        {
-            GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount += 10;
-        }
-        else if (weaponList[currentIndex].ammoType == AmmoType.HEAVY)
-        {
-            GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount += 15;
-        }
+
+        GameManager.Instance.LoadedGameData.money = 
+            (float)GameManager.Instance.LoadedGameData.money - (float)GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].price;
+
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Purchase");
         Refresh();
         CloseAmmoPurchasePanel();
@@ -565,5 +589,26 @@ public class ArmoryUIScript : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Hover");
     }
+
+    public void CloseArmoryUI()
+    {
+        GameObject[] diegeticObjs;
+        diegeticObjs = GameObject.FindGameObjectsWithTag("Diegetic");
+        foreach (GameObject g in diegeticObjs)
+        {
+            g.GetComponent<PolygonCollider2D>().enabled = true;
+        }
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        this.gameObject.SetActive(false);
+    }
     #endregion
+
+    IEnumerator ShowPopup(float delay)
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/PurchaseFail");
+        popup.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        popup.SetActive(false);
+    }
 }

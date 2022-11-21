@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8672673466879648343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/AmbienceLight
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/AmbienceLight
+  Guid:
+    Data1: 2043238870
+    Data2: 1145625073
+    Data3: 2093173914
+    Data4: -388905508
+  Banks:
+  - {fileID: 8678437342431805724}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6857
 --- !u!114 &-8410806887097065527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,7 +42,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638045679590147944
+  lastModified: 638046700843932378
   FileSizes: []
   Exists: 1
 --- !u!114 &-8029575113104212662
@@ -61,7 +88,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638045679592923075
+  lastModified: 638046700844666879
   FileSizes: []
   Exists: 1
 --- !u!114 &-5878436196734742892
@@ -159,7 +186,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Gameplay.bank
   Name: Gameplay
   StudioPath: bank:/Gameplay
-  lastModified: 638045679590127928
+  lastModified: 638046700843902351
   FileSizes: []
   Exists: 1
 --- !u!114 &-3723885734687191768
@@ -233,10 +260,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638045679590157953
+  lastModified: 638046700843942388
   FileSizes:
   - Name: 
-    Value: 2008
+    Value: 2138
   Exists: 1
 --- !u!114 &-2424506622028619460
 MonoBehaviour:
@@ -346,6 +373,33 @@ MonoBehaviour:
   - Asphalt
   - Dirt
   Exists: 1
+--- !u!114 &-1572442035509416794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/ClickPaper
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/ClickPaper
+  Guid:
+    Data1: -1445938431
+    Data2: 1171920761
+    Data3: -1257717315
+    Data4: -606654600
+  Banks:
+  - {fileID: -6192649352618610893}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 647
 --- !u!114 &-419468973635884389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,12 +459,15 @@ MonoBehaviour:
   - {fileID: -2424506622028619460}
   - {fileID: -5838137605808909206}
   - {fileID: -3723885734687191768}
+  - {fileID: -8672673466879648343}
+  - {fileID: 2895500851702322360}
+  - {fileID: -1572442035509416794}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8410806887097065527}
   StringsBanks:
   - {fileID: -3247003094679002036}
-  cacheTime: 638045679592923075
+  cacheTime: 638046700844666879
   cacheVersion: 131593
 --- !u!114 &2422948965619628952
 MonoBehaviour:
@@ -438,6 +495,33 @@ MonoBehaviour:
   - Asphalt
   - Dirt
   Exists: 1
+--- !u!114 &2895500851702322360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/PurchaseFail
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/PurchaseFail
+  Guid:
+    Data1: -1837441168
+    Data2: 1314442522
+    Data3: -779963242
+    Data4: 413533738
+  Banks:
+  - {fileID: -6192649352618610893}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 218
 --- !u!114 &4469223331600349411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +589,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638045679591531795
+  lastModified: 638046700844182604
   FileSizes: []
   Exists: 1
 --- !u!114 &8393815413211621361
@@ -574,7 +658,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638045679585985827
+  lastModified: 638046700843396852
   FileSizes: []
   Exists: 1
 --- !u!114 &8874709602837240393

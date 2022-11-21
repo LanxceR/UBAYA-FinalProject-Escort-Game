@@ -31,6 +31,8 @@ public class JobBoardHelperScript : MonoBehaviour
 
     void OnMouseDown()
     {
-        parentJobBoardUI.GetComponent<JobBoardUIScript>().debugIndex(missionIndex);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/ClickPaper");
+        parentJobBoardUI.GetComponent<JobBoardUIScript>().OpenBriefing(missionIndex);
     }
 }
