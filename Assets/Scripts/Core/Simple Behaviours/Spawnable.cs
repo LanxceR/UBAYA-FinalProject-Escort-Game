@@ -7,9 +7,9 @@ using System;
 public class Spawnable
 {
     public GameObject prefab;
-    [Range(1, 100)] public int spawnWeight;
+    [Range(1, 100)] public float spawnWeight;
 
-    public Spawnable(GameObject prefab, int spawnWeight)
+    public Spawnable(GameObject prefab, float spawnWeight)
     {
         this.prefab = prefab;
         this.spawnWeight = spawnWeight;

@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 5506331712228000694}
   - component: {fileID: 5506331712228000692}
   - component: {fileID: 5506331712228000695}
+  - component: {fileID: -4788627900924879281}
+  - component: {fileID: 8173916866007060599}
   m_Layer: 13
   m_Name: Finish Line Trigger
   m_TagString: Trigger
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2800000, guid: ccd17def04318534dab1f90b45de9c07, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -76,3 +78,34 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &-4788627900924879281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5506331712228000689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f6ecf3e52c61a4aaecf3f69ec10ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  col: {fileID: 5506331712228000695}
+  targetTags:
+  - Player
+  - Ally
+--- !u!114 &8173916866007060599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5506331712228000689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748f9f0fd9f3d584bb0dd1141d3f1d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionScript: {fileID: -4788627900924879281}
+  escorteeHasPassed: 0
+  playerHasPassed: 0

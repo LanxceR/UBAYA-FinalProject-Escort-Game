@@ -124,6 +124,11 @@ public class GameMissionManager : MonoBehaviour
     /// <param name="index">The index to store this mission in. Generally proportional with HazardRating, e.g 0 = NORMAL, 1 = INFESTED, 2 = OVERRUN</param>
     public void CreateMission(MissionDifficulty difficulty, HazardRating hazard, int index)
     {
+        // Is this a final mission?
+        bool isFinalMission = false;
+        if (index == 3 && difficulty == MissionDifficulty.FINAL && hazard == HazardRating.APOCALYPSE)
+            isFinalMission = true;
+
         // Randomize escort scene
         SceneName scene = escortScenes[Random.Range(0, escortScenes.Length)];
 
@@ -203,12 +208,12 @@ public class GameMissionManager : MonoBehaviour
             escorteeHasWeapon = Random.Range(0, 2) == 1 ? true : false;
 
             // Store mission to it's index
-            gameManager.MissionDatas[index] = new MissionData(scene, vehicle, escorteeHasWeapon, zombieCount, baseReward, enemies);
+            gameManager.MissionDatas[index] = new MissionData(scene, vehicle, escorteeHasWeapon, zombieCount, baseReward, enemies, isFinalMission);
         }
         else
         {
             // Store mission to it's index
-            gameManager.MissionDatas[index] = new MissionData(scene, escorteeHasWeapon, zombieCount, baseReward, enemies);
+            gameManager.MissionDatas[index] = new MissionData(scene, escorteeHasWeapon, zombieCount, baseReward, enemies, isFinalMission);
         }
     }
 }

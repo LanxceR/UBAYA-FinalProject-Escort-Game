@@ -16,6 +16,7 @@ TagManager:
   - Aim
   - Trigger
   - Destructible
+  - ItemPickup
   layers:
   - Default
   - TransparentFX
@@ -29,10 +30,10 @@ TagManager:
   - WorldHUD
   - Uninteractable
   - Obstacle
-  - Interactable
+  - Area
   - Triggers
-  - 
-  - 
+  - Interactable
+  - InteractableBody
   - 
   - 
   - 

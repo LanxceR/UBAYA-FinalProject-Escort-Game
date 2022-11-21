@@ -28,8 +28,6 @@ public class EnemyScript : MonoBehaviour, ICharacter
     [SerializeField]
     internal bool knockbackImmune = false;
 
-    // TODO: Implement other subscripts for the enemy
-    // TODO: Implement melee attack for enemy zombies
     // References of the enemy's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]
@@ -40,8 +38,11 @@ public class EnemyScript : MonoBehaviour, ICharacter
     internal EnemyAIAttackScript enemyAttackScript;
     [SerializeField]
     internal PathfindingScript pathfindingScript;
+    // Generic sub-scripts
     [SerializeField]
     internal HealthScript healthScript;
+    [SerializeField]
+    internal ItemDropScript itemDropScript;
     [SerializeField]
     internal KnockbackScript knockbackScript;
     [SerializeField]
@@ -58,6 +59,7 @@ public class EnemyScript : MonoBehaviour, ICharacter
 
         // Add listener to Health's OnHealthReachedZero UnityEvent
         healthScript.OnHealthReachedZero.AddListener(EnemyDeath);
+        healthScript.OnHealthReachedZero.AddListener(delegate { itemDropScript.SpawnItem(transform.position); });
     }
 
     void EnemyDeath()

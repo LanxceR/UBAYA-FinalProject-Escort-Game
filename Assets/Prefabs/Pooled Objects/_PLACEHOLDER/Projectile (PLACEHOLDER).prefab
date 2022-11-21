@@ -356,6 +356,7 @@ MonoBehaviour:
   damageableTags:
   - Player
   - Enemy
+  - Destructible
   projectileHitScript: {fileID: 7542916428049988055}
   projectileMovementScript: {fileID: 6428794869061359875}
   projectileAnimationScript: {fileID: 884628123488878989}

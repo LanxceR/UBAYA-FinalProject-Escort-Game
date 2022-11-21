@@ -15,10 +15,17 @@ public class Ammo
     public float amountPerStack;
     public float price;
 
+    public float Amount { get => amount;
+        set 
+        {
+            amount = Mathf.Clamp(value, 0, maxAmount);
+        } 
+    }
+
     public Ammo(AmmoType ammoType, float amount, float maxAmount, float amountPerStack, float price)
     {
         this.ammoType = ammoType;
-        this.amount = Math.Clamp(amount, 0, maxAmount);
+        this.Amount = Math.Clamp(amount, 0, maxAmount);
         this.maxAmount = maxAmount;
         this.amountPerStack = amountPerStack;
         this.price = price;

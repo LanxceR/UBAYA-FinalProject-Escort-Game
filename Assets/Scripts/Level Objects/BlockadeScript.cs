@@ -12,6 +12,10 @@ public class BlockadeScript : MonoBehaviour
     [SerializeField]
     internal float health = 50f;
 
+    [Header("Collider Settings")]
+    [SerializeField]
+    internal Collider2D collider;
+
     // References of the escortee's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]

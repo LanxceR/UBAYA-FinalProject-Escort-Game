@@ -133,7 +133,7 @@ GameObject:
   m_Layer: 13
   m_Name: Trigger Big Spawn
   m_TagString: Trigger
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -227,3 +227,4 @@ MonoBehaviour:
   collisionScript: {fileID: 4711532731927829661}
   spawnType: 2
   spawnArea: {fileID: 1633821954}
+  hasSpawned: 0

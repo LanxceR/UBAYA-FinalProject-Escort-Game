@@ -14,6 +14,7 @@ public class MissionData
 
     public SceneName escortScene = SceneName.TITLE_SCREEN;
 
+    public bool isFinalMission;
     public EscorteeScript vehicle;
     public bool escorteeHasWeapon;
     public int zombieCount;
@@ -27,8 +28,10 @@ public class MissionData
     #endregion
 
     #region Constructors
-    public MissionData(SceneName escortScene, EscorteeScript vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward, WeaponScript meleeWeapon, WeaponScript rangedWeapon1, WeaponScript rangedWeapon2, List<Spawnable> enemies)
+    public MissionData(SceneName escortScene, EscorteeScript vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward, WeaponScript meleeWeapon, WeaponScript rangedWeapon1, WeaponScript rangedWeapon2, List<Spawnable> enemies, bool isFinalMission = false)
     {
+        this.isFinalMission = isFinalMission;
+
         this.escortScene = escortScene;
 
         this.vehicle = vehicle;
@@ -42,8 +45,10 @@ public class MissionData
 
         this.enemies = enemies;
     }
-    public MissionData(SceneName escortScene, EscorteeScript vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward, List<Spawnable> enemies)
+    public MissionData(SceneName escortScene, EscorteeScript vehicle, bool escorteeHasWeapon, int zombieCount, float baseReward, List<Spawnable> enemies, bool isFinalMission = false)
     {
+        this.isFinalMission = isFinalMission;
+
         this.escortScene = escortScene;
 
         this.vehicle = vehicle;
@@ -54,8 +59,10 @@ public class MissionData
         this.enemies = enemies;
         this.escortScene = escortScene;
     }
-    public MissionData(SceneName escortScene, bool escorteeHasWeapon, int zombieCount, float baseReward, List<Spawnable> enemies)
+    public MissionData(SceneName escortScene, bool escorteeHasWeapon, int zombieCount, float baseReward, List<Spawnable> enemies, bool isFinalMission = false)
     {
+        this.isFinalMission = isFinalMission;
+
         this.escortScene = escortScene;
 
         this.escorteeHasWeapon = escorteeHasWeapon;

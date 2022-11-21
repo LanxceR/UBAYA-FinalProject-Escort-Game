@@ -119,9 +119,9 @@ public static class SaveSystem
                                $"Missions Completed: {savegame.missionsCompleted} \n" +
                                $"Missions Failed: {savegame.missionsFailed} \n" +
                                $"-----------AMMO----------- \n" +
-                               $"Light Ammo: {savegame.ammo[AmmoType.LIGHT].amount} \n" +
-                               $"Shotgun Ammo: {savegame.ammo[AmmoType.SHOTGUN].amount} \n" +
-                               $"Heavy Ammo: {savegame.ammo[AmmoType.HEAVY].amount}";
+                               $"Light Ammo: {savegame.ammo[AmmoType.LIGHT].Amount} \n" +
+                               $"Shotgun Ammo: {savegame.ammo[AmmoType.SHOTGUN].Amount} \n" +
+                               $"Heavy Ammo: {savegame.ammo[AmmoType.HEAVY].Amount}";
                 Debug.Log(debug);
                 return savegame;
             }

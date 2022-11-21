@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// <summary>
 /// The game over menu UI script (handles the game over menu UI)
 /// </summary>
-public class InGameGameOverUIScript : MonoBehaviour
+public class InGameMissionEndUIScript : MonoBehaviour
 {
     // Reference to the main UI script
     [SerializeField]
@@ -14,7 +14,9 @@ public class InGameGameOverUIScript : MonoBehaviour
 
     // Components
     [SerializeField]
-    private GameObject gameOverPanel;
+    private GameObject missionSuccessPanel;
+    [SerializeField]
+    private GameObject missionFailedPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -25,14 +27,23 @@ public class InGameGameOverUIScript : MonoBehaviour
     }
 
     // Methods
-    private void GameOver()
+    private void GameOver(GameOverEvent gameOverEvent)
     {
-        // Enable pause panel
-        gameOverPanel.SetActive(true);
+        switch (gameOverEvent)
+        {
+            case GameOverEvent.MISSION_SUCCESS:
+                missionSuccessPanel.SetActive(true);
+                break;
+            case GameOverEvent.MISSION_FAILED:
+                missionFailedPanel.SetActive(true);
+                break;
+            default:
+                break;
+        }
     }
     private void DisableGameOverPanel()
     {
         // Enable pause panel
-        gameOverPanel.SetActive(false);
+        missionFailedPanel.SetActive(false);
     }
 }

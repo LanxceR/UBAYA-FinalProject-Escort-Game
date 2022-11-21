@@ -80,6 +80,9 @@ public class GameDataManager : MonoBehaviour
     }
 
     // Save the game
+    /// <summary>
+    /// Store LoadedGameData into GameDatas[index], and then write to savefile
+    /// </summary>
     public void SaveGame()
     {
         // Fetch loaded player data

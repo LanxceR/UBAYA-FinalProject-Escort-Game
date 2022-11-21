@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public enum SpawnContext
 {
@@ -30,9 +31,9 @@ public class LevelManager : MonoBehaviour
     //=============================================================//
 
     [Header("Triggers")]
-    [SerializeField] private EdgeCollider2D spawnTriggerPrefab;
-    [SerializeField] private EdgeCollider2D bigSpawnTriggerPrefab;
-    [SerializeField] private EdgeCollider2D finishTriggerPrefab;
+    [SerializeField] private SpawnTrigger spawnTriggerPrefab;
+    [SerializeField] private SpawnTrigger bigSpawnTriggerPrefab;
+    [SerializeField] private FinishTrigger finishTriggerPrefab;
 
     [SerializeField] private GameObject triggersParent;
 
@@ -63,9 +64,9 @@ public class LevelManager : MonoBehaviour
     [Header("===IN-GAME===")]
 
     [Header("In-Game Instances")]
-    [SerializeField] private List<EdgeCollider2D> spawnTriggers;
-    [SerializeField] private List<EdgeCollider2D> bigSpawnTriggers;
-    [SerializeField] private EdgeCollider2D finishTrigger;
+    [SerializeField] private List<SpawnTrigger> spawnTriggers;
+    [SerializeField] private List<SpawnTrigger> bigSpawnTriggers;
+    [SerializeField] private FinishTrigger finishTrigger;
     [SerializeField] internal List<EnemyScript> enemiesInScene;
     [SerializeField] internal List<BlockadeScript> blockadesInScene;
 
@@ -178,7 +179,9 @@ public class LevelManager : MonoBehaviour
                 (mapBounds.extents.x * 2 - (padding * 2)) * i / blockadesAmount,
                 (mapBounds.extents.x * 2 - (padding * 2)) * (i + 1) / blockadesAmount
                 ) + padding;
-            blockadesInScene.Add(Instantiate(blockadePrefabs[Random.Range(0, blockadePrefabs.Length)], pos, Quaternion.identity, blockadeParent.transform));
+            BlockadeScript blockade = Instantiate(blockadePrefabs[Random.Range(0, blockadePrefabs.Length)], pos, Quaternion.identity, blockadeParent.transform);
+            blockadesInScene.Add(blockade);
+            UpdateGraphs(blockade.collider.bounds);
         }
     } 
     #endregion
@@ -213,7 +216,7 @@ public class LevelManager : MonoBehaviour
         }
 
         // Add total weight
-        int totalWeight = 0;
+        float totalWeight = 0;
         foreach (Spawnable s in enemiesToSpawn)
         {
             totalWeight += s.spawnWeight;
@@ -226,10 +229,10 @@ public class LevelManager : MonoBehaviour
             EnemyScript enemyToSpawn = null;
 
             // Generate a random number from 1 - totalWeight
-            int rand = Random.Range(1, totalWeight + 1);
+            float rand = Random.Range(1, totalWeight);
 
             // Weighted randomize pick an enemy to spawn
-            int pos = 0;
+            float pos = 0;
             for (int j = 0; j < enemiesToSpawn.Count; j++)
             {
                 if (rand <= enemiesToSpawn[j].spawnWeight + pos)
@@ -268,6 +271,40 @@ public class LevelManager : MonoBehaviour
     }
     #endregion
 
+    internal void TryEndLevel(bool reachedDestination)
+    {
+        bool allWinConditionsMet = true;
+
+        if (reachedDestination)
+        {
+            foreach (EnemyScript e in enemiesInScene)
+            {
+                if (e.healthScript)
+                {
+                    if (!e.healthScript.IsDead)
+                    {
+                        // Not all enemies are dead
+                        Debug.Log($"Not all enemies are dead!");
+                        allWinConditionsMet = false;
+                        break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            // Not everyone has reached the destination
+            Debug.Log($"Not everyone has reached the destination yet!");
+            allWinConditionsMet = false;
+        }
+
+        if (allWinConditionsMet)
+        {
+            // Mission successful
+            GameManager.Instance.gameState.GameOver(GameOverEvent.MISSION_SUCCESS);
+        }
+    }
+
     private IEnumerator TimerCoroutine()
     {
         // Loop forever until stopped
@@ -276,5 +313,17 @@ public class LevelManager : MonoBehaviour
             timePassed += Time.deltaTime;
             yield return null;
         }
+    }
+
+    // Use to update A* graph on this part of bounds
+    public void UpdateGraphs(Bounds bounds)
+    {
+        var guo = new GraphUpdateObject(bounds);
+
+        // Set some settings
+        guo.updatePhysics = true;
+
+        // Update graphs
+        AstarPath.active.UpdateGraphs(guo);
     }
 }

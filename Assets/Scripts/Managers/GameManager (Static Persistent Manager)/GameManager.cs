@@ -114,6 +114,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    // Update is called every frame, if the MonoBehaviour is enabled
+    private void Update()
+    {
+        // Debugging
+    }
+
     // Find an active In-Game Cameras object in hirearchy
     public void FindActiveInGameCameras()
     {
