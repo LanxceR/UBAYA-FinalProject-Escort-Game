@@ -333,7 +333,7 @@ MonoBehaviour:
   ammoType: 0
   ammoMagSize: Infinity
   price: 500
-  isOwned: 0
+  isOwned: 1
   isEquipped: 0
   weaponInputScript: {fileID: 2841505596119360413}
   weaponSpriteScript: {fileID: 2841505596119360402}
@@ -395,7 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponScript: {fileID: 2841505596119360415}
   weaponMeleeHitScript: {fileID: 3983509067198406285}
-  attackDelay: 0.5
+  attackDelay: 0.325
   damage: 10
   knockbackForce: 0
   isFullAuto: 0
@@ -429,6 +429,7 @@ MonoBehaviour:
   col: {fileID: 5514772793992127660}
   targetTags:
   - Enemy
+  - Destructible
 --- !u!114 &5587162890452110240
 MonoBehaviour:
   m_ObjectHideFlags: 0

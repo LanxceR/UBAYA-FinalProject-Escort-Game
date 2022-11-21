@@ -70,52 +70,58 @@ public static class Utilities
     }
 
     // Climb up the hirearchy and find a parent with the specified tag
-    public static GameObject FindParentWithTag(GameObject childObject, string tag)
+    public static GameObject FindParentWithTag(GameObject childObject, string tag, out Transform last)
     {
         Transform t = childObject.transform;
         while (t.parent != null)
         {
             if (t.parent.tag == tag)
             {
+                last = t.parent;
                 return t.parent.gameObject;
             }
             t = t.parent.transform;
         }
 
         // Could not find a parent with given tag.
+        last = t;
         return null; 
     }
     // Climb up the hirearchy and find a parent with the specified type
-    public static Transform FindParent<T>(Transform child) where T: class
+    public static Transform FindParent<T>(Transform child, out Transform last) where T: class
     {
         Transform t = child;
         while (t.parent != null)
         {
             if (t.parent.TryGetComponent(out T _))
             {
+                last = t.parent;
                 return t.parent;
             }
             t = t.parent;
         }
 
         // Could not find a parent with implementing ICharacter
-        return t;
+        last = t;
+        return null;
     }
     // Climb up the hirearchy and find a parent with the specified type
-    public static T FindParentOfType<T>(Transform child) where T : class
+    public static T FindParentOfType<T>(Transform child, out Transform last) where T : class
     {
         Transform t = child;
         while (t.parent != null)
         {
             if (t.parent.TryGetComponent(out T parent))
             {
+                last = t.parent;
                 return parent;
             }
             t = t.parent;
         }
 
         // Could not find a parent with implementing ICharacter
-        return default(T);
+        last = t;
+        return null;
     }
 
     // Find a child with the specified tag

@@ -15,7 +15,7 @@ public class Ammo
     public float amountPerStack;
     public float price;
 
-    public Ammo(AmmoType ammoType, int amount, float maxAmount, float amountPerStack, float price)
+    public Ammo(AmmoType ammoType, float amount, float maxAmount, float amountPerStack, float price)
     {
         this.ammoType = ammoType;
         this.amount = Math.Clamp(amount, 0, maxAmount);

@@ -15,6 +15,7 @@ TagManager:
   - VehicleMount
   - Aim
   - Trigger
+  - Destructible
   layers:
   - Default
   - TransparentFX

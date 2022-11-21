@@ -36,7 +36,7 @@ public class PlayerHUDReloadIndicatorScript : MonoBehaviour
         Debug.Log("PlayerHUDReloadIndicatorScript starting");
                
         // Add listener to OnEquipmentSwitch to assign the current active weapon script
-        inv = Utilities.FindParentOfType<InventoryScript>(transform);
+        inv = Utilities.FindParentOfType<InventoryScript>(transform, out _);
         if (inv)
             inv.OnEquipmentSwitch?.AddListener(AssignWeaponScript);
 

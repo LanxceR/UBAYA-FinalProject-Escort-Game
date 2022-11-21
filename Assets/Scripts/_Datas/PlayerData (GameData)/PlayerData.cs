@@ -56,9 +56,9 @@ public class PlayerData
         this.daysPassed = daysPassed;
         this.missionsCompleted = missionsCompleted;
         this.missionsFailed = missionsFailed;
-        this.ammo[AmmoType.LIGHT].amount = ammo_LIGHT;
-        this.ammo[AmmoType.SHOTGUN].amount = ammo_SHOTGUN;
-        this.ammo[AmmoType.HEAVY].amount = ammo_HEAVY;
+        this.ammo[AmmoType.LIGHT] = new Ammo(AmmoType.LIGHT, ammo_LIGHT, 120, 30, 100);
+        this.ammo[AmmoType.SHOTGUN] = new Ammo(AmmoType.SHOTGUN, ammo_SHOTGUN, 24, 10, 50);
+        this.ammo[AmmoType.HEAVY] = new Ammo(AmmoType.HEAVY, ammo_HEAVY, 40, 15, 200);
 
         this.ownedWeapons = ownedWeapons;
         this.ownedVehicles = ownedVehicles;

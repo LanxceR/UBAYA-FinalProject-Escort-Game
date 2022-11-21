@@ -39,7 +39,7 @@ public class EscorteeScript : MonoBehaviour, ICharacter
     [SerializeField] internal bool isOwned;
     [SerializeField] internal bool isEquipped;
 
-    // References of the player's sub-scripts
+    // References of the escortee's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]
     internal EscorteeInputScript escorteeInputScript;

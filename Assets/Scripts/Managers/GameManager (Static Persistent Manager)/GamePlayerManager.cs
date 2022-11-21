@@ -27,7 +27,7 @@ public class GamePlayerManager : MonoBehaviour
     }
 
     // Find a player object in hirearchy
-    public void FindPlayer()
+    public void FindPlayerInScene()
     {
         var activePlayer = FindObjectOfType<PlayerScript>();
 
@@ -40,7 +40,6 @@ public class GamePlayerManager : MonoBehaviour
     // Spawn player
     public void TrySpawnPlayer()
     {
-        // TODO: Spawn point for player
         TrySpawnPlayer(PlayerPrefab.transform);
     }
     public void TrySpawnPlayer(Transform spawnPoint)

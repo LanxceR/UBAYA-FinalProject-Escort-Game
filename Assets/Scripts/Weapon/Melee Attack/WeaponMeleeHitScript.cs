@@ -43,7 +43,8 @@ public class WeaponMeleeHitScript : MonoBehaviour
 
     internal void OnHit(GameObject victim)
     {
-        Debug.Log($"{attacker.name}'s attack has hit {Utilities.FindParent<ICharacter>(victim.transform).name}!");
+        if (Utilities.FindParent<HealthScript>(victim.transform, out Transform parent))
+            Debug.Log($"{attacker.name}'s attack has hit {parent?.name}!");
 
         // Try to damage victim
         Hit(victim);
@@ -55,8 +56,9 @@ public class WeaponMeleeHitScript : MonoBehaviour
         // For abbreviation
         var w = weaponScript.weaponAttackScript as WeaponMeleeAttackScript;
 
+
         // Fetch victim's health on their parent gameobject
-        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out HealthScript health);
+        HealthScript health = Utilities.FindParentOfType<HealthScript>(victim.transform, out _);
 
         if (health)
         {
@@ -64,8 +66,10 @@ public class WeaponMeleeHitScript : MonoBehaviour
             health.TakeDamage(attacker, w.damage);
         }
 
-        // Fetch victim's knockback script on their parent gameobject
-        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out KnockbackScript knockback);
+
+        // Fetch victim's knockback on their parent gameobject
+        KnockbackScript knockback = Utilities.FindParentOfType<KnockbackScript>(victim.transform, out _);
+
         // Fetch victim's collider
         victim.TryGetComponent(out Collider2D collider);
 
@@ -78,8 +82,9 @@ public class WeaponMeleeHitScript : MonoBehaviour
             knockback.DoKnockback(w.knockbackForce, dir.normalized, !health.IsDead, !health.IsDead);
         }
 
-        // Fetch victim's aggro script on their parent gameobject
-        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out ReceiveAggroScript aggro);
+
+        // Fetch victim's knockback on their parent gameobject
+        ReceiveAggroScript aggro = Utilities.FindParentOfType<ReceiveAggroScript>(victim.transform, out _);
 
         if (aggro)
         {

@@ -162,16 +162,10 @@ public class GameSceneManager : MonoBehaviour
                 gameManager.TryInitializeInGameUI();
 
                 // Find any preexisting players first
-                gameManager.gamePlayer.FindPlayer();
-                // TODO: Spawn player using other method (such as after generating the map)
-                // Attempt to spawn Player
-                gameManager.gamePlayer.TrySpawnPlayer();
+                gameManager.gamePlayer.FindPlayerInScene();
 
                 // Find any preexisting escortees first
                 gameManager.gameEscortee.FindEscorteeInScene();
-                // TODO: Spawn escortee using other method (such as after generating the map)
-                // Attempt to spawn Player
-                //gameManager.gameEscorteeSpawnEscortee();
                 break;
             default:
                 gameManager.gameState.enabled = false;

@@ -20,7 +20,7 @@ public class GameDataManager : MonoBehaviour
     }
 
     // Create a new save
-    internal void CreateGame(
+    public void CreateGame(
         int index,
         Difficulty difficulty,
         float money,
@@ -49,6 +49,33 @@ public class GameDataManager : MonoBehaviour
             equippedRangedWeapon1,
             equippedRangedWeapon2,
             equippedVehicle
+            );
+    }
+    public void CreateGame(
+        int index,
+        Difficulty difficulty
+        )
+    {
+        List<WeaponID> startingWeapon = new List<WeaponID>();
+        startingWeapon.Add(WeaponID.PIPE);
+
+        List<EscorteeID> startingVehicle = new List<EscorteeID>();
+        startingVehicle.Add(EscorteeID.BUS);
+
+        // Create new player data and store in game manager array
+        gameManager.GameDatas[index] = new PlayerData(
+            index,
+            difficulty,
+            0,
+            0,
+            0,
+            0,
+            0, 0, 0,
+            startingWeapon, startingVehicle,
+            WeaponID.PIPE,
+            WeaponID.NONE,
+            WeaponID.NONE,
+            EscorteeID.BUS
             );
     }
 

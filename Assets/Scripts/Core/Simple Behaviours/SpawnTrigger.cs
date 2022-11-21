@@ -23,7 +23,7 @@ public class SpawnTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lvlManager = Utilities.FindParentOfType<LevelManager>(transform);
+        lvlManager = Utilities.FindParentOfType<LevelManager>(transform, out _);
 
         if (collisionScript)
         {

@@ -35,7 +35,7 @@ public class WeaponAmmoScript : MonoBehaviour
         loadedAmmo = weaponScript.ammoMagSize;
 
         // Add listener to OnEquipmentSwitch to interrupt reloads on equipment switch
-        inv = Utilities.FindParentOfType<InventoryScript>(transform);
+        inv = Utilities.FindParentOfType<InventoryScript>(transform, out _);
         if (inv)
             inv.OnEquipmentSwitch?.AddListener(InterruptReloadCoroutine);
     }

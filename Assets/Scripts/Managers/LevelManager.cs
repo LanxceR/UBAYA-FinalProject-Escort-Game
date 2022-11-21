@@ -15,6 +15,13 @@ public enum SpawnContext
 public class LevelManager : MonoBehaviour
 {
     #region Components
+    [Header("===INITIALIZATION===")]
+    //=============================================================//
+
+    [Header("Player Spawn Setting")]
+    [SerializeField] private Transform playerSpawnPoint;
+    [SerializeField] private Transform escorteeSpawnPoint;
+
     //=============================================================//
 
     [Header("World Bounds")]
@@ -31,9 +38,8 @@ public class LevelManager : MonoBehaviour
 
     //=============================================================//
 
-    [Header("Blockade Prefabs")]
-    [SerializeField] private GameObject blockadePrefab;
-
+    [Header("Blockades")]
+    [SerializeField] private BlockadeScript[] blockadePrefabs;
     [SerializeField] private GameObject blockadeParent;
 
     //=============================================================//
@@ -49,17 +55,19 @@ public class LevelManager : MonoBehaviour
     
     //=============================================================//
 
-    [Header("Idle Spawn Setting")]
+    [Header("Idle Spawn Area Setting")]
     [SerializeField] private CompositeCollider2D idleSpawnArea;
-
-    [Header("==============================================")]
     #endregion
 
     #region Variables
-    [Header("Triggers In Scene")]
+    [Header("===IN-GAME===")]
+
+    [Header("In-Game Instances")]
     [SerializeField] private List<EdgeCollider2D> spawnTriggers;
     [SerializeField] private List<EdgeCollider2D> bigSpawnTriggers;
     [SerializeField] private EdgeCollider2D finishTrigger;
+    [SerializeField] internal List<EnemyScript> enemiesInScene;
+    [SerializeField] internal List<BlockadeScript> blockadesInScene;
 
     [Header("In-Game Values")]
     [SerializeField] internal float timePassed;
@@ -68,8 +76,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] internal int enemyCountLeft;
     [SerializeField] internal List<Spawnable> enemiesToSpawn;
 
-    [Header("In-Game Instances")]
-    [SerializeField] internal List<EnemyScript> activeEnemies;
     #endregion
 
     // Start is called before the first frame update
@@ -81,6 +87,10 @@ public class LevelManager : MonoBehaviour
         // Initialization
         mapBounds = worldBound.bounds;
         SetupLevel();
+
+        // Spawn players & escortees
+        GameManager.Instance.gamePlayer.TrySpawnPlayer(playerSpawnPoint);
+        GameManager.Instance.gameEscortee.TrySpawnEscortee(escorteeSpawnPoint);
 
         // Enemies
         totalEnemyCount = GameManager.Instance.LoadedMissionData.zombieCount;
@@ -97,7 +107,15 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    #region Level Setups
     private void SetupLevel()
+    {
+        SetupTriggers();
+
+        SetupBlockades();
+    }
+
+    private void SetupTriggers()
     {
         // For now, roughly divide the amount of idle, small wave spawns, and big wave spawns by these proportions
         // Idle -> 10% of totalEnemy
@@ -143,16 +161,29 @@ public class LevelManager : MonoBehaviour
         finishTrigger = Instantiate(finishTriggerPrefab, pos, Quaternion.identity, triggersParent.transform);
     }
 
-    private IEnumerator TimerCoroutine()
+    private void SetupBlockades()
     {
-        // Loop forever until stopped
-        while (true)
-        {
-            timePassed += Time.deltaTime;
-            yield return null;
-        }
-    }
+        Vector2 pos;
+        float padding = 5f; // Padding area for triggers to always spawn within the padded area (from left OR right)
 
+        // Randomize spawn trigger amounts
+        int blockadesAmount = Random.Range(1, 4);
+        pos = map.transform.position;
+        for (int i = 0; i < blockadesAmount; i++)
+        {
+            // Randomize blockades position
+            // To roughly distribute evenly, randomize each blockades in their own area,
+            // E.g the 2nd out of 10 triggers position would be randomized between 1/10 to 2/10, so on & so forth
+            pos.x = Random.Range(
+                (mapBounds.extents.x * 2 - (padding * 2)) * i / blockadesAmount,
+                (mapBounds.extents.x * 2 - (padding * 2)) * (i + 1) / blockadesAmount
+                ) + padding;
+            blockadesInScene.Add(Instantiate(blockadePrefabs[Random.Range(0, blockadePrefabs.Length)], pos, Quaternion.identity, blockadeParent.transform));
+        }
+    } 
+    #endregion
+
+    #region Enemy Spawning
     private Vector2 GetRandomPosition(Bounds area)
     {
         float xPos = Random.Range(area.min.x, area.max.x);
@@ -217,7 +248,7 @@ public class LevelManager : MonoBehaviour
                 // TODO: Randomize spawn position, also try and spawn from outside the map, OR work on spawn position any other way
                 // If there's an enemy to spawn, then instantiate that enemy
                 EnemyScript spawnedEnemy = Instantiate(enemyToSpawn, spawnPos, Quaternion.identity, enemiesParent.transform);
-                activeEnemies.Add(spawnedEnemy);
+                enemiesInScene.Add(spawnedEnemy);
 
                 if (context != SpawnContext.IDLE)
                 {
@@ -234,5 +265,16 @@ public class LevelManager : MonoBehaviour
 
         Debug.Log($"Spawned {amountToSpawn} enemies");
         return hasSpawnedSomething;
+    }
+    #endregion
+
+    private IEnumerator TimerCoroutine()
+    {
+        // Loop forever until stopped
+        while (true)
+        {
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
     }
 }

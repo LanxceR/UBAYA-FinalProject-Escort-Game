@@ -235,7 +235,7 @@ MonoBehaviour:
   - {x: 0.23646806, y: -0.99176466, z: 0}
   m_ShapePathHash: -987868597
   m_Mesh: {fileID: 0}
-  m_InstanceId: -233808
+  m_InstanceId: 755602
 --- !u!1 &6254689341746672380
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,13 +246,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6102861267032428032}
   - component: {fileID: 8374995161130523630}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hitbox
-  m_TagString: Untagged
+  m_TagString: Destructible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6102861267032428032
 Transform:
   m_ObjectHideFlags: 0

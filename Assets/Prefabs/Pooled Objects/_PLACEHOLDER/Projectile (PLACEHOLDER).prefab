@@ -419,6 +419,7 @@ MonoBehaviour:
   - Enemy
   - Obstacle
   - World
+  - Destructible
 --- !u!114 &8946504609972496669
 MonoBehaviour:
   m_ObjectHideFlags: 0

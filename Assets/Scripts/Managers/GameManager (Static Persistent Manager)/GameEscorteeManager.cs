@@ -85,7 +85,6 @@ public class GameEscorteeManager : MonoBehaviour
     // Spawn player
     public void TrySpawnEscortee()
     {
-        // TODO: Spawn point for escortee & Assign loaded mission escortee
         TrySpawnEscortee(gameManager.LoadedMissionData.vehicle.transform);
     }
     public void TrySpawnEscortee(Transform spawnPoint)
