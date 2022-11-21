@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5890457680632306359}
   - component: {fileID: 5890457680632306352}
   - component: {fileID: 5890457680632306353}
+  - component: {fileID: 3430045982529451649}
   m_Layer: 0
   m_Name: UI Camera
   m_TagString: UICamera
@@ -142,3 +143,16 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!114 &3430045982529451649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890457680632306355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
