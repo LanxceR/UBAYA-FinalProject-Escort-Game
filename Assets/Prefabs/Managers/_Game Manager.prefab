@@ -87,34 +87,34 @@ MonoBehaviour:
   gameIsPlaying: 1
   gameTimeScale: 1
   gameDatas:
-  - isEmpty: 1
+  - isEmpty: 0
     index: 0
-    difficulty: 0
-    money: 0
-    daysPassed: 0
-    missionsCompleted: 0
+    difficulty: 1
+    money: 5000
+    daysPassed: 9
+    missionsCompleted: 2
     missionsFailed: 0
-    ownedWeapons: 
-    ownedVehicles: 
+    ownedWeapons: 03000000040000000700000008000000
+    ownedVehicles: 0100000002000000
+    equippedMeleeWeapon: 3
+    equippedRangedWeapon1: 7
+    equippedRangedWeapon2: 8
+    equippedVehicle: 1
+  - isEmpty: 1
+    index: 1
+    difficulty: 0
+    money: 10000
+    daysPassed: 5
+    missionsCompleted: 4
+    missionsFailed: 0
+    ownedWeapons: 07000000
+    ownedVehicles: 00000000
     equippedMeleeWeapon: 0
     equippedRangedWeapon1: 0
     equippedRangedWeapon2: 0
     equippedVehicle: 0
   - isEmpty: 1
-    index: 0
-    difficulty: 0
-    money: 0
-    daysPassed: 0
-    missionsCompleted: 0
-    missionsFailed: 0
-    ownedWeapons: 
-    ownedVehicles: 
-    equippedMeleeWeapon: 0
-    equippedRangedWeapon1: 0
-    equippedRangedWeapon2: 0
-    equippedVehicle: 0
-  - isEmpty: 1
-    index: 0
+    index: 2
     difficulty: 0
     money: 0
     daysPassed: 0

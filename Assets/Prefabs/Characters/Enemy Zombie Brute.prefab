@@ -946,6 +946,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2841505596119360411, guid: 85cc7ef14f51c624dbf2f2bff57969c5, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841505596119360411, guid: 85cc7ef14f51c624dbf2f2bff57969c5, type: 3}
       propertyPath: m_Name
       value: Melee Invisible
       objectReference: {fileID: 0}

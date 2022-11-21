@@ -31,8 +31,6 @@ public class WeaponAmmoScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("WeaponAmmoScript starting");
-
         // Set ammo count at the start
         loadedAmmo = weaponScript.ammoMagSize;
 

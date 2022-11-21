@@ -10,7 +10,7 @@ public class GameMissionManager : MonoBehaviour
 {
     // Reference to the game manager script
     [SerializeField]
-    internal GameManager gameManager;
+    public GameManager gameManager;
 
     // Escort Scenes
     [Header("Possible Escort Scenes")]
@@ -127,9 +127,6 @@ public class GameMissionManager : MonoBehaviour
         // Randomize escort scene
         SceneName scene = escortScenes[Random.Range(0, escortScenes.Length)];
 
-        // Randomize if escortee have weapons or not
-        bool escorteeHasWeapon = Random.Range(0, 2) == 1 ? true : false;
-
         // Randomize Zombie Count & base reward
         int zombieCount;
         float baseReward = 1000;
@@ -196,10 +193,14 @@ public class GameMissionManager : MonoBehaviour
         }
 
         EscorteeScript vehicle;
+        bool escorteeHasWeapon = false;
         if (randomizeEscortee)
         {
             // Choose random vehicle
             vehicle = gameManager.gameEscortee.EscorteePrefabs[Random.Range(0, gameManager.gameEscortee.EscorteePrefabs.Length)];
+
+            // Randomize if escortee have weapons or not
+            escorteeHasWeapon = Random.Range(0, 2) == 1 ? true : false;
 
             // Store mission to it's index
             gameManager.MissionDatas[index] = new MissionData(scene, vehicle, escorteeHasWeapon, zombieCount, baseReward, enemies);

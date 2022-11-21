@@ -28,12 +28,6 @@ public class WeaponAnimationScript : MonoBehaviour, IAnimation
     private string currentState;
     private bool uninterruptibleCoroutineRunning = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("WeaponAnimationScript starting");
-    }
-
     #region State machine
     // Update is called once per frame
     void Update()

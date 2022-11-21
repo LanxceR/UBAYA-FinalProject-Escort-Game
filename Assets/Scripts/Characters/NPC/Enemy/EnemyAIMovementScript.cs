@@ -37,15 +37,19 @@ public class EnemyAIMovementScript : MonoBehaviour
     }
     [SerializeField] private bool followTarget = true;
 
+    // Awake is called when the script instance is being loaded
+    private void Awake()
+    {
+        moveableComp = GetComponent<MoveableScript>();
+
+        actualSpeed = enemyScript.baseSpeed;
+        currentSpeed = enemyScript.baseSpeed;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         SetAITarget();
-
-        moveableComp = GetComponent<MoveableScript>();
-        actualSpeed = enemyScript.baseSpeed;
-        currentSpeed = enemyScript.baseSpeed;
 
         if (enemyScript.knockbackScript)
         {
@@ -81,6 +85,13 @@ public class EnemyAIMovementScript : MonoBehaviour
         // AI Movement
         if (enemyScript.pathfindingScript)
             AIPathMovement();
+    }
+
+    internal void SetDirection(Vector2 dir)
+    {
+        this.dir = dir;
+        moveableComp.speed = actualSpeed;
+        moveableComp.SetDirection(this.dir);
     }
 
     private void SetAITarget()

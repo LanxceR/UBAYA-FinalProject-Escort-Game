@@ -174,6 +174,7 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
         {
             // If aiming at a target, get direction based off of that target position
             if (enemyScript.recAggroScript.target) degAngle = Utilities.GetDirectionAngle(enemyScript.recAggroScript.target.position - transform.position);
+            else degAngle = Utilities.GetDirectionAngle(enemyScript.enemyMovementScript.dir);
         }
         else
         {

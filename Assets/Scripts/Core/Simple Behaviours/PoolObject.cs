@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Behaviours for pooled objects
-/// </summary>
 
 // Enum for pool object type
 public enum PoolObjectType
@@ -12,6 +9,9 @@ public enum PoolObjectType
     GENERIC_PROJECTILE_PLACEHOLDER,
     PROJECTILE_BULLET
 }
+/// <summary>
+/// Behaviours for pooled objects
+/// </summary>
 public class PoolObject : MonoBehaviour
 {
     [Header("Main Setting")]
