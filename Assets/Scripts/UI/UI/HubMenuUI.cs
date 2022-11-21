@@ -62,10 +62,9 @@ public class HubMenuUI : MonoBehaviour
     {
         GameObject[] diegeticObjs;
         diegeticObjs = GameObject.FindGameObjectsWithTag("Diegetic");
-        foreach (GameObject script in diegeticObjs)
+        foreach (GameObject g in diegeticObjs)
         {
-            script.GetComponent<HubMenuUI>().enabled = false;
-            script.GetComponent<PolygonCollider2D>().enabled = false;
+            g.GetComponent<PolygonCollider2D>().enabled = false;
         }
 
         List<string> list = new List<string> { "GarageUI", "ArmoryUI", "JobBoardUI"};
@@ -88,10 +87,10 @@ public class HubMenuUI : MonoBehaviour
     {
         GameObject[] diegeticObjs;
         diegeticObjs = GameObject.FindGameObjectsWithTag("Diegetic");
-        foreach (GameObject script in diegeticObjs)
+        foreach (GameObject g in diegeticObjs)
         {
-            script.GetComponent<HubMenuUI>().enabled = true;
-            script.GetComponent<PolygonCollider2D>().enabled = true;
+            //g.GetComponent<HubMenuUI>().enabled = true;
+            g.GetComponent<PolygonCollider2D>().enabled = true;
         }
 
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");

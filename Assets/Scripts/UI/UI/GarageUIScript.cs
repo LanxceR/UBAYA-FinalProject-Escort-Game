@@ -33,11 +33,18 @@ public class GarageUIScript : MonoBehaviour
     {
         escorteeList = GameManager.Instance.gameEscortee.EscorteePrefabs;
 
+        EscorteeID equippedEscortee = GameManager.Instance.LoadedGameData.equippedVehicle;
+
+        if(equippedEscortee is EscorteeID.NONE)
+        {
+            equippedEscortee = EscorteeID.BUS;
+        }
+
         //FIND CURRENTLY IN USE ESCORTEE
 
-        for(int i =0; i< escorteeList.Length; i++)
+        for (int i =0; i< escorteeList.Length; i++)
         {
-            if(escorteeList[i].isEquipped == true)
+            if(escorteeList[i].id == equippedEscortee)
             {
                 Transform childPrice = priceButtonObject.transform.Find("Price");
                 Transform childPurchased = priceButtonObject.transform.Find("Text");
@@ -126,7 +133,8 @@ public class GarageUIScript : MonoBehaviour
             childPrice.GetComponentInParent<Button>().interactable = false;
             childPurchased.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);
 
-            if (escorteeList[currentIndex].isEquipped == true)
+               //if (escorteeList[currentIndex].isEquipped == true)
+            if (escorteeList[currentIndex].id == GameManager.Instance.LoadedGameData.equippedVehicle)
             {
                 equipButtonObject.GetComponent<Button>().interactable = false;
                 equipButtonObject.GetComponentInChildren<TextMeshProUGUI>().text = "IN USE";
@@ -165,7 +173,8 @@ public class GarageUIScript : MonoBehaviour
 
     public void SelectAsMainEscortee()
     {
-        for (int i = 0; i < escorteeList.Length; i++)
+        GameManager.Instance.LoadedGameData.equippedVehicle = escorteeList[currentIndex].id;
+        /*for (int i = 0; i < escorteeList.Length; i++)
         {
             if (i != currentIndex)
             {
@@ -175,7 +184,7 @@ public class GarageUIScript : MonoBehaviour
             {
                 escorteeList[i].isEquipped = true;
             }
-        }
+        }*/
         Refresh();
     }
 

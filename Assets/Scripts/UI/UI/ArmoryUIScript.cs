@@ -33,6 +33,9 @@ public class ArmoryUIScript : MonoBehaviour
     public GameObject ammoPanel;
     public GameObject ammoCount;
 
+    [Header("Cash Text Box")]
+    public TextMeshProUGUI cashOwnedText;
+
     #endregion
 
     // Start is called before the first frame update
@@ -40,9 +43,12 @@ public class ArmoryUIScript : MonoBehaviour
     {
         weaponList = GameManager.Instance.gameWeapon.weaponPrefabs;
 
+        //USE EQUIPPED MELEE WEAPON AS DEFAULT
+        WeaponID equippedWeapon = GameManager.Instance.LoadedGameData.equippedMeleeWeapon;
+
         for (int i = 0; i < weaponList.Length; i++)
         {
-            if (weaponList[i].isEquipped == true)
+            if (weaponList[i].id == equippedWeapon)
             {
                 Transform childImage = weaponList[i].transform.Find("Weapon Model");
 
@@ -54,10 +60,6 @@ public class ArmoryUIScript : MonoBehaviour
 
                 currentIndex = i;
 
-                foreach(WeaponScript w in weaponList)
-                {
-                    w.isEquipped = false;
-                }
                 break;
             }
         }
@@ -84,6 +86,9 @@ public class ArmoryUIScript : MonoBehaviour
     //MAIN REFRESH METHOD
     private void Refresh()
     {
+        //REFRESH MONEY
+        cashOwnedText.text = "$" + GameManager.Instance.LoadedGameData.money.ToString();
+
         Transform childImage = weaponList[currentIndex].transform.Find("Weapon Model");
 
         nameObject.GetComponent<TextMeshProUGUI>().text = weaponList[currentIndex].id.ToString().Replace('_', ' ');
@@ -93,6 +98,7 @@ public class ArmoryUIScript : MonoBehaviour
         RefreshSliders(currentIndex);
         RefreshButtons();
         RefreshAmmoPanel();
+
         #region UNUSED CODE
         /*if (weaponList[currentIndex].isOwned == true)
         {
@@ -359,25 +365,31 @@ public class ArmoryUIScript : MonoBehaviour
         {
             textAmmoStack.GetComponent<TextMeshProUGUI>().text = "BUY AMMO X30";
             textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "$100";
+
+            ammoCount.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount.ToString();
         }
         else if (weaponList[currentIndex].ammoType == AmmoType.SHOTGUN)
         {
             textAmmoStack.GetComponent<TextMeshProUGUI>().text = "BUY AMMO X10";
             textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "$50";
+
+            ammoCount.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount.ToString();
         }
         else if (weaponList[currentIndex].ammoType == AmmoType.HEAVY)
         {
             textAmmoStack.GetComponent<TextMeshProUGUI>().text = "BUY AMMO X15";
             textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "$200";
+
+            ammoCount.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount.ToString();
         }
-        else
+        else if (weaponList[currentIndex].ammoType == AmmoType.NONE)
         {
             textAmmoStack.GetComponent<TextMeshProUGUI>().text = "IT'S MELEE...";
             textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "$0";
         }
 
         //REFRESHES AMMO COUNT
-        ammoCount.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount.ToString();
+        //ammoCount.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount.ToString();
     }
     #endregion
 
@@ -486,7 +498,7 @@ public class ArmoryUIScript : MonoBehaviour
     {
         if(weaponList[currentIndex].isOwned != true)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Purchase");
+            PlayClick();
             purchasePanel.SetActive(true);
             Transform weaponText = purchasePanel.transform.Find("PurchasedWeaponName");
             weaponText.GetComponent<TextMeshProUGUI>().text = weaponList[currentIndex].id.ToString().Replace('_', ' ');
@@ -498,8 +510,11 @@ public class ArmoryUIScript : MonoBehaviour
 
     public void ConfirmWeaponPurchase()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Purchase");
         weaponList[currentIndex].isOwned = true;
+        GameManager.Instance.LoadedGameData.money = (float)GameManager.Instance.LoadedGameData.money - (float)weaponList[currentIndex].price;
         Refresh();
+        Debug.Log("Purchased weapon " + weaponList[currentIndex].id.ToString());
         CloseWeaponPurchasePanel();
     }
 
