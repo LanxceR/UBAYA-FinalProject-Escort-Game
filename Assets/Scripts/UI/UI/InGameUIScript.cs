@@ -22,7 +22,7 @@ public class InGameUIScript : MonoBehaviour
     {
         Debug.Log("Main InGameUIScript starting");
 
-        // Assign world space event camera
+        // Assign world space render camera
         canvas.worldCamera = GameManager.Instance.InGameCameras.UICamera;
     }
 }

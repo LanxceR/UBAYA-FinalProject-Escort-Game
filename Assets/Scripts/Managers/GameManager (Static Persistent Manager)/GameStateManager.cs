@@ -8,7 +8,8 @@ public enum GameOverEvent
     PERMADEATH,
     MISSION_SUCCESS,
     MISSION_FAILED,
-    ENDING
+    ENDING,
+    TUTORIAL_COMPLETE
 }
 
 /// <summary>
@@ -59,9 +60,14 @@ public class GameStateManager : MonoBehaviour
         // TODO: Move the PERMADEATH and ENDING event to somewhere else (for better mission conclusion screen and then jumping into an end scene)
         switch (gameOverEvent)
         {
+            case GameOverEvent.TUTORIAL_COMPLETE:
+                Debug.Log($"Tutorial Successful!");
+                gameManager.LoadedGameData.daysPassed++;
+                break;
             case GameOverEvent.MISSION_SUCCESS:
                 Debug.Log($"Mission Successful!");
                 gameManager.LoadedGameData.missionsCompleted++;
+                gameManager.LoadedGameData.daysPassed++;
                 if (gameManager.LoadedMissionData.isFinalMission)
                 {
                     // Call GameOver again, but with an ending
@@ -71,6 +77,7 @@ public class GameStateManager : MonoBehaviour
             case GameOverEvent.MISSION_FAILED:
                 Debug.Log($"Mission Failed!");
                 gameManager.LoadedGameData.missionsFailed++;
+                gameManager.LoadedGameData.daysPassed++;
                 if (gameManager.LoadedGameData.difficulty == Difficulty.HARDCORE)
                 {
                     if (gameManager.LoadedGameData.missionsFailed >= 3 || gameManager.LoadedMissionData.isFinalMission)

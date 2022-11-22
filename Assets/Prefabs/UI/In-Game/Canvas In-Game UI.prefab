@@ -620,7 +620,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb124f3b8e0046408b6228d3fe0d4d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanvasScaler: {fileID: 7731216073637533455}
+  canvas: {fileID: 7731216073637533452}
+  canvasScaler: {fileID: 7731216073637533455}
+  pixelPerfectCamera: {fileID: 0}
 --- !u!114 &5915407342447911246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,7 +665,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inGameUIScript: {fileID: 5915407342447911246}
-  gameOverPanel: {fileID: 3177576495710711959}
+  missionSuccessPanel: {fileID: 0}
+  missionFailedPanel: {fileID: 0}
 --- !u!1 &8230872199451929773
 GameObject:
   m_ObjectHideFlags: 0

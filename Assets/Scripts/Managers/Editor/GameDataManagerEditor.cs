@@ -13,6 +13,7 @@ public class GameDataManagerEditor : Editor
 
     int indexToLoad = 0;
     int createGameIndex = 0;
+    int deleteGameIndex = 0;
     bool isHardcore;
 
     // Draws the GUI on Unity Editor Inspector
@@ -49,6 +50,12 @@ public class GameDataManagerEditor : Editor
         if (GUILayout.Button($"Create game at savegame_{createGameIndex}"))
         {
             gameDataManager.CreateGame(createGameIndex, isHardcore ? Difficulty.HARDCORE : Difficulty.CASUAL);
+        }
+
+        deleteGameIndex = EditorGUILayout.IntSlider("Delete Game Index", deleteGameIndex, 0, gameDataManager.gameManager.GameDatas.Length - 1);
+        if (GUILayout.Button($"Delete game at savegame_{deleteGameIndex}"))
+        {
+            gameDataManager.DeleteSave(deleteGameIndex);
         }
     }
 }
