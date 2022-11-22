@@ -12,13 +12,18 @@ using UnityEngine.UI;
 public class CanvasScaleAdjuster : MonoBehaviour
 {
     // Variables
-    public CanvasScaler CanvasScaler;
-    private PixelPerfectCamera MainPixelPerfectCamera;
+    public Canvas canvas;
+    public CanvasScaler canvasScaler;
+    public PixelPerfectCamera pixelPerfectCamera;
 
     // Start is called before the first frame update
     void Start()
     {
-        MainPixelPerfectCamera = Camera.main.GetComponent<PixelPerfectCamera>();
+        if (!pixelPerfectCamera && canvas.worldCamera)
+        {
+            canvas.worldCamera.TryGetComponent<PixelPerfectCamera>(out PixelPerfectCamera cam);
+            pixelPerfectCamera = cam;
+        }
 
         AdjustScalingFactor();
     }
@@ -31,7 +36,9 @@ public class CanvasScaleAdjuster : MonoBehaviour
 
     void AdjustScalingFactor()
     {
+        if (!pixelPerfectCamera) return;
+
         // Adjust scale factor to match Pixel Perfect Camera's pixel ratio
-        CanvasScaler.scaleFactor = MainPixelPerfectCamera.pixelRatio;
+        canvasScaler.scaleFactor = pixelPerfectCamera.pixelRatio;
     }
 }

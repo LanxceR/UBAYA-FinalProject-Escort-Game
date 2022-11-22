@@ -116,7 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb124f3b8e0046408b6228d3fe0d4d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanvasScaler: {fileID: 1247278644278437416}
+  canvas: {fileID: 1247278644278437419}
+  canvasScaler: {fileID: 1247278644278437416}
+  pixelPerfectCamera: {fileID: 0}
 --- !u!114 &4544646583532400673
 MonoBehaviour:
   m_ObjectHideFlags: 0

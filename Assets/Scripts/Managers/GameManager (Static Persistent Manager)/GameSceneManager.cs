@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public enum SceneName
 {
+    LOADING_SCREEN,
     TITLE_SCREEN,
     MAIN_HUB,
     TEST_ESCORT_SCENE,
@@ -22,14 +23,15 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField]
     internal GameManager gameManager;
 
-    // Unity Events
-    /// <summary>
-    /// Event invoked when there's a scene change (accepts float argument acting as the invoke delay)
-    /// </summary>
-    //internal UnityAction<float> OnSceneChange;
+    [Header("Components")]
+    [SerializeField] internal CanvasGroup loadTransitionCanvas;
 
     // Variables
+    [Header("Variables")]
     [SerializeField] private string defaultSceneTarget;
+
+    public SceneName SceneToLoad { get; private set; }
+    public float LoadProgress { get; private set; }
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -39,6 +41,16 @@ public class GameSceneManager : MonoBehaviour
 
         //OnSceneChange += ManageGMComponents;
         SceneManager.sceneLoaded += ManageGMComponents;
+    }
+
+    // Start is called just before any of the Update methods is called the first time
+    private void Start()
+    {
+        if (loadTransitionCanvas)
+        {
+            loadTransitionCanvas.alpha = 0f;
+            loadTransitionCanvas.gameObject.SetActive(false);
+        }
     }
 
     #region Main Functions
@@ -68,7 +80,21 @@ public class GameSceneManager : MonoBehaviour
     public void GotoSceneWithDelay(float delay)
     {
         StartCoroutine(LoadSceneCoroutine(defaultSceneTarget, delay));
-    } 
+    }
+
+    // Smoothly fade loading screen into the specified target alpha
+    private IEnumerator FadeLoadingScreen(float targetAlpha, float duration)
+    {
+        float startAlpha = loadTransitionCanvas.alpha;
+        float timeElapsed = 0;
+        while (timeElapsed < duration)
+        {
+            loadTransitionCanvas.alpha = Mathf.Lerp(startAlpha, targetAlpha, timeElapsed / duration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        loadTransitionCanvas.alpha = targetAlpha;
+    }
     #endregion
 
     #region Utilities
@@ -82,13 +108,15 @@ public class GameSceneManager : MonoBehaviour
     public void ReloadScene()
     {
         StartCoroutine(LoadSceneCoroutine(GetCurrentScene().name, 0));
-    } 
+    }
     #endregion
 
     #region Scene Transitions
     // Load scene coroutine
     private IEnumerator LoadSceneCoroutine(SceneName scene, float delay)
     {
+        LoadProgress = 0f;
+        SceneToLoad = scene;
         yield return new WaitForSecondsRealtime(delay);
 
         /** Transition animation / load screen
@@ -98,19 +126,39 @@ public class GameSceneManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         */
 
-        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync((int)scene);
-        yield return new WaitUntil(() => (asyncLoadLevel.isDone));
+        // Activate laoding screen
+        loadTransitionCanvas.gameObject.SetActive(true);
+        // Fade in loading screen for 1 second
+        yield return StartCoroutine(FadeLoadingScreen(1f, 1f));
+        // Load loading screen scene
+        AsyncOperation asyncLoadingScreen = SceneManager.LoadSceneAsync((int)SceneName.LOADING_SCREEN);
+        // Wait until loading loading screen is done
+        yield return new WaitUntil(() => (asyncLoadingScreen.isDone));
+
+        // Immediately load the target scene
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync((int)SceneToLoad);
+        while (!asyncLoadLevel.isDone)
+        {
+            // The loading stage is only calculated by Unity as a progress from 0 - 0.9
+            // Progress from 0.9 - 1 is reserved for activating the scene, which is not needed for showing loading progress
+            LoadProgress = Mathf.Clamp01(asyncLoadLevel.progress / 0.9f);
+
+            yield return null;
+        }
 
         yield return new WaitForEndOfFrame();
+        LoadProgress = 0f;
 
         // Reset Timescale
         gameManager.gameState.ResumeGame();
 
-        // Invoke OnSceneChange event
-        //OnSceneChange?.Invoke(delay);
+        // Fade out loading screen for 1 second
+        yield return StartCoroutine(FadeLoadingScreen(0f, 1f));
     }
     private IEnumerator LoadSceneCoroutine(string sceneName, float delay)
     {
+        LoadProgress = 0f;
+        SceneToLoad = (SceneName)SceneManager.GetSceneByName(sceneName).buildIndex;
         yield return new WaitForSecondsRealtime(delay);
 
         /** Transition animation / load screen
@@ -120,16 +168,34 @@ public class GameSceneManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         */
 
+        // Activate laoding screen
+        loadTransitionCanvas.gameObject.SetActive(true);
+        // Fade in loading screen for 1 second
+        yield return StartCoroutine(FadeLoadingScreen(1f, 1f));
+        // Load loading screen scene
+        AsyncOperation asyncLoadingScreen = SceneManager.LoadSceneAsync((int)SceneName.LOADING_SCREEN);
+        // Wait until loading loading screen is done
+        yield return new WaitUntil(() => (asyncLoadingScreen.isDone));
+
+        // Immediately load the target scene
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(sceneName);
-        yield return new WaitUntil(() => (asyncLoadLevel.isDone));
+        while (!asyncLoadLevel.isDone)
+        {
+            // The loading stage is only calculated by Unity as a progress from 0 - 0.9
+            // Progress from 0.9 - 1 is reserved for activating the scene, which is not needed for showing loading progress
+            LoadProgress = Mathf.Clamp01(asyncLoadLevel.progress / 0.9f);
+
+            yield return null;
+        }
 
         yield return new WaitForEndOfFrame();
+        LoadProgress = 0f;
 
         // Reset Timescale
         gameManager.gameState.ResumeGame();
 
-        // Invoke OnSceneChange event
-        //OnSceneChange?.Invoke(delay);
+        // Fade out loading screen for 1 second
+        yield return StartCoroutine(FadeLoadingScreen(0f, 1f));
     }
     #endregion
 
@@ -140,19 +206,19 @@ public class GameSceneManager : MonoBehaviour
 
         switch (currentScene)
         {
-            case SceneName.TITLE_SCREEN | SceneName.MAIN_HUB | SceneName.TEST_MISSION_SCENE:
-                gameManager.gameState.enabled = false;
-                gameManager.gamePlayer.enabled = false;
-                gameManager.gameEscortee.enabled = false;
-                gameManager.gameWeapon.enabled = false;
-                gameManager.gameEnemy.enabled = false;
+            case SceneName.TITLE_SCREEN | SceneName.MAIN_HUB | SceneName.TEST_MISSION_SCENE | SceneName.LOADING_SCREEN:
+                if (gameManager.gameState) gameManager.gameState.enabled = false;
+                if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = false;
+                if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = false;
+                if (gameManager.gameWeapon) gameManager.gameWeapon.enabled = false;
+                if (gameManager.gameEnemy) gameManager.gameEnemy.enabled = false;
                 break;
             case SceneName.TEST_ESCORT_SCENE:
-                gameManager.gameState.enabled = true;
-                gameManager.gamePlayer.enabled = true;
-                gameManager.gameEscortee.enabled = true;
-                gameManager.gameWeapon.enabled = true;
-                gameManager.gameEnemy.enabled = true;
+                if (gameManager.gameState) gameManager.gameState.enabled = true;
+                if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = true;
+                if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = true;
+                if (gameManager.gameWeapon) gameManager.gameWeapon.enabled = true;
+                if (gameManager.gameEnemy) gameManager.gameEnemy.enabled = true;
 
                 // Find active in-game cameras & UI (if one exists)
                 gameManager.FindActiveInGameCameras();
@@ -168,10 +234,10 @@ public class GameSceneManager : MonoBehaviour
                 gameManager.gameEscortee.FindEscorteeInScene();
                 break;
             default:
-                gameManager.gameState.enabled = false;
-                gameManager.gamePlayer.enabled = false;
-                gameManager.gameEscortee.enabled = false;
-                gameManager.gameInput.enabled = true;
+                if (gameManager.gameState) gameManager.gameState.enabled = false;
+                if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = false;
+                if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = false;
+                if (gameManager.gameInput) gameManager.gameInput.enabled = true;
                 break;
         }
     }
