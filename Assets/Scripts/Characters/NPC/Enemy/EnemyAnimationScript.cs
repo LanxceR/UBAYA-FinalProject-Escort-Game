@@ -48,10 +48,10 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
         if (enemyScript.healthScript)
         {
             // Add listener to Health's OnHit UnityEvent         
-            enemyScript.healthScript.OnHit?.AddListener(EnemyHurt);
+            enemyScript.healthScript.OnHit?.AddListener(delegate { EnemyHurt(); });
 
             // Add listener to Health's OnHealthReachedZero UnityEvent          
-            enemyScript.healthScript.OnHealthReachedZero?.AddListener(EnemyDeath);
+            enemyScript.healthScript.OnHealthReachedZero?.AddListener(delegate { StartCoroutine(EnemyDeath()); });
         }
     }
     #endregion
@@ -153,17 +153,20 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
 
     #region Transitions
     // Play hurt animation
-    private void EnemyHurt()
+    private Coroutine EnemyHurt()
     {
         if (!uninterruptibleCoroutineRunning)
         {
-            StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_HURT, false, false));
+            return StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_HURT, false, false));
         }
+
+        return null;
     }
 
     // Play death animation
-    private void EnemyDeath()
+    private IEnumerator EnemyDeath()
     {
+        yield return EnemyHurt();
         StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_DEATH, true, true));
     }
 

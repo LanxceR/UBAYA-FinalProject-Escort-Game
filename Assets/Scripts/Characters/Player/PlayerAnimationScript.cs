@@ -48,10 +48,10 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
         if (playerScript.healthScript)
         {
             // Add listener to Health's OnHit UnityEvent          
-            playerScript.healthScript.OnHit?.AddListener(PlayerHurt);
+            playerScript.healthScript.OnHit?.AddListener(delegate { PlayerHurt(); });
 
             // Add listener to Health's OnHealthReachedZero UnityEvent          
-            playerScript.healthScript.OnHealthReachedZero?.AddListener(PlayerDeath);
+            playerScript.healthScript.OnHealthReachedZero?.AddListener(delegate { PlayerDeath(); });
         }
     }
     #endregion
@@ -154,17 +154,20 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
 
     #region Transitions
     // Play hurt animation
-    private void PlayerHurt()
+    private Coroutine PlayerHurt()
     {
         if (!uninterruptibleCoroutineRunning)
         {
-            StartCoroutine(ChangeAnimationStateUninterruptible(PLAYER_HURT, false, false));
+            return StartCoroutine(ChangeAnimationStateUninterruptible(PLAYER_HURT, false, false));
         }
+
+        return null;
     }
 
     // Play death animation
-    private void PlayerDeath()
+    private IEnumerator PlayerDeath()
     {
+        yield return PlayerHurt();
         StartCoroutine(ChangeAnimationStateUninterruptible(PLAYER_DEATH, true, true));
     }
 

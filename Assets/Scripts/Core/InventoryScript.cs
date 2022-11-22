@@ -28,7 +28,7 @@ public class InventoryScript : MonoBehaviour
     // OnPSwitchEquipment listener from InputAction "MainPlayerInput.inputaction"
     void OnPSwitchEquipment()
     {
-        if (!GameManager.Instance.GameIsPlaying) return;
+        if (!GameManager.Instance.GameIsPlaying || !this.enabled) return;
 
         // Determine the next weapon index to cycle
         // If equipped index is the last equipment in inventory, go back to 0
@@ -42,7 +42,7 @@ public class InventoryScript : MonoBehaviour
     // OnPWeapon1 listener from InputAction "MainPlayerInput.inputaction"
     void OnPWeapon1()
     {
-        if (!GameManager.Instance.GameIsPlaying) return;
+        if (!GameManager.Instance.GameIsPlaying || !this.enabled) return;
 
         // Switch to equipment 1 (index = 0)
         SwitchEquipment(0);
@@ -51,7 +51,7 @@ public class InventoryScript : MonoBehaviour
     // OnPWeapon1 listener from InputAction "MainPlayerInput.inputaction"
     void OnPWeapon2()
     {
-        if (!GameManager.Instance.GameIsPlaying) return;
+        if (!GameManager.Instance.GameIsPlaying || !this.enabled) return;
 
         // Switch to equipment 2 (index = 1)
         SwitchEquipment(1);
@@ -60,7 +60,7 @@ public class InventoryScript : MonoBehaviour
     // OnPWeapon1 listener from InputAction "MainPlayerInput.inputaction"
     void OnPWeapon3()
     {
-        if (!GameManager.Instance.GameIsPlaying) return;
+        if (!GameManager.Instance.GameIsPlaying || !this.enabled) return;
 
         // Switch to equipment 3 (index = 2)
         SwitchEquipment(2);

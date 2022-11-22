@@ -23,6 +23,8 @@ public class GamePlayerManager : MonoBehaviour
         {
             activePlayer = value;
             gameManager.InGameUI.HUDScript.hudAmmoScript.AssignWeaponScript();
+            activePlayer.healthScript.OnHealthReachedZero?.RemoveListener(delegate { gameManager.gameState.GameOver(GameOverEvent.MISSION_FAILED); });
+            activePlayer.healthScript.OnHealthReachedZero?.AddListener(delegate { gameManager.gameState.GameOver(GameOverEvent.MISSION_FAILED); });
         }
     }
 

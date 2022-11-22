@@ -16,7 +16,14 @@ public class GameEscorteeManager : MonoBehaviour
     [SerializeField] private EscorteeScript[] escorteePrefabs; // Escortee prefab to spawn
     [SerializeField] private EscorteeScript activeEscortee; // Stored active escortee
     public EscorteeScript[] EscorteePrefabs { get => escorteePrefabs; set => escorteePrefabs = value; }
-    internal EscorteeScript ActiveEscortee { get => activeEscortee; set => activeEscortee = value; }
+    internal EscorteeScript ActiveEscortee { get => activeEscortee; 
+        set 
+        {
+            activeEscortee = value;
+            activeEscortee.healthScript.OnHealthReachedZero?.RemoveListener(delegate { gameManager.gameState.GameOver(GameOverEvent.MISSION_FAILED); });
+            activeEscortee.healthScript.OnHealthReachedZero.AddListener(delegate { gameManager.gameState.GameOver(GameOverEvent.MISSION_FAILED); });
+        }
+    }
 
     #region Prefab Utilities
     // TODO: (DUPLICATE) Maybe put these methods in their corresponding scripts and load using Resources.Load

@@ -377,13 +377,13 @@ public class ArmoryUIScript : MonoBehaviour
             textAmmoStack.GetComponent<TextMeshProUGUI>().text = "BUY AMMO X" + GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amountPerStack;
             textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "$" + GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].price;
 
-            ammoCount.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount.ToString();
+            ammoCount.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].Amount.ToString();
         }
 
         //DISABLE BUTTON IF MAX AMMO HAS BEEN REACHED
         if(weaponList[currentIndex].ammoType != AmmoType.NONE)
         {
-            if (GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount == GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].maxAmount)
+            if (GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].Amount == GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].maxAmount)
             {
                 buttonPurchaseAmmo.GetComponent<Button>().interactable = false;
                 textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "MAXED";
@@ -559,15 +559,8 @@ public class ArmoryUIScript : MonoBehaviour
 
     public void ConfirmPurchaseAmmo()
     {
-        GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount += 
+        GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].Amount += 
             GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amountPerStack;
-
-        if(GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount > 
-            GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].maxAmount)
-        {
-            GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amount = 
-                GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].maxAmount;
-        }
 
         GameManager.Instance.LoadedGameData.money = 
             (float)GameManager.Instance.LoadedGameData.money - (float)GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].price;

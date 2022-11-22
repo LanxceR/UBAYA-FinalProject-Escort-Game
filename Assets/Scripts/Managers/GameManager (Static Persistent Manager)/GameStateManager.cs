@@ -44,21 +44,6 @@ public class GameStateManager : MonoBehaviour
     // Update is called every frame, if the MonoBehaviour is enabled
     private void Update()
     {
-        // Add on death listeners to both active player and escortee
-        if (gameManager.gamePlayer.ActivePlayer)
-        {
-            if (gameManager.gamePlayer.ActivePlayer.healthScript.OnHealthReachedZero != null)
-                gameManager.gamePlayer.ActivePlayer.healthScript.OnHealthReachedZero?.RemoveListener(delegate { GameOver(GameOverEvent.MISSION_FAILED); });
-            gameManager.gamePlayer.ActivePlayer.healthScript.OnHealthReachedZero?.AddListener(delegate { GameOver(GameOverEvent.MISSION_FAILED); });
-        }
-
-        if (gameManager.gameEscortee.ActiveEscortee)
-        {
-            if (gameManager.gameEscortee.ActiveEscortee.healthScript.OnHealthReachedZero != null)
-                gameManager.gameEscortee.ActiveEscortee.healthScript.OnHealthReachedZero?.RemoveListener(delegate { GameOver(GameOverEvent.MISSION_FAILED); });
-            gameManager.gameEscortee.ActiveEscortee.healthScript.OnHealthReachedZero.AddListener(delegate { GameOver(GameOverEvent.MISSION_FAILED); });
-        }
-
         // State Update
         if (!gameManager.GameIsPlaying)
         {
@@ -81,7 +66,6 @@ public class GameStateManager : MonoBehaviour
                 {
                     // Call GameOver again, but with an ending
                     GameOver(GameOverEvent.ENDING); 
-                    return;
                 }
                 break;
             case GameOverEvent.MISSION_FAILED:
@@ -93,7 +77,6 @@ public class GameStateManager : MonoBehaviour
                     {
                         // Call GameOver again, but permadeath
                         GameOver(GameOverEvent.PERMADEATH);
-                        return;
                     }
                 }
                 break;

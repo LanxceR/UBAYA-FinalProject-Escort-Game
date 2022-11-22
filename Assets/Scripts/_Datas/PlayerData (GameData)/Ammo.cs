@@ -10,7 +10,7 @@ using System;
 public class Ammo
 {
     public AmmoType ammoType;
-    public float amount;
+    private float amount;
     public float maxAmount;
     public float amountPerStack;
     public float price;
