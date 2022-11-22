@@ -50,6 +50,7 @@ public class GameDataManager : MonoBehaviour
             equippedRangedWeapon2,
             equippedVehicle
             );
+        Debug.Log($"Created game at index = {index}");
     }
     public void CreateGame(
         int index,
@@ -77,6 +78,7 @@ public class GameDataManager : MonoBehaviour
             WeaponID.NONE,
             EscorteeID.BUS
             );
+        Debug.Log($"Created game at index = {index}");
     }
 
     // Save the game
@@ -92,10 +94,26 @@ public class GameDataManager : MonoBehaviour
         // Save loaded player data
         SaveSystem.SaveGame($"savegame_{data.index}", data);
     }
+    // Save game at an index
+    public void SaveGame(int index)
+    {
+        // Save game to file
+        SaveSystem.SaveGame($"savegame_{index}", gameManager.GameDatas[index]);
+    }
 
     // Load a save and store in game manager loaded save
     public void LoadGame(int index)
     {
+        if (gameManager.GameDatas[index] == null)
+        {
+            Debug.Log($"Save {index} is null, cannot load game");
+            return;
+        }
+        if (gameManager.GameDatas[index].IsEmpty())
+        {
+            Debug.Log($"Save {index} is empty");
+        }
+
         gameManager.LoadedGameData = gameManager.GameDatas[index];
 
         if (gameManager.gameWeapon) gameManager.gameWeapon.UpdateAllWeaponFlags();
@@ -111,15 +129,23 @@ public class GameDataManager : MonoBehaviour
     }
 
     // Delete (and unload) current loaded save
-    internal void DeleteSave()
+    public void DeleteSave()
     {
         // Fetch loaded player data
         PlayerData data = gameManager.LoadedGameData;
         // Empty that data
-        gameManager.GameDatas[data.index].Empty();
+        gameManager.GameDatas[data.index] = null;
         data.Empty();
-        // Save the empty data slot
-        SaveGame();
+        // Delete save file
+        SaveSystem.DeleteSave($"savegame_{data.index}");
+    }
+    // Delete save at an index
+    public void DeleteSave(int index)
+    {
+        // Empty that data
+        gameManager.GameDatas[index] = null;
+        // Delete save file
+        SaveSystem.DeleteSave($"savegame_{index}");
     }
 
     // Save all games / data
@@ -129,6 +155,12 @@ public class GameDataManager : MonoBehaviour
         PlayerData[] loadedDatas = LoadGamesFromFiles();
         for (int i = 0; i < loadedDatas.Length; i++)
         {
+            if (gameManager.GameDatas[i] == null)
+            {
+                Debug.Log($"Save {i} is null, skipping...");
+                continue;
+            }
+
             gameManager.GameDatas[i].index = i;
             if (!gameManager.GameDatas[i].Equals(loadedDatas[i]))
             {

@@ -80,8 +80,14 @@ public class PlayerData
         this.missionsCompleted = 0;
         this.missionsFailed = 0;
 
-        this.ownedWeapons.Clear();
-        this.ownedVehicles.Clear();
+        List<WeaponID> startingWeapon = new List<WeaponID>();
+        startingWeapon.Add(WeaponID.PIPE);
+
+        List<EscorteeID> startingVehicle = new List<EscorteeID>();
+        startingVehicle.Add(EscorteeID.BUS);
+
+        this.ownedWeapons = startingWeapon;
+        this.ownedVehicles = startingVehicle;
 
         this.equippedMeleeWeapon = WeaponID.NONE;
         this.equippedRangedWeapon1 = WeaponID.NONE;
@@ -91,11 +97,17 @@ public class PlayerData
 
     public bool IsEmpty()
     {
+        List<WeaponID> startingWeapon = new List<WeaponID>();
+        startingWeapon.Add(WeaponID.PIPE);
+
+        List<EscorteeID> startingVehicle = new List<EscorteeID>();
+        startingVehicle.Add(EscorteeID.BUS);
+
         return (money == 0) &&
             (daysPassed == 0) &&
             (missionsCompleted == 0) &&
-            Utilities.IsListContentEquals(ownedWeapons, new List<WeaponID>()) &&
-            Utilities.IsListContentEquals(ownedVehicles, new List<EscorteeID>()) &&
+            (Utilities.IsListContentEquals(ownedWeapons, startingWeapon) || Utilities.IsListContentEquals(ownedWeapons, new List<WeaponID>()) || ownedWeapons == null) &&
+            (Utilities.IsListContentEquals(ownedVehicles, startingVehicle) || Utilities.IsListContentEquals(ownedVehicles, new List<EscorteeID>()) || ownedWeapons == null) &&
             (missionsFailed == 0);
     }
 
