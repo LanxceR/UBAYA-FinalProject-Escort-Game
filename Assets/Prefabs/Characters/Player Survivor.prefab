@@ -963,6 +963,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8040423113550862873, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 6780693470262749483}
     - target: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1056,6 +1060,11 @@ PrefabInstance:
 --- !u!224 &6780693470262749482 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8040423113550862874, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+  m_PrefabInstance: {fileID: 3570385774074950448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &6780693470262749483 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 8040423113550862875, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
   m_PrefabInstance: {fileID: 3570385774074950448}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6171003026313272911
