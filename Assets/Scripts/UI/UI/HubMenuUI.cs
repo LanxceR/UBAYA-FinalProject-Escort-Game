@@ -12,13 +12,24 @@ public class HubMenuUI : MonoBehaviour
     public GameObject garageUI;
     public GameObject settingsUI;
 
-    public TextMeshProUGUI dayText;
+    public GameObject dayBox;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
-        dayText.text = GameManager.Instance.LoadedGameData.daysPassed.ToString();
+
+        if(GameManager.Instance.LoadedGameData.difficulty == Difficulty.CASUAL)
+        {
+            dayBox.SetActive(false);
+        }
+        else
+        {
+            dayBox.SetActive(true);
+            Transform dayText = dayBox.transform.Find("Day");
+            dayText.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.daysPassed.ToString();
+        }
+
         GameManager.Instance.gameMission.GenerateMissions(GameManager.Instance.LoadedGameData.daysPassed);
     }
 
