@@ -63,7 +63,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8458781522372701723, guid: 275b4deba1e4ae94897098548f02395c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.400012
       objectReference: {fileID: 0}
     - target: {fileID: 8458781522372701723, guid: 275b4deba1e4ae94897098548f02395c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -170,6 +170,26 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!1 &8701939499039757200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4119734914268699319, guid: 275b4deba1e4ae94897098548f02395c, type: 3}
+  m_PrefabInstance: {fileID: 4751089581694519591}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3786650113161174974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8701939499039757200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BoundingShape2D: {fileID: 0}
+  m_Damping: 0
+  m_MaxWindowSize: -1
 --- !u!1001 &7292451746977732183
 PrefabInstance:
   m_ObjectHideFlags: 0

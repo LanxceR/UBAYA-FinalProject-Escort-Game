@@ -51,7 +51,7 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
             enemyScript.healthScript.OnHit?.AddListener(EnemyHurt);
 
             // Add listener to Health's OnHealthReachedZero UnityEvent          
-            enemyScript.healthScript.OnHealthReachedZero.AddListener(EnemyDeath);
+            enemyScript.healthScript.OnHealthReachedZero?.AddListener(EnemyDeath);
         }
     }
     #endregion
@@ -68,13 +68,23 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
     // Central process to handle all anim state update
     void UpdateAnimationState()
     {
+        // To double-check that death animation is played on dying
+        if (enemyScript.healthScript)
+        {
+            if (enemyScript.healthScript.IsDead)
+            {
+                if (currentState != ENEMY_DEATH)
+                    EnemyDeath();
+            }
+        }
+
         UpdateAnimationDirection();
     }
     #endregion
 
     #region Core transition functions
     // Method to change animation state
-    public void ChangeAnimationState(string newState)
+    public void ChangeAnimationState(string newState, bool forceStart)
     {
         // If animator speed is 0, then return
         if (animator.speed == 0) return;
@@ -82,8 +92,8 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
         // Prevent the same animation from interrupting itself
         if (currentState == newState) return;
 
-        // If there's an uninterruptible animation currently running, return
-        if (uninterruptibleCoroutineRunning) return;
+        // If there's an uninterruptible animation currently running and is NOT forced to start an anim, return
+        if (uninterruptibleCoroutineRunning && !forceStart) return;
 
         // Play the animation
         animator.Play(newState);
@@ -93,10 +103,10 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
     }
 
     // Method to change animation state to another state and make it uninterruptible
-    public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool stopAfterAnimEnd)
+    public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool forceStart, bool stopAfterAnimEnd)
     {
         // Anim transition
-        ChangeAnimationState(newState);
+        ChangeAnimationState(newState, forceStart);
 
         // Uses a bool to indicate if there's an uninterrupted anim running
         // NOTE: Using return value from StartCoroutine() sometimes doesn't work in this instance for some reason
@@ -147,17 +157,14 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
     {
         if (!uninterruptibleCoroutineRunning)
         {
-            StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_HURT, false));
+            StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_HURT, false, false));
         }
     }
 
     // Play death animation
     private void EnemyDeath()
     {
-        if (!uninterruptibleCoroutineRunning)
-        {
-            StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_DEATH, true));
-        }
+        StartCoroutine(ChangeAnimationStateUninterruptible(ENEMY_DEATH, true, true));
     }
 
     private float GetFacingDirection()
@@ -167,6 +174,7 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
         {
             // If aiming at a target, get direction based off of that target position
             if (enemyScript.recAggroScript.target) degAngle = Utilities.GetDirectionAngle(enemyScript.recAggroScript.target.position - transform.position);
+            else degAngle = Utilities.GetDirectionAngle(enemyScript.enemyMovementScript.dir);
         }
         else
         {
@@ -195,7 +203,7 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
 
         // TODO: Implement shoot/attack timed on a specific frame on an animation clip
         // For now shooting / attacking (for melee) is handled through animation clips
-        StartCoroutine(ChangeAnimationStateUninterruptible(enemyDir, false));
+        StartCoroutine(ChangeAnimationStateUninterruptible(enemyDir, true, false));
     }
 
     private void UpdateAnimationDirection()
@@ -223,7 +231,7 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
                 enemyDir = ENEMY_IDLE_LEFT;
         }
 
-        ChangeAnimationState(enemyDir);
+        ChangeAnimationState(enemyDir, false);
     } 
     #endregion
 }

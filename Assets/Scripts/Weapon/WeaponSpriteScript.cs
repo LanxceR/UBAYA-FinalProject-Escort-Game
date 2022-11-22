@@ -18,12 +18,6 @@ public class WeaponSpriteScript : MonoBehaviour
     // Variables
     private float degRotation;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("WeaponSpriteScript starting");
-    }
-
     // Update is called once per frame
     void Update()
     {

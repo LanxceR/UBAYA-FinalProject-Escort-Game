@@ -22,7 +22,7 @@ public class InventoryScript : MonoBehaviour
     internal List<IEquipmentItem> equipments;
 
     [SerializeField]
-    internal int equippedItemIndex;
+    internal int heldItemIndex;
 
     #region INPUTS
     // OnPSwitchEquipment listener from InputAction "MainPlayerInput.inputaction"
@@ -33,7 +33,7 @@ public class InventoryScript : MonoBehaviour
         // Determine the next weapon index to cycle
         // If equipped index is the last equipment in inventory, go back to 0
         // Otherwise, add 1 to equipped index item (cycle to the next weapon)
-        int nextWeaponIndex = equippedItemIndex >= equipments.Count - 1 ? 0 : equippedItemIndex + 1;
+        int nextWeaponIndex = heldItemIndex >= equipments.Count - 1 ? 0 : heldItemIndex + 1;
 
         // Switch equipment
         SwitchEquipment(nextWeaponIndex);
@@ -100,7 +100,7 @@ public class InventoryScript : MonoBehaviour
 
     internal IEquipmentItem GetCurrentEquippedItem()
     {
-        return GetCurrentEquippedItem(equippedItemIndex);
+        return GetCurrentEquippedItem(heldItemIndex);
     }
     internal IEquipmentItem GetCurrentEquippedItem(int index)
     {
@@ -116,7 +116,7 @@ public class InventoryScript : MonoBehaviour
             if (index > equipments.Count - 1) return;
 
             // If player changes to the currently equipped weapon, do nothing
-            if (equippedItemIndex == index) return;
+            if (heldItemIndex == index) return;
 
             GameObject obj = null;
 
@@ -129,7 +129,7 @@ public class InventoryScript : MonoBehaviour
                 // Activate selected equipment
                 if (i == index)
                 {
-                    equippedItemIndex = index;
+                    heldItemIndex = index;
                     obj.SetActive(true);
 
                     OnEquipmentSwitch.Invoke();

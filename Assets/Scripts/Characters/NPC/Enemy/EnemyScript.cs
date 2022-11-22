@@ -2,11 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyID 
+{
+    ZOMBIE,
+    Z_RUNNER,
+    Z_BRUTE
+}
+
 /// <summary>
 /// The main enemy script (or the hub)
 /// </summary>
 public class EnemyScript : MonoBehaviour, ICharacter
 {
+    // Enemy type
+    [Header("Enemy ID")]
+    [SerializeField]
+    internal EnemyID id;
+
     // Enemy stats
     [Header("Enemy Stats")]
     [SerializeField]
@@ -16,8 +28,6 @@ public class EnemyScript : MonoBehaviour, ICharacter
     [SerializeField]
     internal bool knockbackImmune = false;
 
-    // TODO: Implement other subscripts for the enemy
-    // TODO: Implement melee attack for enemy zombies
     // References of the enemy's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]
@@ -28,8 +38,11 @@ public class EnemyScript : MonoBehaviour, ICharacter
     internal EnemyAIAttackScript enemyAttackScript;
     [SerializeField]
     internal PathfindingScript pathfindingScript;
+    // Generic sub-scripts
     [SerializeField]
     internal HealthScript healthScript;
+    [SerializeField]
+    internal ItemDropScript itemDropScript;
     [SerializeField]
     internal KnockbackScript knockbackScript;
     [SerializeField]
@@ -46,10 +59,15 @@ public class EnemyScript : MonoBehaviour, ICharacter
 
         // Add listener to Health's OnHealthReachedZero UnityEvent
         healthScript.OnHealthReachedZero.AddListener(EnemyDeath);
+        healthScript.OnHealthReachedZero.AddListener(delegate { itemDropScript.SpawnItem(transform.position); });
     }
 
     void EnemyDeath()
     {
+        if (enemyAttackScript)
+        {
+            enemyAttackScript.enabled = false;
+        }
         if (pathfindingScript)
         {
             pathfindingScript.enabled = false;

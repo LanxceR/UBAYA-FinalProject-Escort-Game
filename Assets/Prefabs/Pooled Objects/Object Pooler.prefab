@@ -48,4 +48,5 @@ MonoBehaviour:
   size: 1000
   prefabs:
   - {fileID: 1429416601, guid: 853247d0d0ca69943ad1adb3a7f9c4aa, type: 3}
+  - {fileID: 1429416601, guid: 9a1eccaf362095e489dc1be87e94db02, type: 3}
   poolObjects: []

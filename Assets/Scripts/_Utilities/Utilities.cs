@@ -7,6 +7,56 @@ using UnityEngine;
 /// </summary>
 public static class Utilities
 {
+    /// <summary>
+    /// Compare if two lists have the same contents regardless of order/index
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="listA"></param>
+    /// <param name="listB"></param>
+    /// <returns></returns>
+    public static bool IsListContentEquals<T>(List<T> listA, List<T> listB)
+    {
+        if (listA.Count != listB.Count)
+            return false;
+
+        for (int n = 0; n < listA.Count; n++)
+        {
+            bool found = false;
+            for (int m = 0; m < listB.Count; m++)
+            {
+                if (EqualityComparer<T>.Default.Equals(listA[n], listB[m]))
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /// <summary>
+    /// Compare if two lists have the exact same contents (taking order/index into account)
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="listA"></param>
+    /// <param name="listB"></param>
+    /// <returns></returns>
+    public static bool IsListEquals<T>(List<T> listA, List<T> listB)
+    {
+        if (listA.Count != listB.Count)
+            return false;
+        for (int i = 0; i < listB.Count; i++)
+        {
+            if (!EqualityComparer<T>.Default.Equals(listA[i], listB[i]))
+                return false;
+        }
+        return true;
+    }
+
     // Converts given bitmask to layer number
     public static int ToLayer(int bitmask)
     {
@@ -20,52 +70,58 @@ public static class Utilities
     }
 
     // Climb up the hirearchy and find a parent with the specified tag
-    public static GameObject FindParentWithTag(GameObject childObject, string tag)
+    public static GameObject FindParentWithTag(GameObject childObject, string tag, out Transform last)
     {
         Transform t = childObject.transform;
         while (t.parent != null)
         {
             if (t.parent.tag == tag)
             {
+                last = t.parent;
                 return t.parent.gameObject;
             }
             t = t.parent.transform;
         }
 
         // Could not find a parent with given tag.
+        last = t;
         return null; 
     }
     // Climb up the hirearchy and find a parent with the specified type
-    public static Transform FindParent<T>(Transform child) where T: class
+    public static Transform FindParent<T>(Transform child, out Transform last) where T: class
     {
         Transform t = child;
         while (t.parent != null)
         {
             if (t.parent.TryGetComponent(out T _))
             {
+                last = t.parent;
                 return t.parent;
             }
             t = t.parent;
         }
 
         // Could not find a parent with implementing ICharacter
-        return t;
+        last = t;
+        return null;
     }
     // Climb up the hirearchy and find a parent with the specified type
-    public static T FindParentOfType<T>(Transform child) where T : class
+    public static T FindParentOfType<T>(Transform child, out Transform last) where T : class
     {
         Transform t = child;
         while (t.parent != null)
         {
             if (t.parent.TryGetComponent(out T parent))
             {
+                last = t.parent;
                 return parent;
             }
             t = t.parent;
         }
 
         // Could not find a parent with implementing ICharacter
-        return default(T);
+        last = t;
+        return null;
     }
 
     // Find a child with the specified tag

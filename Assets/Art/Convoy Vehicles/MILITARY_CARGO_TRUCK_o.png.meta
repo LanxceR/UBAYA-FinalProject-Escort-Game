@@ -127,7 +127,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: MILITARY_CARGO_TRUCK_o_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 128
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.234375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d225e8fde6d587f428fe85ebdb8eebb7
+      internalID: 922987032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MILITARY_CARGO_TRUCK_o_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 128
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.234375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53a5c76829ef43b43ad815c4cd46d30c
+      internalID: 547448520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MILITARY_CARGO_TRUCK_o_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.234375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fa5e152941edbd4d974c83479aad6cb
+      internalID: 1422689658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MILITARY_CARGO_TRUCK_o_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.234375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d781a4a62516096479b611627cd68415
+      internalID: 835179775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MILITARY_CARGO_TRUCK_o_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 128
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.234375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05f6b85acfbe0ac4fb3e4ca6afd1a78c
+      internalID: -471962595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MILITARY_CARGO_TRUCK_o_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 128
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.234375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b001c59b731d8e4c97cfeef87fceca5
+      internalID: 1770437802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MILITARY_CARGO_TRUCK_o_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.234375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d5806df2cac9804b8a8c105eac23823
+      internalID: 190665109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MILITARY_CARGO_TRUCK_o_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.234375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee0ec8c7ddfe45e47ad84b77643b02b8
+      internalID: 187013390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -137,8 +305,18 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
-    nameFileIdTable: {}
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: b100fa2212986424498164e1f7067323, type: 3}
+      name: _NormalMap
+    nameFileIdTable:
+      MILITARY_CARGO_TRUCK_o_1: 547448520
+      MILITARY_CARGO_TRUCK_o_5: 1770437802
+      MILITARY_CARGO_TRUCK_o_0: 922987032
+      MILITARY_CARGO_TRUCK_o_3: 835179775
+      MILITARY_CARGO_TRUCK_o_2: 1422689658
+      MILITARY_CARGO_TRUCK_o_7: 187013390
+      MILITARY_CARGO_TRUCK_o_6: 190665109
+      MILITARY_CARGO_TRUCK_o_4: -471962595
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

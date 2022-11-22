@@ -15,7 +15,7 @@ public class InGameUIScript : MonoBehaviour
     [SerializeField]
     internal InGamePauseUIScript pauseUIScript;
     [SerializeField]
-    internal InGameGameOverUIScript gameOverUIScript;
+    internal InGameMissionEndUIScript gameOverUIScript;
 
     // Start is called before the first frame update
     void Start()

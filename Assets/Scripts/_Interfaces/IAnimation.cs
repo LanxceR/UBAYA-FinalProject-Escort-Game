@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public interface IAnimation
 {
-    void ChangeAnimationState(string newState);
+    void ChangeAnimationState(string newState, bool forceStart);
 
-    IEnumerator ChangeAnimationStateUninterruptible(string newState, bool stopAfterAnimEnd);
+    IEnumerator ChangeAnimationStateUninterruptible(string newState, bool forceStart, bool stopAfterAnimEnd);
 }

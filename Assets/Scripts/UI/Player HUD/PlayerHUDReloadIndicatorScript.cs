@@ -34,18 +34,27 @@ public class PlayerHUDReloadIndicatorScript : MonoBehaviour
     void Start()
     {
         Debug.Log("PlayerHUDReloadIndicatorScript starting");
-
-        playerWeaponScript.weaponAmmoScript.NoAmmoAlert.AddListener(NoAmmoAlert);
-
+               
         // Add listener to OnEquipmentSwitch to assign the current active weapon script
-        inv = Utilities.FindParentOfType<InventoryScript>(transform);
+        inv = Utilities.FindParentOfType<InventoryScript>(transform, out _);
         if (inv)
             inv.OnEquipmentSwitch?.AddListener(AssignWeaponScript);
+
+        // Assign weapon script at start
+        AssignWeaponScript();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Add listener to NoAmmoAlert
+        if (playerWeaponScript)
+        {
+            if (playerWeaponScript.weaponAmmoScript.NoAmmoAlert != null)
+                playerWeaponScript.weaponAmmoScript.NoAmmoAlert?.RemoveListener(NoAmmoAlert);
+            playerWeaponScript.weaponAmmoScript.NoAmmoAlert?.AddListener(NoAmmoAlert);
+        }
+
         if (playerWeaponScript.reloadElapsedTime > 0)
         {
             // Player is reloading
@@ -71,7 +80,6 @@ public class PlayerHUDReloadIndicatorScript : MonoBehaviour
         }
     }
 
-    // TODO: Implement programmatical weapon script assigning (Maybe put this on Start or OnEnable)
     internal void AssignWeaponScript()
     {
         // Assign to show currently equipped item

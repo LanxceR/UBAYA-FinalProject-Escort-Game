@@ -9,15 +9,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3476358989919382762}
-  - component: {fileID: 1751414286900488330}
   - component: {fileID: 1506716136664693792}
   - component: {fileID: 3476358989919382763}
+  - component: {fileID: 1202313559238121517}
   - component: {fileID: 1632579979746694176}
   - component: {fileID: 3476358989919382760}
   - component: {fileID: 8801675597772898125}
-  - component: {fileID: 1202313559238121517}
+  - component: {fileID: 4124152275631002160}
   - component: {fileID: 6291330310439833848}
   - component: {fileID: 8695526743405071406}
+  - component: {fileID: 5600647643309229339}
+  - component: {fileID: 6171598843058010669}
   m_Layer: 0
   m_Name: _Game Manager
   m_TagString: Untagged
@@ -40,18 +42,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1751414286900488330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3476358989919382757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c717a927e224464d96c05a4dda101f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1506716136664693792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,32 +86,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameIsPlaying: 1
   gameTimeScale: 1
-  playerPrefab: {fileID: 1135118919356334669, guid: 043710402536b654f8c0686ee92c188a, type: 3}
-  activePlayer: {fileID: 0}
-  escorteePrefab: {fileID: 3733317801578298791, guid: a693728d74f86bc4d891ef2561e7b9b2, type: 3}
-  activeEscortee: {fileID: 0}
   gameDatas:
-  - isEmpty: 1
+  - isEmpty: 0
     index: 0
     difficulty: 0
     money: 0
     daysPassed: 0
     missionsCompleted: 0
     missionsFailed: 0
-  - isEmpty: 1
-    index: 0
+    ownedWeapons: 03000000
+    ownedVehicles: 01000000
+    equippedMeleeWeapon: 3
+    equippedRangedWeapon1: 0
+    equippedRangedWeapon2: 0
+    equippedVehicle: 1
+  - isEmpty: 0
+    index: 1
     difficulty: 0
     money: 0
     daysPassed: 0
     missionsCompleted: 0
     missionsFailed: 0
-  - isEmpty: 1
-    index: 0
+    ownedWeapons: 03000000
+    ownedVehicles: 01000000
+    equippedMeleeWeapon: 3
+    equippedRangedWeapon1: 0
+    equippedRangedWeapon2: 0
+    equippedVehicle: 1
+  - isEmpty: 0
+    index: 2
     difficulty: 0
     money: 0
     daysPassed: 0
     missionsCompleted: 0
     missionsFailed: 0
+    ownedWeapons: 03000000
+    ownedVehicles: 01000000
+    equippedMeleeWeapon: 3
+    equippedRangedWeapon1: 0
+    equippedRangedWeapon2: 0
+    equippedVehicle: 1
   loadedGameData:
     isEmpty: 1
     index: 0
@@ -130,6 +134,59 @@ MonoBehaviour:
     daysPassed: 0
     missionsCompleted: 0
     missionsFailed: 0
+    ownedWeapons: 
+    ownedVehicles: 
+    equippedMeleeWeapon: 0
+    equippedRangedWeapon1: 0
+    equippedRangedWeapon2: 0
+    equippedVehicle: 0
+  missionDatas:
+  - escortScene: 0
+    vehicle: {fileID: 0}
+    escorteeHasWeapon: 0
+    zombieCount: 0
+    baseReward: 0
+    meleeWeapon: {fileID: 0}
+    rangedWeapon1: {fileID: 0}
+    rangedWeapon2: {fileID: 0}
+    enemies: []
+  - escortScene: 0
+    vehicle: {fileID: 0}
+    escorteeHasWeapon: 0
+    zombieCount: 0
+    baseReward: 0
+    meleeWeapon: {fileID: 0}
+    rangedWeapon1: {fileID: 0}
+    rangedWeapon2: {fileID: 0}
+    enemies: []
+  - escortScene: 0
+    vehicle: {fileID: 0}
+    escorteeHasWeapon: 0
+    zombieCount: 0
+    baseReward: 0
+    meleeWeapon: {fileID: 0}
+    rangedWeapon1: {fileID: 0}
+    rangedWeapon2: {fileID: 0}
+    enemies: []
+  - escortScene: 0
+    vehicle: {fileID: 0}
+    escorteeHasWeapon: 0
+    zombieCount: 0
+    baseReward: 0
+    meleeWeapon: {fileID: 0}
+    rangedWeapon1: {fileID: 0}
+    rangedWeapon2: {fileID: 0}
+    enemies: []
+  loadedMissionData:
+    escortScene: 0
+    vehicle: {fileID: 0}
+    escorteeHasWeapon: 0
+    zombieCount: 0
+    baseReward: 0
+    meleeWeapon: {fileID: 0}
+    rangedWeapon1: {fileID: 0}
+    rangedWeapon2: {fileID: 0}
+    enemies: []
   inGameCamerasPrefab: {fileID: 964555149148725884, guid: 506a16dc35dc64b4ebccd61123f5113d, type: 3}
   inGameActiveCameras: {fileID: 0}
   inGameUIPrefab: {fileID: 2875460915544099525, guid: 862dec262569ba347857e48fd56433e2, type: 3}
@@ -138,8 +195,24 @@ MonoBehaviour:
   gameState: {fileID: 3476358989919382760}
   gameInput: {fileID: 8801675597772898125}
   gameData: {fileID: 1202313559238121517}
+  gameMission: {fileID: 4124152275631002160}
   gamePlayer: {fileID: 6291330310439833848}
   gameEscortee: {fileID: 8695526743405071406}
+  gameWeapon: {fileID: 5600647643309229339}
+  gameEnemy: {fileID: 6171598843058010669}
+--- !u!114 &1202313559238121517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3476358989919382757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32df4119c991624f8f5922bca67e906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 3476358989919382763}
 --- !u!114 &1632579979746694176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 3476358989919382763}
---- !u!114 &1202313559238121517
+--- !u!114 &4124152275631002160
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,10 +262,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3476358989919382757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c32df4119c991624f8f5922bca67e906, type: 3}
+  m_Script: {fileID: 11500000, guid: 69a301538cbd59942ad6b3ec1dc31473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 3476358989919382763}
+  escortScenes: 02000000
 --- !u!114 &6291330310439833848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 3476358989919382763}
+  playerPrefab: {fileID: 1135118919356334669, guid: 043710402536b654f8c0686ee92c188a, type: 3}
+  activePlayer: {fileID: 0}
 --- !u!114 &8695526743405071406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,3 +295,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 3476358989919382763}
+  escorteePrefabs:
+  - {fileID: 3733317801578298791, guid: a693728d74f86bc4d891ef2561e7b9b2, type: 3}
+  - {fileID: 3733317801578298791, guid: 52b5abf626e982849960b36f805dffc1, type: 3}
+  - {fileID: 3733317801578298791, guid: c16e235917fe0164aaf46b7cff311bf7, type: 3}
+  activeEscortee: {fileID: 0}
+--- !u!114 &5600647643309229339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3476358989919382757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fec943e070243940b3ecf9efcf8aa8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 3476358989919382763}
+  weaponPrefabs:
+  - {fileID: 2841505596119360415, guid: fb08628700d1ce14d8885ec175f84e52, type: 3}
+  - {fileID: 2841505596119360415, guid: b9dfa5c1f9349524c987cf4fa032c6f0, type: 3}
+  - {fileID: 2841505596119360415, guid: 01e6d4c67547e474293e8bef2168735b, type: 3}
+  - {fileID: 2841505596119360415, guid: 0f48d6396f3d48e4e8259f541755bcb6, type: 3}
+  - {fileID: 2841505596119360415, guid: 70b01fc28f346e442b495590bc56c226, type: 3}
+  - {fileID: 2841505596119360415, guid: 888624836d1082f4a9b5a5e5ded204dc, type: 3}
+  - {fileID: 2841505596119360415, guid: ee137fc5dcac8d24eb77a82af59e4012, type: 3}
+  - {fileID: 2841505596119360415, guid: f790a171bede25f4fa72529ed6daa294, type: 3}
+--- !u!114 &6171598843058010669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3476358989919382757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36cb849cceeae3248adacdabbb813e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 3476358989919382763}
+  enemyPrefabs:
+  - {fileID: 1267373589, guid: 556d4f4077c8ce74083228113bc78dfa, type: 3}
+  - {fileID: 1267373589, guid: 1f0617b747f30444ea2edd7e52a41781, type: 3}
+  - {fileID: 1267373589, guid: 75e29d566f4386a4fa51e182524ff64b, type: 3}

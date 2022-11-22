@@ -73,7 +73,8 @@ public class ProjectileHitScript : MonoBehaviour
 
     internal void OnHit(GameObject victim)
     {
-        Debug.Log($"{attacker.name}'s projectile has hit {Utilities.FindParent<ICharacter>(victim.transform).name}!");
+        if (Utilities.FindParent<HealthScript>(victim.transform, out Transform parent))
+            Debug.Log($"{attacker.name}'s attack has hit {parent?.name}!");
 
         foreach (string tag in projectileScript.damageableTags)
         {
@@ -92,7 +93,7 @@ public class ProjectileHitScript : MonoBehaviour
     private void Hit(GameObject victim)
     {
         // Fetch victim's health on their parent gameobject
-        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out HealthScript health);
+        HealthScript health = Utilities.FindParentOfType<HealthScript>(victim.transform, out _);
 
         if (health)
         {
@@ -100,8 +101,9 @@ public class ProjectileHitScript : MonoBehaviour
             health.TakeDamage(attacker, projectileScript.damage);
         }
 
-        // Fetch victim's knockback script on their parent gameobject
-        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out KnockbackScript knockback);
+
+        // Fetch victim's knockback on their parent gameobject
+        KnockbackScript knockback = Utilities.FindParentOfType<KnockbackScript>(victim.transform, out _);
 
         if (knockback)
         {
@@ -109,8 +111,9 @@ public class ProjectileHitScript : MonoBehaviour
             knockback.DoKnockback(projectileScript.knockbackForce, projectileScript.projectileMovementScript.GetDirection(), !health.IsDead, !health.IsDead);
         }
 
-        // Fetch victim's aggro script on their parent gameobject
-        Utilities.FindParent<ICharacter>(victim.transform).TryGetComponent(out ReceiveAggroScript aggro);
+
+        // Fetch victim's knockback on their parent gameobject
+        ReceiveAggroScript aggro = Utilities.FindParentOfType<ReceiveAggroScript>(victim.transform, out _);
 
         if (aggro)
         {

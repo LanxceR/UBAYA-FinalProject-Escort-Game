@@ -12,6 +12,8 @@ public class GameDataManagerEditor : Editor
     private GameDataManager gameDataManager; // GameDataManager.cs script
 
     int indexToLoad = 0;
+    int createGameIndex = 0;
+    bool isHardcore;
 
     // Draws the GUI on Unity Editor Inspector
     public override void OnInspectorGUI()
@@ -40,6 +42,13 @@ public class GameDataManagerEditor : Editor
         if (GUILayout.Button($"Save Game {gameDataManager.gameManager.LoadedGameData.index}"))
         {
             gameDataManager.SaveGame();
+        }
+
+        createGameIndex = EditorGUILayout.IntSlider("Create Game Index", createGameIndex, 0, gameDataManager.gameManager.GameDatas.Length - 1);
+        isHardcore = EditorGUILayout.Toggle("Is Hardcore", isHardcore);
+        if (GUILayout.Button($"Create game at savegame_{createGameIndex}"))
+        {
+            gameDataManager.CreateGame(createGameIndex, isHardcore ? Difficulty.HARDCORE : Difficulty.CASUAL);
         }
     }
 }

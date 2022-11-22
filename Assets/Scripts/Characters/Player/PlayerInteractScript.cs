@@ -31,7 +31,7 @@ public class PlayerInteractScript : MonoBehaviour
             // Compare all hit target tags with targetTags list
             foreach (Collider2D hit in hits)
             {
-                IInteractable interacted = Utilities.FindParentOfType<IInteractable>(hit.transform);
+                IInteractable interacted = Utilities.FindParentOfType<IInteractable>(hit.transform, out _);
 
                 // If there are no targets OR the new target is closer
                 if (interactTarget == null || (hit.transform.position - transform.position).sqrMagnitude < (interactTarget.GetTransform().position - transform.position).sqrMagnitude)

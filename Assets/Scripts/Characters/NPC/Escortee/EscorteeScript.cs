@@ -2,12 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EscorteeID
+{
+    NONE,
+    BUS,
+    PICKUP_TRUCK,
+    MILITARY_TRUCK
+}
+
 /// <summary>
 /// The main escortee script (or the hub)
 /// </summary>
+[System.Serializable]
 public class EscorteeScript : MonoBehaviour, ICharacter
 {
-    // TODO: Implement hitching / hanging onto escortee
+    // Weapon type
+    [Header("Escortee ID")]
+    [SerializeField]
+    internal EscorteeID id;
 
     // Escortee stats
     [Header("Escortee Stats")]
@@ -20,8 +32,14 @@ public class EscorteeScript : MonoBehaviour, ICharacter
     [SerializeField]
     internal float deceleration = 0.5f; // Otherwise known as braking power
 
-    // TODO: Add animation for escortee
-    // References of the player's sub-scripts
+    [Header("Price")]
+    [SerializeField] internal float price = 4000f;
+
+    [Header("Flags")]
+    [SerializeField] internal bool isOwned;
+    [SerializeField] internal bool isEquipped;
+
+    // References of the escortee's sub-scripts
     [Header("Sub-scripts")]
     [SerializeField]
     internal EscorteeInputScript escorteeInputScript;

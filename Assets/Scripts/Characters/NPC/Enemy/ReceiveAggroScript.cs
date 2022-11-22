@@ -65,7 +65,7 @@ public class ReceiveAggroScript : MonoBehaviour
             // Compare all hit target tags with targetTags list
             foreach (Collider2D hit in hits)
             {
-                Utilities.FindParent<ICharacter>(hit.transform).TryGetComponent(out EmitAggroScript aggressor);
+                Utilities.FindParent<ICharacter>(hit.transform, out _).TryGetComponent(out EmitAggroScript aggressor);
 
                 foreach (string tag in targetTags)
                 {

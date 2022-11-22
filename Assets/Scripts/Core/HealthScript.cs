@@ -58,17 +58,17 @@ public class HealthScript : MonoBehaviour
     // This function is called when the object becomes enabled and active
     private void OnEnable()
     {
-        FullHeal();
+        Ressurect();
     }
 
     // Increase health but not past max health
     internal void Heal(float value)
     {
-        CurrentHealth += value;
+        CurrentHealth = Mathf.Clamp(CurrentHealth + value, 0, MaxHealth);
     }
 
     // Reset health back to max health
-    internal void FullHeal()
+    internal void Ressurect()
     {
         CurrentHealth = MaxHealth;
         IsDead = false;
