@@ -24,7 +24,8 @@ public class GameSceneManager : MonoBehaviour
     internal GameManager gameManager;
 
     [Header("Components")]
-    [SerializeField] internal CanvasGroup loadTransitionCanvas;
+    [SerializeField] internal Canvas loadTransitionCanvas;
+    [SerializeField] internal CanvasGroup loadTransitionCanvasGroup;
 
     // Variables
     [Header("Variables")]
@@ -46,10 +47,10 @@ public class GameSceneManager : MonoBehaviour
     // Start is called just before any of the Update methods is called the first time
     private void Start()
     {
-        if (loadTransitionCanvas)
+        if (loadTransitionCanvasGroup)
         {
-            loadTransitionCanvas.alpha = 0f;
-            loadTransitionCanvas.gameObject.SetActive(false);
+            loadTransitionCanvasGroup.alpha = 0f;
+            loadTransitionCanvasGroup.gameObject.SetActive(false);
         }
     }
 
@@ -85,15 +86,15 @@ public class GameSceneManager : MonoBehaviour
     // Smoothly fade loading screen into the specified target alpha
     private IEnumerator FadeLoadingScreen(float targetAlpha, float duration)
     {
-        float startAlpha = loadTransitionCanvas.alpha;
+        float startAlpha = loadTransitionCanvasGroup.alpha;
         float timeElapsed = 0;
         while (timeElapsed < duration)
         {
-            loadTransitionCanvas.alpha = Mathf.Lerp(startAlpha, targetAlpha, timeElapsed / duration);
+            loadTransitionCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, timeElapsed / duration);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-        loadTransitionCanvas.alpha = targetAlpha;
+        loadTransitionCanvasGroup.alpha = targetAlpha;
     }
     #endregion
 
@@ -119,21 +120,16 @@ public class GameSceneManager : MonoBehaviour
         SceneToLoad = scene;
         yield return new WaitForSecondsRealtime(delay);
 
-        /** Transition animation / load screen
-        // Transition Animation
-        animator.SetTrigger("Entrance");
-
-        yield return new WaitForSecondsRealtime(1f);
-        */
-
-        // Activate laoding screen
-        loadTransitionCanvas.gameObject.SetActive(true);
+        // Activate loading screen
+        loadTransitionCanvasGroup.gameObject.SetActive(true);
         // Fade in loading screen for 1 second
         yield return StartCoroutine(FadeLoadingScreen(1f, 1f));
         // Load loading screen scene
         AsyncOperation asyncLoadingScreen = SceneManager.LoadSceneAsync((int)SceneName.LOADING_SCREEN);
         // Wait until loading loading screen is done
         yield return new WaitUntil(() => (asyncLoadingScreen.isDone));
+        AssignTransitionRenderCamera();
+        Debug.Log("Loading new scene...");
 
         // Immediately load the target scene
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync((int)SceneToLoad);
@@ -145,6 +141,7 @@ public class GameSceneManager : MonoBehaviour
 
             yield return null;
         }
+        Debug.Log($"{SceneToLoad.ToString()} loaded!");
 
         yield return new WaitForEndOfFrame();
         LoadProgress = 0f;
@@ -154,28 +151,28 @@ public class GameSceneManager : MonoBehaviour
 
         // Fade out loading screen for 1 second
         yield return StartCoroutine(FadeLoadingScreen(0f, 1f));
+
+        // Deactivate loading screen
+        loadTransitionCanvasGroup.gameObject.SetActive(false);
     }
+
+
     private IEnumerator LoadSceneCoroutine(string sceneName, float delay)
     {
         LoadProgress = 0f;
         SceneToLoad = (SceneName)SceneManager.GetSceneByName(sceneName).buildIndex;
         yield return new WaitForSecondsRealtime(delay);
 
-        /** Transition animation / load screen
-        // Transition Animation
-        animator.SetTrigger("Entrance");
-
-        yield return new WaitForSecondsRealtime(1f);
-        */
-
         // Activate laoding screen
-        loadTransitionCanvas.gameObject.SetActive(true);
+        loadTransitionCanvasGroup.gameObject.SetActive(true);
         // Fade in loading screen for 1 second
         yield return StartCoroutine(FadeLoadingScreen(1f, 1f));
         // Load loading screen scene
         AsyncOperation asyncLoadingScreen = SceneManager.LoadSceneAsync((int)SceneName.LOADING_SCREEN);
         // Wait until loading loading screen is done
         yield return new WaitUntil(() => (asyncLoadingScreen.isDone));
+        AssignTransitionRenderCamera();
+        Debug.Log("Loading new scene...");
 
         // Immediately load the target scene
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(sceneName);
@@ -187,6 +184,7 @@ public class GameSceneManager : MonoBehaviour
 
             yield return null;
         }
+        Debug.Log($"{SceneToLoad.ToString()} loaded!");
 
         yield return new WaitForEndOfFrame();
         LoadProgress = 0f;
@@ -196,10 +194,19 @@ public class GameSceneManager : MonoBehaviour
 
         // Fade out loading screen for 1 second
         yield return StartCoroutine(FadeLoadingScreen(0f, 1f));
+
+        // Deactivate loading screen
+        loadTransitionCanvasGroup.gameObject.SetActive(false);
     }
     #endregion
 
     #region Component Manager
+    private void AssignTransitionRenderCamera()
+    {
+        loadTransitionCanvas.worldCamera = Camera.main;
+        loadTransitionCanvas.sortingOrder = 10;
+    }
+
     private void OnSceneLoaded()
     {
         SceneName currentScene = (SceneName)GetCurrentScene().buildIndex;

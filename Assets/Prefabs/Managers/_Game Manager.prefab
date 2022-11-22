@@ -232,7 +232,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 3476358989919382763}
-  loadTransitionCanvas: {fileID: 2976375889730184555}
+  loadTransitionCanvas: {fileID: 5352979860605563407}
+  loadTransitionCanvasGroup: {fileID: 2976375889730184555}
   defaultSceneTarget: Title Screen
 --- !u!114 &3476358989919382760
 MonoBehaviour:
@@ -441,7 +442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1755500745805727707
 RectTransform:
   m_ObjectHideFlags: 0
@@ -472,7 +473,7 @@ Canvas:
   m_GameObject: {fileID: 8486311853229958457}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -481,7 +482,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1617165873
   m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &1675686799034052783
