@@ -45,7 +45,7 @@ public class SaveLoadScript : MonoBehaviour
         GameManager.Instance.gameData.CreateGame(currentIndex, diff);
         GameManager.Instance.gameData.LoadGame(currentIndex);
         GameManager.Instance.gameData.SaveGame(currentIndex);
-        GameManager.Instance.gameScene.GotoScene(SceneName.MAIN_HUB);
+        GameManager.Instance.gameScene.GotoScene(SceneName.CUTSCENE);
     }
 
     public void OnPointerOver()

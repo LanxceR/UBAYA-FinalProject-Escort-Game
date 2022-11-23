@@ -168,6 +168,9 @@ public class JobBoardUIScript : MonoBehaviour
         {
             convoySelectionButton.interactable = false;
             missionEscorteeChoice.text = GameManager.Instance.MissionDatas[missionIndex].vehicle.id.ToString().Replace('_', ' ') + " (REQUIRED)";
+
+            GameManager.Instance.LoadedGameData.equippedVehicle = GameManager.Instance.MissionDatas[missionIndex].vehicle.id;
+
             convoySelectionButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);
         }
 
@@ -176,6 +179,12 @@ public class JobBoardUIScript : MonoBehaviour
             + GameManager.Instance.LoadedGameData.equippedRangedWeapon2.ToString().Replace('_', ' ') + "/"
             + GameManager.Instance.LoadedGameData.equippedMeleeWeapon.ToString().Replace('_', ' ');
 
+    }
+
+    public void PlayGame()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/ClickConfirmJob");
     }
 
     public void CloseBriefing()

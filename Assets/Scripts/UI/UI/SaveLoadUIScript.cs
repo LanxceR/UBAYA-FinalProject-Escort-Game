@@ -132,7 +132,7 @@ public class SaveLoadUIScript : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
         GameManager.Instance.gameData.LoadGame(saveIndex);
-        GameManager.Instance.gameScene.GotoScene(SceneName.MAIN_HUB);
+        GameManager.Instance.gameScene.GotoScene(SceneName.CUTSCENE);
     }
 
     public void OnPointerOver()
