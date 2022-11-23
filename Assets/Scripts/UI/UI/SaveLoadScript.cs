@@ -43,6 +43,8 @@ public class SaveLoadScript : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
         GameManager.Instance.gameData.CreateGame(currentIndex, diff);
+        GameManager.Instance.gameData.LoadGame(currentIndex);
+        GameManager.Instance.gameData.SaveGame(currentIndex);
         GameManager.Instance.gameScene.GotoScene(SceneName.MAIN_HUB);
     }
 

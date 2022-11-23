@@ -33,9 +33,9 @@ public class SaveLoadUIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameDataList = GameManager.Instance.gameData.LoadGamesFromFiles();
+        Refresh();
         //if (GameManager.Instance.GameDatas[saveIndex].isEmpty == true)
-
+        /*
         if (gameDataList[saveIndex] == null)
         {
             saveButton.SetActive(true);
@@ -69,8 +69,51 @@ public class SaveLoadUIScript : MonoBehaviour
                 Transform missionCount = missions.transform.Find("Text");
                 missionCount.GetComponent<TextMeshProUGUI>().text = gameDataList[saveIndex].missionsCompleted.ToString();
             }
-        }
+        }*/
     }
+
+    void Refresh()
+    {
+        gameDataList = GameManager.Instance.gameData.LoadGamesFromFiles();
+
+        if (gameDataList[saveIndex] == null)
+        {
+            saveButton.SetActive(true);
+            loadButton.SetActive(false);
+            deleteButton.SetActive(false);
+        }
+        else
+        {
+            deleteButton.SetActive(true);
+
+            difficulty.text = gameDataList[saveIndex].difficulty.ToString();
+            cashOwned.text = "$" + gameDataList[saveIndex].money;
+            ownedVehicles.text = gameDataList[saveIndex].ownedVehicles.Count.ToString() + "/3";
+            ownedWeapons.text = gameDataList[saveIndex].ownedWeapons.Count.ToString() + "/8";
+
+            if (gameDataList[saveIndex].difficulty == Difficulty.HARDCORE)
+            {
+                day.SetActive(true);
+                Transform dayText = day.transform.Find("Text");
+                dayText.GetComponent<TextMeshProUGUI>().text = gameDataList[saveIndex].daysPassed.ToString();
+
+                missions.GetComponent<TextMeshProUGUI>().text = "Failed Missions:";
+                Transform missionCount = missions.transform.Find("Text");
+                missionCount.GetComponent<TextMeshProUGUI>().text = gameDataList[saveIndex].missionsFailed.ToString();
+            }
+            else
+            {
+                day.SetActive(false);
+
+                missions.GetComponent<TextMeshProUGUI>().text = "Missions Completed:";
+                Transform missionCount = missions.transform.Find("Text");
+                missionCount.GetComponent<TextMeshProUGUI>().text = gameDataList[saveIndex].missionsCompleted.ToString();
+            }
+        }
+
+    }
+
+
     void Update()
     {
         if (Input.GetMouseButtonUp(0))
@@ -106,7 +149,10 @@ public class SaveLoadUIScript : MonoBehaviour
 
     public void ConfirmDelete()
     {
-
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        GameManager.Instance.gameData.DeleteSave(saveIndex);
+        Refresh();
+        deleteUI.SetActive(false);
     }
 
     public void CloseDeleteUI()
