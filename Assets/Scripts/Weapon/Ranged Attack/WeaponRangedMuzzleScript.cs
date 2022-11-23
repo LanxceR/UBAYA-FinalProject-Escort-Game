@@ -15,6 +15,8 @@ public class WeaponRangedMuzzleScript : MonoBehaviour
     // Components
     [SerializeField]
     private List<GameObject> muzzles;
+    [SerializeField]
+    private RandomizeSprites muzzleFX;
 
     // Settings
     [Header("Prefab Type")]
@@ -27,23 +29,27 @@ public class WeaponRangedMuzzleScript : MonoBehaviour
         {
             // Request an object pool
             PoolObject poolObj = ObjectPooler.GetInstance().RequestObject(poolObjectType);
-
-            // Calculate rotation with given spread deviation (randomed)
-            Quaternion rotation = GetMuzzleRotationWithDeviation(muzzle, spread);
-
+            
             // Activate fetched object
             ProjectileScript projectile = poolObj.Activate(muzzle.transform.position, Quaternion.identity).GetComponent<ProjectileScript>();
                       
             // Offset projectile spawn position (to take into account sprite sort point)
             projectile.transform.position += projectile.spawnOffset;
 
+            // Randomize the deviation of this muzzle
+            float deviation = Random.Range(-spread / 2, spread / 2);
+
+            // Calculate rotation with given spread deviation
+            //Quaternion rotation = GetMuzzleRotationWithDeviation(muzzle, spread);
+            Quaternion muzzleRotation = GetMuzzleRotation(muzzle);
+            Quaternion rotation = Quaternion.Euler(muzzleRotation.eulerAngles.x, muzzleRotation.eulerAngles.y, muzzleRotation.eulerAngles.z + deviation);
+
             // Set projectile (and it's collider) rotation
             projectile.projectileAnimationScript.projectileModel.transform.rotation = rotation;
             projectile.collisionScript.col.transform.rotation = rotation;
 
-            // TODO: Fix projectile direction deviation properly
             // Set projectile direction
-            Vector2 direction = GetMuzzleDirection(muzzle);
+            Vector2 direction = Quaternion.Euler(0, 0, deviation) * GetMuzzleDirection(muzzle);
             projectile.projectileMovementScript.SetDirection(direction);
 
             // Stats for projectile
@@ -64,7 +70,7 @@ public class WeaponRangedMuzzleScript : MonoBehaviour
                 poolObj.Deactivate();
                 return;
             }
-        }        
+        }       
     }
     // Fire projectile(s) from this muzzleScripts stored muzzle
     public void SpawnProjectile(GameObject muzzle, PoolObjectType poolObjectType, float range, float damage, float velocity, float knockbackForce, float spread, GameObject attacker)
@@ -72,21 +78,26 @@ public class WeaponRangedMuzzleScript : MonoBehaviour
         // Request an object pool
         PoolObject poolObj = ObjectPooler.GetInstance().RequestObject(poolObjectType);
 
-        // Calculate rotation with given spread deviation (randomed)
-        Quaternion rotation = GetMuzzleRotationWithDeviation(muzzle, spread);
-
         // Activate fetched object
         ProjectileScript projectile = poolObj.Activate(muzzle.transform.position, Quaternion.identity).GetComponent<ProjectileScript>();
 
         // Offset projectile spawn position (to take into account sprite sort point)
         projectile.transform.position += projectile.spawnOffset;
 
+        // Randomize the deviation of this muzzle
+        float deviation = Random.Range(-spread / 2, spread / 2);
+
+        // Calculate rotation with given spread deviation
+        //Quaternion rotation = GetMuzzleRotationWithDeviation(muzzle, spread);
+        Quaternion muzzleRotation = GetMuzzleRotation(muzzle);
+        Quaternion rotation = Quaternion.Euler(muzzleRotation.eulerAngles.x, muzzleRotation.eulerAngles.y, muzzleRotation.eulerAngles.z + deviation);
+
         // Set projectile (and it's collider) rotation
         projectile.projectileAnimationScript.projectileModel.transform.rotation = rotation;
         projectile.collisionScript.col.transform.rotation = rotation;
 
         // Set projectile direction
-        Vector2 direction = GetMuzzleDirection(muzzle);
+        Vector2 direction = Quaternion.Euler(0, 0, deviation) * GetMuzzleDirection(muzzle);
         projectile.projectileMovementScript.SetDirection(direction);
 
         // Stats for projectile
@@ -111,6 +122,8 @@ public class WeaponRangedMuzzleScript : MonoBehaviour
             {
                 SpawnProjectile(projectileType, w.range, w.damage, w.velocity, w.knockbackForce, w.spread, weaponScript.parentHolder);
 
+                StartCoroutine(MuzzleFXCoroutine(0.1f));
+
                 yield return new WaitForSeconds(w.burstDelay);
             }
         }
@@ -118,7 +131,20 @@ public class WeaponRangedMuzzleScript : MonoBehaviour
         {
             // Shoot once
             SpawnProjectile(projectileType, w.range, w.damage, w.velocity, w.knockbackForce, w.spread, weaponScript.parentHolder);
+
+            StartCoroutine(MuzzleFXCoroutine(0.1f));
         }
+    }
+
+    internal IEnumerator MuzzleFXCoroutine(float duration)
+    {
+        if (!muzzleFX) yield break;
+
+        muzzleFX.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(duration);
+
+        muzzleFX.gameObject.SetActive(false);
     }
 
     private RaycastHit2D IsThereSomethingShotPointBlank(ProjectileScript projectileInfo, GameObject muzzle)
@@ -152,16 +178,6 @@ public class WeaponRangedMuzzleScript : MonoBehaviour
             muzzle.transform.rotation.eulerAngles.x,
             muzzle.transform.rotation.eulerAngles.y,
             muzzle.transform.rotation.eulerAngles.z
-            );
-        return rotation;
-    }
-    // Calculate rotation with given spread deviation (randomed)
-    private Quaternion GetMuzzleRotationWithDeviation(GameObject muzzle, float spread)
-    {
-        Quaternion rotation = Quaternion.Euler(
-            muzzle.transform.rotation.eulerAngles.x,
-            muzzle.transform.rotation.eulerAngles.y,
-            muzzle.transform.rotation.eulerAngles.z + Random.Range(-spread / 2, spread / 2)
             );
         return rotation;
     }
