@@ -35,6 +35,7 @@ public class DebugMissionDetail : MonoBehaviour
 
     public void OnPlay()
     {
+        /** DEPRECATED
         // Get escortee/vehicle
         Enum.TryParse(vehicle.captionText.text, out EscorteeID eID);
         EscorteeScript escortee = GameManager.Instance.gameEscortee.GetEscortee(eID);
@@ -48,8 +49,23 @@ public class DebugMissionDetail : MonoBehaviour
 
         Enum.TryParse(ranged2.captionText.text, out WeaponID rID2);
         WeaponScript rangedWeapon2 = GameManager.Instance.gameWeapon.GetWeapon(rID2);
+        */
 
-        GameManager.Instance.gameMission.LoadMission(index, escortee, meleeWeapon, rangedWeapon1, rangedWeapon2);
+        // Equip escortee/vehicle
+        Enum.TryParse(vehicle.captionText.text, out EscorteeID eID);
+        GameManager.Instance.LoadedGameData.equippedVehicle = eID;
+
+        // Equip weapons
+        Enum.TryParse(melee.captionText.text, out WeaponID mID);
+        GameManager.Instance.LoadedGameData.equippedMeleeWeapon = mID;
+
+        Enum.TryParse(ranged1.captionText.text, out WeaponID rID1);
+        GameManager.Instance.LoadedGameData.equippedRangedWeapon1 = rID1;
+
+        Enum.TryParse(ranged2.captionText.text, out WeaponID rID2);
+        GameManager.Instance.LoadedGameData.equippedRangedWeapon2 = rID2;
+
+        GameManager.Instance.gameMission.LoadMission(index);
 
 
         // TODO: Work on scene transition

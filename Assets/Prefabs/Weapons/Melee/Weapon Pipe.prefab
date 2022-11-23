@@ -257,8 +257,6 @@ GameObject:
   - component: {fileID: 3983509067198406285}
   - component: {fileID: 5025714026878176227}
   - component: {fileID: 7216340852834708743}
-  - component: {fileID: 2897540201027180643}
-  - component: {fileID: 7825796551376667408}
   m_Layer: 0
   m_Name: Weapon Pipe
   m_TagString: Untagged
@@ -447,53 +445,3 @@ MonoBehaviour:
   weaponScript: {fileID: 2841505596119360415}
   drawGizmo: 1
   loadedAmmo: 0
---- !u!114 &2897540201027180643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2841505596119360411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5709b6dd2479b041bd832aa3182c493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  parentHolder: {fileID: 0}
-  parentAttach: {fileID: 0}
-  reloadTime: 1
-  ammoType: 0
-  ammoMagSize: Infinity
-  price: 1000
-  isOwned: 0
-  isEquipped: 0
-  weaponInputScript: {fileID: 0}
-  weaponSpriteScript: {fileID: 0}
-  weaponAnimationScript: {fileID: 0}
-  weaponAmmoScript: {fileID: 0}
---- !u!114 &7825796551376667408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2841505596119360411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5709b6dd2479b041bd832aa3182c493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  parentHolder: {fileID: 0}
-  parentAttach: {fileID: 0}
-  reloadTime: 1
-  ammoType: 0
-  ammoMagSize: Infinity
-  price: 1000
-  isOwned: 0
-  isEquipped: 0
-  weaponInputScript: {fileID: 0}
-  weaponSpriteScript: {fileID: 0}
-  weaponAnimationScript: {fileID: 0}
-  weaponAmmoScript: {fileID: 0}

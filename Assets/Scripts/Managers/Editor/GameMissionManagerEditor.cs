@@ -29,7 +29,7 @@ public class GameMissionManagerEditor : Editor
         indexToLoad = EditorGUILayout.IntSlider("Index to Load", indexToLoad, 0, gameMissionManager.gameManager.MissionDatas.Length - 1);
         if (GUILayout.Button($"Load Mission index = {indexToLoad}"))
         {
-            gameMissionManager.LoadMission(indexToLoad, null, null, null, null);
+            gameMissionManager.LoadMission(indexToLoad);
         }
     }
 }
