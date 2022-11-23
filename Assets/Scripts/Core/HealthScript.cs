@@ -110,8 +110,6 @@ public class HealthScript : MonoBehaviour
             // Dies
             IsDead = true;
             OnHealthReachedZero?.Invoke();
-
-            // TODO: Handle gameover events (or player death, specifically)
         }
     }
 
@@ -124,7 +122,7 @@ public class HealthScript : MonoBehaviour
         IsInvulnerable = false;
     }
 
-    // TODO: Implement State Checking for health (e.g Change corpse layer to Corpse layer to prevent any further interactions). Maybe do this on a separate script?
+    // TODO: Maybe implement an empty corpse object on death for better performance
     private void UpdateState()
     {
         if (IsDead)

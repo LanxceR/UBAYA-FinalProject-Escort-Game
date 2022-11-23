@@ -248,7 +248,6 @@ public class LevelManager : MonoBehaviour
 
             if (enemyToSpawn)
             {
-                // TODO: Randomize spawn position, also try and spawn from outside the map, OR work on spawn position any other way
                 // If there's an enemy to spawn, then instantiate that enemy
                 EnemyScript spawnedEnemy = Instantiate(enemyToSpawn, spawnPos, Quaternion.identity, enemiesParent.transform);
                 enemiesInScene.Add(spawnedEnemy);

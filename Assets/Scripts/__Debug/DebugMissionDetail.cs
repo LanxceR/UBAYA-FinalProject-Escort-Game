@@ -67,8 +67,6 @@ public class DebugMissionDetail : MonoBehaviour
 
         GameManager.Instance.gameMission.LoadMission(index);
 
-
-        // TODO: Work on scene transition
         // Transition into Escort Scene
         GameManager.Instance.gameScene.GotoScene(GameManager.Instance.LoadedMissionData.escortScene);
     }
