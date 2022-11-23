@@ -73,6 +73,7 @@ public class InventoryScript : MonoBehaviour
         // Fill in inventory at start
         UpdateInventory();
 
+        heldItemIndex = 9999; // Initial value to allow equipping on start
         // Switch to the first equipment
         SwitchEquipment(0);
     }
