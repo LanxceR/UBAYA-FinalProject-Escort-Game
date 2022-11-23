@@ -35,6 +35,20 @@ public class GameMissionManager : MonoBehaviour
 
         Debug.Log($"Loaded mission data at index = {index}");
     }
+    // Load a save and store in game manager loaded save
+    public void LoadMission(int index)
+    {
+        // Load mission
+        gameManager.LoadedMissionData = gameManager.MissionDatas[index];
+
+        // Assign weapons & escortee/vehicle
+        gameManager.LoadedMissionData.vehicle = gameManager.gameEscortee.GetEscortee(gameManager.LoadedGameData.equippedVehicle);
+        gameManager.LoadedMissionData.meleeWeapon = gameManager.gameWeapon.GetWeapon(gameManager.LoadedGameData.equippedMeleeWeapon);
+        gameManager.LoadedMissionData.rangedWeapon1 = gameManager.gameWeapon.GetWeapon(gameManager.LoadedGameData.equippedRangedWeapon1);
+        gameManager.LoadedMissionData.rangedWeapon2 = gameManager.gameWeapon.GetWeapon(gameManager.LoadedGameData.equippedRangedWeapon2);
+
+        Debug.Log($"Loaded mission data at index = {index}");
+    }
 
     // Generate missions for that day
     public void GenerateMissions(int day)

@@ -78,23 +78,23 @@ public class GameManager : MonoBehaviour
     [Header("Service Locators (Other managers)")]
     // TODO: Put other managers here. GameManager is going to act as the main entryway for accessing these managers
     [SerializeField]
-    internal GameSceneManager gameScene;
+    public GameSceneManager gameScene;
     [SerializeField]
-    internal GameStateManager gameState;
+    public GameStateManager gameState;
     [SerializeField]
-    internal GameInputManager gameInput;
+    public GameInputManager gameInput;
     [SerializeField]
-    internal GameDataManager gameData;
+    public GameDataManager gameData;
     [SerializeField]
-    internal GameMissionManager gameMission;
+    public GameMissionManager gameMission;
     [SerializeField]
-    internal GamePlayerManager gamePlayer;
+    public GamePlayerManager gamePlayer;
     [SerializeField]
-    internal GameEscorteeManager gameEscortee;
+    public GameEscorteeManager gameEscortee;
     [SerializeField]
-    internal GameWeaponManager gameWeapon;
+    public GameWeaponManager gameWeapon;
     [SerializeField]
-    internal GameEnemyManager gameEnemy;
+    public GameEnemyManager gameEnemy;
 
     // Awake is called when the script instance is being loaded
     private void Awake()

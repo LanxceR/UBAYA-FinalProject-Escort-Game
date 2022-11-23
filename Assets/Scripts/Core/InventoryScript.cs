@@ -15,14 +15,14 @@ public class InventoryScript : MonoBehaviour
     // Components
     [Header("Components")]
     [SerializeField]
-    private GameObject inventoryHolder;
+    internal GameObject inventoryHolder;
 
     // Variables
     [SerializeField]
     internal List<IEquipmentItem> equipments;
 
     [SerializeField]
-    internal int heldItemIndex;
+    internal int heldItemIndex = 0;
 
     #region INPUTS
     // OnPSwitchEquipment listener from InputAction "MainPlayerInput.inputaction"
@@ -78,7 +78,7 @@ public class InventoryScript : MonoBehaviour
         SwitchEquipment(0);
     }
 
-    private void UpdateInventory()
+    internal void UpdateInventory()
     {
         equipments = inventoryHolder.GetComponentsInChildren<IEquipmentItem>(true).ToList();
     }

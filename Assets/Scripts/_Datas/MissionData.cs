@@ -19,9 +19,12 @@ public class MissionData
     public bool escorteeHasWeapon;
     public int zombieCount;
     public float baseReward;
+
+    // DEPRECATED
     public WeaponScript meleeWeapon;
     public WeaponScript rangedWeapon1;
     public WeaponScript rangedWeapon2;
+    //
 
     public List<Spawnable> enemies;
 
