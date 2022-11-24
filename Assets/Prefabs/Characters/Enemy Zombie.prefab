@@ -651,6 +651,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+  destroyOnDeath: 1
+  destroyDelay: 2
+  corpsePrefab: {fileID: 8235225914126728358, guid: 330436733d489ab4492af61ef6591cf2, type: 3}
   corpseLayerMask:
     serializedVersion: 2
     m_Bits: 1024
