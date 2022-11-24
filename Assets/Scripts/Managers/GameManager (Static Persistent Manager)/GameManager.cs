@@ -7,9 +7,7 @@ using UnityEngine;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    // TODO: Enemy AI, spawning, etc
     // TODO: Try storing ALL prefabs in a ScriptableObject or other methods
-    // TODO: Procgenerated map
 
     // Singleton instance
     private static GameManager instance;

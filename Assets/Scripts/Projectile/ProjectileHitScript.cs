@@ -38,7 +38,6 @@ public class ProjectileHitScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: Projectile knockback
         if (HasHit())
         {
             // If projectile has hit something,

@@ -85,33 +85,40 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
 
     #region Core transition functions
     // Method to change animation state
-    public void ChangeAnimationState(string newState, bool forceStart)
+    public bool ChangeAnimationState(string newState, bool forceStart)
     {
         // If animator speed is 0, then return
-        if (animator.speed == 0) return;
+        if (animator.speed == 0) return false;
 
         // Prevent the same animation from interrupting itself
-        if (currentState == newState) return;
+        if (currentState == newState) return false;
 
-        // If there's an uninterruptible animation currently running, return
-        if (uninterruptibleCoroutineRunning && !forceStart) return;
+        // If there's an uninterruptible animation currently running and is NOT forced to start an anim, return
+        if (uninterruptibleCoroutineRunning && !forceStart) return false;
 
         // Play the animation
         animator.Play(newState);
 
         // Reassign the current state to the new one
         currentState = newState;
+
+        return true;
     }
 
     // Method to change animation state to another state and make it uninterruptible
     public IEnumerator ChangeAnimationStateUninterruptible(string newState, bool forceStart, bool stopAfterAnimEnd)
     {
         // Anim transition
-        ChangeAnimationState(newState, forceStart);
+        if (!ChangeAnimationState(newState, forceStart))
+        {
+            yield break;
+        }
 
         // Uses a bool to indicate if there's an uninterrupted anim running
         // NOTE: Using return value from StartCoroutine() sometimes doesn't work in this instance for some reason
         uninterruptibleCoroutineRunning = true;
+
+        yield return new WaitForEndOfFrame();
 
         // Wait until played animations finishes
         while (!AnimatorHasFinishedPlaying(newState))
@@ -120,7 +127,10 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
         }
 
         // Stop the animator
-        if (stopAfterAnimEnd) animator.speed = 0;
+        if (stopAfterAnimEnd)
+        {
+            animator.speed = 0;
+        }
 
         uninterruptibleCoroutineRunning = false;
     }
@@ -130,25 +140,19 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
     // Method to check if there's any animation clip is currently playing
     bool AnimatorIsPlaying()
     {
-        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1;
-    }
-
-    // Method to check if an animation clip is currently playing
-    bool AnimatorIsPlaying(string stateName)
-    {
-        return AnimatorIsPlaying() && animator.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1;
     }
 
     // Method to check if currently playing anim clip has finished playing
     bool AnimatorHasFinishedPlaying()
     {
-        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0);
+        return !AnimatorIsPlaying() && !animator.IsInTransition(0);
     }
 
     // Method to check if currently playing anim clip is a specific anim AND has finished playing
     bool AnimatorHasFinishedPlaying(string stateName)
     {
-        return AnimatorIsPlaying(stateName) && AnimatorHasFinishedPlaying();
+        return currentState == stateName && AnimatorHasFinishedPlaying();
     }
     #endregion
 

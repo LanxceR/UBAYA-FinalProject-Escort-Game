@@ -44,8 +44,6 @@ public class EnemyAIAttackScript : MonoBehaviour
                 Transform target = enemyScript.recAggroScript.target;
                 Collider2D targetCol = enemyScript.recAggroScript.targetCol;
 
-                // TODO: Aim towards the target's hitbox closest point instead
-
                 // Aims toward target
                 if (targetCol)
                 {
