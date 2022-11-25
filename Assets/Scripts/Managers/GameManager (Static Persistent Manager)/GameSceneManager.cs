@@ -12,7 +12,9 @@ public enum SceneName
     CUTSCENE,
     MAIN_HUB,
     TEST_ESCORT_SCENE,
-    TEST_MISSION_SCENE
+    TEST_MISSION_SCENE,
+    TEST_PERMADEATH_SCREEN,
+    TEST_ENDING_SCREEN
 }
 
 /// <summary>
@@ -31,7 +33,8 @@ public class GameSceneManager : MonoBehaviour
 
     // Variables
     [Header("Variables")]
-    [SerializeField] private string defaultSceneTarget;
+    [SerializeField] private SceneName defaultSceneTarget;
+    [SerializeField] private bool loadToDefaultAtStartup;
 
     public SceneName SceneToLoad { get; private set; }
     public float LoadProgress { get; private set; }
@@ -54,6 +57,9 @@ public class GameSceneManager : MonoBehaviour
             loadTransitionCanvasGroup.alpha = 0f;
             loadTransitionCanvasGroup.gameObject.SetActive(false);
         }
+
+        if (loadToDefaultAtStartup)
+            GotoScene(defaultSceneTarget);
     }
 
     #region Main Functions
@@ -148,9 +154,6 @@ public class GameSceneManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         LoadProgress = 0f;
 
-        // Reset Timescale
-        gameManager.gameState.ResumeGame();
-
         // Fade out loading screen for 1 second
         yield return StartCoroutine(FadeLoadingScreen(0f, 1f));
 
@@ -190,9 +193,6 @@ public class GameSceneManager : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
         LoadProgress = 0f;
-
-        // Reset Timescale
-        gameManager.gameState.ResumeGame();
 
         // Fade out loading screen for 1 second
         yield return StartCoroutine(FadeLoadingScreen(0f, 1f));
@@ -249,6 +249,9 @@ public class GameSceneManager : MonoBehaviour
                 if (gameManager.gameInput) gameManager.gameInput.enabled = true;
                 break;
         }
+
+        // Reset Timescale
+        gameManager.gameState.ResumeGame();
     }
     private void ManageGMComponents(Scene scene, LoadSceneMode loadSceneMode)
     {

@@ -300,7 +300,7 @@ public class LevelManager : MonoBehaviour
         if (allWinConditionsMet)
         {
             // Mission successful
-            GameManager.Instance.gameState.GameOver(GameOverEvent.MISSION_SUCCESS);
+            GameManager.Instance.gameMission.MissionEnd(MissionEndEvent.MISSION_SUCCESS);
         }
     }
 

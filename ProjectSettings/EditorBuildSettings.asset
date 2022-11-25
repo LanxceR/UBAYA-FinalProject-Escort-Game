@@ -26,5 +26,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/_(TEST) Mission Brief Scene.unity
     guid: 2be30cff55d22ed4c8918192fbf7ca47
+  - enabled: 1
+    path: Assets/Scenes/_(TEST) Permadeath Screen.unity
+    guid: 19c0ea8f7f5b0094eb4335c7a296fe19
+  - enabled: 1
+    path: Assets/Scenes/_(TEST) Ending Screen.unity
+    guid: 320f1eb0b77d3e14d90ef2653d9b47a3
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4d440e698ce32ac45b907021a2e8d0e2, type: 2}

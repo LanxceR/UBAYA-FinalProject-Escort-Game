@@ -38,6 +38,7 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
     private string currentState;
     private bool uninterruptibleCoroutineRunning = false;
     private string playerDir;
+    private Coroutine deathCoroutine;
 
     #region Initialization
     // Start is called before the first frame update
@@ -51,7 +52,7 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
             playerScript.healthScript.OnHit?.AddListener(delegate { PlayerHurt(); });
 
             // Add listener to Health's OnHealthReachedZero UnityEvent          
-            playerScript.healthScript.OnHealthReachedZero?.AddListener(delegate { PlayerDeath(); });
+            playerScript.healthScript.OnHealthReachedZero?.AddListener(delegate { deathCoroutine = StartCoroutine(PlayerDeath()); });
         }
     }
     #endregion
@@ -74,7 +75,7 @@ public class PlayerAnimationScript : MonoBehaviour, IAnimation
             if (playerScript.healthScript.IsDead)
             {
                 if (currentState != PLAYER_DEATH)
-                    PlayerDeath();
+                    deathCoroutine = StartCoroutine(PlayerDeath());
             }
         }
 

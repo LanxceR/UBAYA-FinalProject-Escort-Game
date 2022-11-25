@@ -6,10 +6,7 @@ using UnityEngine.Events;
 public enum GameOverEvent
 {
     PERMADEATH,
-    MISSION_SUCCESS,
-    MISSION_FAILED,
-    ENDING,
-    TUTORIAL_COMPLETE
+    ENDING
 }
 
 /// <summary>
@@ -36,7 +33,7 @@ public class GameStateManager : MonoBehaviour
     /// Event invoked when resuming the game
     /// </summary>
     internal UnityAction OnResumeAction;
-    // Subbed at: InGameGameOverUIScript
+    // Subbed at: DebugMissionEnd
     /// <summary>
     /// Event invoked when there's a game over
     /// </summary>
@@ -57,48 +54,23 @@ public class GameStateManager : MonoBehaviour
 
     public void GameOver(GameOverEvent gameOverEvent)
     {        
-        // TODO: Move the PERMADEATH and ENDING event to somewhere else (for better mission conclusion screen and then jumping into an end scene)
         switch (gameOverEvent)
         {
-            case GameOverEvent.TUTORIAL_COMPLETE:
-                Debug.Log($"Tutorial Successful!");
-                gameManager.LoadedGameData.daysPassed++;
-                break;
-            case GameOverEvent.MISSION_SUCCESS:
-                Debug.Log($"Mission Successful!");
-                gameManager.LoadedGameData.missionsCompleted++;
-                gameManager.LoadedGameData.daysPassed++;
-                if (gameManager.LoadedMissionData.isFinalMission)
-                {
-                    // Call GameOver again, but with an ending
-                    GameOver(GameOverEvent.ENDING); 
-                }
-                break;
-            case GameOverEvent.MISSION_FAILED:
-                Debug.Log($"Mission Failed!");
-                gameManager.LoadedGameData.missionsFailed++;
-                gameManager.LoadedGameData.daysPassed++;
-                if (gameManager.LoadedGameData.difficulty == Difficulty.HARDCORE)
-                {
-                    if (gameManager.LoadedGameData.missionsFailed >= 3 || gameManager.LoadedMissionData.isFinalMission)
-                    {
-                        // Call GameOver again, but permadeath
-                        GameOver(GameOverEvent.PERMADEATH);
-                    }
-                }
-                break;
             case GameOverEvent.PERMADEATH:
                 Debug.Log($"GAME OVER!");
+
+                // Invoke OnGameOver event
+                OnGameOver?.Invoke(GameOverEvent.PERMADEATH);
                 break;
             case GameOverEvent.ENDING:
                 Debug.Log($"YOU WON THE GAME!");
+
+                // Invoke OnGameOver event
+                OnGameOver?.Invoke(GameOverEvent.ENDING);
                 break;
             default:
                 break;
         }
-
-        // Invoke OnGameOver event
-        OnGameOver?.Invoke(gameOverEvent);
     }
 
     internal void UpdateTimeScale(float timeScale)

@@ -23,18 +23,18 @@ public class InGameMissionEndUIScript : MonoBehaviour
     {
         Debug.Log("InGameGameOverUIScript starting");
 
-        GameManager.Instance.gameState.OnGameOver += GameOver;
+        GameManager.Instance.gameMission.OnMissionEnd += MissionEnd;
     }
 
     // Methods
-    private void GameOver(GameOverEvent gameOverEvent)
+    private void MissionEnd(MissionEndEvent missionEndEvent)
     {
-        switch (gameOverEvent)
+        switch (missionEndEvent)
         {
-            case GameOverEvent.MISSION_SUCCESS:
+            case MissionEndEvent.MISSION_SUCCESS:
                 missionSuccessPanel.SetActive(true);
                 break;
-            case GameOverEvent.MISSION_FAILED:
+            case MissionEndEvent.MISSION_FAILED:
                 missionFailedPanel.SetActive(true);
                 break;
             default:

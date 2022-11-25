@@ -234,7 +234,8 @@ MonoBehaviour:
   gameManager: {fileID: 3476358989919382763}
   loadTransitionCanvas: {fileID: 5352979860605563407}
   loadTransitionCanvasGroup: {fileID: 2976375889730184555}
-  defaultSceneTarget: Title Screen
+  defaultSceneTarget: 1
+  loadToDefaultAtStartup: 0
 --- !u!114 &3476358989919382760
 MonoBehaviour:
   m_ObjectHideFlags: 0
