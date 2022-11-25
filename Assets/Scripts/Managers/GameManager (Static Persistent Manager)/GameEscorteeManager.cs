@@ -98,7 +98,10 @@ public class GameEscorteeManager : MonoBehaviour
     {
         if (!ActiveEscortee)
         {
-            ActiveEscortee = Instantiate(gameManager.LoadedMissionData.vehicle, spawnPoint.position, Quaternion.identity);
+            if (gameManager.LoadedMissionData.vehicle)
+                ActiveEscortee = Instantiate(gameManager.LoadedMissionData.vehicle, spawnPoint.position, Quaternion.identity);
+            else
+                ActiveEscortee = Instantiate(escorteePrefabs[0], spawnPoint.position, Quaternion.identity);
         }
         else
         {
