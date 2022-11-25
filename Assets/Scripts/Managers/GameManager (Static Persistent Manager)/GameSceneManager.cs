@@ -8,6 +8,8 @@ public enum SceneName
 {
     LOADING_SCREEN,
     TITLE_SCREEN,
+    SAVE_LOAD,
+    CUTSCENE,
     MAIN_HUB,
     TEST_ESCORT_SCENE,
     TEST_MISSION_SCENE
