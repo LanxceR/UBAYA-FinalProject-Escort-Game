@@ -25,9 +25,12 @@ public class LookAt : MonoBehaviour
         if (autoAssignTargetInParent)
         {
             // Fetch parent implementing ICharacter
-            GameObject parent = Utilities.FindParentOfType<ICharacter>(transform, out _).GetGameObject();
+            ICharacter parent = Utilities.FindParentOfType<ICharacter>(transform, out Transform root);
             // Find a child with the correct tag and assign that as target
-            Target = Utilities.FindChildWithTag(parent, targetTag).transform;
+            if (parent != null)
+                Target = Utilities.FindChildWithTag(parent.GetGameObject(), targetTag).transform;
+            else
+                Target = Utilities.FindChildWithTag(root.gameObject, targetTag).transform;
         }
     }
 

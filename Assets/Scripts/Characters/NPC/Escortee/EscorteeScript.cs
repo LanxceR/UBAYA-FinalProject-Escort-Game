@@ -49,6 +49,8 @@ public class EscorteeScript : MonoBehaviour, ICharacter
     internal EscorteeAnimationScript escorteeAnimationScript;
     [SerializeField]
     internal EscorteeInteractScript escorteeInteractScript;
+    [SerializeField]
+    internal EscorteeAllyHolderScript escorteeAllyHolderScript;
     // General sub-scripts
     [SerializeField]
     internal HealthScript healthScript;
