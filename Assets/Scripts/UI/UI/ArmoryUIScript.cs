@@ -10,6 +10,7 @@ public class ArmoryUIScript : MonoBehaviour
 {
     WeaponScript[] weaponList;
     private int currentIndex;
+    private Coroutine showPopupCoroutine;
     public GameObject purchasePanel;
     public GameObject ammoPurchasePanel;
 
@@ -509,7 +510,9 @@ public class ArmoryUIScript : MonoBehaviour
             PlayClick();
             if (GameManager.Instance.LoadedGameData.money < weaponList[currentIndex].price)
             {
-                StartCoroutine(ShowPopup(.8f));
+                if (showPopupCoroutine != null)
+                    StopCoroutine(showPopupCoroutine);
+                showPopupCoroutine =  StartCoroutine(ShowPopup(.8f));
             }
             else
             {
@@ -548,7 +551,9 @@ public class ArmoryUIScript : MonoBehaviour
 
         if (GameManager.Instance.LoadedGameData.money < GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].price)
         {
-            StartCoroutine(ShowPopup(.8f));
+            if (showPopupCoroutine != null)
+                StopCoroutine(showPopupCoroutine);
+            showPopupCoroutine = StartCoroutine(ShowPopup(.8f));
         }
         else
         {
@@ -605,6 +610,7 @@ public class ArmoryUIScript : MonoBehaviour
     IEnumerator ShowPopup(float delay)
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/PurchaseFail");
+        popup.SetActive(false);
         popup.SetActive(true);
         yield return new WaitForSeconds(delay);
         popup.SetActive(false);

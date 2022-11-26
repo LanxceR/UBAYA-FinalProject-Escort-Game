@@ -13,6 +13,7 @@ public class GarageUIScript : MonoBehaviour
 
     EscorteeScript[] escorteeList;
     private int currentIndex;
+    private Coroutine showPopupCoroutine;
     public GameObject purchasePanel;
 
     //GAMEOBJECTS
@@ -223,7 +224,9 @@ public class GarageUIScript : MonoBehaviour
     {
         if(GameManager.Instance.LoadedGameData.money < escorteeList[currentIndex].price)
         {
-            StartCoroutine(ShowPopup(.8f));
+            if (showPopupCoroutine != null)
+                StopCoroutine(showPopupCoroutine);
+            showPopupCoroutine = StartCoroutine(ShowPopup(.8f));
         }
         else
         {
@@ -276,6 +279,7 @@ public class GarageUIScript : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/PurchaseFail");
+        popup.SetActive(false);
         popup.SetActive(true);
         yield return new WaitForSeconds(delay);
         popup.SetActive(false);

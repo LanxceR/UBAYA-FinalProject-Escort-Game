@@ -20,8 +20,8 @@ public class GameEscorteeManager : MonoBehaviour
         set 
         {
             activeEscortee = value;
-            activeEscortee.healthScript.OnHealthReachedZero?.RemoveListener(delegate { gameManager.gameState.GameOver(GameOverEvent.MISSION_FAILED); });
-            activeEscortee.healthScript.OnHealthReachedZero.AddListener(delegate { gameManager.gameState.GameOver(GameOverEvent.MISSION_FAILED); });
+            activeEscortee.healthScript.OnHealthReachedZero?.RemoveListener(delegate { gameManager.gameMission.MissionEnd(MissionEndEvent.MISSION_FAILED); });
+            activeEscortee.healthScript.OnHealthReachedZero.AddListener(delegate { gameManager.gameMission.MissionEnd(MissionEndEvent.MISSION_FAILED); });
         }
     }
 
@@ -77,7 +77,6 @@ public class GameEscorteeManager : MonoBehaviour
     }
     #endregion
 
-
     // Find a player object in hirearchy
     public void FindEscorteeInScene()
     {
@@ -98,7 +97,10 @@ public class GameEscorteeManager : MonoBehaviour
     {
         if (!ActiveEscortee)
         {
-            ActiveEscortee = Instantiate(gameManager.LoadedMissionData.vehicle, spawnPoint.position, Quaternion.identity);
+            if (gameManager.LoadedMissionData.vehicle)
+                ActiveEscortee = Instantiate(gameManager.LoadedMissionData.vehicle, spawnPoint.position, Quaternion.identity);
+            else
+                ActiveEscortee = Instantiate(escorteePrefabs[0], spawnPoint.position, Quaternion.identity);
         }
         else
         {

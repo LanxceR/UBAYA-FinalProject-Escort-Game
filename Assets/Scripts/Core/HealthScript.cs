@@ -11,8 +11,14 @@ public class HealthScript : MonoBehaviour
     // TODO: Implement various health HUDs
 
     // Variables
+    [Header("Health")]
     [SerializeField] private float maxHealth;
     [SerializeField] private float currentHealth;
+    [SerializeField] private bool hasInitializedHealth;
+    [Header("Death")]
+    [SerializeField] private bool destroyOnDeath;
+    [SerializeField] private float destroyDelay;
+    [SerializeField] private GameObject corpsePrefab;
 
     // Layer masks
     [Header("Layer Masks")]
@@ -42,16 +48,19 @@ public class HealthScript : MonoBehaviour
 
     internal GameObject lastHitBy;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Set health at start
-        CurrentHealth = MaxHealth;
-    }
-
     // Update is called every frame, if the MonoBehaviour is enabled
     private void Update()
     {
+        // If health is not initialized yet
+        if (MaxHealth > 0 && CurrentHealth <= 0 && !hasInitializedHealth)
+        {
+            // Set health
+            CurrentHealth = MaxHealth;
+
+            // Set initialized flag to true
+            hasInitializedHealth = true;
+        }
+
         UpdateState();
     }
 
@@ -111,8 +120,20 @@ public class HealthScript : MonoBehaviour
             IsDead = true;
             OnHealthReachedZero?.Invoke();
 
-            // TODO: Handle gameover events (or player death, specifically)
+            hasInitializedHealth = false;
+
+            if (destroyOnDeath)
+                StartCoroutine(DestroyCoroutine(destroyDelay));
         }
+    }
+
+    private IEnumerator DestroyCoroutine(float destroyDelay)
+    {
+        // TODO: Probably find a way to refer to a parent object to make the hirearchy tidier
+        yield return new WaitForSeconds(destroyDelay);
+
+        Instantiate(corpsePrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private IEnumerator Invulnerability()
@@ -124,7 +145,6 @@ public class HealthScript : MonoBehaviour
         IsInvulnerable = false;
     }
 
-    // TODO: Implement State Checking for health (e.g Change corpse layer to Corpse layer to prevent any further interactions). Maybe do this on a separate script?
     private void UpdateState()
     {
         if (IsDead)

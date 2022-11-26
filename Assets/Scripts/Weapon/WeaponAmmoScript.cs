@@ -28,12 +28,16 @@ public class WeaponAmmoScript : MonoBehaviour
 
     private InventoryScript inv;
 
-    // Start is called before the first frame update
-    void Start()
+    // Awake is called when the script instance is being loaded
+    private void Awake()
     {
         // Set ammo count at the start
         loadedAmmo = weaponScript.ammoMagSize;
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         // Add listener to OnEquipmentSwitch to interrupt reloads on equipment switch
         inv = Utilities.FindParentOfType<InventoryScript>(transform, out _);
         if (inv)

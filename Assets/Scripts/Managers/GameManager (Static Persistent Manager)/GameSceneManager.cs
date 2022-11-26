@@ -11,8 +11,11 @@ public enum SceneName
     SAVE_LOAD,
     CUTSCENE,
     MAIN_HUB,
+    MAP_FOREST,
     TEST_ESCORT_SCENE,
-    TEST_MISSION_SCENE
+    TEST_MISSION_SCENE,
+    TEST_PERMADEATH_SCREEN,
+    TEST_ENDING_SCREEN
 }
 
 /// <summary>
@@ -31,7 +34,8 @@ public class GameSceneManager : MonoBehaviour
 
     // Variables
     [Header("Variables")]
-    [SerializeField] private string defaultSceneTarget;
+    [SerializeField] private SceneName defaultSceneTarget;
+    [SerializeField] private bool loadToDefaultAtStartup;
 
     public SceneName SceneToLoad { get; private set; }
     public float LoadProgress { get; private set; }
@@ -54,6 +58,9 @@ public class GameSceneManager : MonoBehaviour
             loadTransitionCanvasGroup.alpha = 0f;
             loadTransitionCanvasGroup.gameObject.SetActive(false);
         }
+
+        if (loadToDefaultAtStartup)
+            GotoScene(defaultSceneTarget);
     }
 
     #region Main Functions
@@ -148,9 +155,6 @@ public class GameSceneManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         LoadProgress = 0f;
 
-        // Reset Timescale
-        gameManager.gameState.ResumeGame();
-
         // Fade out loading screen for 1 second
         yield return StartCoroutine(FadeLoadingScreen(0f, 1f));
 
@@ -191,9 +195,6 @@ public class GameSceneManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         LoadProgress = 0f;
 
-        // Reset Timescale
-        gameManager.gameState.ResumeGame();
-
         // Fade out loading screen for 1 second
         yield return StartCoroutine(FadeLoadingScreen(0f, 1f));
 
@@ -213,42 +214,39 @@ public class GameSceneManager : MonoBehaviour
     {
         SceneName currentScene = (SceneName)GetCurrentScene().buildIndex;
 
-        switch (currentScene)
+        if (gameManager.gameMission.escortScenes.Contains(currentScene))
         {
-            case SceneName.TITLE_SCREEN | SceneName.MAIN_HUB | SceneName.TEST_MISSION_SCENE | SceneName.LOADING_SCREEN:
-                if (gameManager.gameState) gameManager.gameState.enabled = false;
-                if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = false;
-                if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = false;
-                if (gameManager.gameWeapon) gameManager.gameWeapon.enabled = false;
-                if (gameManager.gameEnemy) gameManager.gameEnemy.enabled = false;
-                break;
-            case SceneName.TEST_ESCORT_SCENE:
-                if (gameManager.gameState) gameManager.gameState.enabled = true;
-                if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = true;
-                if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = true;
-                if (gameManager.gameWeapon) gameManager.gameWeapon.enabled = true;
-                if (gameManager.gameEnemy) gameManager.gameEnemy.enabled = true;
+            if (gameManager.gameState) gameManager.gameState.enabled = true;
+            if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = true;
+            if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = true;
+            if (gameManager.gameWeapon) gameManager.gameWeapon.enabled = true;
+            if (gameManager.gameEnemy) gameManager.gameEnemy.enabled = true;
 
-                // Find active in-game cameras & UI (if one exists)
-                gameManager.FindActiveInGameCameras();
-                gameManager.FindActiveInGameUI();
-                // Try to initialize In-Game UI & Camera
-                gameManager.TryInitializeInGameCameras();
-                gameManager.TryInitializeInGameUI();
+            // Find active in-game cameras & UI (if one exists)
+            gameManager.FindActiveInGameCameras();
+            gameManager.FindActiveInGameUI();
+            // Try to initialize In-Game UI & Camera
+            gameManager.TryInitializeInGameCameras();
+            gameManager.TryInitializeInGameUI();
 
-                // Find any preexisting players first
-                gameManager.gamePlayer.FindPlayerInScene();
+            // Find any preexisting players first
+            gameManager.gamePlayer.FindPlayerInScene();
 
-                // Find any preexisting escortees first
-                gameManager.gameEscortee.FindEscorteeInScene();
-                break;
-            default:
-                if (gameManager.gameState) gameManager.gameState.enabled = false;
-                if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = false;
-                if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = false;
-                if (gameManager.gameInput) gameManager.gameInput.enabled = true;
-                break;
+            // Find any preexisting escortees first
+            gameManager.gameEscortee.FindEscorteeInScene();
         }
+        else
+        {
+            if (gameManager.gameState) gameManager.gameState.enabled = false;
+            if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = false;
+            if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = false;
+            if (gameManager.gameWeapon) gameManager.gameWeapon.enabled = false;
+            if (gameManager.gameEnemy) gameManager.gameEnemy.enabled = false;
+            if (gameManager.gameInput) gameManager.gameInput.enabled = true;
+        }
+
+        // Reset Timescale
+        gameManager.gameState.ResumeGame();
     }
     private void ManageGMComponents(Scene scene, LoadSceneMode loadSceneMode)
     {

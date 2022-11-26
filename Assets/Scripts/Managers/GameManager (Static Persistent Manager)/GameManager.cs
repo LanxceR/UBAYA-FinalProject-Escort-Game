@@ -7,9 +7,7 @@ using UnityEngine;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    // TODO: Enemy AI, spawning, etc
     // TODO: Try storing ALL prefabs in a ScriptableObject or other methods
-    // TODO: Procgenerated map
 
     // Singleton instance
     private static GameManager instance;
@@ -27,7 +25,7 @@ public class GameManager : MonoBehaviour
     [Header("Game States")]
     [SerializeField] 
     private bool gameIsPlaying = true; // Bool to determine if player is in menu or playing the game
-    [SerializeField] [Range(0f, 2f)]
+    [SerializeField] [Range(0f, 10f)]
     private float gameTimeScale = 1f;
     internal bool GameIsPlaying { get => gameIsPlaying; set => gameIsPlaying = value; }
     public float GameTimeScale { get => gameTimeScale; set => gameTimeScale = value; }
@@ -78,23 +76,23 @@ public class GameManager : MonoBehaviour
     [Header("Service Locators (Other managers)")]
     // TODO: Put other managers here. GameManager is going to act as the main entryway for accessing these managers
     [SerializeField]
-    internal GameSceneManager gameScene;
+    public GameSceneManager gameScene;
     [SerializeField]
-    internal GameStateManager gameState;
+    public GameStateManager gameState;
     [SerializeField]
-    internal GameInputManager gameInput;
+    public GameInputManager gameInput;
     [SerializeField]
-    internal GameDataManager gameData;
+    public GameDataManager gameData;
     [SerializeField]
-    internal GameMissionManager gameMission;
+    public GameMissionManager gameMission;
     [SerializeField]
-    internal GamePlayerManager gamePlayer;
+    public GamePlayerManager gamePlayer;
     [SerializeField]
-    internal GameEscorteeManager gameEscortee;
+    public GameEscorteeManager gameEscortee;
     [SerializeField]
-    internal GameWeaponManager gameWeapon;
+    public GameWeaponManager gameWeapon;
     [SerializeField]
-    internal GameEnemyManager gameEnemy;
+    public GameEnemyManager gameEnemy;
 
     // Awake is called when the script instance is being loaded
     private void Awake()

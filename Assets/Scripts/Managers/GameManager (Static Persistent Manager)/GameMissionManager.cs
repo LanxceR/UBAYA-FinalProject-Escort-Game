@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// The game mission manager script
 /// </summary>
 public enum MissionDifficulty { EASY, INTERMEDIATE, HARD, FINAL}
+public enum MissionEndEvent
+{
+    MISSION_SUCCESS,
+    MISSION_FAILED,
+    TUTORIAL_COMPLETE
+}
 public class GameMissionManager : MonoBehaviour
 {
     // Reference to the game manager script
@@ -14,8 +21,71 @@ public class GameMissionManager : MonoBehaviour
 
     // Escort Scenes
     [Header("Possible Escort Scenes")]
-    [SerializeField] internal SceneName[] escortScenes; // List of all valid escort scenes
+    [SerializeField] internal List<SceneName> escortScenes; // List of all valid escort scenes
 
+    // ========================================================================================== //
+
+    // Unity Events
+    // Subbed at: InGameGameOverUIScript
+    /// <summary>
+    /// Event invoked when there's a game over
+    /// </summary>
+    internal UnityAction<MissionEndEvent, float> OnMissionEnd;
+
+    public void MissionEnd(MissionEndEvent missionEndEvent, float reward = 0)
+    {
+        switch (missionEndEvent)
+        {
+            case MissionEndEvent.MISSION_SUCCESS:
+                Debug.Log($"Mission Successful!");
+                gameManager.LoadedGameData.missionsCompleted++;
+
+                // Add reward
+                if (reward != 0)
+                    gameManager.LoadedGameData.money += reward;
+
+                // Invoke OnMissionEnd event
+                OnMissionEnd?.Invoke(MissionEndEvent.MISSION_SUCCESS, reward);
+
+                if (gameManager.LoadedMissionData.isFinalMission)
+                {
+                    // Call GameOver Ending
+                    gameManager.gameState.GameOver(GameOverEvent.ENDING);
+                }
+
+                gameManager.LoadedGameData.daysPassed++;
+                break;
+            case MissionEndEvent.MISSION_FAILED:
+                Debug.Log($"Mission Failed!");
+                gameManager.LoadedGameData.missionsFailed++;
+
+                // Invoke OnMissionEnd event
+                OnMissionEnd?.Invoke(MissionEndEvent.MISSION_FAILED, reward);
+
+                // If Hardcore difficulty
+                if (gameManager.LoadedGameData.difficulty == Difficulty.HARDCORE && gameManager.LoadedGameData.daysPassed <= 10)
+                {
+                    if (gameManager.LoadedGameData.missionsFailed >= 3 || gameManager.LoadedMissionData.isFinalMission)
+                    {
+                        // Call GameOver Permdadeath
+                        gameManager.gameState.GameOver(GameOverEvent.PERMADEATH);
+                    }
+                }
+
+                gameManager.LoadedGameData.daysPassed++;
+                break;
+            case MissionEndEvent.TUTORIAL_COMPLETE:
+                Debug.Log($"Tutorial Successful!");
+                gameManager.LoadedGameData.daysPassed++;
+
+                // Invoke OnMissionEnd event
+                OnMissionEnd?.Invoke(MissionEndEvent.TUTORIAL_COMPLETE, reward);
+
+                break;
+            default:
+                break;
+        }
+    }
 
     // Load a save and store in game manager loaded save
     public void LoadMission(int index, 
@@ -32,6 +102,20 @@ public class GameMissionManager : MonoBehaviour
         gameManager.LoadedMissionData.meleeWeapon = meleeWeapon;
         gameManager.LoadedMissionData.rangedWeapon1 = rangedWeapon1;
         gameManager.LoadedMissionData.rangedWeapon2 = rangedWeapon2;
+
+        Debug.Log($"Loaded mission data at index = {index}");
+    }
+    // Load a save and store in game manager loaded save
+    public void LoadMission(int index)
+    {
+        // Load mission
+        gameManager.LoadedMissionData = gameManager.MissionDatas[index];
+
+        // Assign weapons & escortee/vehicle
+        gameManager.LoadedMissionData.vehicle = gameManager.gameEscortee.GetEscortee(gameManager.LoadedGameData.equippedVehicle);
+        gameManager.LoadedMissionData.meleeWeapon = gameManager.gameWeapon.GetWeapon(gameManager.LoadedGameData.equippedMeleeWeapon);
+        gameManager.LoadedMissionData.rangedWeapon1 = gameManager.gameWeapon.GetWeapon(gameManager.LoadedGameData.equippedRangedWeapon1);
+        gameManager.LoadedMissionData.rangedWeapon2 = gameManager.gameWeapon.GetWeapon(gameManager.LoadedGameData.equippedRangedWeapon2);
 
         Debug.Log($"Loaded mission data at index = {index}");
     }
@@ -130,7 +214,7 @@ public class GameMissionManager : MonoBehaviour
             isFinalMission = true;
 
         // Randomize escort scene
-        SceneName scene = escortScenes[Random.Range(0, escortScenes.Length)];
+        SceneName scene = escortScenes[Random.Range(0, escortScenes.Count)];
 
         // Randomize Zombie Count & base reward
         int zombieCount;

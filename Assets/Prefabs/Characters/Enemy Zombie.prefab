@@ -311,8 +311,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1297388881
-  m_SortingLayer: 0
+  m_SortingLayerID: 417431331
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 918543374, guid: 799414a22e8c1e54cafec94d8fff0f4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -651,6 +651,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+  hasInitializedHealth: 0
+  destroyOnDeath: 1
+  destroyDelay: 2
+  corpsePrefab: {fileID: 8235225914126728358, guid: 330436733d489ab4492af61ef6591cf2, type: 3}
   corpseLayerMask:
     serializedVersion: 2
     m_Bits: 1024

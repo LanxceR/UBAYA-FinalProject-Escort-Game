@@ -13,8 +13,9 @@ public class InGameMissionEndUIScript : MonoBehaviour
     private InGameUIScript inGameUIScript;
 
     // Components
+    [Header("Success Screen")]
     [SerializeField]
-    private GameObject missionSuccessPanel;
+    private InGameMissionSuccessDisplayInfo missionSuccessPanel;
     [SerializeField]
     private GameObject missionFailedPanel;
 
@@ -23,18 +24,19 @@ public class InGameMissionEndUIScript : MonoBehaviour
     {
         Debug.Log("InGameGameOverUIScript starting");
 
-        GameManager.Instance.gameState.OnGameOver += GameOver;
+        GameManager.Instance.gameMission.OnMissionEnd += MissionEnd;
     }
 
     // Methods
-    private void GameOver(GameOverEvent gameOverEvent)
+    private void MissionEnd(MissionEndEvent missionEndEvent, float reward)
     {
-        switch (gameOverEvent)
+        switch (missionEndEvent)
         {
-            case GameOverEvent.MISSION_SUCCESS:
-                missionSuccessPanel.SetActive(true);
+            case MissionEndEvent.MISSION_SUCCESS:
+                missionSuccessPanel.gameObject.SetActive(true);
+                missionSuccessPanel.DisplayMissionEndDetail(reward);
                 break;
-            case GameOverEvent.MISSION_FAILED:
+            case MissionEndEvent.MISSION_FAILED:
                 missionFailedPanel.SetActive(true);
                 break;
             default:
