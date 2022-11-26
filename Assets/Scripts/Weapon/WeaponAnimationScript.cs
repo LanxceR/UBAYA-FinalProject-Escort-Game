@@ -33,7 +33,7 @@ public class WeaponAnimationScript : MonoBehaviour, IAnimation
     void Update()
     {
         // Always default to Idle after any animation has finished playing
-        if ((currentState == WEAPON_IDLE) && AnimatorHasFinishedPlaying())
+        if ((currentState == WEAPON_ATTACK) && AnimatorHasFinishedPlaying())
         {
             ChangeAnimationState(WEAPON_IDLE, false);
         }

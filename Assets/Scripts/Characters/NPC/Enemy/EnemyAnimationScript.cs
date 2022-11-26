@@ -40,6 +40,7 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
     internal string currentState;
     private bool uninterruptibleCoroutineRunning = false;
     private string enemyDir;
+    private Coroutine deathCoroutine;
 
     #region Initialization
     // Start is called before the first frame update
@@ -74,7 +75,7 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
             if (enemyScript.healthScript.IsDead)
             {
                 if (currentState != ENEMY_DEATH)
-                    EnemyDeath();
+                    deathCoroutine = StartCoroutine(EnemyDeath());
             }
         }
 

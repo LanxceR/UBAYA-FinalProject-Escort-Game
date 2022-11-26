@@ -26,8 +26,8 @@ public class GamePlayerManager : MonoBehaviour
             activePlayer.inventoryScript.UpdateInventory();
             activePlayer.inventoryScript.SwitchEquipment(0);
             gameManager.InGameUI.HUDScript.hudAmmoScript.AssignWeaponScript();
-            activePlayer.healthScript.OnHealthReachedZero?.RemoveListener(delegate { gameManager.gameState.GameOver(GameOverEvent.MISSION_FAILED); });
-            activePlayer.healthScript.OnHealthReachedZero?.AddListener(delegate { gameManager.gameState.GameOver(GameOverEvent.MISSION_FAILED); });
+            activePlayer.healthScript.OnHealthReachedZero?.RemoveListener(delegate { gameManager.gameMission.MissionEnd(MissionEndEvent.MISSION_FAILED); });
+            activePlayer.healthScript.OnHealthReachedZero?.AddListener(delegate { gameManager.gameMission.MissionEnd(MissionEndEvent.MISSION_FAILED); });
         }
     }
 
@@ -61,8 +61,10 @@ public class GamePlayerManager : MonoBehaviour
 
             // Instantiate the weapons/equipments in playerToSapwn inventory
             Instantiate(weaponMelee, playerToSpawn.inventoryScript.inventoryHolder.transform, false);
-            Instantiate(weaponRanged1, playerToSpawn.inventoryScript.inventoryHolder.transform, false);
-            Instantiate(weaponRanged2, playerToSpawn.inventoryScript.inventoryHolder.transform, false);
+            if (weaponRanged1)
+                Instantiate(weaponRanged1, playerToSpawn.inventoryScript.inventoryHolder.transform, false);
+            if (weaponRanged2)
+                Instantiate(weaponRanged2, playerToSpawn.inventoryScript.inventoryHolder.transform, false);
 
             // Set active player
             ActivePlayer = playerToSpawn;

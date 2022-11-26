@@ -26,18 +26,21 @@ public class InGamePauseUIScript : MonoBehaviour
         GameManager.Instance.gameState.OnResumeAction += ResumeGame;
 
         // Disable pause panel at start
-        pausePanel.SetActive(false);
+        if (pausePanel)
+            pausePanel.SetActive(false);
     }
 
     // Methods to invoke when pausing and resuming the game
     private void PauseGame()
     {
         // Enable pause panel
-        pausePanel.SetActive(true);
+        if (pausePanel)
+            pausePanel.SetActive(true);
     }
     private void ResumeGame()
     {
         // Disable pause panel
-        pausePanel.SetActive(false);
+        if (pausePanel)
+            pausePanel.SetActive(false);
     }
 }

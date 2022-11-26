@@ -168,6 +168,9 @@ public class JobBoardUIScript : MonoBehaviour
         {
             convoySelectionButton.interactable = false;
             missionEscorteeChoice.text = GameManager.Instance.MissionDatas[missionIndex].vehicle.id.ToString().Replace('_', ' ') + " (REQUIRED)";
+
+            GameManager.Instance.LoadedGameData.equippedVehicle = GameManager.Instance.MissionDatas[missionIndex].vehicle.id;
+
             convoySelectionButton.GetComponentInChildren<TextMeshProUGUI>().color = new Color32(255, 255, 255, 69);
         }
 
@@ -176,6 +179,36 @@ public class JobBoardUIScript : MonoBehaviour
             + GameManager.Instance.LoadedGameData.equippedRangedWeapon2.ToString().Replace('_', ' ') + "/"
             + GameManager.Instance.LoadedGameData.equippedMeleeWeapon.ToString().Replace('_', ' ');
 
+    }
+
+    public void PlayGame()
+    {
+        FMOD.Studio.Bus MasterBus;
+        MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+        MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        instance.release();
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/ClickConfirmJob");
+
+        if(GameManager.Instance.MissionDatas[missionIndex].vehicle == null)
+        {
+            GameManager.Instance.gameMission.LoadMission(missionIndex, 
+                GameManager.Instance.gameEscortee.GetEscortee(GameManager.Instance.LoadedGameData.equippedVehicle),
+                GameManager.Instance.gameWeapon.GetWeapon(GameManager.Instance.LoadedGameData.equippedMeleeWeapon), 
+                GameManager.Instance.gameWeapon.GetWeapon(GameManager.Instance.LoadedGameData.equippedRangedWeapon1),
+                GameManager.Instance.gameWeapon.GetWeapon(GameManager.Instance.LoadedGameData.equippedRangedWeapon2));
+        }
+        else
+        {
+            GameManager.Instance.gameMission.LoadMission(missionIndex,
+                GameManager.Instance.MissionDatas[missionIndex].vehicle,
+                GameManager.Instance.gameWeapon.GetWeapon(GameManager.Instance.LoadedGameData.equippedMeleeWeapon),
+                GameManager.Instance.gameWeapon.GetWeapon(GameManager.Instance.LoadedGameData.equippedRangedWeapon1),
+                GameManager.Instance.gameWeapon.GetWeapon(GameManager.Instance.LoadedGameData.equippedRangedWeapon2));
+        }
+        GameManager.Instance.gameScene.GotoScene(GameManager.Instance.LoadedMissionData.escortScene);
     }
 
     public void CloseBriefing()

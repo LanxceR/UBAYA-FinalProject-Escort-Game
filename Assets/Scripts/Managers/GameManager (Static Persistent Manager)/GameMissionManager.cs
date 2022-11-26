@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// The game mission manager script
 /// </summary>
 public enum MissionDifficulty { EASY, INTERMEDIATE, HARD, FINAL}
+public enum MissionEndEvent
+{
+    MISSION_SUCCESS,
+    MISSION_FAILED,
+    TUTORIAL_COMPLETE
+}
 public class GameMissionManager : MonoBehaviour
 {
     // Reference to the game manager script
@@ -16,6 +23,63 @@ public class GameMissionManager : MonoBehaviour
     [Header("Possible Escort Scenes")]
     [SerializeField] internal SceneName[] escortScenes; // List of all valid escort scenes
 
+    // ========================================================================================== //
+
+    // Unity Events
+    // Subbed at: InGameGameOverUIScript
+    /// <summary>
+    /// Event invoked when there's a game over
+    /// </summary>
+    internal UnityAction<MissionEndEvent> OnMissionEnd;
+
+    public void MissionEnd(MissionEndEvent missionEndEvent)
+    {
+        switch (missionEndEvent)
+        {
+            case MissionEndEvent.MISSION_SUCCESS:
+                Debug.Log($"Mission Successful!");
+                gameManager.LoadedGameData.missionsCompleted++;
+                gameManager.LoadedGameData.daysPassed++;
+
+                // Invoke OnMissionEnd event
+                OnMissionEnd?.Invoke(MissionEndEvent.MISSION_SUCCESS);
+
+                if (gameManager.LoadedMissionData.isFinalMission)
+                {
+                    // Call GameOver Ending
+                    gameManager.gameState.GameOver(GameOverEvent.ENDING);
+                }
+                break;
+            case MissionEndEvent.MISSION_FAILED:
+                Debug.Log($"Mission Failed!");
+                gameManager.LoadedGameData.missionsFailed++;
+                gameManager.LoadedGameData.daysPassed++;
+
+                // Invoke OnMissionEnd event
+                OnMissionEnd?.Invoke(MissionEndEvent.MISSION_FAILED);
+
+                // If Hardcore difficulty
+                if (gameManager.LoadedGameData.difficulty == Difficulty.HARDCORE)
+                {
+                    if (gameManager.LoadedGameData.missionsFailed >= 3 || gameManager.LoadedMissionData.isFinalMission)
+                    {
+                        // Call GameOver Permdadeath
+                        gameManager.gameState.GameOver(GameOverEvent.PERMADEATH);
+                    }
+                }
+                break;
+            case MissionEndEvent.TUTORIAL_COMPLETE:
+                Debug.Log($"Tutorial Successful!");
+                gameManager.LoadedGameData.daysPassed++;
+
+                // Invoke OnMissionEnd event
+                OnMissionEnd?.Invoke(MissionEndEvent.TUTORIAL_COMPLETE);
+
+                break;
+            default:
+                break;
+        }
+    }
 
     // Load a save and store in game manager loaded save
     public void LoadMission(int index, 
