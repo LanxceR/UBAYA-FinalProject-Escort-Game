@@ -651,6 +651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+  hasInitializedHealth: 0
   destroyOnDeath: 1
   destroyDelay: 2
   corpsePrefab: {fileID: 8235225914126728358, guid: fe2356b75ce779d4ebb25e16931437d8, type: 3}
@@ -674,15 +675,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - prefab: {fileID: 0}
-    spawnWeight: 90
+    spawnWeight: 96
   - prefab: {fileID: 3703220218853547711, guid: 28dc6c35f703d6840877b539faa1def0, type: 3}
-    spawnWeight: 2.5
+    spawnWeight: 1
   - prefab: {fileID: 286040589081054819, guid: 00b5de531216e2843b882d39d5e7e380, type: 3}
-    spawnWeight: 2.5
-  - prefab: {fileID: 286040589081054819, guid: 00b5de531216e2843b882d39d5e7e380, type: 3}
-    spawnWeight: 2.5
-  - prefab: {fileID: 286040589081054819, guid: 00b5de531216e2843b882d39d5e7e380, type: 3}
-    spawnWeight: 2.5
+    spawnWeight: 1
+  - prefab: {fileID: 286040589081054819, guid: 8f26deca945899745bccc1631fcd4b7c, type: 3}
+    spawnWeight: 1
+  - prefab: {fileID: 286040589081054819, guid: 6d967b78aa1389643ae6e95bd31c4ec0, type: 3}
+    spawnWeight: 1
 --- !u!114 &1229547623720970518
 MonoBehaviour:
   m_ObjectHideFlags: 0
