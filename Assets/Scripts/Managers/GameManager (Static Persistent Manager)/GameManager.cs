@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     [Header("Game States")]
     [SerializeField] 
     private bool gameIsPlaying = true; // Bool to determine if player is in menu or playing the game
-    [SerializeField] [Range(0f, 2f)]
+    [SerializeField] [Range(0f, 10f)]
     private float gameTimeScale = 1f;
     internal bool GameIsPlaying { get => gameIsPlaying; set => gameIsPlaying = value; }
     public float GameTimeScale { get => gameTimeScale; set => gameTimeScale = value; }

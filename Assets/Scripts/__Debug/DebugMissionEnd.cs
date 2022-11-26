@@ -46,7 +46,7 @@ public class DebugMissionEnd : MonoBehaviour
         }
     }
 
-    private void MissionEnd(MissionEndEvent missionEndEvent)
+    private void MissionEnd(MissionEndEvent missionEndEvent, float reward)
     {
         btnContinue.gameObject.SetActive(true);
     }

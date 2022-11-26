@@ -21,7 +21,7 @@ public class GameMissionManager : MonoBehaviour
 
     // Escort Scenes
     [Header("Possible Escort Scenes")]
-    [SerializeField] internal SceneName[] escortScenes; // List of all valid escort scenes
+    [SerializeField] internal List<SceneName> escortScenes; // List of all valid escort scenes
 
     // ========================================================================================== //
 
@@ -30,36 +30,40 @@ public class GameMissionManager : MonoBehaviour
     /// <summary>
     /// Event invoked when there's a game over
     /// </summary>
-    internal UnityAction<MissionEndEvent> OnMissionEnd;
+    internal UnityAction<MissionEndEvent, float> OnMissionEnd;
 
-    public void MissionEnd(MissionEndEvent missionEndEvent)
+    public void MissionEnd(MissionEndEvent missionEndEvent, float reward = 0)
     {
         switch (missionEndEvent)
         {
             case MissionEndEvent.MISSION_SUCCESS:
                 Debug.Log($"Mission Successful!");
                 gameManager.LoadedGameData.missionsCompleted++;
-                gameManager.LoadedGameData.daysPassed++;
+
+                // Add reward
+                if (reward != 0)
+                    gameManager.LoadedGameData.money += reward;
 
                 // Invoke OnMissionEnd event
-                OnMissionEnd?.Invoke(MissionEndEvent.MISSION_SUCCESS);
+                OnMissionEnd?.Invoke(MissionEndEvent.MISSION_SUCCESS, reward);
 
                 if (gameManager.LoadedMissionData.isFinalMission)
                 {
                     // Call GameOver Ending
                     gameManager.gameState.GameOver(GameOverEvent.ENDING);
                 }
+
+                gameManager.LoadedGameData.daysPassed++;
                 break;
             case MissionEndEvent.MISSION_FAILED:
                 Debug.Log($"Mission Failed!");
                 gameManager.LoadedGameData.missionsFailed++;
-                gameManager.LoadedGameData.daysPassed++;
 
                 // Invoke OnMissionEnd event
-                OnMissionEnd?.Invoke(MissionEndEvent.MISSION_FAILED);
+                OnMissionEnd?.Invoke(MissionEndEvent.MISSION_FAILED, reward);
 
                 // If Hardcore difficulty
-                if (gameManager.LoadedGameData.difficulty == Difficulty.HARDCORE)
+                if (gameManager.LoadedGameData.difficulty == Difficulty.HARDCORE && gameManager.LoadedGameData.daysPassed <= 10)
                 {
                     if (gameManager.LoadedGameData.missionsFailed >= 3 || gameManager.LoadedMissionData.isFinalMission)
                     {
@@ -67,13 +71,15 @@ public class GameMissionManager : MonoBehaviour
                         gameManager.gameState.GameOver(GameOverEvent.PERMADEATH);
                     }
                 }
+
+                gameManager.LoadedGameData.daysPassed++;
                 break;
             case MissionEndEvent.TUTORIAL_COMPLETE:
                 Debug.Log($"Tutorial Successful!");
                 gameManager.LoadedGameData.daysPassed++;
 
                 // Invoke OnMissionEnd event
-                OnMissionEnd?.Invoke(MissionEndEvent.TUTORIAL_COMPLETE);
+                OnMissionEnd?.Invoke(MissionEndEvent.TUTORIAL_COMPLETE, reward);
 
                 break;
             default:
@@ -208,7 +214,7 @@ public class GameMissionManager : MonoBehaviour
             isFinalMission = true;
 
         // Randomize escort scene
-        SceneName scene = escortScenes[Random.Range(0, escortScenes.Length)];
+        SceneName scene = escortScenes[Random.Range(0, escortScenes.Count)];
 
         // Randomize Zombie Count & base reward
         int zombieCount;

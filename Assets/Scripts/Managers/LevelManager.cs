@@ -73,6 +73,11 @@ public class LevelManager : MonoBehaviour
     [Header("In-Game Values")]
     [SerializeField] internal float timePassed;
     internal Coroutine timerCoroutine;
+    [SerializeField] internal float baseReward;
+    [SerializeField] internal float timeEfficiency;
+    [SerializeField] internal float finalReward;
+
+    [SerializeField] private bool missionHasCompleted = false;
     [SerializeField] internal int totalEnemyCount;
     [SerializeField] internal int enemyCountLeft;
     [SerializeField] internal List<Spawnable> enemiesToSpawn;
@@ -107,6 +112,16 @@ public class LevelManager : MonoBehaviour
             timerCoroutine = StartCoroutine(TimerCoroutine());
         }
     }
+
+    // Update is called every frame, if the MonoBehaviour is enabled
+    private void Update()
+    {
+        if (!missionHasCompleted)
+        {
+            CalculateReward();
+        }
+    }
+
 
     #region Level Setups
     private void SetupLevel()
@@ -273,7 +288,6 @@ public class LevelManager : MonoBehaviour
     internal void TryEndLevel(bool reachedDestination)
     {
         bool allWinConditionsMet = true;
-
         if (reachedDestination)
         {
             foreach (EnemyScript e in enemiesInScene)
@@ -299,9 +313,29 @@ public class LevelManager : MonoBehaviour
 
         if (allWinConditionsMet)
         {
+            missionHasCompleted = true;
+
+            // Perform reward calculation for the last time
+            CalculateReward();
+
             // Mission successful
-            GameManager.Instance.gameMission.MissionEnd(MissionEndEvent.MISSION_SUCCESS);
+            GameManager.Instance.gameMission.MissionEnd(MissionEndEvent.MISSION_SUCCESS, finalReward);
         }
+    }
+
+    private void CalculateReward()
+    {
+        // Set base reward
+        baseReward = GameManager.Instance.LoadedMissionData.baseReward;
+
+        // Set time efficiency bonus (or penalty if negative)
+        // Base time efficieny multiplier is 2.0
+        // Subtract time efficieny bonus multiplier by 0.1 every 30 seconds passed
+        // Until at minimum reached multiplier of 0.5 (half reward)
+        timeEfficiency = Mathf.Clamp((2.0f - ((Mathf.FloorToInt(timePassed / 30)) * 0.1f)), 0.5f, 2.0f);
+
+        // Calculate final reward
+        finalReward = baseReward * timeEfficiency;
     }
 
     private IEnumerator TimerCoroutine()

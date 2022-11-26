@@ -57,12 +57,14 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
 
     private IEnumerator SemiAutoAttackCoroutine()
     {
+        if (!canAttack) yield break;
+
         BeginAttack();
 
         // Set canAttack to false non full-auto weapons
         canAttack = false;
 
-        while (cooldown <= 0f && weaponScript.weaponInputScript.Input_Attack == 1)
+        while (cooldown > 0f && weaponScript.weaponInputScript.Input_Attack == 1)
         {
             // While attack button is still performed, wait until the next frame
             yield return null;

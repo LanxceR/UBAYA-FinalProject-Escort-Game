@@ -42,6 +42,8 @@ public class EscorteeAnimationScript : MonoBehaviour, IAnimation
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.Instance.GameIsPlaying) return;
+
         UpdateAnimationState();
     }
     #endregion

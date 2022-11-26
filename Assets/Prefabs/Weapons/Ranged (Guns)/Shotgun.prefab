@@ -429,7 +429,7 @@ MonoBehaviour:
   weaponMuzzleScripts:
   - {fileID: 2841505596119360403}
   fireRateDelay: 0.75
-  damage: 1
+  damage: 5
   range: 1.5
   velocity: 10
   knockbackForce: 10

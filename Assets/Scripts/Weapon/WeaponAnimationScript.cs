@@ -29,9 +29,11 @@ public class WeaponAnimationScript : MonoBehaviour, IAnimation
     private bool uninterruptibleCoroutineRunning = false;
 
     #region State machine
-    // Update is called once per frame
-    void Update()
+    // LateUpdate is called every frame, if the Behaviour is enabled
+    private void LateUpdate()
     {
+        if (!GameManager.Instance.GameIsPlaying) return;
+
         // Always default to Idle after any animation has finished playing
         if ((currentState == WEAPON_ATTACK) && AnimatorHasFinishedPlaying())
         {
