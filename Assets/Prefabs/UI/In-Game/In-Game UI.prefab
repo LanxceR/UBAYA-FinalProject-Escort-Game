@@ -134,14 +134,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2875460915544099524}
     m_Modifications:
-    - target: {fileID: 2830453503058479698, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
-      propertyPath: m_text
-      value: MISSION FAILED
-      objectReference: {fileID: 0}
-    - target: {fileID: 3177576495710711959, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
-      propertyPath: m_Name
-      value: MissionFailed Panel
-      objectReference: {fileID: 0}
     - target: {fileID: 7731216073637533441, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
       propertyPath: m_Name
       value: Canvas In-Game UI
