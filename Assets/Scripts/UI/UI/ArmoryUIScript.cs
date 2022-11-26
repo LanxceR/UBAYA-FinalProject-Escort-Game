@@ -372,6 +372,7 @@ public class ArmoryUIScript : MonoBehaviour
             textAmmoStack.GetComponent<TextMeshProUGUI>().text = "IT'S MELEE...";
             textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "$0";
         }
+        //IF RANGED WEAPON
         else
         {
             textAmmoStack.GetComponent<TextMeshProUGUI>().text = "BUY AMMO X" + GameManager.Instance.LoadedGameData.ammo[weaponList[currentIndex].ammoType].amountPerStack;
@@ -387,6 +388,10 @@ public class ArmoryUIScript : MonoBehaviour
             {
                 buttonPurchaseAmmo.GetComponent<Button>().interactable = false;
                 textAmmoStackPrice.GetComponent<TextMeshProUGUI>().text = "MAXED";
+            }
+            else
+            {
+                buttonPurchaseAmmo.GetComponent<Button>().interactable = true;
             }
         }
         else
