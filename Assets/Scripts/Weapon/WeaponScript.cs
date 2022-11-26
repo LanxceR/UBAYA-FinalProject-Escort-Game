@@ -64,8 +64,8 @@ public class WeaponScript : MonoBehaviour, IEquipmentItem
     internal float reloadElapsedTime = 0f;
     internal float reloadProgress = 0f;
 
-    // Start is called before the first frame update
-    void Start()
+    // Awake is called when the script instance is being loaded
+    private void Awake()
     {
         AssignComponents();
     }
