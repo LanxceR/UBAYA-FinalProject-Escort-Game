@@ -11,6 +11,7 @@ public enum SceneName
     SAVE_LOAD,
     CUTSCENE,
     MAIN_HUB,
+    MAP_FOREST,
     TEST_ESCORT_SCENE,
     TEST_MISSION_SCENE,
     TEST_PERMADEATH_SCREEN,
@@ -213,41 +214,35 @@ public class GameSceneManager : MonoBehaviour
     {
         SceneName currentScene = (SceneName)GetCurrentScene().buildIndex;
 
-        switch (currentScene)
+        if (gameManager.gameMission.escortScenes.Contains(currentScene))
         {
-            case SceneName.TITLE_SCREEN | SceneName.MAIN_HUB | SceneName.TEST_MISSION_SCENE | SceneName.LOADING_SCREEN:
-                if (gameManager.gameState) gameManager.gameState.enabled = false;
-                if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = false;
-                if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = false;
-                if (gameManager.gameWeapon) gameManager.gameWeapon.enabled = false;
-                if (gameManager.gameEnemy) gameManager.gameEnemy.enabled = false;
-                break;
-            case SceneName.TEST_ESCORT_SCENE:
-                if (gameManager.gameState) gameManager.gameState.enabled = true;
-                if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = true;
-                if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = true;
-                if (gameManager.gameWeapon) gameManager.gameWeapon.enabled = true;
-                if (gameManager.gameEnemy) gameManager.gameEnemy.enabled = true;
+            if (gameManager.gameState) gameManager.gameState.enabled = true;
+            if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = true;
+            if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = true;
+            if (gameManager.gameWeapon) gameManager.gameWeapon.enabled = true;
+            if (gameManager.gameEnemy) gameManager.gameEnemy.enabled = true;
 
-                // Find active in-game cameras & UI (if one exists)
-                gameManager.FindActiveInGameCameras();
-                gameManager.FindActiveInGameUI();
-                // Try to initialize In-Game UI & Camera
-                gameManager.TryInitializeInGameCameras();
-                gameManager.TryInitializeInGameUI();
+            // Find active in-game cameras & UI (if one exists)
+            gameManager.FindActiveInGameCameras();
+            gameManager.FindActiveInGameUI();
+            // Try to initialize In-Game UI & Camera
+            gameManager.TryInitializeInGameCameras();
+            gameManager.TryInitializeInGameUI();
 
-                // Find any preexisting players first
-                gameManager.gamePlayer.FindPlayerInScene();
+            // Find any preexisting players first
+            gameManager.gamePlayer.FindPlayerInScene();
 
-                // Find any preexisting escortees first
-                gameManager.gameEscortee.FindEscorteeInScene();
-                break;
-            default:
-                if (gameManager.gameState) gameManager.gameState.enabled = false;
-                if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = false;
-                if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = false;
-                if (gameManager.gameInput) gameManager.gameInput.enabled = true;
-                break;
+            // Find any preexisting escortees first
+            gameManager.gameEscortee.FindEscorteeInScene();
+        }
+        else
+        {
+            if (gameManager.gameState) gameManager.gameState.enabled = false;
+            if (gameManager.gamePlayer) gameManager.gamePlayer.enabled = false;
+            if (gameManager.gameEscortee) gameManager.gameEscortee.enabled = false;
+            if (gameManager.gameWeapon) gameManager.gameWeapon.enabled = false;
+            if (gameManager.gameEnemy) gameManager.gameEnemy.enabled = false;
+            if (gameManager.gameInput) gameManager.gameInput.enabled = true;
         }
 
         // Reset Timescale

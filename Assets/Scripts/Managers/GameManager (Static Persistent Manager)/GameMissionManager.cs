@@ -21,7 +21,7 @@ public class GameMissionManager : MonoBehaviour
 
     // Escort Scenes
     [Header("Possible Escort Scenes")]
-    [SerializeField] internal SceneName[] escortScenes; // List of all valid escort scenes
+    [SerializeField] internal List<SceneName> escortScenes; // List of all valid escort scenes
 
     // ========================================================================================== //
 
@@ -208,7 +208,7 @@ public class GameMissionManager : MonoBehaviour
             isFinalMission = true;
 
         // Randomize escort scene
-        SceneName scene = escortScenes[Random.Range(0, escortScenes.Length)];
+        SceneName scene = escortScenes[Random.Range(0, escortScenes.Count)];
 
         // Randomize Zombie Count & base reward
         int zombieCount;

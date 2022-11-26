@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 3476358989919382763}
-  escortScenes: 05000000
+  escortScenes: 0500000006000000
 --- !u!114 &6291330310439833848
 MonoBehaviour:
   m_ObjectHideFlags: 0
