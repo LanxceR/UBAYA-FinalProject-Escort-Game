@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
@@ -15,6 +16,8 @@ public class InGamePauseUIScript : MonoBehaviour
     // Components
     [SerializeField]
     private GameObject pausePanel;
+    [SerializeField]
+    private GameObject settingsPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,14 @@ public class InGamePauseUIScript : MonoBehaviour
             pausePanel.SetActive(false);
     }
 
+    void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+    }
+
     // Methods to invoke when pausing and resuming the game
     private void PauseGame()
     {
@@ -42,5 +53,42 @@ public class InGamePauseUIScript : MonoBehaviour
         // Disable pause panel
         if (pausePanel)
             pausePanel.SetActive(false);
+            settingsPanel.SetActive(false);
+    }
+
+    public void OnPointerOver()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Hover");
+    }
+
+    public void ResumeClick()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        ResumeGame();
+        GameManager.Instance.GameIsPlaying = true;
+    }
+
+    public void OpenSettingsUI()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        settingsPanel.SetActive(true);
+    }
+
+    public void CloseSettingsUI()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        settingsPanel.SetActive(false);
+    }
+
+    public void ReturnToMainHub()
+    {
+        //FMOD.Studio.Bus MasterBus;
+        //MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+        //MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/ClickConfirmJob");
+
+        GameManager.Instance.gameScene.GotoScene(SceneName.MAIN_HUB);
     }
 }

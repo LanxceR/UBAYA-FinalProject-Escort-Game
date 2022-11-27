@@ -941,6 +941,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1135118919356335537}
     m_Modifications:
+    - target: {fileID: 5162142725094302229, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -1902761211414793623, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
+    - target: {fileID: 8040423112634622369, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8040423112761327668, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1036,6 +1044,10 @@ PrefabInstance:
     - target: {fileID: 8040423113550862878, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
       propertyPath: m_Name
       value: Canvas Player HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040423114506124058, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 452639ebc9b74e04b826e64a0f70db54, type: 3}

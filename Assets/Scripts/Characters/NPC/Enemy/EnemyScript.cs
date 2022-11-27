@@ -64,6 +64,7 @@ public class EnemyScript : MonoBehaviour, ICharacter
 
     void EnemyDeath()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Zombie/Death");
         if (enemyAttackScript)
         {
             enemyAttackScript.enabled = false;

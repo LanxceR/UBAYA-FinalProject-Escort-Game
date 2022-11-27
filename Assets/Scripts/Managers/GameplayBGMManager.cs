@@ -14,6 +14,7 @@ public class GameplayBGMManager : MonoBehaviour
     void Start()
     {
         bus = FMODUnity.RuntimeManager.GetBus("bus:/SFX/Convoy");
+
         backgroundAmbience = FMODUnity.RuntimeManager.CreateInstance("event:/Ambience/AmbienceCity");
         backgroundAmbience.start();
 
@@ -32,7 +33,8 @@ public class GameplayBGMManager : MonoBehaviour
         backgroundMusic.getParameterByName("Health", out float health);
 
         //FILTERS BGM AUDIO
-        if (GameManager.Instance.gameState.gameManager.GameIsPlaying)
+        //if (GameManager.Instance.gameState.gameManager.GameIsPlaying)
+        if (GameManager.Instance.GameIsPlaying)
         {
             backgroundMusic.setParameterByName("Is Paused", 0);
 
