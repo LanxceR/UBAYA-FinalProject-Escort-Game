@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638050570952956988
+  lastModified: 638051696330655771
   FileSizes: []
   Exists: 1
 --- !u!114 &-8029575113104212662
@@ -66,13 +66,61 @@ MonoBehaviour:
   Banks:
   - {fileID: -4707969805456446503}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 0
   Parameters:
   - {fileID: 8393815413211621361}
   MinDistance: 1
   MaxDistance: 25
   Length: 0
+--- !u!114 &-7310700137214616939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CargoEngine/RPM
+  m_EditorClassIdentifier: 
+  Name: RPM
+  StudioPath: 
+  Min: 0
+  Max: 40
+  Default: 0
+  ID:
+    data1: 1515396076
+    data2: 696611026
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-6237972300613889680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PickupEngine/RPM
+  m_EditorClassIdentifier: 
+  Name: RPM
+  StudioPath: 
+  Min: 0
+  Max: 40
+  Default: 0
+  ID:
+    data1: 1515396076
+    data2: 696611026
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-6192649352618610893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +136,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638050570953474282
+  lastModified: 638051696331213539
   FileSizes: []
   Exists: 1
 --- !u!114 &-5878436196734742892
@@ -186,7 +234,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Gameplay.bank
   Name: Gameplay
   StudioPath: bank:/Gameplay
-  lastModified: 638050570952947571
+  lastModified: 638051696330605724
   FileSizes: []
   Exists: 1
 --- !u!114 &-4460392572522088392
@@ -216,6 +264,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 93
+--- !u!114 &-3901715355268869476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/AmbienceCity
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/AmbienceCity
+  Guid:
+    Data1: -85124481
+    Data2: 1135650572
+    Data3: -1488975197
+    Data4: 1542648372
+  Banks:
+  - {fileID: 8678437342431805724}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 38493
 --- !u!114 &-3723885734687191768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,10 +362,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638050570953005805
+  lastModified: 638051696330665781
   FileSizes:
   - Name: 
-    Value: 2220
+    Value: 2636
   Exists: 1
 --- !u!114 &-2424506622028619460
 MonoBehaviour:
@@ -374,6 +449,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1914994469252777549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Convoy/PickupEngine
+  m_EditorClassIdentifier: 
+  Path: event:/Convoy/PickupEngine
+  Guid:
+    Data1: -893958217
+    Data2: 1083936186
+    Data3: -2059372120
+    Data4: 1624525555
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6237972300613889680}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1583200816742866460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +530,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 647
+--- !u!114 &-1535569906821326099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Weapon/WeaponClick
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Weapon/WeaponClick
+  Guid:
+    Data1: 467687491
+    Data2: 1320250988
+    Data3: 1291831452
+    Data4: -1764156586
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 60
 --- !u!114 &-419468973635884389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,13 +621,47 @@ MonoBehaviour:
   - {fileID: -1572442035509416794}
   - {fileID: -4460392572522088392}
   - {fileID: 7360714507261264889}
+  - {fileID: 367890776963256089}
+  - {fileID: -1914994469252777549}
+  - {fileID: -3901715355268869476}
+  - {fileID: 6964261017191431426}
+  - {fileID: -1535569906821326099}
+  - {fileID: 8416080298470275809}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8410806887097065527}
   StringsBanks:
   - {fileID: -3247003094679002036}
-  cacheTime: 638050570953474282
+  cacheTime: 638051696331213539
   cacheVersion: 131593
+--- !u!114 &367890776963256089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Convoy/CargoEngine
+  m_EditorClassIdentifier: 
+  Path: event:/Convoy/CargoEngine
+  Guid:
+    Data1: -2014503905
+    Data2: 1093035140
+    Data3: -2073013334
+    Data4: 910934781
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7310700137214616939}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &2422948965619628952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,6 +715,39 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 218
+--- !u!114 &4299842938186619897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponAttack/Weapon
+  m_EditorClassIdentifier: 
+  Name: Weapon
+  StudioPath: 
+  Min: 0
+  Max: 8
+  Default: 0
+  ID:
+    data1: 52559230
+    data2: 3267105066
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Pipe
+  - Knife
+  - Bat
+  - Machete
+  - Pistol
+  - Shotgun
+  - SMG
+  - Rifle
+  - Invisible
+  Exists: 1
 --- !u!114 &4469223331600349411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,6 +800,34 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &6964261017191431426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Weapon/WeaponAttack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Weapon/WeaponAttack
+  Guid:
+    Data1: 1885122311
+    Data2: 1201510917
+    Data3: -682712167
+    Data4: 2114891943
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 4299842938186619897}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &7167826007199533501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,7 +843,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638050570953367232
+  lastModified: 638051696330923275
   FileSizes: []
   Exists: 1
 --- !u!114 &7360714507261264889
@@ -672,6 +897,34 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &8416080298470275809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Weapon/WeaponSwitch
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Weapon/WeaponSwitch
+  Guid:
+    Data1: -429685453
+    Data2: 1296436708
+    Data3: -899399491
+    Data4: -885093215
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 9086890675425644319}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8616098737318444547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,7 +967,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638050570952869470
+  lastModified: 638051696329684859
   FileSizes: []
   Exists: 1
 --- !u!114 &8874709602837240393
@@ -744,3 +997,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 71205
+--- !u!114 &9086890675425644319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WeaponSwitch/SwitchType
+  m_EditorClassIdentifier: 
+  Name: SwitchType
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 994105451
+    data2: 2040679690
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Melee
+  - Ranged
+  Exists: 1

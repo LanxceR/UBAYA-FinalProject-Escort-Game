@@ -28,6 +28,8 @@ public class WeaponAmmoScript : MonoBehaviour
 
     private InventoryScript inv;
 
+    private FMOD.Studio.EventInstance weaponClick;
+
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
@@ -39,6 +41,8 @@ public class WeaponAmmoScript : MonoBehaviour
     void Start()
     {
         // Add listener to OnEquipmentSwitch to interrupt reloads on equipment switch
+        weaponClick = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Weapon/WeaponClick");
+
         inv = Utilities.FindParentOfType<InventoryScript>(transform, out _);
         if (inv)
             inv.OnEquipmentSwitch?.AddListener(InterruptReloadCoroutine);
@@ -55,6 +59,8 @@ public class WeaponAmmoScript : MonoBehaviour
             {
                 // Invoke no ammo alert event
                 NoAmmoAlert?.Invoke();
+
+                weaponClick.start();
             }
             else if (loadedAmmo < weaponScript.ammoMagSize && reloadCoroutine == null)
             {
@@ -71,6 +77,8 @@ public class WeaponAmmoScript : MonoBehaviour
                 {
                     // Invoke no ammo alert event
                     NoAmmoAlert?.Invoke();
+
+                    weaponClick.start();
                 }
                 else
                 {

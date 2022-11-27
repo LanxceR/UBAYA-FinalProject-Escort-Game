@@ -324,6 +324,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+  hasInitializedHealth: 0
+  destroyOnDeath: 0
+  destroyDelay: 0
+  corpsePrefab: {fileID: 0}
   corpseLayerMask:
     serializedVersion: 2
     m_Bits: 2048
