@@ -33,6 +33,10 @@ public class EscorteeMovementScript : MonoBehaviour
 
     private FMOD.Studio.EventInstance instance;
 
+    private float xPosPlayer;
+    private float yPosPlayer;
+    private Vector3 audioPoint;
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +51,9 @@ public class EscorteeMovementScript : MonoBehaviour
         DetermineEscortee();
         instance.setParameterByName("RPM", 0);
         instance.start();
+
+        xPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.x;
+        yPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.y;
     }
 
     // This function is called every fixed framerate frame, if the MonoBehaviour is enabled
@@ -82,6 +89,14 @@ public class EscorteeMovementScript : MonoBehaviour
 
         // Move using moveable
         moveableComp.SetDirection(dir);
+
+        //Sounds
+        xPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.x - GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.x;
+        yPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.y - GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.y;
+
+        audioPoint = new Vector3(xPosPlayer * -1, yPosPlayer*-1, GameManager.Instance.gamePlayer.ActivePlayer.transform.position.z - GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.z);
+
+        instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(audioPoint));
     }
 
     private void EscorteeDeath()
@@ -210,5 +225,11 @@ public class EscorteeMovementScript : MonoBehaviour
                 instance = FMODUnity.RuntimeManager.CreateInstance("event:/Convoy/CargoEngine");
                 break;
         }
+    }
+
+    public void KillSound()
+    {
+        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instance.release();
     }
 }

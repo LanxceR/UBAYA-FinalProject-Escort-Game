@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000001A57E5EDCE8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000012B479458B8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -22,6 +22,333 @@
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] SystemI::createSound                     : filename = Assets/FMODBanks/Desktop/Music.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000012B46B498F8 : node = 0000012B4B920EC0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000012B4BE29868.  list count = 0
+[LOG] SystemI::createSound                     : filename = Assets/FMODBanks/Desktop/Music.bank : mode 02010082
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000012B46B498F8
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/FMODBanks/Desktop/Music.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     setdata soundi = 0000012B47BF0C28 : node = 0000012B4B921780
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 2733408
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000012B4BE29868.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 13568
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSound                     :     filename = Assets/FMODBanks/Desktop/Music.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000012B4B920FD0
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSound                     :     setdata soundi = 0000012B47BF12E8 : node = 0000012B4B9213C0
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000012B4BE29868.  list count = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSound                     :     filename = Assets/FMODBanks/Desktop/Music.bank : mode 02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     :     setdata soundi = 0000012B47BF0718 : node = 0000012B4B920C40
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000012B4BE29868.  list count = 2
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='BGM_GAMEPLAY_AMBIENT_3', format=5, channels=2, frequency=48000, lengthbytes=322656, lengthpcm=1316571, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.101227.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000012B46B498F8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000012B47BF0C28
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/FMODBanks/Desktop/Music.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 2733408
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 13568
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000012B4B921890
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='BGM_GAMEPLAY_AMBIENT_2', format=5, channels=2, frequency=48000, lengthbytes=223168, lengthpcm=1316571, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.096649.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000012B47BF0C28
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000012B47BF12E8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/FMODBanks/Desktop/Music.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 2733408
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 13568
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000012B4B9214D0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='BGM_GAMEPLAY_AMBIENT_PERC', format=5, channels=2, frequency=48000, lengthbytes=239264, lengthpcm=1316571, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.290802.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000012B47BF12E8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000012B47BF0718
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/FMODBanks/Desktop/Music.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 2733408
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 13568
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000012B4B920D50
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='BGM_GAMEPLAY_AMBIENT_1', format=5, channels=2, frequency=48000, lengthbytes=333248, lengthpcm=1316571, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.077545.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000012B47BF0718
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000128E2957578
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000128E2957578
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000128E2957A88
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000128E2957A88
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000128E2957DE8
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000128E2957DE8
+[LOG] SoundI::release                          : BGM_GAMEPLAY_AMBIENT_PERC (00000128EB5C3CD8)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_PERC (0000012B46B61208)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_PERC (0000012B4BC70228)
+[LOG] SoundI::release                          : BGM_GAMEPLAY_AMBIENT_1 (0000012B34A96B98)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_1 (0000012B46B60D28)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_1 (0000012B4BC708E8)
+[LOG] SoundI::release                          : BGM_GAMEPLAY_AMBIENT_2 (00000128EB5C3B28)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_2 (0000012B46B61548)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_2 (0000012B4BC70A98)
+[LOG] SoundI::release                          : BGM_GAMEPLAY_AMBIENT_3 (0000012B46680E58)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_3 (0000012B46C296E8)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_3 (0000012B4BC70DF8)
+[LOG] SystemI::createSound                     : filename = Assets/FMODBanks/Desktop/Ambience.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 00000128E196AE28 : node = 0000012B4701CE30
+[LOG] SystemI::createSound                     : add node to async list : head = 0000012B4BE29868.  list count = 0
+[LOG] SystemI::createSound                     : filename = Assets/FMODBanks/Desktop/Ambience.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000128E196AE28
+[LOG] SystemI::createSound                     : setdata soundi = 00000128E196AC78 : node = 0000012B4701CF70
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/FMODBanks/Desktop/Ambience.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000012B4BE29868.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSound                     :     filename = Assets/FMODBanks/Desktop/Ambience.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1971968
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 7744
+[LOG] SystemI::createSound                     :     setdata soundi = 00000128E196AAC8 : node = 0000012B4701D5B0
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000012B4BE29868.  list count = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000012B4701CF40
+[LOG] SystemI::createSound                     :     filename = Assets/FMODBanks/Desktop/Ambience.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSound                     :     setdata soundi = 0000012B4BC708E8 : node = 0000012B4701CA70
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000012B4BE29868.  list count = 2
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='SFX_AMBIENCE_WIND_TREE', format=5, channels=2, frequency=48000, lengthbytes=349728, lengthpcm=1846500, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.003540.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000128E196AE28
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000128E196AC78
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/FMODBanks/Desktop/Ambience.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1971968
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 7744
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000012B4701D080
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='SFX_AMBIENCE_WIND_SUBTLE', format=5, channels=2, frequency=48000, lengthbytes=374208, lengthpcm=1850400, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.034241.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000128E196AC78
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000128E196AAC8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/FMODBanks/Desktop/Ambience.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1971968
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 7744
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000012B4701D6C0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='SFX_AMBIENCE_ZOMBIE', format=5, channels=2, frequency=48000, lengthbytes=405344, lengthpcm=1847699, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.020203.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000128E196AAC8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000012B4BC708E8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/FMODBanks/Desktop/Ambience.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1971968
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 7744
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000012B4701CB80
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='SFX_AMBIENCE_BIRDS', format=5, channels=2, frequency=48000, lengthbytes=331392, lengthpcm=1846199, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.027069.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000012B4BC708E8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000128E2957F98
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000128E2957F98
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000128E2958148
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000128E2958148
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000128E2957728
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000128E2957728
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000128E29578D8
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000128E29578D8
+[LOG] SoundI::release                          : SFX_AMBIENCE_WIND_TREE (0000012B466800D8)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_WIND_TREE (00000128E1126918)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_WIND_TREE (0000012B6FB90788)
+[LOG] SoundI::release                          : SFX_AMBIENCE_BIRDS (0000012B46680AF8)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_BIRDS (0000012B46C29548)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_BIRDS (0000012B4BC703D8)
+[LOG] SoundI::release                          : SFX_AMBIENCE_WIND_SUBTLE (0000012B46680438)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_WIND_SUBTLE (0000012B46C29D68)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_WIND_SUBTLE (0000012B6FB900C8)
+[LOG] SoundI::release                          : SFX_AMBIENCE_ZOMBIE (0000012B46680798)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_ZOMBIE (0000012B46C29A28)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_ZOMBIE (0000012B6FB90278)
+[LOG] SystemI::createSound                     : filename = Assets/FMODBanks/Desktop/Music.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000012B4BC70DF8 : node = 0000012B02B1F770
+[LOG] SystemI::createSound                     : add node to async list : head = 0000012B4BE29868.  list count = 0
+[LOG] SystemI::createSound                     : filename = Assets/FMODBanks/Desktop/Music.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000012B4BC70DF8
+[LOG] SystemI::createSound                     : setdata soundi = 0000012B4BC70A98 : node = 0000012B02B1F130
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/FMODBanks/Desktop/Music.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000012B4BE29868.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSound                     :     filename = Assets/FMODBanks/Desktop/Music.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 2733408
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 13568
+[LOG] SystemI::createSound                     :     setdata soundi = 0000012B4BC70C48 : node = 0000012B02B1F270
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000012B4BE29868.  list count = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000012B02B1F880
+[LOG] SystemI::createSound                     :     filename = Assets/FMODBanks/Desktop/Music.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSound                     :     setdata soundi = 0000012B4BC70228 : node = 0000012B02B1F3B0
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000012B4BE29868.  list count = 2
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='BGM_GAMEPLAY_AMBIENT_3', format=5, channels=2, frequency=48000, lengthbytes=322656, lengthpcm=1316571, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.101227.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000012B4BC70DF8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000012B4BC70A98
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/FMODBanks/Desktop/Music.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 2733408
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 13568
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000012B02B1F240
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='BGM_GAMEPLAY_AMBIENT_2', format=5, channels=2, frequency=48000, lengthbytes=223168, lengthpcm=1316571, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.096649.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000012B4BC70A98
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000012B4BC70C48
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/FMODBanks/Desktop/Music.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 2733408
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 13568
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000012B02B1F380
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='BGM_GAMEPLAY_AMBIENT_PERC', format=5, channels=2, frequency=48000, lengthbytes=239264, lengthpcm=1316571, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.290802.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000012B4BC70C48
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000012B4BC70228
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/FMODBanks/Desktop/Music.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 2733408
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 13568
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000012B02B1F4C0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='BGM_GAMEPLAY_AMBIENT_1', format=5, channels=2, frequency=48000, lengthbytes=333248, lengthpcm=1316571, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.077545.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000012B4BC70228
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000012AFD9A8008
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000012AFD9A8008
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000012AFD9A6A18
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000012AFD9A6A18
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000012AFD9ABE78
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000012AFD9ABE78
+[LOG] SoundI::release                          : SFX_AMBIENCE_BIRDS (0000012B4BC708E8)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_BIRDS (0000012B463278C8)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_BIRDS (00000128E2957728)
+[LOG] SoundI::release                          : SFX_AMBIENCE_ZOMBIE (00000128E196AAC8)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_ZOMBIE (0000012B46327248)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_ZOMBIE (00000128E2958148)
+[LOG] SoundI::release                          : SFX_AMBIENCE_WIND_SUBTLE (00000128E196AC78)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_WIND_SUBTLE (0000012B46327588)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_WIND_SUBTLE (00000128E2957F98)
+[LOG] SoundI::release                          : SFX_AMBIENCE_WIND_TREE (00000128E196AE28)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_WIND_TREE (0000012B46325B88)
+[LOG] SoundI::release                          :     SFX_AMBIENCE_WIND_TREE (00000128E29578D8)
+[LOG] SoundI::release                          : BGM_GAMEPLAY_AMBIENT_1 (0000012B4BC70228)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_1 (0000012B462888F8)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_1 (0000012AFD9ABE78)
+[LOG] SoundI::release                          : BGM_GAMEPLAY_AMBIENT_PERC (0000012B4BC70C48)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_PERC (0000012B46286878)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_PERC (0000012AFD9A9958)
+[LOG] SoundI::release                          : BGM_GAMEPLAY_AMBIENT_2 (0000012B4BC70A98)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_2 (0000012B46284318)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_2 (0000012AFD9A6A18)
+[LOG] SoundI::release                          : BGM_GAMEPLAY_AMBIENT_3 (0000012B4BC70DF8)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_3 (0000012B46285018)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_3 (0000012AFD9A8008)
+[LOG] SoundI::release                          : BGM_GAMEPLAY_AMBIENT_1 (0000012B47BF0718)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_1 (0000012B463266E8)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_1 (00000128E2957DE8)
+[LOG] SoundI::release                          : BGM_GAMEPLAY_AMBIENT_PERC (0000012B47BF12E8)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_PERC (0000012B463263A8)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_PERC (00000128E2957C38)
+[LOG] SoundI::release                          : BGM_GAMEPLAY_AMBIENT_2 (0000012B47BF0C28)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_2 (0000012B46326888)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_2 (00000128E2957A88)
+[LOG] SoundI::release                          : BGM_GAMEPLAY_AMBIENT_3 (0000012B46B498F8)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_3 (0000012B46327C08)
+[LOG] SoundI::release                          :     BGM_GAMEPLAY_AMBIENT_3 (00000128E2957578)
+[LOG] SoundI::release                          :  (0000012B6F8D8C98)
+[LOG] SoundI::release                          :     SFX_WEAPON_MELEE_SWITCH (0000012B4C320968)
+[LOG] SoundI::release                          :  (0000012B6F8D72B8)
+[LOG] SoundI::release                          :     SFX_WEAPON_RANGED_SWITCH (0000012B4C3207C8)
+[LOG] SoundI::release                          :  (0000012B467CD058)
+[LOG] SoundI::release                          :     SFX_GUNSHOT_SHOTGUN (00000128E15FB808)
+[LOG] SoundI::release                          :  (0000012B467CD8F8)
+[LOG] SoundI::release                          :     SFX_MELEE_KNIFE (0000012B476807F8)
+[LOG] SoundI::release                          :  (0000012B467CFB78)
+[LOG] SoundI::release                          :     SFX_GUNSHOT_HUNTINGRIFLE (0000012B47680178)
+[LOG] SoundI::release                          :  (0000012B467CF2D8)
+[LOG] SoundI::release                          :     SFX_MELEE_BAT (0000012B4767FAF8)
+[LOG] SoundI::release                          :  (0000012B467CCA98)
+[LOG] SoundI::release                          :     SFX_MELEE_MACHETE (00000128E15FB4C8)
+[LOG] SoundI::release                          :  (0000012B6F8DAF18)
+[LOG] SoundI::release                          :     SFX_MELEE_PIPE (0000012B4C320488)
+[LOG] SoundI::release                          :  (0000012B467CE308)
+[LOG] SoundI::release                          :     SFX_ZOMBIE_ATTACK_SWING_VAR_1 (00000128E15FAE48)
+[LOG] SoundI::release                          :  (0000012B6F8D9F48)
+[LOG] SoundI::release                          :     SFX_ZOMBIE_ATTACK_SWING_VAR_2 (0000012B46CF5B08)
+[LOG] SoundI::release                          :  (0000012B6F8DA7E8)
+[LOG] SoundI::release                          :     SFX_ZOMBIE_GROWL_ATTACK_VAR_1 (0000012B46CF52E8)
+[LOG] SoundI::release                          :  (0000012B467CF728)
+[LOG] SoundI::release                          :     SFX_ZOMBIE_GROWL_ATTACK_VAR_2 (0000012B462813A8)
+[LOG] SoundI::release                          :  (0000012B6F8D7878)
+[LOG] SoundI::release                          :     SFX_ZOMBIE_GROWL_ATTACK_VAR_3 (0000012B46CF57C8)
+[LOG] SoundI::release                          :  (0000012B6F8D7598)
+[LOG] SoundI::release                          :     SFX_ZOMBIE_GROWL_ATTACK_VAR_4 (0000012B4C320148)
+[LOG] SoundI::release                          :  (0000012B467CCC08)
+[LOG] SoundI::release                          :     SFX_ZOMBIE_GROWL_ATTACK_VAR_5 (0000012B46CF5148)
+[LOG] SoundI::release                          :  (0000012B467CE028)
+[LOG] SoundI::release                          :     SFX_GUNSHOT_ASSAULTRIFLE (0000012B46281A28)
+[LOG] SoundI::release                          :  (0000012B467CC088)
+[LOG] SoundI::release                          :     SFX_GUNSHOT_HANDGUN (0000012B47680318)
+[LOG] SoundI::release                          :  (0000012B467CE758)
+[LOG] SoundI::release                          :     SFX_RANGED_TRIGGER_EMPTY (0000012B46281548)
+[LOG] SoundI::release                          :  (0000012B467CC1F8)
+[LOG] SoundI::release                          :     SFX_CONVOY_PICKUP_SPEED_3 (00000128E15FB668)
+[LOG] SoundI::release                          :  (0000012B467CC928)
+[LOG] SoundI::release                          :     SFX_CONVOY_PICKUP_SPEED_2 (0000012B46281068)
+[LOG] SoundI::release                          :  (0000012B6F8DADA8)
+[LOG] SoundI::release                          :     SFX_CONVOY_PICKUP_SPEED_1 (0000012B4C3202E8)
+[LOG] SoundI::release                          :  (0000012B467CEA38)
+[LOG] SoundI::release                          :     SFX_CONVOY_BUS_IDLE (00000128E15FB188)
+[LOG] Thread::callback                         : FMOD Convolution thread finished.
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
@@ -29,3 +356,5 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.

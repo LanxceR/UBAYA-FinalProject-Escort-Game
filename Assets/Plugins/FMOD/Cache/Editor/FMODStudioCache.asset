@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638051910616735813
+  lastModified: 638052042594550827
   FileSizes: []
   Exists: 1
 --- !u!114 &-8029575113104212662
@@ -66,12 +66,12 @@ MonoBehaviour:
   Banks:
   - {fileID: -4707969805456446503}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters:
   - {fileID: 8393815413211621361}
   MinDistance: 1
-  MaxDistance: 25
+  MaxDistance: 75
   Length: 0
 --- !u!114 &-7310700137214616939
 MonoBehaviour:
@@ -136,7 +136,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638051910617316343
+  lastModified: 638052042595121347
   FileSizes: []
   Exists: 1
 --- !u!114 &-5878436196734742892
@@ -234,7 +234,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Gameplay.bank
   Name: Gameplay
   StudioPath: bank:/Gameplay
-  lastModified: 638051910616685765
+  lastModified: 638052042594480760
   FileSizes: []
   Exists: 1
 --- !u!114 &-4460392572522088392
@@ -362,10 +362,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638051910616755839
+  lastModified: 638052042594560832
   FileSizes:
   - Name: 
-    Value: 2832
+    Value: 3092
   Exists: 1
 --- !u!114 &-2424506622028619460
 MonoBehaviour:
@@ -656,12 +656,15 @@ MonoBehaviour:
   - {fileID: 8416080298470275809}
   - {fileID: 8514327343305023240}
   - {fileID: -2282777883101908083}
+  - {fileID: 5211540270215848146}
+  - {fileID: 1399186104160147498}
+  - {fileID: 2172490274047874262}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8410806887097065527}
   StringsBanks:
   - {fileID: -3247003094679002036}
-  cacheTime: 638051910617316343
+  cacheTime: 638052042595121347
   cacheVersion: 131593
 --- !u!114 &367890776963256089
 MonoBehaviour:
@@ -691,6 +694,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1399186104160147498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Pickup/PickupAmmo
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Pickup/PickupAmmo
+  Guid:
+    Data1: 271309445
+    Data2: 1107224733
+    Data3: 992648620
+    Data4: -436526222
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 644
+--- !u!114 &2172490274047874262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Survivor/Damage
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Survivor/Damage
+  Guid:
+    Data1: -1345634384
+    Data2: 1138101569
+    Data3: 1400788412
+    Data4: 581691142
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 387
 --- !u!114 &2422948965619628952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,6 +862,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &5211540270215848146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Pickup/PickupHealth
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Pickup/PickupHealth
+  Guid:
+    Data1: -1293676537
+    Data2: 1340709773
+    Data3: 1299291064
+    Data4: -757254628
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 758
 --- !u!114 &5894629636604824910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,7 +956,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638051910617026079
+  lastModified: 638052042594821072
   FileSizes: []
   Exists: 1
 --- !u!114 &7360714507261264889
@@ -1023,7 +1107,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638051910615664840
+  lastModified: 638052042593330295
   FileSizes: []
   Exists: 1
 --- !u!114 &8874709602837240393

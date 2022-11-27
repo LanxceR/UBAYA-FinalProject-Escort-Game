@@ -18,6 +18,7 @@ public class ItemPickupAmmo : MonoBehaviour, IItemPickup
 
     public void OnPickup(GameObject picker)
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Pickup/PickupAmmo");
         GameManager.Instance.LoadedGameData.ammo[ammoType].Amount += amount;
 
         Destroy(gameObject);
