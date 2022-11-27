@@ -33,7 +33,7 @@ public class ReceiveAggroScript : MonoBehaviour
     private bool drawGizmo;
 
     // Coroutines
-    private Coroutine aggroDetectionCoroutine;
+    internal Coroutine aggroDetectionCoroutine;
     private Coroutine forcedAggroCoroutine;
 
     // Start is called before the first frame update
@@ -114,7 +114,7 @@ public class ReceiveAggroScript : MonoBehaviour
     {
         if (!drawGizmo) return;
 
-        // Weapon range (as a wireframe sphere)
+        // Lose aggro range (as a wireframe sphere)
         Gizmos.color = new Color(48f / 255, 6f / 255, 0f / 255);
         Gizmos.DrawWireSphere(transform.position, radius);
     }

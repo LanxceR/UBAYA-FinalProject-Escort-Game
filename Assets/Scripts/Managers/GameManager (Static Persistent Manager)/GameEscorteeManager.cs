@@ -101,6 +101,11 @@ public class GameEscorteeManager : MonoBehaviour
                 ActiveEscortee = Instantiate(gameManager.LoadedMissionData.vehicle, spawnPoint.position, Quaternion.identity);
             else
                 ActiveEscortee = Instantiate(escorteePrefabs[0], spawnPoint.position, Quaternion.identity);
+
+            if (gameManager.LoadedMissionData.escorteeHasWeapon)
+                ActiveEscortee.escorteeAllyHolderScript.ally.gameObject.SetActive(true); // Activate ally if escortee has weapons
+            else
+                ActiveEscortee.escorteeAllyHolderScript.ally.gameObject.SetActive(false); // Disable ally if escortee does not have weapons
         }
         else
         {
