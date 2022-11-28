@@ -7,8 +7,8 @@ public class ProgressBarUIScript : MonoBehaviour
 {
     public Image progressBar;
 
-    [SerializeField]
-    BoxCollider2D finishTrigger;
+    //[SerializeField]
+    //BoxCollider2D finishTrigger;
 
     float currentDist;
     float maxDist;
@@ -20,16 +20,32 @@ public class ProgressBarUIScript : MonoBehaviour
         lerpSpeed = 6f * Time.deltaTime;
 
         currentDist = GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.x;
-        maxDist = finishTrigger.size.x - currentDist - 2f;
-        //maxDist = 40f;
+        GetAllTrigger();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Current Distance: " + currentDist + "\nFinish line X position: " + maxDist);
+        // Debug.Log("Current Distance: " + currentDist + "\nFinish line X position: " + maxDist);
+
+
+        //Debug.Log("position: " + listOfGameObjects[0].transform.position);
+
 
         currentDist = GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.x;
         progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, currentDist/maxDist, lerpSpeed);
+    }
+
+    void GetAllTrigger()
+    {
+        GameObject[] listOfTriggers = GameObject.FindGameObjectsWithTag("Trigger");
+        foreach(GameObject go in listOfTriggers)
+        {
+            if (go.name.Contains("Finish"))
+            {
+                maxDist = go.transform.position.x;
+            }
+            Debug.Log(go.name);
+        }
     }
 }

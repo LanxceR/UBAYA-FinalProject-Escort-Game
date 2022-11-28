@@ -44,6 +44,8 @@ public class InGamePauseUIScript : MonoBehaviour
     // Methods to invoke when pausing and resuming the game
     private void PauseGame()
     {
+        if (!this.isActiveAndEnabled) return;
+
         // Enable pause panel
         if (pausePanel)
             pausePanel.SetActive(true);

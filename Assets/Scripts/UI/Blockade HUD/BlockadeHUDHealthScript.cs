@@ -48,7 +48,7 @@ public class BlockadeHUDHealthScript : MonoBehaviour
     {
         GetHealthValues();
 
-        Debug.Log("Current Health of Blockade: " + health + "\nMax health of blockade: " + maxHealth);
+        //Debug.Log("Current Health of Blockade: " + health + "\nMax health of blockade: " + maxHealth);
 
         HealthBarFiller();
 
