@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638052601692164777
+  lastModified: 638052729373788067
   FileSizes: []
   Exists: 1
 --- !u!114 &-8029575113104212662
@@ -97,6 +97,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-6790465134623280926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Weapon/WeaponReload
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Weapon/WeaponReload
+  Guid:
+    Data1: 1602488444
+    Data2: 1220969451
+    Data3: -1404687433
+    Data4: -160406975
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 250
 --- !u!114 &-6237972300613889680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +163,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638052601692926159
+  lastModified: 638052729378112001
   FileSizes: []
   Exists: 1
 --- !u!114 &-5878436196734742892
@@ -234,7 +261,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Gameplay.bank
   Name: Gameplay
   StudioPath: bank:/Gameplay
-  lastModified: 638052601692084705
+  lastModified: 638052729373728013
   FileSizes: []
   Exists: 1
 --- !u!114 &-4460392572522088392
@@ -264,6 +291,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 93
+--- !u!114 &-3995621782134198963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Weapon/WeaponLoaded
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Weapon/WeaponLoaded
+  Guid:
+    Data1: -280464926
+    Data2: 1187537519
+    Data3: 1551147157
+    Data4: -1596596577
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 339
 --- !u!114 &-3901715355268869476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,10 +443,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638052601692174793
+  lastModified: 638052729373798072
   FileSizes:
   - Name: 
-    Value: 3230
+    Value: 3372
   Exists: 1
 --- !u!114 &-2424506622028619460
 MonoBehaviour:
@@ -638,6 +692,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 38518
+--- !u!114 &-158445189531408305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Lose
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Lose
+  Guid:
+    Data1: -406720708
+    Data2: 1150043100
+    Data3: 784349078
+    Data4: -292314585
+  Banks:
+  - {fileID: 7167826007199533501}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 18763
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,12 +769,16 @@ MonoBehaviour:
   - {fileID: 2172490274047874262}
   - {fileID: -3259278210985394604}
   - {fileID: 3352013169096224548}
+  - {fileID: -6790465134623280926}
+  - {fileID: -3995621782134198963}
+  - {fileID: -158445189531408305}
+  - {fileID: 3594345040100491254}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8410806887097065527}
   StringsBanks:
   - {fileID: -3247003094679002036}
-  cacheTime: 638052601692926159
+  cacheTime: 638052729378112001
   cacheVersion: 131593
 --- !u!114 &367890776963256089
 MonoBehaviour:
@@ -857,6 +942,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 573
+--- !u!114 &3594345040100491254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Win
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Win
+  Guid:
+    Data1: -796979550
+    Data2: 1091805302
+    Data3: 2046412182
+    Data4: 1405367449
+  Banks:
+  - {fileID: 7167826007199533501}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 18428
 --- !u!114 &4299842938186619897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,7 +1124,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638052601692625194
+  lastModified: 638052729377841759
   FileSizes: []
   Exists: 1
 --- !u!114 &7360714507261264889
@@ -1163,7 +1275,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638052601690872550
+  lastModified: 638052729372466868
   FileSizes: []
   Exists: 1
 --- !u!114 &8874709602837240393

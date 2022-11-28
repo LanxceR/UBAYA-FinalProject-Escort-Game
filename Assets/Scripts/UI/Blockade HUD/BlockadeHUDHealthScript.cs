@@ -17,18 +17,20 @@ public class BlockadeHUDHealthScript : MonoBehaviour
     {
         lerpSpeed = 6f * Time.deltaTime;
         healthBar.color = Color.blue;
-        GetInitHealthValues();
+        GetHealthValues();
         HealthBarFiller();
 
         healthBarOutline.enabled = false;
         healthBarBox.enabled = false;
         healthBar.enabled = false;
     }
-    void GetInitHealthValues()
+
+    void GetHealthValues()
     {
         health = transform.parent.gameObject.GetComponent<HealthScript>().CurrentHealth;
         maxHealth = transform.parent.gameObject.GetComponent<HealthScript>().MaxHealth;
     }
+
     void HealthBarFiller()
     {
         if (health != 0)
@@ -44,7 +46,7 @@ public class BlockadeHUDHealthScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = transform.parent.gameObject.GetComponent<HealthScript>().CurrentHealth;
+        GetHealthValues();
 
         Debug.Log("Current Health of Blockade: " + health + "\nMax health of blockade: " + maxHealth);
 

@@ -49,4 +49,14 @@ public class GameplayBGMManager : MonoBehaviour
 
         //Debug.Log("GameplayBGMManager, Current health parameter in FMOD: " + health + "\n Playerhealth: " + playerHealth);
     }
+
+    public void PlayWin()
+    {
+
+    }
+
+    public void KillAll()
+    {
+        bus.setVolume(1f);
+    }
 }

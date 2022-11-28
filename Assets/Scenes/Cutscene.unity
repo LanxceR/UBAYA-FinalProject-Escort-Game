@@ -537,6 +537,7 @@ GameObject:
   - component: {fileID: 512511635}
   - component: {fileID: 512511637}
   - component: {fileID: 512511636}
+  - component: {fileID: 512511638}
   m_Layer: 5
   m_Name: HoldToSkip
   m_TagString: Untagged
@@ -593,8 +594,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278913965
-  m_fontColor: {r: 0.6792453, g: 0.041651852, b: 0.041651852, a: 1}
+    rgba: 2382364671
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.5529412}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -661,6 +662,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512511634}
   m_CullTransparentMesh: 1
+--- !u!114 &512511638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512511634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe6779add0116445937e5940f493d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 512511636}
 --- !u!1 &639906648
 GameObject:
   m_ObjectHideFlags: 0

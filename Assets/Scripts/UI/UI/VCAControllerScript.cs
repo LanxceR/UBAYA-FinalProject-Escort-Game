@@ -8,14 +8,21 @@ public class VCAControllerScript : MonoBehaviour
     // Start is called before the first frame update
     private FMOD.Studio.VCA VcaController;
     public string VcaName;
+    private Slider slider;
 
     void Start()
     {
+        slider = this.transform.GetComponent<Slider>();
+
         VcaController = FMODUnity.RuntimeManager.GetVCA("vca:/" + VcaName);
+        VcaController.setVolume(PlayerPrefs.GetFloat(VcaName));
+        slider.value = PlayerPrefs.GetFloat(VcaName);
     }
 
     public void SetVolume(float volume)
     {
         VcaController.setVolume(volume);
+        PlayerPrefs.SetFloat(VcaName, volume);
+        PlayerPrefs.GetFloat(VcaName);
     }
 }

@@ -27,7 +27,6 @@ public class WeaponAmmoScript : MonoBehaviour
     internal Coroutine reloadCoroutine;
 
     private InventoryScript inv;
-
     private FMOD.Studio.EventInstance weaponClick;
 
     // Awake is called when the script instance is being loaded
@@ -41,6 +40,7 @@ public class WeaponAmmoScript : MonoBehaviour
     void Start()
     {
         // Add listener to OnEquipmentSwitch to interrupt reloads on equipment switch
+
         weaponClick = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Weapon/WeaponClick");
 
         inv = Utilities.FindParentOfType<InventoryScript>(transform, out _);
@@ -59,12 +59,13 @@ public class WeaponAmmoScript : MonoBehaviour
             {
                 // Invoke no ammo alert event
                 NoAmmoAlert?.Invoke();
-
                 weaponClick.start();
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Weapon/WeaponClick");
             }
             else if (loadedAmmo < weaponScript.ammoMagSize && reloadCoroutine == null)
             {
                 // Reload
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Weapon/WeaponReload");
                 reloadCoroutine = StartCoroutine(ReloadCoroutine(weaponScript.reloadTime));
             }
         }
@@ -77,12 +78,13 @@ public class WeaponAmmoScript : MonoBehaviour
                 {
                     // Invoke no ammo alert event
                     NoAmmoAlert?.Invoke();
-
                     weaponClick.start();
+                    //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Weapon/WeaponClick");
                 }
                 else
                 {
                     // If player attacks while ammo is depleted, perform a reload instead
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Weapon/WeaponReload");
                     reloadCoroutine = StartCoroutine(ReloadCoroutine(weaponScript.reloadTime));
                 }
             }
@@ -183,6 +185,7 @@ public class WeaponAmmoScript : MonoBehaviour
 
         // Reload weapon's ammo
         ReloadLoadedAmmo(true);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Weapon/WeaponLoaded");
 
         weaponScript.reloadElapsedTime = 0f;
         weaponScript.reloadProgress = 0f;

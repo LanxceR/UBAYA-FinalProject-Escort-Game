@@ -1154,7 +1154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &44459805243142545
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3757,7 +3757,7 @@ PrefabInstance:
       objectReference: {fileID: -1902761211414793623, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
     - target: {fileID: 1093781790, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1093781791, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3781,7 +3781,7 @@ PrefabInstance:
       objectReference: {fileID: -1902761211414793623, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
     - target: {fileID: 1389947273, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1389947274, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3829,7 +3829,7 @@ PrefabInstance:
       objectReference: {fileID: -1902761211414793623, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
     - target: {fileID: 1912802982, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1912802983, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3934,6 +3934,10 @@ PrefabInstance:
     - target: {fileID: 4133587223863706660, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 29.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133587223863706661, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
+      propertyPath: m_text
+      value: Paused...
       objectReference: {fileID: 0}
     - target: {fileID: 4133587223863706661, guid: 6a87ae8488190a243b4a223cc9449b04, type: 3}
       propertyPath: m_Enabled

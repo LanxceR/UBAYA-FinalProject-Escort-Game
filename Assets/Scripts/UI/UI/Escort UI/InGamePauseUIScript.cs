@@ -79,16 +79,4 @@ public class InGamePauseUIScript : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
         settingsPanel.SetActive(false);
     }
-
-    public void ReturnToMainHub()
-    {
-        //FMOD.Studio.Bus MasterBus;
-        //MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
-        //MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-
-        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
-        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/ClickConfirmJob");
-
-        GameManager.Instance.gameScene.GotoScene(SceneName.MAIN_HUB);
-    }
 }
