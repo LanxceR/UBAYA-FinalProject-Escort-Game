@@ -9,8 +9,12 @@ public class EnemyFootstepScript : MonoBehaviour
     [SerializeField]
     private CURRENT_TERRAIN currentTerrain;
 
-    private FMOD.Studio.EventInstance foosteps;
+    private FMOD.Studio.EventInstance footsteps;
     public GameObject raycastTest;
+
+    private float xPosPlayer;
+    private float yPosPlayer;
+    private Vector3 audioPoint;
 
     // Update is called once per frame
     void Update()
@@ -40,11 +44,15 @@ public class EnemyFootstepScript : MonoBehaviour
 
     private void PlayFootstep(int terrain)
     {
-        foosteps = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Zombie/Footstep");
-        foosteps.setParameterByName("Terrain", terrain);
-        foosteps.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-        foosteps.start();
-        foosteps.release();
+        xPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.x - this.transform.position.x;
+        yPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.y - this.transform.position.y;
+        audioPoint = new Vector3(xPosPlayer * -1, yPosPlayer * -1, GameManager.Instance.gamePlayer.ActivePlayer.transform.position.z - this.transform.position.z);
+
+        footsteps = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Zombie/Footstep");
+        footsteps.setParameterByName("Terrain", terrain);
+        footsteps.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(audioPoint));
+        footsteps.start();
+        footsteps.release();
     }
 
     public void SelectAndPlayFootstep()

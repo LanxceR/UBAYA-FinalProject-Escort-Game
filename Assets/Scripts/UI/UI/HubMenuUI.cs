@@ -40,6 +40,8 @@ public class HubMenuUI : MonoBehaviour
         }
 
         GameManager.Instance.gameMission.GenerateMissions(GameManager.Instance.LoadedGameData.daysPassed);
+
+        GameManager.Instance.gameData.SaveGame();
     }
 
     void OnMouseOver()

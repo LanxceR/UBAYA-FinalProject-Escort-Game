@@ -49,6 +49,7 @@ public class InGamePauseUIScript : MonoBehaviour
         // Enable pause panel
         if (pausePanel)
             pausePanel.SetActive(true);
+            Cursor.visible = true;
     }
     private void ResumeGame()
     {
@@ -56,6 +57,7 @@ public class InGamePauseUIScript : MonoBehaviour
         if (pausePanel)
             pausePanel.SetActive(false);
             settingsPanel.SetActive(false);
+            Cursor.visible = false;
     }
 
     public void OnPointerOver()
