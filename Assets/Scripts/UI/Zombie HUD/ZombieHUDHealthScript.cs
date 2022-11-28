@@ -14,14 +14,15 @@ public class ZombieHUDHealthScript : MonoBehaviour
     float maxHealth;
     float lerpSpeed;
 
+    private HealthScript healthScript;
+
     // Start is called before the first frame update
     void Start()
     {
         healthBar.color = Color.red;
         lerpSpeed = 6f * Time.deltaTime;
 
-        GetHealthValues();
-        HealthBarFiller();
+        healthScript = Utilities.FindParentOfType<HealthScript>(transform, out _);
 
         healthBarOutline.enabled = false;
         healthBarBox.enabled = false;
@@ -31,8 +32,7 @@ public class ZombieHUDHealthScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = transform.parent.gameObject.GetComponent<HealthScript>().CurrentHealth;
-
+        GetHealthValues();
         HealthBarFiller();
 
         if (transform.parent.gameObject.GetComponent<HealthScript>().IsDead == false)
@@ -55,15 +55,22 @@ public class ZombieHUDHealthScript : MonoBehaviour
 
     void GetHealthValues()
     {
-        health = transform.parent.gameObject.GetComponent<HealthScript>().CurrentHealth;
-        maxHealth = transform.parent.gameObject.GetComponent<HealthScript>().MaxHealth;
+        health = healthScript.CurrentHealth;
+        maxHealth = healthScript.MaxHealth;
     }
 
     void HealthBarFiller()
     {
-        if(transform.parent.gameObject.GetComponent<HealthScript>().IsDead == false)
+        if(healthScript.IsDead == false)
         {
-            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / maxHealth, lerpSpeed);
+            float targetFillAmount = 0;
+            if (health != 0 || maxHealth != 0 || !float.IsNaN(health / maxHealth))
+            {
+                targetFillAmount = health / maxHealth;
+            }
+
+            if (float.IsNaN(healthBar.fillAmount)) healthBar.fillAmount = 0;
+            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, targetFillAmount, lerpSpeed);
         }
         else
         {

@@ -12,47 +12,30 @@ public class BlockadeHUDHealthScript : MonoBehaviour
     float maxHealth;
     float lerpSpeed;
 
+    private HealthScript healthScript;
+
     // Start is called before the first frame update
     void Start()
     {
         lerpSpeed = 6f * Time.deltaTime;
         healthBar.color = Color.blue;
-        GetHealthValues();
-        HealthBarFiller();
+
+        healthScript = Utilities.FindParentOfType<HealthScript>(transform, out _);
 
         healthBarOutline.enabled = false;
         healthBarBox.enabled = false;
         healthBar.enabled = false;
     }
 
-    void GetHealthValues()
-    {
-        health = transform.parent.gameObject.GetComponent<HealthScript>().CurrentHealth;
-        maxHealth = transform.parent.gameObject.GetComponent<HealthScript>().MaxHealth;
-    }
-
-    void HealthBarFiller()
-    {
-        if (health != 0)
-        {
-            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / maxHealth, lerpSpeed);
-        }
-        else
-        {
-            healthBar.fillAmount = 0f;
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
         GetHealthValues();
+        HealthBarFiller();
 
         //Debug.Log("Current Health of Blockade: " + health + "\nMax health of blockade: " + maxHealth);
 
-        HealthBarFiller();
-
-        if (transform.parent.gameObject.GetComponent<HealthScript>().IsDead == false)
+        if (healthScript.IsDead == false)
         {
             if (health < maxHealth)
             {
@@ -66,6 +49,31 @@ public class BlockadeHUDHealthScript : MonoBehaviour
             healthBarOutline.enabled = false;
             healthBarBox.enabled = false;
             healthBar.enabled = false;
+        }
+    }
+
+    void GetHealthValues()
+    {
+        health = healthScript.CurrentHealth;
+        maxHealth = healthScript.MaxHealth;
+    }
+
+    void HealthBarFiller()
+    {
+        if (healthScript.IsDead == false)
+        {
+            float targetFillAmount = 0;
+            if (health != 0 || maxHealth != 0 || !float.IsNaN(health / maxHealth))
+            {
+                targetFillAmount = health / maxHealth;
+            }
+
+            if (float.IsNaN(healthBar.fillAmount)) healthBar.fillAmount = 0;
+            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, targetFillAmount, lerpSpeed);
+        }
+        else
+        {
+            healthBar.fillAmount = 0f;
         }
     }
 }

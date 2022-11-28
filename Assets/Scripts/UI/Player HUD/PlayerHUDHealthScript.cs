@@ -10,21 +10,20 @@ public class PlayerHUDHealthScript : MonoBehaviour
     float maxHealth;
     float lerpSpeed;
 
+    private HealthScript healthScript;
+
     // Start is called before the first frame update
     void Start()
     {
         lerpSpeed = 4f * Time.deltaTime;
 
-        GetHealthValues();
-        HealthBarFiller();
-        ColorChanger();
+        healthScript = Utilities.FindParentOfType<HealthScript>(transform, out _);
     }
 
     // Update is called once per frame
     void Update()
     {
-        health = GameManager.Instance.gamePlayer.ActivePlayer.healthScript.CurrentHealth;
-
+        GetHealthValues();
         HealthBarFiller();
         ColorChanger();
 
@@ -33,15 +32,22 @@ public class PlayerHUDHealthScript : MonoBehaviour
 
     void GetHealthValues()
     {
-        health = GameManager.Instance.gamePlayer.ActivePlayer.healthScript.CurrentHealth;
-        maxHealth = GameManager.Instance.gamePlayer.ActivePlayer.healthScript.MaxHealth;
+        health = healthScript.CurrentHealth;
+        maxHealth = healthScript.MaxHealth;
     }
 
     void HealthBarFiller()
     {
-        if (health != 0)
+        if (healthScript.IsDead == false)
         {
-            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / maxHealth, lerpSpeed);
+            float targetFillAmount = 0;
+            if (health != 0 || maxHealth != 0 || !float.IsNaN(health / maxHealth))
+            {
+                targetFillAmount = health / maxHealth;
+            }
+
+            if (float.IsNaN(healthBar.fillAmount)) healthBar.fillAmount = 0;
+            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, targetFillAmount, lerpSpeed);
         }
         else
         {
