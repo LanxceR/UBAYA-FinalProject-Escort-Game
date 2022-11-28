@@ -122,6 +122,14 @@ public class HealthScript : MonoBehaviour
             {
                 FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Survivor/Damage");
             }
+            else if (gameObject.name.Contains("Escortee"))
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Convoy/Damage");
+            }
+            else if (gameObject.name.Contains("Blockade"))
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blockade/DamageConcrete");
+            }
         }
         else if (!IsDead) // Prevent entity from dying again after its already dead
         {
@@ -134,6 +142,14 @@ public class HealthScript : MonoBehaviour
             else if (gameObject.name.Contains("Player"))
             {
                 FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Survivor/Damage");
+            }
+            else if (gameObject.name.Contains("Escortee"))
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Convoy/Damage");
+            }
+            else if (gameObject.name.Contains("Blockade"))
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blockade/DamageConcrete");
             }
 
             IsDead = true;

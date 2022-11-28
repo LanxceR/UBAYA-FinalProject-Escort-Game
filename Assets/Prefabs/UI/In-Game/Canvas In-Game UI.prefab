@@ -1057,7 +1057,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4133587222346563348
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1774,6 +1774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inGameUIScript: {fileID: 5915407342447911246}
   pausePanel: {fileID: 4133587222346563355}
+  settingsPanel: {fileID: 0}
 --- !u!114 &4849086499210243230
 MonoBehaviour:
   m_ObjectHideFlags: 0
