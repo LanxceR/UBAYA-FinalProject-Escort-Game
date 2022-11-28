@@ -15,12 +15,16 @@ public class EscorteeHUDHealthScript : MonoBehaviour
     float maxHealth;
     float lerpSpeed;
 
+    private EscorteeScript escorteeScript;
+    private HealthScript healthScript;
+
     // Start is called before the first frame update
     void Start()
     {
         lerpSpeed = 6f * Time.deltaTime;
-        GetInitHealthValues();
-        HealthBarFiller();
+
+        healthScript = Utilities.FindParentOfType<HealthScript>(transform, out _);
+        escorteeScript = Utilities.FindParentOfType<EscorteeScript>(transform, out _);
 
         //healthBarOutline.enabled = false;
         //healthBarBox.enabled = false;
@@ -30,14 +34,10 @@ public class EscorteeHUDHealthScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        maxHealth = GameManager.Instance.gameEscortee.ActiveEscortee.healthScript.MaxHealth;
-        health = GameManager.Instance.gameEscortee.ActiveEscortee.healthScript.CurrentHealth;
-
-        healthText.text = GameManager.Instance.gameEscortee.ActiveEscortee.id.ToString().Replace('_', ' ') + " health";
-
+        GetHealthValues();
         HealthBarFiller();
 
-        if (GameManager.Instance.gameEscortee.ActiveEscortee.healthScript.IsDead == false)
+        if (healthScript.IsDead == false)
         {
             if (health < maxHealth)
             {
@@ -54,18 +54,25 @@ public class EscorteeHUDHealthScript : MonoBehaviour
         }
     }
 
-    void GetInitHealthValues()
+    void GetHealthValues()
     {
-        health = GameManager.Instance.gameEscortee.ActiveEscortee.healthScript.CurrentHealth;
-        maxHealth = GameManager.Instance.gameEscortee.ActiveEscortee.healthScript.MaxHealth;
-        healthText.text = GameManager.Instance.gameEscortee.ActiveEscortee.name + " health";
+        health = healthScript.CurrentHealth;
+        maxHealth = healthScript.MaxHealth;
+        healthText.text = escorteeScript.id.ToString().Replace('_', ' ') + " health";
     }
 
     void HealthBarFiller()
     {
-        if (GameManager.Instance.gameEscortee.ActiveEscortee.healthScript.IsDead == false)
+        if (healthScript.IsDead == false)
         {
-            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / maxHealth, lerpSpeed);
+            float targetFillAmount = 0;
+            if (health != 0 || maxHealth != 0 || !float.IsNaN(health / maxHealth))
+            {
+                targetFillAmount = health / maxHealth;
+            }
+
+            if (float.IsNaN(healthBar.fillAmount)) healthBar.fillAmount = 0;
+            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, targetFillAmount, lerpSpeed);
 
             Color healthColor = Color.Lerp(Color.red, Color.green, (health / maxHealth));
             healthBar.color = healthColor;
