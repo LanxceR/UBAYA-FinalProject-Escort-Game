@@ -30,11 +30,17 @@ public class HubMenuUI : MonoBehaviour
 
         if(GameManager.Instance.LoadedGameData.difficulty == Difficulty.CASUAL)
         {
-            dayBox.SetActive(false);
+            if(dayBox != null)
+            {
+                dayBox.SetActive(false);
+            }
         }
         else
         {
-            dayBox.SetActive(true);
+            if (dayBox != null)
+            {
+                dayBox.SetActive(true);
+            }
             Transform dayText = dayBox.transform.Find("Day");
             dayText.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.daysPassed.ToString();
         }
