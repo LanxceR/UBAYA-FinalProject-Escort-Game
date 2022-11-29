@@ -246,6 +246,7 @@ public class GameSceneManager : MonoBehaviour
         }
 
         // Reset Timescale
+        gameManager.gameState.canPauseAndResume = true;
         gameManager.gameState.ResumeGame();
     }
     private void ManageGMComponents(Scene scene, LoadSceneMode loadSceneMode)

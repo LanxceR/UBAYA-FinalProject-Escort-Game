@@ -50,4 +50,11 @@ public class DebugMissionEnd : MonoBehaviour
     {
         btnContinue.gameObject.SetActive(true);
     }
+
+    // This function is called when the MonoBehaviour will be destroyed
+    private void OnDestroy()
+    {
+        GameManager.Instance.gameState.OnGameOver -= GameOver;
+        GameManager.Instance.gameMission.OnMissionEnd -= MissionEnd;
+    }
 }
