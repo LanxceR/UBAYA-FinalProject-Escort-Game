@@ -57,4 +57,10 @@ public class InGameMissionEndButtonScript : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Hover");
     }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.gameState.OnGameOver -= GameOver;
+        GameManager.Instance.gameMission.OnMissionEnd -= MissionEnd;
+    }
 }
