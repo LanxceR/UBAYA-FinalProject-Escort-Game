@@ -63,4 +63,16 @@ public class EscorteeInteractScript : MonoBehaviour, IInteractable
     {
         return transform;
     }
+
+    public bool CheckIfMounted()
+    {
+        if(isMounted == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
