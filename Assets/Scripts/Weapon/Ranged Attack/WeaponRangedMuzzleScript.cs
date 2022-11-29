@@ -60,11 +60,11 @@ public class WeaponRangedMuzzleScript : MonoBehaviour
             projectile.projectileHitScript.SetAttacker(attacker);
 
             // Check for a point blank shot
-            RaycastHit2D hitAtPointBlank = IsThereSomethingShotPointBlank(projectile, muzzle);
+            RaycastHit2D hitAtPointBlank = IsThereSomethingShotPointBlank(projectile, muzzle, attacker);
             if (hitAtPointBlank)
             {
                 // Call collision enter events from projectile "hitting" the victim
-                projectile.collisionScript.CollisionEnter(hitAtPointBlank.collider.transform.gameObject);
+                projectile.collisionScript.CollisionEnter(hitAtPointBlank.collider.gameObject);
 
                 // Deactivate projectile (because shot was taken at point blank)
                 poolObj.Deactivate();
@@ -147,7 +147,7 @@ public class WeaponRangedMuzzleScript : MonoBehaviour
         muzzleFX.gameObject.SetActive(false);
     }
 
-    private RaycastHit2D IsThereSomethingShotPointBlank(ProjectileScript projectileInfo, GameObject muzzle)
+    private RaycastHit2D IsThereSomethingShotPointBlank(ProjectileScript projectileInfo, GameObject muzzle, GameObject attacker)
     {
         // Setup            
         var w = weaponScript;
@@ -159,8 +159,9 @@ public class WeaponRangedMuzzleScript : MonoBehaviour
 
         for (int i = 0; i < hits.Length; ++i)
         {
+            // NOTE: RaycastHit2D has a property of the rigidbody, so use that instead!
             // If there's a valid hit (with the valid target tags in the projectile),
-            if (i == 1 && projectileInfo.collisionScript.CheckTargetedTags(hits[i].collider.transform.parent.gameObject) != null)
+            if (hits[0].transform.gameObject != attacker && projectileInfo.collisionScript.CheckTargetedTags(hits[i].collider.gameObject) != null)
             {
                 // It IS a point blank shot
                 return hits[i];

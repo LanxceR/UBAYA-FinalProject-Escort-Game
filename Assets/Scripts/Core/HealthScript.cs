@@ -152,6 +152,8 @@ public class HealthScript : MonoBehaviour
                 FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blockade/DamageConcrete");
             }
 
+            Debug.Log($"FATAL HIT! {gameObject.name} took {damage} damage from {lastHitBy.name}");
+
             IsDead = true;
             OnHealthReachedZero?.Invoke();
 
