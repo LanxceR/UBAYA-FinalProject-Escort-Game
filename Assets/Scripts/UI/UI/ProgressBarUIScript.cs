@@ -27,7 +27,7 @@ public class ProgressBarUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Current Distance: " + currentDist + "\nFinish line X position: " + maxDist);
+        //Debug.Log("Current Distance: " + currentDist + "\nFinish line X position: " + maxDist);
 
         currentDist = GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.x;
         progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, currentDist/maxDist, lerpSpeed);

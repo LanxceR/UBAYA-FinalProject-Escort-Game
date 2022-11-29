@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 /// <summary>
 /// Moveable objects behaviour (for objects that can move under it's own volition)
@@ -10,14 +11,19 @@ using System;
 public class MoveableScript : MonoBehaviour
 {
     // Variables
-    internal float speed = 1f;
+    internal float velocityThisFrame = 1f;
 
     // Components
     private Vector3 direction;
-    private Rigidbody2D rb;
+    internal Rigidbody2D rb;
 
-    // Start is called before the first frame update
-    void Start()
+    // Events
+    [Header("Events")]
+    internal UnityEvent BeforeMove = new UnityEvent();
+    internal UnityEvent AfterMove = new UnityEvent();
+
+    // Awake is called when the script instance is being loaded
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -39,12 +45,16 @@ public class MoveableScript : MonoBehaviour
     // Use to regularly update transform position, usually put in Update()
     private void UpdatePosition()
     {
+        BeforeMove?.Invoke();
         transform.position = GetNextPosition();
+        AfterMove?.Invoke();
     }
     // Use to regularly update rigidbody position with physics, usually put in FixedUpdate()
     private void FixedUpdatePosition()
     {
+        BeforeMove?.Invoke();
         rb.MovePosition(GetNextPosition());
+        AfterMove?.Invoke();
     }
 
     // Get the next position according to direction
@@ -64,17 +74,17 @@ public class MoveableScript : MonoBehaviour
     internal Vector3 GetDirectionWithVelocity()
     {
         if (!rb)
-            return direction.normalized * Time.deltaTime * speed;
+            return direction.normalized * Time.deltaTime * velocityThisFrame;
         else
-            return direction.normalized * Time.fixedDeltaTime * speed;
+            return direction.normalized * Time.fixedDeltaTime * velocityThisFrame;
     }
     // Get direction and return a normalized vector (magnitude = 1)
     internal Vector3 GetDirectionNormalized()
     {
         if (!rb)
-            return direction.normalized * Time.deltaTime * speed;
+            return direction.normalized * Time.deltaTime * velocityThisFrame;
         else
-            return direction.normalized * Time.fixedDeltaTime * speed;
+            return direction.normalized * Time.fixedDeltaTime * velocityThisFrame;
     }
 
     // Set movement direction

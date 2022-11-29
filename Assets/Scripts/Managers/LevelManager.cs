@@ -180,16 +180,16 @@ public class LevelManager : MonoBehaviour
     private void SetupBlockades()
     {
         Vector2 pos;
-        float padding = 5f; // Padding area for triggers to always spawn within the padded area (from left OR right)
+        float padding = 5f; // Padding area for blockades to always spawn within the padded area (from left OR right)
 
-        // Randomize spawn trigger amounts
+        // Randomize blockades amounts
         int blockadesAmount = Random.Range(1, 4);
         pos = map.transform.position;
         for (int i = 0; i < blockadesAmount; i++)
         {
             // Randomize blockades position
             // To roughly distribute evenly, randomize each blockades in their own area,
-            // E.g the 2nd out of 10 triggers position would be randomized between 1/10 to 2/10, so on & so forth
+            // E.g the 2nd out of 10 blockades position would be randomized between 1/10 to 2/10, so on & so forth
             pos.x = Random.Range(
                 (mapBounds.extents.x * 2 - (padding * 2)) * i / blockadesAmount,
                 (mapBounds.extents.x * 2 - (padding * 2)) * (i + 1) / blockadesAmount
