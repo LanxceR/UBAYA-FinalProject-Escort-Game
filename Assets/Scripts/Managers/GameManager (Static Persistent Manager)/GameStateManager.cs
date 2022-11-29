@@ -39,6 +39,8 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     internal UnityAction<GameOverEvent> OnGameOver;
 
+    internal bool canPauseAndResume;
+
     // Update is called every frame, if the MonoBehaviour is enabled
     private void Update()
     {
@@ -80,17 +82,25 @@ public class GameStateManager : MonoBehaviour
 
     internal void StartGame()
     {
+        canPauseAndResume = true;
         gameManager.GameIsPlaying = true;
+    }
+    internal void StopGame()
+    {
+        canPauseAndResume = false;
+        gameManager.GameIsPlaying = false;
     }
 
     public void PauseGame()
     {
+        if (!canPauseAndResume) return;
         gameManager.GameIsPlaying = false;
         Time.timeScale = 0f;
         OnPauseAction?.Invoke();
     }
     public void ResumeGame()
     {
+        if (!canPauseAndResume) return;
         gameManager.GameIsPlaying = true;
         Time.timeScale = 1f;
         OnResumeAction?.Invoke();

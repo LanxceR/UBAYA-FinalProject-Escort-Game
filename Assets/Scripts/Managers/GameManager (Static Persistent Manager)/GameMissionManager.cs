@@ -85,6 +85,8 @@ public class GameMissionManager : MonoBehaviour
             default:
                 break;
         }
+
+        gameManager.gameState.canPauseAndResume = false;
     }
 
     // Load a save and store in game manager loaded save

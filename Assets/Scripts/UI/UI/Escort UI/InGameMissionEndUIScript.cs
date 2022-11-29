@@ -56,4 +56,10 @@ public class InGameMissionEndUIScript : MonoBehaviour
         // Enable pause panel
         missionFailedPanel.SetActive(false);
     }
+
+    // This function is called when the MonoBehaviour will be destroyed
+    private void OnDestroy()
+    {
+        GameManager.Instance.gameMission.OnMissionEnd -= MissionEnd;
+    }
 }

@@ -56,6 +56,7 @@ public class InGamePauseUIScript : MonoBehaviour
         // Disable pause panel
         if (pausePanel)
             pausePanel.SetActive(false);
+        if (settingsPanel)
             settingsPanel.SetActive(false);
             Cursor.visible = false;
     }
@@ -82,5 +83,12 @@ public class InGamePauseUIScript : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
         settingsPanel.SetActive(false);
+    }
+
+    // This function is called when the MonoBehaviour will be destroyed
+    private void OnDestroy()
+    {
+        GameManager.Instance.gameState.OnPauseAction -= PauseGame;
+        GameManager.Instance.gameState.OnResumeAction -= ResumeGame;
     }
 }
