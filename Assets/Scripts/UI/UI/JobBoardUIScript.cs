@@ -125,7 +125,7 @@ public class JobBoardUIScript : MonoBehaviour
                 missionImage.sprite = jobFinal.GetComponent<SpriteRenderer>().sprite;
                 break;
         }
-        missionLocation.text = GameManager.Instance.MissionDatas[missionIndex].escortScene.ToString().Replace('_', ' ');
+        missionLocation.text = GameManager.Instance.MissionDatas[missionIndex].escortScene.ToString().Replace("MAP_", "").Replace('_', ' ');
 
 
         //Description Text
@@ -138,8 +138,8 @@ public class JobBoardUIScript : MonoBehaviour
             case SceneName.TEST_ESCORT_SCENE:
                 missionDescription.text = "Supplies has been retrieved from the city, and needs to be delivered back to the base.";
                 break;
-            case SceneName.MAP_FOREST:
-                missionDescription.text = "Supplies has been retrieved from the forest, and needs to be delivered back to the base.";
+            case SceneName.MAP_SUBURBS:
+                missionDescription.text = "Survivors and supplies has been found in the suburbs. Escort them back to the base.";
                 break;
         }
 
@@ -157,6 +157,11 @@ public class JobBoardUIScript : MonoBehaviour
             case 3000:
                 missionDescription.text += " Try to make it out alive.";
                 break;
+        }
+
+        if(GameManager.Instance.MissionDatas[missionIndex].escorteeHasWeapon == true)
+        {
+            missionDescription.text += "\n\nYou will have an ally to cover fire for you.";
         }
 
         //BUTTON CONVOY SELECTION

@@ -34,9 +34,12 @@ public class InGameMissionSuccessDisplayInfo : MonoBehaviour
     private IEnumerator DisplayRewardsCoroutine()
     {
         baseRewardText.gameObject.SetActive(true);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Hover");
         yield return new WaitForSeconds(0.5f);
         bonusRewardText.gameObject.SetActive(true);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Hover");
         yield return new WaitForSeconds(0.5f);
         moneyText.gameObject.SetActive(true);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Hover");
     }
 }
