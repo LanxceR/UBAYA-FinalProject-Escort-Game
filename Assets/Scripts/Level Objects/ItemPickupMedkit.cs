@@ -16,6 +16,7 @@ public class ItemPickupMedkit : MonoBehaviour, IItemPickup
 
     public void OnPickup(GameObject picker)
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Pickup/PickupHealth");
         // Fetch victim's health on their parent gameobject
         HealthScript health = Utilities.FindParentOfType<HealthScript>(picker.transform, out _);
 

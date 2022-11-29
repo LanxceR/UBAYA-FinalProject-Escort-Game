@@ -35,13 +35,18 @@ public class InGameMissionEndUIScript : MonoBehaviour
             case MissionEndEvent.MISSION_SUCCESS:
                 missionSuccessPanel.gameObject.SetActive(true);
                 missionSuccessPanel.DisplayMissionEndDetail(reward);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Music/Win");
                 break;
             case MissionEndEvent.MISSION_FAILED:
                 missionFailedPanel.SetActive(true);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Music/Lose");
                 break;
             default:
                 break;
         }
+
+        //Disable pause function.
+        transform.GetComponent<InGamePauseUIScript>().enabled = false;
     }
     private void DisableGameOverPanel()
     {

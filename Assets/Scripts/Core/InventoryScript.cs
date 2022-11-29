@@ -121,6 +121,8 @@ public class InventoryScript : MonoBehaviour
 
             GameObject obj = null;
 
+            FMOD.Studio.EventInstance weaponSwitch = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Weapon/WeaponSwitch");
+
             // Go through equipments list
             for (int i = 0; i < equipments.Count; i++)
             {
@@ -134,6 +136,17 @@ public class InventoryScript : MonoBehaviour
                     obj.SetActive(true);
 
                     OnEquipmentSwitch.Invoke();
+
+                    if(i == 0)
+                    {
+                        weaponSwitch.setParameterByName("SwitchType", 0);
+                    }
+                    else
+                    {
+                        weaponSwitch.setParameterByName("SwitchType", 1);
+                    }
+
+                    weaponSwitch.start();
                 }
 
                 // Deactivate everything else

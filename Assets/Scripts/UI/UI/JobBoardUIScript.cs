@@ -138,6 +138,9 @@ public class JobBoardUIScript : MonoBehaviour
             case SceneName.TEST_ESCORT_SCENE:
                 missionDescription.text = "Supplies has been retrieved from the city, and needs to be delivered back to the base.";
                 break;
+            case SceneName.MAP_FOREST:
+                missionDescription.text = "Supplies has been retrieved from the forest, and needs to be delivered back to the base.";
+                break;
         }
 
         switch (GameManager.Instance.MissionDatas[missionIndex].baseReward)

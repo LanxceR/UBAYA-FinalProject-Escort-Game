@@ -36,6 +36,16 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
     private float cooldown = 0f;
     private bool canAttack = true;
 
+    private WeaponID currentWeapon;
+    private FMOD.Studio.EventInstance weaponAtk;
+
+    void Start()
+    {
+        currentWeapon = weaponScript.id;
+        weaponAtk = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Weapon/WeaponAttack");
+        DetermineSound();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -92,6 +102,8 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
                 ExecuteAttack();
             else
                 AttackWithAnim();
+
+            weaponAtk.start();
         }
     }
 
@@ -132,4 +144,26 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
         Gizmos.DrawWireSphere(transform.position, range);
     }
 #endif
+
+    void DetermineSound()
+    {
+        switch (currentWeapon)
+        {
+            case WeaponID.PISTOL:
+                weaponAtk.setParameterByName("Weapon", 4);
+                break;
+
+            case WeaponID.SHOTGUN:
+                weaponAtk.setParameterByName("Weapon", 5);
+                break;
+
+            case WeaponID.SMG:
+                weaponAtk.setParameterByName("Weapon", 6);
+                break;
+
+            case WeaponID.RIFLE:
+                weaponAtk.setParameterByName("Weapon", 7);
+                break;
+        }
+    }
 }

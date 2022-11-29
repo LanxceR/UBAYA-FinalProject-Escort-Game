@@ -32,6 +32,17 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
     private float cooldown = 0f;
     private bool canAttack = true;
 
+    private WeaponID currentWeapon;
+    private FMOD.Studio.EventInstance weaponAtk;
+
+    void Start()
+    {
+        currentWeapon = weaponScript.id;
+        weaponAtk = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Weapon/WeaponAttack");
+        DetermineSound();
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -86,6 +97,8 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
                 ExecuteAttack();
             else
                 AttackWithAnim(); // AttackWithAnim => AttackAnimation => ExecuteAttack
+
+            //weaponAtk.release();
         }
     }
 
@@ -93,6 +106,8 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
     public void AttackWithAnim()
     {
         weaponScript.weaponAnimationScript.AttackAnimation();
+
+        weaponAtk.start();
     }
 
     public void ExecuteAttack()
@@ -105,5 +120,31 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
 
         // Enabling and disabling colliders are handled in animation clip
         return;
+    }
+
+    void DetermineSound()
+    {
+        switch (currentWeapon)
+        {
+            case WeaponID.PIPE:
+                weaponAtk.setParameterByName("Weapon", 0);
+                break;
+
+            case WeaponID.KNIFE:
+                weaponAtk.setParameterByName("Weapon", 1);
+                break;
+
+            case WeaponID.BASEBALL_BAT:
+                weaponAtk.setParameterByName("Weapon", 2);
+                break;
+
+            case WeaponID.MACHETE:
+                weaponAtk.setParameterByName("Weapon", 3);
+                break;
+
+            case WeaponID.MELEE_INVISIBILE:
+                weaponAtk.setParameterByName("Weapon", 8);
+                break;
+        }
     }
 }

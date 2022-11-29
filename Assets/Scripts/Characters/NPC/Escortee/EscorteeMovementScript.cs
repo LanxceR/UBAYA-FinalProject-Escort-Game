@@ -30,6 +30,14 @@ public class EscorteeMovementScript : MonoBehaviour
     private Coroutine speedUpCoroutine;
     private Coroutine speedChangeCoroutine;
 
+
+    private FMOD.Studio.EventInstance instance;
+
+    private float xPosPlayer;
+    private float yPosPlayer;
+    private Vector3 audioPoint;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +47,13 @@ public class EscorteeMovementScript : MonoBehaviour
 
         // Add listener to Health's OnHealthReachedZero UnityEvent
         escorteeScript.healthScript.OnHealthReachedZero.AddListener(EscorteeDeath);
+
+        DetermineEscortee();
+        instance.setParameterByName("RPM", 0);
+        instance.start();
+
+        xPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.x;
+        yPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.y;
     }
 
     // This function is called every fixed framerate frame, if the MonoBehaviour is enabled
@@ -74,6 +89,14 @@ public class EscorteeMovementScript : MonoBehaviour
 
         // Move using moveable
         moveableComp.SetDirection(dir);
+
+        //Sounds
+        xPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.x - GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.x;
+        yPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.y - GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.y;
+
+        audioPoint = new Vector3(xPosPlayer * -1, yPosPlayer*-1, GameManager.Instance.gamePlayer.ActivePlayer.transform.position.z - GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.z);
+
+        instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(audioPoint));
     }
 
     private void EscorteeDeath()
@@ -103,15 +126,19 @@ public class EscorteeMovementScript : MonoBehaviour
         {
             case 0:
                 StartSpeedChangeCoroutine(0, a, false); // Stops
+                instance.setParameterByName("RPM", 0f);
                 break;
             case 1:
                 StartSpeedChangeCoroutine(currentMaxSpeed / 4, a, false); // 1/4 max speed
+                instance.setParameterByName("RPM", 10f);
                 break;
             case 2:
                 StartSpeedChangeCoroutine(currentMaxSpeed / 2, a, false); // 1/2 max speed
+                instance.setParameterByName("RPM", 20f);
                 break;
             case 3:
                 StartSpeedChangeCoroutine(currentMaxSpeed, a, false); // Max speed
+                instance.setParameterByName("RPM", 30f);
                 break;
         }
 
@@ -182,5 +209,27 @@ public class EscorteeMovementScript : MonoBehaviour
         }
 
         speedChangeCoroutine = null;
+    }
+
+    void DetermineEscortee()
+    {
+        switch (escorteeScript.id)
+        {
+            case EscorteeID.BUS:
+                instance = FMODUnity.RuntimeManager.CreateInstance("event:/Convoy/BusEngine");
+                break;
+            case EscorteeID.PICKUP_TRUCK:
+                instance = FMODUnity.RuntimeManager.CreateInstance("event:/Convoy/PickupEngine");
+                break;
+            case EscorteeID.MILITARY_TRUCK:
+                instance = FMODUnity.RuntimeManager.CreateInstance("event:/Convoy/CargoEngine");
+                break;
+        }
+    }
+
+    public void KillSound()
+    {
+        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instance.release();
     }
 }

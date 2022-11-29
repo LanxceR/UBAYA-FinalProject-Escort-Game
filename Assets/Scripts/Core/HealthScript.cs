@@ -113,10 +113,45 @@ public class HealthScript : MonoBehaviour
             }
 
             Debug.Log($"{gameObject.name} took {damage} damage from {lastHitBy.name}");
+
+            if (gameObject.name.Contains("Zombie"))
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Zombie/Damage");
+            }
+            else if (gameObject.name.Contains("Player"))
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Survivor/Damage");
+            }
+            else if (gameObject.name.Contains("Escortee"))
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Convoy/Damage");
+            }
+            else if (gameObject.name.Contains("Blockade"))
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blockade/DamageConcrete");
+            }
         }
         else if (!IsDead) // Prevent entity from dying again after its already dead
         {
             // Dies
+
+            if (gameObject.name.Contains("Zombie"))
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Zombie/Damage");
+            }
+            else if (gameObject.name.Contains("Player"))
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Survivor/Damage");
+            }
+            else if (gameObject.name.Contains("Escortee"))
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Convoy/Damage");
+            }
+            else if (gameObject.name.Contains("Blockade"))
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blockade/DamageConcrete");
+            }
+
             IsDead = true;
             OnHealthReachedZero?.Invoke();
 
