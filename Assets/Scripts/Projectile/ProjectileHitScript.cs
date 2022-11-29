@@ -53,6 +53,21 @@ public class ProjectileHitScript : MonoBehaviour
         }
     }
 
+    internal void CheckForHitsInTheWay(float velocity, Vector2 direction)
+    {
+        // Check if there's a hit victim in this projectile's travel path
+        // This is to prevent projectile from phasing through victims due too high velocity
+        // NOTE: Subtract position with spawnOffset (this is due to projectile's position is offset from the model when spawned)
+        // Use layerMask ActorHitbox ( 1 << 7 )
+        RaycastHit2D victim = Physics2D.Raycast(transform.position - projectileScript.spawnOffset, direction, velocity, 1 << 7);
+
+        if (victim)
+        {
+            // Something is in the way, try and hit that something
+            OnHit(victim.collider.gameObject);
+        }
+    }
+
     internal void SetAttacker(GameObject attacker)
     {
         this.attacker = attacker;
@@ -72,6 +87,9 @@ public class ProjectileHitScript : MonoBehaviour
 
     internal void OnHit(GameObject victim)
     {
+        // If bullet has hit something, don't hit any more victims
+        if (HasHit()) return;
+
         if (Utilities.FindParent<HealthScript>(victim.transform, out Transform parent))
             Debug.Log($"{attacker.name}'s attack has hit {parent?.name}!");
 

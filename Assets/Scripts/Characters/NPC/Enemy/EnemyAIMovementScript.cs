@@ -53,7 +53,7 @@ public class EnemyAIMovementScript : MonoBehaviour
 
         if (enemyScript.knockbackScript)
         {
-            // Add listener to Health's OnHit UnityEvent
+            // Add listener to Knockback's OnHit UnityEvent
             enemyScript.knockbackScript.KnockbackRecovery.AddListener(KnockbackRecovery);
         }
     }
@@ -90,7 +90,7 @@ public class EnemyAIMovementScript : MonoBehaviour
     internal void SetDirection(Vector2 dir)
     {
         this.dir = dir;
-        moveableComp.speed = actualSpeed;
+        moveableComp.velocityThisFrame = actualSpeed;
         moveableComp.SetDirection(this.dir);
     }
 
@@ -113,7 +113,7 @@ public class EnemyAIMovementScript : MonoBehaviour
                 dir = enemyScript.pathfindingScript.GetDirectionToFollowPath();
 
                 // Set moveable speed
-                moveableComp.speed = actualSpeed;
+                moveableComp.velocityThisFrame = actualSpeed;
 
                 // Move using moveable
                 moveableComp.SetDirection(dir);

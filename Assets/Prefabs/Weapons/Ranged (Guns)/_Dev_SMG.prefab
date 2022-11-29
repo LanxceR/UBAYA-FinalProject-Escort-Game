@@ -296,7 +296,7 @@ MonoBehaviour:
   reloadTime: 2
   ammoType: 1
   ammoMagSize: Infinity
-  price: 2000
+  price: 9999999
   isOwned: 0
   isEquipped: 0
   weaponInputScript: {fileID: 2841505596119360413}

@@ -53,7 +53,7 @@ public class PlayerMovementScript : MonoBehaviour
         dir = new Vector2(MoveX, MoveY);
 
         // Set moveable speed
-        moveableComp.speed = actualSpeed;
+        moveableComp.velocityThisFrame = actualSpeed;
 
         // Move using moveable
         moveableComp.SetDirection(dir);

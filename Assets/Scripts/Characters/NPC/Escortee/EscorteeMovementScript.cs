@@ -85,7 +85,7 @@ public class EscorteeMovementScript : MonoBehaviour
         dir = Vector2.right;
 
         // Set moveable speed
-        moveableComp.speed = actualSpeed;
+        moveableComp.velocityThisFrame = actualSpeed;
 
         // Move using moveable
         moveableComp.SetDirection(dir);

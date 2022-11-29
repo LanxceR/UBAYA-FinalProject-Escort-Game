@@ -28,12 +28,12 @@ public class EnemyFootstepScript : MonoBehaviour
             if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("Street"))
             {
                 currentTerrain = CURRENT_TERRAIN.STREET;
-                Debug.Log(currentTerrain);
+                //Debug.Log(currentTerrain);
             }
             else if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("Dirt"))
             {
                 currentTerrain = CURRENT_TERRAIN.DIRT;
-                Debug.Log(currentTerrain);
+                //Debug.Log(currentTerrain);
             }
         }
     }
