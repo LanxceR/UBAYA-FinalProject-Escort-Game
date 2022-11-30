@@ -109,7 +109,7 @@ public class JobBoardUIScript : MonoBehaviour
     //This method will load or refresh the initial data to the briefingUI texts in accordance with generated mission
     void Refresh()
     {
-        //CHECK MISSION LOCATION
+        //MISSION PAPER IMAGE
         switch (missionIndex)
         {
             case 0:
@@ -125,8 +125,7 @@ public class JobBoardUIScript : MonoBehaviour
                 missionImage.sprite = jobFinal.GetComponent<SpriteRenderer>().sprite;
                 break;
         }
-        missionLocation.text = GameManager.Instance.MissionDatas[missionIndex].escortScene.ToString().Replace("MAP_", "").Replace('_', ' ');
-
+        //missionLocation.text = GameManager.Instance.MissionDatas[missionIndex].escortScene.ToString().Replace("MAP_", "").Replace('_', ' ');
 
         //Description Text
         //Two parts:
@@ -136,10 +135,23 @@ public class JobBoardUIScript : MonoBehaviour
         switch (GameManager.Instance.MissionDatas[missionIndex].escortScene)
         {
             case SceneName.TEST_ESCORT_SCENE:
+                missionLocation.text = "City";
                 missionDescription.text = "Supplies has been retrieved from the city, and needs to be delivered back to the base.";
                 break;
+
+            case SceneName.MAP_CITY:
+                missionLocation.text = "Abandoned City";
+                missionDescription.text = "Important supplies are found in the abandoned city. Deliver those supplies back to base.";
+                break;
+
             case SceneName.MAP_SUBURBS:
-                missionDescription.text = "Survivors and supplies has been found in the suburbs. Escort them back to the base.";
+                missionLocation.text = "The Suburbs";
+                missionDescription.text = "Survivors and supplies has been found in the suburbs. Escort them back to safety.";
+                break;
+
+            case SceneName.MAP_FOREST:
+                missionLocation.text = "The Forest";
+                missionDescription.text = "A nearby source of clean water in the forest was seen. Bring it back to base.";
                 break;
         }
 
@@ -191,9 +203,11 @@ public class JobBoardUIScript : MonoBehaviour
 
     public void PlayGame()
     {
-        FMOD.Studio.Bus MasterBus;
+        /*FMOD.Studio.Bus MasterBus;
         MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
-        MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);*/
+
+        GameObject.Find("Audio Manager").GetComponent<GameplayAudioManager>().KillAll();
         instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         instance.release();
 

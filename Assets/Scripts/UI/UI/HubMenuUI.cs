@@ -14,18 +14,10 @@ public class HubMenuUI : MonoBehaviour
 
     public GameObject dayBox;
 
-    private FMOD.Studio.EventInstance instanceAmbience;
-    private FMOD.Studio.EventInstance instanceMusic;
 
     // Start is called before the first frame update
     void Start()
     {
-        instanceAmbience = FMODUnity.RuntimeManager.CreateInstance("event:/Ambience/AmbienceMenu");
-        instanceMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/MenuLoop");
-
-        instanceAmbience.start();
-        instanceMusic.start();
-
         anim = gameObject.GetComponent<Animator>();
 
         if(GameManager.Instance.LoadedGameData.difficulty == Difficulty.CASUAL)
@@ -98,13 +90,8 @@ public class HubMenuUI : MonoBehaviour
 
     public void ExitApplication()
     {
-        //needs code
-        //idk what code
-        //pls help
-        //im going insane
-        //i want to die
-        //UI coding is literal hell
-        //why am i struggling with this
-        //why do i do this to myself
+        //AUTOSAVE BEFORE EXITING
+        GameManager.Instance.gameData.SaveGame();
+        Application.Quit();
     }
 }

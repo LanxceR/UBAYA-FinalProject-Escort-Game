@@ -26,6 +26,12 @@ public class TitleScreenUIScript : MonoBehaviour
         VcaBgm = FMODUnity.RuntimeManager.GetVCA("vca:/BGM");
         VcaBgm.setVolume(PlayerPrefs.GetFloat("BGM"));
 
+
+        //Make sure that master bus volume is 100%
+        FMOD.Studio.Bus MasterBus;
+        MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+        MasterBus.setVolume(1f);
+
         hasClicked = 0;
         Debug.Log("Script started");
         musicEvent = FMODUnity.RuntimeManager.CreateInstance("event:/Music/IntroLoop");
