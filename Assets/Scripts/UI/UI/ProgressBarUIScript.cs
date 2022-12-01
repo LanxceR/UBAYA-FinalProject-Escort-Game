@@ -28,6 +28,7 @@ public class ProgressBarUIScript : MonoBehaviour
     int blockadeIndex;
 
     float markerPos;
+    float barWidth;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class ProgressBarUIScript : MonoBehaviour
         currentDist = GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.x;
 
         triggerIndex = 0;
+        barWidth = progressBar.rectTransform.rect.width;
 
         //it does what it does.
         //thank you darren for the suggestion
@@ -47,7 +49,8 @@ public class ProgressBarUIScript : MonoBehaviour
     void Update()
     {
         //UPDATE PLAYER POS
-        playerPos = Mathf.Clamp((((GameManager.Instance.gamePlayer.ActivePlayer.transform.position.x / maxDist) * 400 - 200)/100), -2, 2);
+        //playerPos = Mathf.Clamp((((GameManager.Instance.gamePlayer.ActivePlayer.transform.position.x / maxDist) * 400 - 200)/100), -2, 2);
+        playerPos = Mathf.Clamp((((GameManager.Instance.gamePlayer.ActivePlayer.transform.position.x / maxDist) * barWidth - (barWidth/2)) / 100), -(barWidth/2/100), (barWidth/2/100));
         playerMarker.transform.position = new Vector3(playerPos, this.transform.position.y, this.transform.position.z);
 
         currentDist = GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.x;
@@ -99,6 +102,25 @@ public class ProgressBarUIScript : MonoBehaviour
         {
             if (go.name.Contains("Big"))
             {
+                markerPos = Mathf.Clamp((((go.transform.position.x / maxDist) * barWidth - (barWidth/2)) / 100), -2, 2);
+                triggerMarkers[triggerIndex].transform.position = new Vector3(markerPos, this.transform.position.y, this.transform.position.z);
+                triggerMarkers[triggerIndex].SetActive(true);
+                triggerIndex++;
+            }
+        }
+
+        foreach (GameObject go in listOfBlockades)
+        {
+            markerPos = Mathf.Clamp((((go.transform.position.x / maxDist) * barWidth - (barWidth / 2)) / 100), -2, 2);
+            blockadeMarkers[blockadeIndex].transform.position = new Vector3(markerPos, this.transform.position.y, this.transform.position.z);
+            blockadeMarkers[blockadeIndex].SetActive(true);
+            blockadeIndex++;
+        }
+
+        /*foreach (GameObject go in listOfTriggers)
+        {
+            if (go.name.Contains("Big"))
+            {
                 markerPos = Mathf.Clamp((((go.transform.position.x / maxDist) * 400 - 200) / 100), -2, 2);
                 triggerMarkers[triggerIndex].transform.position = new Vector3(markerPos, this.transform.position.y, this.transform.position.z);
                 triggerMarkers[triggerIndex].SetActive(true);
@@ -112,6 +134,6 @@ public class ProgressBarUIScript : MonoBehaviour
             blockadeMarkers[blockadeIndex].transform.position = new Vector3(markerPos, this.transform.position.y, this.transform.position.z);
             blockadeMarkers[blockadeIndex].SetActive(true);
             blockadeIndex++;
-        }
+        }*/
     }
 }

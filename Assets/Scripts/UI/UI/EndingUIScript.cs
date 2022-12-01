@@ -9,7 +9,7 @@ public class EndingUIScript : MonoBehaviour
     private string textContainer;
     void Start()
     {
-        textContainer = sub.text + "\nYou have lasted " + GameManager.Instance.LoadedGameData.daysPassed + " days.";
+        textContainer = sub.text;
         sub.text = "";
 
         StartCoroutine(Typewriter(textContainer, sub));

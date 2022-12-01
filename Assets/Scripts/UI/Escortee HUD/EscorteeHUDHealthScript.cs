@@ -21,7 +21,7 @@ public class EscorteeHUDHealthScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lerpSpeed = 6f * Time.deltaTime;
+        lerpSpeed = 30f * Time.deltaTime;
 
         healthScript = Utilities.FindParentOfType<HealthScript>(transform, out _);
         escorteeScript = Utilities.FindParentOfType<EscorteeScript>(transform, out _);

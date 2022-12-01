@@ -12,7 +12,10 @@ public class HubMenuUI : MonoBehaviour
     public GameObject garageUI;
     public GameObject settingsUI;
 
-    public GameObject dayBox;
+    //public GameObject dayBox;
+    public TextMeshProUGUI days;
+    public TextMeshProUGUI missionCompleted;
+    public TextMeshProUGUI missionFailed;
 
 
     // Start is called before the first frame update
@@ -20,7 +23,26 @@ public class HubMenuUI : MonoBehaviour
     {
         anim = gameObject.GetComponent<Animator>();
 
-        if(GameManager.Instance.LoadedGameData.difficulty == Difficulty.CASUAL)
+        /*Transform dayText = dayBox.transform.Find("Day");
+        dayText.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.daysPassed.ToString();*/
+
+        if(days != null)
+        {
+            days.text = GameManager.Instance.LoadedGameData.daysPassed.ToString();
+        }
+
+        if(missionCompleted != null)
+        {
+            missionCompleted.text = GameManager.Instance.LoadedGameData.missionsCompleted.ToString();
+        }
+
+        if(missionFailed != null)
+        {
+            missionFailed.text = GameManager.Instance.LoadedGameData.missionsFailed.ToString();
+        }
+
+
+        /*if (GameManager.Instance.LoadedGameData.difficulty == Difficulty.CASUAL)
         {
             if(dayBox != null)
             {
@@ -32,10 +54,10 @@ public class HubMenuUI : MonoBehaviour
             if (dayBox != null)
             {
                 dayBox.SetActive(true);
+                Transform dayText = dayBox.transform.Find("Day");
+                dayText.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.daysPassed.ToString();
             }
-            Transform dayText = dayBox.transform.Find("Day");
-            dayText.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.daysPassed.ToString();
-        }
+        }*/
 
         GameManager.Instance.gameMission.GenerateMissions(GameManager.Instance.LoadedGameData.daysPassed);
 
