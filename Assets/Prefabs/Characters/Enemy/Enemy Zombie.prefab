@@ -281,7 +281,6 @@ GameObject:
   - component: {fileID: 8235225913366474087}
   - component: {fileID: 8235225913366474085}
   - component: {fileID: 4386539951956555922}
-  - component: {fileID: 1034065833269352229}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -392,33 +391,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTerrain: 0
   raycastTest: {fileID: 5275298476582332536}
---- !u!114 &1034065833269352229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8235225913366474086}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 1
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: 67941b82237fe1186f2ae645
-  m_ShapePath:
-  - {x: -0.09088206, y: 0.008200437, z: 0}
-  - {x: -0.053394496, y: 0.04704286, z: 0}
-  - {x: 0.07565272, y: 0.044699878, z: 0}
-  - {x: 0.12134081, y: 0.0093719065, z: 0}
-  m_ShapePathHash: -1568581107
-  m_Mesh: {fileID: 0}
-  m_InstanceId: 435502
 --- !u!1 &8235225913560339396
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,6 +700,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   hasInitializedHealth: 0
+  isInvincible: 0
   destroyOnDeath: 1
   destroyDelay: 2
   corpsePrefab: {fileID: 8235225914126728358, guid: 330436733d489ab4492af61ef6591cf2, type: 3}
