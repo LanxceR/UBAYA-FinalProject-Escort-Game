@@ -75,12 +75,10 @@ public class GameplayAudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.gamePlayer.ActivePlayer != null)
-        {
+        if (GameManager.Instance.gamePlayer.ActivePlayer)
             playerHealth = GameManager.Instance.gamePlayer.ActivePlayer.healthScript.CurrentHealth * 10;
 
-            backgroundMusic.setParameterByName("Health", playerHealth);
-        }
+        backgroundMusic.setParameterByName("Health", playerHealth);
 
         //FILTERS BGM AUDIO AND LOWER AUDIO PLAYING IN BG
         if (GameManager.Instance.GameIsPlaying)

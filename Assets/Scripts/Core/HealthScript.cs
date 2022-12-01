@@ -15,6 +15,7 @@ public class HealthScript : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private float currentHealth;
     [SerializeField] private bool hasInitializedHealth;
+    [SerializeField] private bool isInvincible;
     [Header("Death")]
     [SerializeField] private bool destroyOnDeath;
     [SerializeField] private float destroyDelay;
@@ -42,7 +43,7 @@ public class HealthScript : MonoBehaviour
     }
 
     internal bool IsDead { get; private set; }
-    internal bool IsInvulnerable { get; private set; }
+    internal bool IsInvincible { get => isInvincible; set => isInvincible = value; }
 
     private float iFramesDuration;
 
@@ -95,11 +96,15 @@ public class HealthScript : MonoBehaviour
         // Set last hit by attacker
         lastHitBy = attacker;
 
-        // If invincible or dead, return
-        if (IsInvulnerable || IsDead) return;
+        // If dead, return
+        if (IsDead) return;
 
-        // Deduct current health by damage
-        currentHealth = currentHealth - damage;
+        // If not invincible, take damage
+        if (!IsInvincible)
+        {
+            // Deduct current health by damage
+            currentHealth = currentHealth - damage;
+        }
 
         if (currentHealth > 0)
         {
@@ -175,11 +180,11 @@ public class HealthScript : MonoBehaviour
 
     private IEnumerator Invulnerability()
     {
-        IsInvulnerable = true;
+        IsInvincible = true;
 
         yield return new WaitForSeconds(iFramesDuration);
 
-        IsInvulnerable = false;
+        IsInvincible = false;
     }
 
     private void UpdateState()

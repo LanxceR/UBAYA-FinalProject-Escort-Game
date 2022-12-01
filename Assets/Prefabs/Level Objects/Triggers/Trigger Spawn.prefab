@@ -76,19 +76,19 @@ CompositeCollider2D:
   - m_Collider: {fileID: 4927223959439483218}
     m_ColliderPaths:
     - - X: 5000000
-        Y: 15000000
+        Y: 10000000
       - X: -5000000
-        Y: 15000000
+        Y: 10000000
       - X: -5000000
-        Y: -15000000
+        Y: -10000000
       - X: 5000000
-        Y: -15000000
+        Y: -10000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 0.4999707, y: -1.5}
-      - {x: 0.4999707, y: 1.5}
-      - {x: -0.5, y: 1.4999707}
-      - {x: -0.4999707, y: -1.5}
+    - - {x: 0.4999707, y: -1}
+      - {x: 0.4999707, y: 1}
+      - {x: -0.5, y: 0.99997073}
+      - {x: -0.4999707, y: -1}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!61 &4927223959439483218
@@ -115,7 +115,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 3}
+  m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
 --- !u!1 &6711038778424134964
 GameObject:
