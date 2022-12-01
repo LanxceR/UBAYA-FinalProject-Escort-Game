@@ -110,6 +110,17 @@ public class HubMenuUI : MonoBehaviour
         settingsUI.SetActive(true);
     }
 
+    public void ReturnToSaveLoad()
+    {
+        GameplayAudioManager audio = GameObject.FindObjectOfType<GameplayAudioManager>();
+        if (audio)
+            audio.KillAll();
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+
+        GameManager.Instance.gameScene.GotoScene(SceneName.SAVE_LOAD);
+    }
+
     public void ExitApplication()
     {
         //AUTOSAVE BEFORE EXITING

@@ -235,7 +235,7 @@ MonoBehaviour:
   loadTransitionCanvas: {fileID: 5352979860605563407}
   loadTransitionCanvasGroup: {fileID: 2976375889730184555}
   defaultSceneTarget: 1
-  loadToDefaultAtStartup: 0
+  loadToDefaultAtStartup: 1
 --- !u!114 &3476358989919382760
 MonoBehaviour:
   m_ObjectHideFlags: 0
