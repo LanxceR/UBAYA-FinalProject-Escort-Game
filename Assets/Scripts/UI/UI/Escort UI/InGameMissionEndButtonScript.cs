@@ -29,12 +29,12 @@ public class InGameMissionEndButtonScript : MonoBehaviour
         switch (gameOverEvent)
         {
             case GameOverEvent.PERMADEATH:
-                sceneTarget = SceneName.TEST_PERMADEATH_SCREEN;
+                sceneTarget = SceneName.PERMADEATH_SCREEN;
                 //btnText.text = $"Go to {sceneTarget.ToString()}";
                 btnText.text = "End game";
                 break;
             case GameOverEvent.ENDING:
-                sceneTarget = SceneName.TEST_ENDING_SCREEN;
+                sceneTarget = SceneName.ENDING_SCREEN;
                 //btnText.text = $"Go to {sceneTarget.ToString()}";
                 btnText.text = "Continue";
                 break;
