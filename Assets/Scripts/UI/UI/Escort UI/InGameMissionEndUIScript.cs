@@ -29,8 +29,10 @@ public class InGameMissionEndUIScript : MonoBehaviour
 
     // Methods
     private void MissionEnd(MissionEndEvent missionEndEvent, float reward)
-    {
-        GameObject.Find("Audio Manager").GetComponent<GameplayAudioManager>().KillAll();
+    {        
+        GameplayAudioManager audio = GameObject.FindObjectOfType<GameplayAudioManager>();
+        if (audio)
+            audio.KillAll();
         Cursor.visible = true;
 
         switch (missionEndEvent)

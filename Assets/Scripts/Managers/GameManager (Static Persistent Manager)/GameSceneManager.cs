@@ -102,7 +102,7 @@ public class GameSceneManager : MonoBehaviour
         while (timeElapsed < duration)
         {
             loadTransitionCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, timeElapsed / duration);
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.unscaledDeltaTime;
             yield return null;
         }
         loadTransitionCanvasGroup.alpha = targetAlpha;

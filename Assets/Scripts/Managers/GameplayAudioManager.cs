@@ -75,7 +75,8 @@ public class GameplayAudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerHealth = GameManager.Instance.gamePlayer.ActivePlayer.healthScript.CurrentHealth * 10;
+        if (GameManager.Instance.gamePlayer.ActivePlayer)
+            playerHealth = GameManager.Instance.gamePlayer.ActivePlayer.healthScript.CurrentHealth * 10;
 
         backgroundMusic.setParameterByName("Health", playerHealth);
 
