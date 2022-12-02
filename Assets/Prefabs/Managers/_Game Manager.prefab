@@ -90,45 +90,18 @@ MonoBehaviour:
   gameDatas:
   - isEmpty: 0
     index: 0
-    difficulty: 0
-    money: 0
-    daysPassed: 0
-    missionsCompleted: 0
+    difficulty: 1
+    money: 999999
+    daysPassed: 1
+    missionsCompleted: 1
     missionsFailed: 0
-    ownedWeapons: 03000000
-    ownedVehicles: 01000000
+    ownedWeapons: 030000000700000008000000
+    ownedVehicles: 0100000002000000
     equippedMeleeWeapon: 3
-    equippedRangedWeapon1: 0
-    equippedRangedWeapon2: 0
+    equippedRangedWeapon1: 7
+    equippedRangedWeapon2: 8
     equippedVehicle: 1
-  - isEmpty: 0
-    index: 1
-    difficulty: 0
-    money: 0
-    daysPassed: 0
-    missionsCompleted: 0
-    missionsFailed: 0
-    ownedWeapons: 03000000
-    ownedVehicles: 01000000
-    equippedMeleeWeapon: 3
-    equippedRangedWeapon1: 0
-    equippedRangedWeapon2: 0
-    equippedVehicle: 1
-  - isEmpty: 0
-    index: 2
-    difficulty: 0
-    money: 0
-    daysPassed: 0
-    missionsCompleted: 0
-    missionsFailed: 0
-    ownedWeapons: 03000000
-    ownedVehicles: 01000000
-    equippedMeleeWeapon: 3
-    equippedRangedWeapon1: 0
-    equippedRangedWeapon2: 0
-    equippedVehicle: 1
-  loadedGameData:
-    isEmpty: 1
+  - isEmpty: 1
     index: 0
     difficulty: 0
     money: 0
@@ -141,6 +114,33 @@ MonoBehaviour:
     equippedRangedWeapon1: 0
     equippedRangedWeapon2: 0
     equippedVehicle: 0
+  - isEmpty: 1
+    index: 0
+    difficulty: 0
+    money: 0
+    daysPassed: 0
+    missionsCompleted: 0
+    missionsFailed: 0
+    ownedWeapons: 
+    ownedVehicles: 
+    equippedMeleeWeapon: 0
+    equippedRangedWeapon1: 0
+    equippedRangedWeapon2: 0
+    equippedVehicle: 0
+  loadedGameData:
+    isEmpty: 0
+    index: 0
+    difficulty: 1
+    money: 999999
+    daysPassed: 1
+    missionsCompleted: 1
+    missionsFailed: 0
+    ownedWeapons: 030000000700000008000000
+    ownedVehicles: 0100000002000000
+    equippedMeleeWeapon: 3
+    equippedRangedWeapon1: 7
+    equippedRangedWeapon2: 8
+    equippedVehicle: 1
   missionDatas:
   - escortScene: 0
     isFinalMission: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   loadTransitionCanvas: {fileID: 5352979860605563407}
   loadTransitionCanvasGroup: {fileID: 2976375889730184555}
   defaultSceneTarget: 1
-  loadToDefaultAtStartup: 0
+  loadToDefaultAtStartup: 1
 --- !u!114 &3476358989919382760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 3476358989919382763}
-  escortScenes: 0600000005000000
+  escortScenes: 060000000700000005000000
 --- !u!114 &6291330310439833848
 MonoBehaviour:
   m_ObjectHideFlags: 0

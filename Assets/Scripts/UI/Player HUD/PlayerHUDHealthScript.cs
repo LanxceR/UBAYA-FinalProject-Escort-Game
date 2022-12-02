@@ -15,7 +15,7 @@ public class PlayerHUDHealthScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lerpSpeed = 4f * Time.deltaTime;
+        lerpSpeed = 50f * Time.deltaTime;
 
         healthScript = Utilities.FindParentOfType<HealthScript>(transform, out _);
     }
@@ -47,7 +47,8 @@ public class PlayerHUDHealthScript : MonoBehaviour
             }
 
             if (float.IsNaN(healthBar.fillAmount)) healthBar.fillAmount = 0;
-            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, targetFillAmount, lerpSpeed);
+            //healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, targetFillAmount, lerpSpeed);
+            healthBar.fillAmount = targetFillAmount;
         }
         else
         {

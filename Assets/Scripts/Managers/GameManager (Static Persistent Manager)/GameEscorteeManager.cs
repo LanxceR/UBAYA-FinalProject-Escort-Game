@@ -22,6 +22,8 @@ public class GameEscorteeManager : MonoBehaviour
             activeEscortee = value;
             activeEscortee.healthScript.OnHealthReachedZero?.RemoveListener(delegate { gameManager.gameMission.MissionEnd(MissionEndEvent.MISSION_FAILED); });
             activeEscortee.healthScript.OnHealthReachedZero.AddListener(delegate { gameManager.gameMission.MissionEnd(MissionEndEvent.MISSION_FAILED); });
+            activeEscortee.healthScript.OnHealthReachedZero?.RemoveListener(delegate { gameManager.gamePlayer.ActivePlayer.healthScript.IsInvincible = true; });
+            activeEscortee.healthScript.OnHealthReachedZero?.AddListener(delegate { gameManager.gamePlayer.ActivePlayer.healthScript.IsInvincible = true; });
         }
     }
 

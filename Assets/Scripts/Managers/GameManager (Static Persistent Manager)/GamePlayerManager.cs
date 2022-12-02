@@ -28,6 +28,8 @@ public class GamePlayerManager : MonoBehaviour
             gameManager.InGameUI.HUDScript.hudAmmoScript.AssignWeaponScript();
             activePlayer.healthScript.OnHealthReachedZero?.RemoveListener(delegate { gameManager.gameMission.MissionEnd(MissionEndEvent.MISSION_FAILED); });
             activePlayer.healthScript.OnHealthReachedZero?.AddListener(delegate { gameManager.gameMission.MissionEnd(MissionEndEvent.MISSION_FAILED); });
+            activePlayer.healthScript.OnHealthReachedZero?.RemoveListener(delegate { gameManager.gameEscortee.ActiveEscortee.healthScript.IsInvincible = true; });
+            activePlayer.healthScript.OnHealthReachedZero?.AddListener(delegate { gameManager.gameEscortee.ActiveEscortee.healthScript.IsInvincible = true; });
         }
     }
 

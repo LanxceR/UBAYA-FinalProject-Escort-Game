@@ -16,15 +16,45 @@ public class TitleScreenUIScript : MonoBehaviour
     void Start()
     {
         //INITIALIZE VOLUME SOUNDS
+
         //Master
         VcaMaster = FMODUnity.RuntimeManager.GetVCA("vca:/Master");
-        VcaMaster.setVolume(PlayerPrefs.GetFloat("Master"));
+        if (PlayerPrefs.HasKey("Master"))
+        {
+            VcaMaster.setVolume(PlayerPrefs.GetFloat("Master"));
+        }
+        else
+        {
+            VcaMaster.setVolume(1f);
+        }
+
         //SFX
         VcaSfx = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
-        VcaSfx.setVolume(PlayerPrefs.GetFloat("SFX"));
+        if (PlayerPrefs.HasKey("SFX"))
+        {
+            VcaSfx.setVolume(PlayerPrefs.GetFloat("SFX"));
+        }
+        else
+        {
+            VcaSfx.setVolume(1f);
+        }
+
         //BGM
         VcaBgm = FMODUnity.RuntimeManager.GetVCA("vca:/BGM");
-        VcaBgm.setVolume(PlayerPrefs.GetFloat("BGM"));
+        if (PlayerPrefs.HasKey("BGM"))
+        {
+            VcaBgm.setVolume(PlayerPrefs.GetFloat("BGM"));
+        }
+        else
+        {
+            VcaBgm.setVolume(1f);
+        }
+
+
+        //Make sure that master bus volume is 100%
+        FMOD.Studio.Bus MasterBus;
+        MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+        MasterBus.setVolume(1f);
 
         hasClicked = 0;
         Debug.Log("Script started");

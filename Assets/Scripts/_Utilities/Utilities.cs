@@ -146,6 +146,28 @@ public static class Utilities
         return first - second;
     }
 
+    /// <summary>
+    /// Check if an object is visible by the specified camera
+    /// </summary>
+    /// <param name="camera">The Camera used for calculation</param>
+    /// <param name="bounds">The Renderer Bounds</param>
+    /// <returns></returns>
+    public static bool IsVisibleByCamera(Camera camera, Bounds bounds)
+    {
+        var planes = GeometryUtility.CalculateFrustumPlanes(camera);
+        return GeometryUtility.TestPlanesAABB(planes, bounds);
+    }
+    /// <summary>
+    /// Check if an object is visible by the specified camera
+    /// </summary>
+    /// <param name="camera">The Camera used for calculation</param>
+    /// <param name="renderer">The Object Renderer</param>
+    /// <returns></returns>
+    public static bool IsVisibleByCamera(Camera camera, Renderer renderer)
+    {
+        return GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(camera), renderer.bounds);
+    }
+
     // Useful to access a layermask from the layer collision matrix (DOESN'T WORK)
     private static Dictionary<int, int> _masksByLayer;
     public static void InitializeLayerMatrixMask()

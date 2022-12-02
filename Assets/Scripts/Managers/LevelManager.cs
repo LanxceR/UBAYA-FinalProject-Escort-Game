@@ -58,6 +58,11 @@ public class LevelManager : MonoBehaviour
 
     [Header("Idle Spawn Area Setting")]
     [SerializeField] private CompositeCollider2D idleSpawnArea;
+
+    //=============================================================//
+
+    [Header("End Warp Setting")]
+    [SerializeField] private CompositeCollider2D endSpawnArea;
     #endregion
 
     #region Variables
@@ -285,6 +290,52 @@ public class LevelManager : MonoBehaviour
     }
     #endregion
 
+    #region Enemy Warping/Teleport
+    internal bool TeleportEnemiesLeftToArea(Bounds area)
+    {
+        int amountTeleported = 0;
+        bool hasTeleportedSomething = false;
+        Vector2 pos = Vector2.zero;
+
+        // Check for any enemies left alive
+        foreach (EnemyScript e in enemiesInScene)
+        {
+            if (e.enemyAnimationScript.spriteRenderer)
+            {
+                if (Utilities.IsVisibleByCamera(GameManager.Instance.InGameCameras.MainCamera,
+                                                e.enemyAnimationScript.spriteRenderer))
+                {
+                    // If enemy is visible, then continue to next enemy in list
+                    continue;
+                }
+            }
+
+            if (e.healthScript)
+            {
+                if (!e.healthScript.IsDead)
+                {
+                    // Get random position inside teleport area
+                    pos = GetRandomPosition(area);
+
+                    // Move/teleport enemy
+                    e.transform.position = pos;
+
+                    // Add amount teleported
+                    amountTeleported++;
+
+                    // Set flag
+                    hasTeleportedSomething = true;
+                }
+            }
+        }
+
+        if (amountTeleported > 0)
+            Debug.Log($"Teleported {amountTeleported} enemies");
+
+        return hasTeleportedSomething;
+    }
+    #endregion
+
     internal void TryEndLevel(bool reachedDestination)
     {
         bool allWinConditionsMet = true;
@@ -320,6 +371,11 @@ public class LevelManager : MonoBehaviour
 
             // Mission successful
             GameManager.Instance.gameMission.MissionEnd(MissionEndEvent.MISSION_SUCCESS, finalReward);
+        }
+        else
+        {
+            // Teleport all alive enemies to the end (to prevent enemies left behind because of getting stuck / unintended pathfinding behaviour)
+            TeleportEnemiesLeftToArea(endSpawnArea.bounds);
         }
     }
 

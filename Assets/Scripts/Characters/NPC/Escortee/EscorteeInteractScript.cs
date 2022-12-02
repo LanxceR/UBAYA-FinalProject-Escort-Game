@@ -45,6 +45,8 @@ public class EscorteeInteractScript : MonoBehaviour, IInteractable
             anchor.connectedAnchor = pos;
             // Set isMounted to true
             isMounted = true;
+
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Convoy/Mount");
         }
         else // Otherwise, dismount
         {
@@ -52,11 +54,25 @@ public class EscorteeInteractScript : MonoBehaviour, IInteractable
             Destroy(anchor);
             // Set isMounted to false
             isMounted = false;
+
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Convoy/Dismount");
         }
     }
 
     public Transform GetTransform()
     {
         return transform;
+    }
+
+    public bool CheckIfMounted()
+    {
+        if(isMounted == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

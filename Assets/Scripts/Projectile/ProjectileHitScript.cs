@@ -61,7 +61,7 @@ public class ProjectileHitScript : MonoBehaviour
         // Use layerMask ActorHitbox ( 1 << 7 )
         RaycastHit2D victim = Physics2D.Raycast(transform.position - projectileScript.spawnOffset, direction, velocity, 1 << 7);
 
-        if (victim)
+        if (victim && projectileScript.collisionScript.CheckTargetedTags(victim.collider.gameObject) != null)
         {
             // Something is in the way, try and hit that something
             OnHit(victim.collider.gameObject);

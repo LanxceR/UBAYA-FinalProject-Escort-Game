@@ -29,7 +29,12 @@ public class InGameMissionEndUIScript : MonoBehaviour
 
     // Methods
     private void MissionEnd(MissionEndEvent missionEndEvent, float reward)
-    {
+    {        
+        GameplayAudioManager audio = GameObject.FindObjectOfType<GameplayAudioManager>();
+        if (audio)
+            audio.KillAll();
+        Cursor.visible = true;
+
         switch (missionEndEvent)
         {
             case MissionEndEvent.MISSION_SUCCESS:
@@ -52,5 +57,11 @@ public class InGameMissionEndUIScript : MonoBehaviour
     {
         // Enable pause panel
         missionFailedPanel.SetActive(false);
+    }
+
+    // This function is called when the MonoBehaviour will be destroyed
+    private void OnDestroy()
+    {
+        GameManager.Instance.gameMission.OnMissionEnd -= MissionEnd;
     }
 }

@@ -94,7 +94,8 @@ public class EscorteeMovementScript : MonoBehaviour
         xPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.x - GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.x;
         yPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.y - GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.y;
 
-        audioPoint = new Vector3(xPosPlayer * -1, yPosPlayer*-1, GameManager.Instance.gamePlayer.ActivePlayer.transform.position.z - GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.z);
+        audioPoint = new Vector3(xPosPlayer * -1, yPosPlayer*-1, GameManager.Instance.gamePlayer.ActivePlayer.transform.position.z - 
+            GameManager.Instance.gameEscortee.ActiveEscortee.transform.position.z);
 
         instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(audioPoint));
     }

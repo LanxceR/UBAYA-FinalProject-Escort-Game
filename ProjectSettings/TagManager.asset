@@ -18,6 +18,7 @@ TagManager:
   - Destructible
   - ItemPickup
   - EnemyCorpse
+  - Blockade
   layers:
   - Default
   - TransparentFX

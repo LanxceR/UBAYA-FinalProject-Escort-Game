@@ -12,34 +12,56 @@ public class HubMenuUI : MonoBehaviour
     public GameObject garageUI;
     public GameObject settingsUI;
 
-    public GameObject dayBox;
+    //public GameObject dayBox;
+    public TextMeshProUGUI days;
+    public TextMeshProUGUI missionCompleted;
+    public TextMeshProUGUI missionFailed;
 
-    private FMOD.Studio.EventInstance instanceAmbience;
-    private FMOD.Studio.EventInstance instanceMusic;
 
     // Start is called before the first frame update
     void Start()
     {
-        instanceAmbience = FMODUnity.RuntimeManager.CreateInstance("event:/Ambience/AmbienceMenu");
-        instanceMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/MenuLoop");
-
-        instanceAmbience.start();
-        instanceMusic.start();
-
         anim = gameObject.GetComponent<Animator>();
 
-        if(GameManager.Instance.LoadedGameData.difficulty == Difficulty.CASUAL)
+        /*Transform dayText = dayBox.transform.Find("Day");
+        dayText.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.daysPassed.ToString();*/
+
+        if(days != null)
         {
-            dayBox.SetActive(false);
+            days.text = GameManager.Instance.LoadedGameData.daysPassed.ToString();
+        }
+
+        if(missionCompleted != null)
+        {
+            missionCompleted.text = GameManager.Instance.LoadedGameData.missionsCompleted.ToString();
+        }
+
+        if(missionFailed != null)
+        {
+            missionFailed.text = GameManager.Instance.LoadedGameData.missionsFailed.ToString();
+        }
+
+
+        /*if (GameManager.Instance.LoadedGameData.difficulty == Difficulty.CASUAL)
+        {
+            if(dayBox != null)
+            {
+                dayBox.SetActive(false);
+            }
         }
         else
         {
-            dayBox.SetActive(true);
-            Transform dayText = dayBox.transform.Find("Day");
-            dayText.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.daysPassed.ToString();
-        }
+            if (dayBox != null)
+            {
+                dayBox.SetActive(true);
+                Transform dayText = dayBox.transform.Find("Day");
+                dayText.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.LoadedGameData.daysPassed.ToString();
+            }
+        }*/
 
         GameManager.Instance.gameMission.GenerateMissions(GameManager.Instance.LoadedGameData.daysPassed);
+
+        GameManager.Instance.gameData.SaveGame();
     }
 
     void OnMouseOver()
@@ -88,15 +110,21 @@ public class HubMenuUI : MonoBehaviour
         settingsUI.SetActive(true);
     }
 
+    public void ReturnToSaveLoad()
+    {
+        GameplayAudioManager audio = GameObject.FindObjectOfType<GameplayAudioManager>();
+        if (audio)
+            audio.KillAll();
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+
+        GameManager.Instance.gameScene.GotoScene(SceneName.SAVE_LOAD);
+    }
+
     public void ExitApplication()
     {
-        //needs code
-        //idk what code
-        //pls help
-        //im going insane
-        //i want to die
-        //UI coding is literal hell
-        //why am i struggling with this
-        //why do i do this to myself
+        //AUTOSAVE BEFORE EXITING
+        GameManager.Instance.gameData.SaveGame();
+        Application.Quit();
     }
 }

@@ -15,7 +15,15 @@ public class VCAControllerScript : MonoBehaviour
         slider = this.transform.GetComponent<Slider>();
 
         VcaController = FMODUnity.RuntimeManager.GetVCA("vca:/" + VcaName);
-        VcaController.setVolume(PlayerPrefs.GetFloat(VcaName));
+
+        if (PlayerPrefs.HasKey(VcaName))
+        {
+            VcaController.setVolume(PlayerPrefs.GetFloat(VcaName));
+        }
+        else
+        {
+            VcaController.setVolume(1f);
+        }
         slider.value = PlayerPrefs.GetFloat(VcaName);
     }
 

@@ -29,7 +29,7 @@ public class CrosshairScript : MonoBehaviour
     {
         //Vector2 mouseCursorPos = Camera.allCameras
         //transform.position = mouseCursorPos;
-        Cursor.visible = false;
+        //Cursor.visible = false;
         Vector3 mouseCursorPos = UICamera.ScreenToWorldPoint(Input.mousePosition);
         mouseCursorPos.z = 0f;
         transform.position = mouseCursorPos;

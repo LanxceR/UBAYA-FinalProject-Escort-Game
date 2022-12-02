@@ -577,6 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyScript: {fileID: 1267373589}
+  spriteRenderer: {fileID: 8235225913366474087}
   animator: {fileID: 8235225913366474085}
 --- !u!114 &3535479030037364304
 MonoBehaviour:
@@ -700,6 +701,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   hasInitializedHealth: 0
+  isInvincible: 0
   destroyOnDeath: 1
   destroyDelay: 2
   corpsePrefab: {fileID: 8235225914126728358, guid: 330436733d489ab4492af61ef6591cf2, type: 3}

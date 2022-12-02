@@ -11,11 +11,13 @@ public enum SceneName
     SAVE_LOAD,
     CUTSCENE,
     MAIN_HUB,
+    MAP_CITY,
+    MAP_SUBURBS,
     MAP_FOREST,
     TEST_ESCORT_SCENE,
     TEST_MISSION_SCENE,
-    TEST_PERMADEATH_SCREEN,
-    TEST_ENDING_SCREEN
+    PERMADEATH_SCREEN,
+    ENDING_SCREEN
 }
 
 /// <summary>
@@ -100,7 +102,7 @@ public class GameSceneManager : MonoBehaviour
         while (timeElapsed < duration)
         {
             loadTransitionCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, timeElapsed / duration);
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.unscaledDeltaTime;
             yield return null;
         }
         loadTransitionCanvasGroup.alpha = targetAlpha;
@@ -246,6 +248,7 @@ public class GameSceneManager : MonoBehaviour
         }
 
         // Reset Timescale
+        gameManager.gameState.canPauseAndResume = true;
         gameManager.gameState.ResumeGame();
     }
     private void ManageGMComponents(Scene scene, LoadSceneMode loadSceneMode)

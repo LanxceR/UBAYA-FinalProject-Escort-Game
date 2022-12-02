@@ -66,4 +66,16 @@ public class PlayerInteractScript : MonoBehaviour
         // After interact button is released/canceled, set Interaction coroutine to null
         interactionCoroutine = null;
     }
+
+    public bool CheckIfInteractableExists()
+    {
+        if(interactTarget != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

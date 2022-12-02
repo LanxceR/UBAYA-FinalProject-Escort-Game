@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638052746092821383
+  lastModified: 638055024374990790
   FileSizes: []
   Exists: 1
 --- !u!114 &-8029575113104212662
@@ -220,6 +220,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1101
+--- !u!114 &-5803261852399587384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Convoy/Dismount
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Convoy/Dismount
+  Guid:
+    Data1: -1424980206
+    Data2: 1103842002
+    Data3: -212905545
+    Data4: -781803323
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 432
 --- !u!114 &-5117797835994122428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +288,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Gameplay.bank
   Name: Gameplay
   StudioPath: bank:/Gameplay
-  lastModified: 638052746092801857
+  lastModified: 638055639498312446
   FileSizes: []
   Exists: 1
 --- !u!114 &-4460392572522088392
@@ -291,6 +318,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 93
+--- !u!114 &-4334869951052647240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/AmbienceForest
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/AmbienceForest
+  Guid:
+    Data1: 2022162310
+    Data2: 1086577683
+    Data3: -1463543909
+    Data4: -609532248
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 38531
 --- !u!114 &-3995621782134198963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,11 +497,38 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638052746092840907
+  lastModified: 638055024375000549
   FileSizes:
   - Name: 
-    Value: 3372
+    Value: 3542
   Exists: 1
+--- !u!114 &-2645240839860661678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Convoy/Mount
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Convoy/Mount
+  Guid:
+    Data1: -1083893296
+    Data2: 1128466377
+    Data3: 1854662297
+    Data4: 771701709
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 399
 --- !u!114 &-2424506622028619460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,7 +799,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 18763
+  Length: 18643
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,12 +854,16 @@ MonoBehaviour:
   - {fileID: -3995621782134198963}
   - {fileID: -158445189531408305}
   - {fileID: 3594345040100491254}
+  - {fileID: -5803261852399587384}
+  - {fileID: -2645240839860661678}
+  - {fileID: 3068740206813553034}
+  - {fileID: -4334869951052647240}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8410806887097065527}
   StringsBanks:
   - {fileID: -3247003094679002036}
-  cacheTime: 638052746093224108
+  cacheTime: 638055639498312446
   cacheVersion: 131593
 --- !u!114 &367890776963256089
 MonoBehaviour:
@@ -915,6 +1000,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 218
+--- !u!114 &3068740206813553034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Zombie/Idle
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Zombie/Idle
+  Guid:
+    Data1: -212591729
+    Data2: 1257535369
+    Data3: 669668229
+    Data4: 194784828
+  Banks:
+  - {fileID: -4707969805456446503}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 25
+  Length: 3900
 --- !u!114 &3352013169096224548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1023,12 +1135,12 @@ MonoBehaviour:
   Banks:
   - {fileID: -4707969805456446503}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters:
   - {fileID: 2422948965619628952}
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 55
   Length: 0
 --- !u!114 &5211540270215848146
 MonoBehaviour:
@@ -1124,7 +1236,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638052746093224108
+  lastModified: 638055024375522924
   FileSizes: []
   Exists: 1
 --- !u!114 &7360714507261264889
@@ -1275,7 +1387,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638052746092669917
+  lastModified: 638055024374395422
   FileSizes: []
   Exists: 1
 --- !u!114 &8874709602837240393
