@@ -20,6 +20,11 @@ public class PermadeathUIScript : MonoBehaviour
     public void GameOver()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+
+        // Delete Tutorial Keys
+        PlayerPrefs.DeleteKey("GameplayTutorialSave" + GameManager.Instance.LoadedGameData.index);
+        PlayerPrefs.DeleteKey("IntroductionSave" + GameManager.Instance.LoadedGameData.index);
+
         // Delete Save
         GameManager.Instance.gameData.DeleteSave();
 

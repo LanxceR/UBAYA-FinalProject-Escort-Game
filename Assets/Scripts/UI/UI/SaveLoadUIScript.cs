@@ -150,6 +150,10 @@ public class SaveLoadUIScript : MonoBehaviour
     public void ConfirmDelete()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+
+        PlayerPrefs.DeleteKey("GameplayTutorialSave" + saveIndex);
+        PlayerPrefs.DeleteKey("IntroductionSave" + saveIndex);
+
         GameManager.Instance.gameData.DeleteSave(saveIndex);
         Refresh();
         deleteUI.SetActive(false);
