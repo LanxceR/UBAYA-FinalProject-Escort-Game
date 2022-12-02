@@ -17,6 +17,8 @@ public class EnemyAnimationScript : MonoBehaviour, IAnimation
 
     // Components
     [SerializeField]
+    internal SpriteRenderer spriteRenderer;
+    [SerializeField]
     private Animator animator;
 
     // Animation States

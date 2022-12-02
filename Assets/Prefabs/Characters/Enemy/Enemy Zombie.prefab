@@ -577,6 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyScript: {fileID: 1267373589}
+  spriteRenderer: {fileID: 8235225913366474087}
   animator: {fileID: 8235225913366474085}
 --- !u!114 &3535479030037364304
 MonoBehaviour:

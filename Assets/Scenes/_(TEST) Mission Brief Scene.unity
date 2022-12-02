@@ -3783,34 +3783,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3476358989919382763, guid: 91b03788c8e11ad4f8766d2b31a19e02, type: 3}
-      propertyPath: gameDatas.Array.data[0].money
-      value: 5100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476358989919382763, guid: 91b03788c8e11ad4f8766d2b31a19e02, type: 3}
-      propertyPath: gameDatas.Array.data[0].daysPassed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476358989919382763, guid: 91b03788c8e11ad4f8766d2b31a19e02, type: 3}
-      propertyPath: gameDatas.Array.data[0].missionsCompleted
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476358989919382763, guid: 91b03788c8e11ad4f8766d2b31a19e02, type: 3}
-      propertyPath: gameDatas.Array.data[0].equippedRangedWeapon1
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476358989919382763, guid: 91b03788c8e11ad4f8766d2b31a19e02, type: 3}
-      propertyPath: gameDatas.Array.data[0].equippedRangedWeapon2
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476358989919382763, guid: 91b03788c8e11ad4f8766d2b31a19e02, type: 3}
-      propertyPath: gameDatas.Array.data[0].ownedWeapons.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3476358989919382763, guid: 91b03788c8e11ad4f8766d2b31a19e02, type: 3}
-      propertyPath: gameDatas.Array.data[0].ownedVehicles.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91b03788c8e11ad4f8766d2b31a19e02, type: 3}
 --- !u!1 &345325374
