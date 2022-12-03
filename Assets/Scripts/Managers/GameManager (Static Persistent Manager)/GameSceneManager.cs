@@ -286,6 +286,8 @@ public class GameSceneManager : MonoBehaviour
             if (gameManager.gameWeapon) gameManager.gameWeapon.enabled = false;
             if (gameManager.gameEnemy) gameManager.gameEnemy.enabled = false;
             if (gameManager.gameInput) gameManager.gameInput.enabled = true;
+
+            Cursor.visible = true;
         }
 
         // Reset Timescale

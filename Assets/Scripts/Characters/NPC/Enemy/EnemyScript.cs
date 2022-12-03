@@ -48,6 +48,10 @@ public class EnemyScript : MonoBehaviour, ICharacter
     [SerializeField]
     internal ReceiveAggroScript recAggroScript;
 
+    [Header("Components")]
+    [SerializeField]
+    internal WeaponScript weapon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +80,11 @@ public class EnemyScript : MonoBehaviour, ICharacter
         if (recAggroScript)
         {
             recAggroScript.enabled = false;
+        }
+        if (weapon)
+        {
+            // Immediately deactivate weapon gameObject to prevent post-mortem attacks
+            weapon.gameObject.SetActive(false);
         }
     }
 
