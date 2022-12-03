@@ -42,6 +42,11 @@ public class GameSceneManager : MonoBehaviour
     public SceneName SceneToLoad { get; private set; }
     public float LoadProgress { get; private set; }
 
+    // Variables
+    private bool sceneLoaded;
+    private Coroutine SceneLoadingCoroutine;
+    private Coroutine LoadingFadeCoroutine;
+
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
@@ -49,7 +54,7 @@ public class GameSceneManager : MonoBehaviour
         //ManageGMComponents();
 
         //OnSceneChange += ManageGMComponents;
-        SceneManager.sceneLoaded += ManageGMComponents;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // Start is called just before any of the Update methods is called the first time
@@ -69,29 +74,35 @@ public class GameSceneManager : MonoBehaviour
     // Go to scene
     public void GotoScene(SceneName scene)
     {
-        StartCoroutine(LoadSceneCoroutine(scene, 0));
+        if (SceneLoadingCoroutine == null)
+            SceneLoadingCoroutine = StartCoroutine(LoadSceneCoroutine(scene, 0));
     }
     public void GotoScene(string sceneName)
     {
-        StartCoroutine(LoadSceneCoroutine(sceneName, 0));
+        if (SceneLoadingCoroutine == null)
+            SceneLoadingCoroutine = StartCoroutine(LoadSceneCoroutine(sceneName, 0));
     }
     public void GotoScene()
     {
-        StartCoroutine(LoadSceneCoroutine(defaultSceneTarget, 0));
+        if (SceneLoadingCoroutine == null)
+            SceneLoadingCoroutine = StartCoroutine(LoadSceneCoroutine(defaultSceneTarget, 0));
     }
 
     // Go to scene with delay
     public void GotoSceneWithDelay(SceneName scene, float delay)
     {
-        StartCoroutine(LoadSceneCoroutine(scene, delay));
+        if (SceneLoadingCoroutine == null)
+            SceneLoadingCoroutine = StartCoroutine(LoadSceneCoroutine(scene, delay));
     }
     public void GotoSceneWithDelay(string sceneName, float delay)
     {
-        StartCoroutine(LoadSceneCoroutine(sceneName, delay));
+        if (SceneLoadingCoroutine == null)
+            SceneLoadingCoroutine = StartCoroutine(LoadSceneCoroutine(sceneName, delay));
     }
     public void GotoSceneWithDelay(float delay)
     {
-        StartCoroutine(LoadSceneCoroutine(defaultSceneTarget, delay));
+        if (SceneLoadingCoroutine == null)
+            SceneLoadingCoroutine = StartCoroutine(LoadSceneCoroutine(defaultSceneTarget, delay));
     }
 
     // Smoothly fade loading screen into the specified target alpha
@@ -135,10 +146,10 @@ public class GameSceneManager : MonoBehaviour
         loadTransitionCanvasGroup.gameObject.SetActive(true);
         // Fade in loading screen for 1 second
         yield return StartCoroutine(FadeLoadingScreen(1f, 1f));
+
         // Load loading screen scene
-        AsyncOperation asyncLoadingScreen = SceneManager.LoadSceneAsync((int)SceneName.LOADING_SCREEN);
-        // Wait until loading loading screen is done
-        yield return new WaitUntil(() => (asyncLoadingScreen.isDone));
+        yield return StartCoroutine(LoadingScreenCoroutine());
+
         AssignTransitionRenderCamera();
         Debug.Log("Loading new scene...");
 
@@ -152,16 +163,26 @@ public class GameSceneManager : MonoBehaviour
 
             yield return null;
         }
+
+        // Double check to wait until the scene has been loaded
+        yield return new WaitUntil(() => sceneLoaded);
+        // Immediately set the sceneLoaded flag to false
+        sceneLoaded = false;
+
         Debug.Log($"{SceneToLoad.ToString()} loaded!");
 
         yield return new WaitForEndOfFrame();
         LoadProgress = 0f;
 
+        // Stop all ongoing loading fade coroutines
+        if (LoadingFadeCoroutine != null) StopCoroutine(LoadingFadeCoroutine);
         // Fade out loading screen for 1 second
-        yield return StartCoroutine(FadeLoadingScreen(0f, 1f));
+        yield return LoadingFadeCoroutine = StartCoroutine(FadeLoadingScreen(0f, 1f));
 
         // Deactivate loading screen
         loadTransitionCanvasGroup.gameObject.SetActive(false);
+
+        SceneLoadingCoroutine = null;
     }
 
 
@@ -175,10 +196,10 @@ public class GameSceneManager : MonoBehaviour
         loadTransitionCanvasGroup.gameObject.SetActive(true);
         // Fade in loading screen for 1 second
         yield return StartCoroutine(FadeLoadingScreen(1f, 1f));
+
         // Load loading screen scene
-        AsyncOperation asyncLoadingScreen = SceneManager.LoadSceneAsync((int)SceneName.LOADING_SCREEN);
-        // Wait until loading loading screen is done
-        yield return new WaitUntil(() => (asyncLoadingScreen.isDone));
+        yield return StartCoroutine(LoadingScreenCoroutine());
+
         AssignTransitionRenderCamera();
         Debug.Log("Loading new scene...");
 
@@ -192,16 +213,36 @@ public class GameSceneManager : MonoBehaviour
 
             yield return null;
         }
+
+        // Double check to wait until the scene has been loaded
+        yield return new WaitUntil(() => sceneLoaded);
+        // Immediately set the sceneLoaded flag to false
+        sceneLoaded = false;
+
         Debug.Log($"{SceneToLoad.ToString()} loaded!");
 
         yield return new WaitForEndOfFrame();
         LoadProgress = 0f;
 
+        // Stop all ongoing loading fade coroutines
+        if (LoadingFadeCoroutine != null) StopCoroutine(LoadingFadeCoroutine);
         // Fade out loading screen for 1 second
-        yield return StartCoroutine(FadeLoadingScreen(0f, 1f));
+        yield return LoadingFadeCoroutine = StartCoroutine(FadeLoadingScreen(0f, 1f));
 
         // Deactivate loading screen
         loadTransitionCanvasGroup.gameObject.SetActive(false);
+
+        SceneLoadingCoroutine = null;
+    }
+
+    private IEnumerator LoadingScreenCoroutine()
+    {
+        SceneManager.LoadScene((int)SceneName.LOADING_SCREEN, LoadSceneMode.Additive);
+
+        // Wait until the loading screen scene has been loaded
+        yield return new WaitUntil(() => sceneLoaded);
+        // Immediately set the sceneLoaded flag to false
+        sceneLoaded = false;
     }
     #endregion
 
@@ -250,8 +291,11 @@ public class GameSceneManager : MonoBehaviour
         // Reset Timescale
         gameManager.gameState.canPauseAndResume = true;
         gameManager.gameState.ResumeGame();
+
+        // Set sceneLoaded flag to true momentarily
+        sceneLoaded = true;
     }
-    private void ManageGMComponents(Scene scene, LoadSceneMode loadSceneMode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         OnSceneLoaded();
     }
