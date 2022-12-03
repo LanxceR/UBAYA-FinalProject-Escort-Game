@@ -30,8 +30,6 @@ public class GameplayTutorialUIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //for debug purposes
-        GameManager.Instance.gameState.PauseGame();
         canvas.worldCamera = GameManager.Instance.InGameCameras.UICamera;
         canvas.pixelPerfect = false;
         canvas.sortingLayerName = "Foreground";
@@ -47,6 +45,7 @@ public class GameplayTutorialUIScript : MonoBehaviour
             PlayerPrefs.SetInt("GameplayTutorialSave" + GameManager.Instance.LoadedGameData.index, 0);
 
             currentIndex = 0;
+            GameManager.Instance.gameState.PauseGame();
             Refresh();
 
             Cursor.visible = true;
