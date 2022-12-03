@@ -68,7 +68,7 @@ public class GameDataManager : MonoBehaviour
             index,
             difficulty,
             0,
-            0,
+            1,
             0,
             0,
             0, 0, 0,

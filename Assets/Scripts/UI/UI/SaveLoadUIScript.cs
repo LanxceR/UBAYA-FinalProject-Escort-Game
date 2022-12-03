@@ -34,42 +34,6 @@ public class SaveLoadUIScript : MonoBehaviour
     void Start()
     {
         Refresh();
-        //if (GameManager.Instance.GameDatas[saveIndex].isEmpty == true)
-        /*
-        if (gameDataList[saveIndex] == null)
-        {
-            saveButton.SetActive(true);
-            loadButton.SetActive(false);
-            deleteButton.SetActive(false);
-        }
-        else
-        {
-            deleteButton.SetActive(true);
-
-            difficulty.text = gameDataList[saveIndex].difficulty.ToString();
-            cashOwned.text = "$" + gameDataList[saveIndex].money;
-            ownedVehicles.text = gameDataList[saveIndex].ownedVehicles.Count.ToString() + "/3";
-            ownedWeapons.text = gameDataList[saveIndex].ownedWeapons.Count.ToString() + "/8";
-
-            if (gameDataList[saveIndex].difficulty == Difficulty.HARDCORE)
-            {
-                day.SetActive(true);
-                Transform dayText = day.transform.Find("Text");
-                dayText.GetComponent<TextMeshProUGUI>().text = gameDataList[saveIndex].daysPassed.ToString();
-
-                missions.GetComponent<TextMeshProUGUI>().text = "Failed Missions";
-                Transform missionCount = missions.transform.Find("Text");
-                missionCount.GetComponent<TextMeshProUGUI>().text = gameDataList[saveIndex].missionsFailed.ToString();
-            }
-            else
-            {
-                day.SetActive(false);
-
-                missions.GetComponent<TextMeshProUGUI>().text = "Missions Completed";
-                Transform missionCount = missions.transform.Find("Text");
-                missionCount.GetComponent<TextMeshProUGUI>().text = gameDataList[saveIndex].missionsCompleted.ToString();
-            }
-        }*/
     }
 
     void Refresh()
@@ -125,6 +89,10 @@ public class SaveLoadUIScript : MonoBehaviour
     public void CreateSave()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+
+        PlayerPrefs.DeleteKey("GameplayTutorialSave" + saveIndex);
+        PlayerPrefs.DeleteKey("IntroductionSave" + saveIndex);
+
         saveLoadUI.GetComponent<SaveLoadScript>().OpenDifficultyUI(saveIndex);
     }
 
