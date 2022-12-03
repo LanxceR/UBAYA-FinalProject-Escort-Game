@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RETURN TO HUB
+  m_text: POST-GAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
   m_sharedMaterial: {fileID: -1902761211414793623, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
@@ -889,7 +889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 79.648926}
   m_SizeDelta: {x: 984.491, y: 103.1526}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1948734945
@@ -912,11 +912,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'YOU SUCCESSFULLY FINISHED THE MOST DANGEROUS JOB.
+  m_text: 'YOU HAVE SUCCESSFULLY FINISHED THE MOST DANGEROUS JOB.
+
+    YOUR RECENT
+    ACTIONS CONNECTED DIFFERENT COLONIES TOGETHER, ALLOWING HUMANITY TO PERSIST IN
+    THE HARSHEST TIMES.
+
+    THERE HAVE BEEN RUMORS OF THE UNDEAD SLOWLY ROTTING,
+    DECAYING AWAY FOR GOOD.
 
 
-    YOU CAN CONTINUE
-    PLAYING IN POST-GAME. '
+    CONGRATULATIONS!
+
+    YOU HAVE WON THE GAME. YOU
+    CAN KEEP YOUR PROGRESS AND CONTINUE PLAYING ON THIS SAVE!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
   m_sharedMaterial: {fileID: -1902761211414793623, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}

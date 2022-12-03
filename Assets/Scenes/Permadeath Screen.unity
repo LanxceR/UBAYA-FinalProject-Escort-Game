@@ -690,7 +690,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: THE REMAINING SURVIVORS HAS FALLEN.
+  m_text: 'YOU HAVE FAILED TO SAVE OUR CIVILIZATION FROM THE UNDEAD.
+
+    OUR EFFORT
+    TO STOP THE HORDE ARE ALL BUT NAUGHT.
+
+    OUR BASE HAS BEEN OVERRUN, THE REMAINING
+    SURVIVORS ARE GONE.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
   m_sharedMaterial: {fileID: -1902761211414793623, guid: 4b26782e10530c24fa7c0d0246307269, type: 2}
