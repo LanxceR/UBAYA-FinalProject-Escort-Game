@@ -18,6 +18,10 @@ public class ItemPickupAmmo : MonoBehaviour, IItemPickup
 
     public void OnPickup(GameObject picker)
     {
+        // If ammo is already at max, prevent picking up
+        if (GameManager.Instance.LoadedGameData.ammo[ammoType].Amount == 
+            GameManager.Instance.LoadedGameData.ammo[ammoType].maxAmount) return;
+
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Pickup/PickupAmmo");
         GameManager.Instance.LoadedGameData.ammo[ammoType].Amount += amount;
 

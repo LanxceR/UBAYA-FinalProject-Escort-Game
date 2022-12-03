@@ -564,6 +564,7 @@ MonoBehaviour:
   itemDropScript: {fileID: 5471985889465058463}
   knockbackScript: {fileID: 1229547623720970518}
   recAggroScript: {fileID: 1336992636}
+  weapon: {fileID: 5622822350929943737}
 --- !u!114 &1449538883933793047
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -55,24 +55,7 @@ public class WeaponAmmoScript : MonoBehaviour
 
         if (weaponScript.weaponInputScript.Input_Reload == 1)
         {
-            if (GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].Amount <= 0)
-            {
-                // Invoke no ammo alert event
-                NoAmmoAlert?.Invoke();
-                weaponClick.start();
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Weapon/WeaponClick");
-            }
-            else if (loadedAmmo < weaponScript.ammoMagSize && reloadCoroutine == null)
-            {
-                // Reload
-                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Weapon/WeaponReload");
-                reloadCoroutine = StartCoroutine(ReloadCoroutine(weaponScript.reloadTime));
-            }
-        }
-
-        if (weaponScript.weaponInputScript.Input_Attack == 1)
-        {
-            if (loadedAmmo <= 0 && reloadCoroutine == null)
+            if (weaponScript.ammoType != AmmoType.NONE)
             {
                 if (GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].Amount <= 0)
                 {
@@ -81,11 +64,34 @@ public class WeaponAmmoScript : MonoBehaviour
                     weaponClick.start();
                     //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Weapon/WeaponClick");
                 }
-                else
+                else if (loadedAmmo < weaponScript.ammoMagSize && reloadCoroutine == null)
                 {
-                    // If player attacks while ammo is depleted, perform a reload instead
+                    // Reload
                     FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Weapon/WeaponReload");
                     reloadCoroutine = StartCoroutine(ReloadCoroutine(weaponScript.reloadTime));
+                }
+            }
+        }
+
+        if (weaponScript.weaponInputScript.Input_Attack == 1)
+        {
+            if (loadedAmmo <= 0 && reloadCoroutine == null)
+            {
+                if (weaponScript.ammoType != AmmoType.NONE)
+                {
+                    if (GameManager.Instance.LoadedGameData.ammo[weaponScript.ammoType].Amount <= 0)
+                    {
+                        // Invoke no ammo alert event
+                        NoAmmoAlert?.Invoke();
+                        weaponClick.start();
+                        //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Weapon/WeaponClick");
+                    }
+                    else
+                    {
+                        // If player attacks while ammo is depleted, perform a reload instead
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Weapon/WeaponReload");
+                        reloadCoroutine = StartCoroutine(ReloadCoroutine(weaponScript.reloadTime));
+                    }
                 }
             }
         }
