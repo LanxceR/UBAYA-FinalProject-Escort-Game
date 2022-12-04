@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 /// <summary>
 /// The projectile damage script (handles all projectile damaging action)
@@ -12,8 +13,10 @@ public class ProjectileHitScript : MonoBehaviour
     private ProjectileScript projectileScript;
 
     // Variables
+    [SerializeField]
+    private int hits; // Total hits
     private GameObject attacker;
-    private bool hit; // To prevent bullet from repeatedly registering consecutive hits
+    private List<GameObject> victims = new List<GameObject>(); // Victims list to prevent a projectile from repeatedly registering consecutive hits
 
     // Start is called just before any of the Update methods is called the first time
     private void Start()
@@ -28,8 +31,12 @@ public class ProjectileHitScript : MonoBehaviour
     // This function is called when the object becomes enabled and active
     private void OnEnable()
     {
-        // Set hit variable to false (bullet hasn't hit anything yet)
-        hit = false;
+        // Clear victims list
+        if (victims.Any())
+            victims.Clear();
+
+        // Set hit variable to 0 (bullet hasn't hit anything yet)
+        hits = 0;
 
         // Enable collider
         projectileScript.collisionScript.EnableCollider();
@@ -73,20 +80,17 @@ public class ProjectileHitScript : MonoBehaviour
         this.attacker = attacker;
     }
 
-    // Check if the projectile had hit something
+    // Check if the projectile had hit as much as it is capable of (pierce amount)
     internal bool HasHit()
     {
-        return hit;
-    }
-
-    // Set Hit condition
-    private void SetHit(bool hit)
-    {
-        this.hit = hit;
+        return hits > projectileScript.pierceAmount;
     }
 
     internal void OnHit(GameObject victim)
     {
+        // If victim has already been hit by this projectile, then return
+        if (victims.Contains(victim)) return;
+
         // If bullet has hit something, don't hit any more victims
         if (HasHit()) return;
 
@@ -102,8 +106,18 @@ public class ProjectileHitScript : MonoBehaviour
             }
         }
 
-        // Set bullet hit to true; bullet has hit something
-        SetHit(true);
+        var p = projectileScript; // Abbreviation
+        // Multiply damage by pierce multiplier, clamp to minimum pierce multiplier
+        // Floored to the largest integer
+        p.damage = (p.damage * p.pierceMultiplier) > (p.damage * p.minPierceMultiplier) ? 
+                    Mathf.FloorToInt(p.damage * p.pierceMultiplier) : 
+                    Mathf.FloorToInt(p.damage * p.minPierceMultiplier);
+
+        // Add victim to victim's list
+        victims.Add(victim);
+
+        // Increment bullet hit by 1; bullet has hit something
+        hits++;
     }
 
     // Hit an gameObject (and do various hitting related behaviours)

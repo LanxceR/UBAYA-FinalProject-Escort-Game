@@ -376,6 +376,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   hasInitializedHealth: 0
+  isInvincible: 0
   destroyOnDeath: 0
   destroyDelay: 0
   corpsePrefab: {fileID: 0}
