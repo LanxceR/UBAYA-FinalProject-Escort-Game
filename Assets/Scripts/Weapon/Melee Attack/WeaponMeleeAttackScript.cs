@@ -110,7 +110,10 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
     {
         weaponScript.weaponAnimationScript.AttackAnimation();
 
-        weaponAtk.start();
+        if(currentWeapon != WeaponID.MELEE_INVISIBILE)
+        {
+            weaponAtk.start();
+        }
     }
 
     public void ExecuteAttack()
