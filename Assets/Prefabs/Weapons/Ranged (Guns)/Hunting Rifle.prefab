@@ -371,7 +371,7 @@ MonoBehaviour:
   burstAmount: 0
   burstDelay: 0
   pierceAmount: 2
-  pierceMultiplier: 0.5
+  pierceMultiplier: 0.6666667
   minPierceMultiplier: 0.1
   drawGizmo: 1
 --- !u!114 &2841505596119360403

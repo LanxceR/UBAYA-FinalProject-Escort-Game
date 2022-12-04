@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
 
 /// <summary>
 /// The weapon melee attack script (handles all weapon melee attack action)
@@ -89,6 +90,10 @@ public class WeaponMeleeAttackScript : MonoBehaviour, IAttackStrategy
         
         if (cooldown <= 0f && weaponScript.weaponAmmoScript.loadedAmmo > 0)
         {
+            // Clear victims list
+            if (weaponMeleeHitScript.victims.Any())
+                weaponMeleeHitScript.victims.Clear();
+
             // If this weapon does NOT have an animation, fire/attack straight away
             // Otherwise call firing/attack in WeaponAnimation & animator
             if (!weaponScript.weaponAnimationScript)

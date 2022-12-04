@@ -224,19 +224,19 @@ public class GameMissionManager : MonoBehaviour
         switch (hazard)
         {
             case HazardRating.NORMAL:
-                zombieCount = Random.Range(25, 51);
+                zombieCount = Random.Range(25, 49);
                 baseReward *= 1f;
                 break;
             case HazardRating.INFESTED:
-                zombieCount = Random.Range(50, 101);
+                zombieCount = Random.Range(50, 99);
                 baseReward *= 1.5f;
                 break;
             case HazardRating.OVERRUN:
-                zombieCount = Random.Range(100, 151);
+                zombieCount = Random.Range(100, 124);
                 baseReward *= 2f;
                 break;
             case HazardRating.APOCALYPSE:
-                zombieCount = Random.Range(200, 301);
+                zombieCount = Random.Range(125, 150);
                 baseReward *= 3f;
                 break;
             default:

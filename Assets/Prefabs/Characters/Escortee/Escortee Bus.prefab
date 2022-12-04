@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
-  health: 50
+  health: 150
   maxSpeed: 1.5
   acceleration: 0.5
   deceleration: 0.7

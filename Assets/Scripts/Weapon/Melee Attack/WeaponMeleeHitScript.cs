@@ -18,8 +18,8 @@ public class WeaponMeleeHitScript : MonoBehaviour
 
     // Variables
     private GameObject attacker;
-    private bool hit; // To prevent bullet from repeatedly registering consecutive hits
-
+    internal List<GameObject> victims = new List<GameObject>(); // Victims list to prevent a melee attack from repeatedly registering consecutive hits
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -35,19 +35,19 @@ public class WeaponMeleeHitScript : MonoBehaviour
         this.attacker = attacker;
     }
 
-    // Check if the projectile had hit something
-    internal bool HasHit()
-    {
-        return hit;
-    }
-
     internal void OnHit(GameObject victim)
     {
+        // If victim has already been hit by this weapon attack, then return
+        if (victims.Contains(victim)) return;
+
         if (Utilities.FindParent<HealthScript>(victim.transform, out Transform parent))
             Debug.Log($"{attacker.name}'s attack has hit {parent?.name}!");
 
         // Try to damage victim
         Hit(victim);
+
+        // Add victim to victim's list
+        victims.Add(victim);
     }
 
     // Hit an gameObject (and do various hitting related behaviours)
@@ -89,7 +89,7 @@ public class WeaponMeleeHitScript : MonoBehaviour
         if (aggro)
         {
             // Force aggro
-            aggro.ForceAggroTarget(attacker.transform, 5f);
+            aggro.ForceAggroTarget(attacker.transform, 15f);
         }
     }
 }

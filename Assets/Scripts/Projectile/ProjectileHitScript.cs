@@ -149,7 +149,7 @@ public class ProjectileHitScript : MonoBehaviour
         if (aggro)
         {
             // Force aggro
-            aggro.ForceAggroTarget(attacker.transform, 5f);
+            aggro.ForceAggroTarget(attacker.transform, 15f);
         }
     }
 }

@@ -63,7 +63,12 @@ public class KnockbackScript : MonoBehaviour
         {
             // Invoke knockback event and stagger recovery
             OnKnockback?.Invoke();
-            StartCoroutine(RecoverFromStagger(staggerTime));
+
+            // Calculate stagger time based of force multiplier with a factor of 5
+            // 5 -> Pistol, SMG, Rifle
+            // 10 -> Shotgun
+            float totalStaggerTime = staggerTime * (force / 5);
+            StartCoroutine(RecoverFromStagger(totalStaggerTime));
         }
         else
         {

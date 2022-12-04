@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 /// <summary>
 /// The main blockade script
@@ -35,5 +36,20 @@ public class BlockadeScript : MonoBehaviour
     {
         // Disable this blockade after it's destroyed
         gameObject.SetActive(false);
+
+        // Update A* graphs after a blockade is destroyed
+        UpdateGraphs(collider.bounds);
+    }
+
+    // Use to update A* graph on this part of bounds
+    public void UpdateGraphs(Bounds bounds)
+    {
+        var guo = new GraphUpdateObject(bounds);
+
+        // Set some settings
+        guo.updatePhysics = true;
+
+        // Update graphs
+        AstarPath.active.UpdateGraphs(guo);
     }
 }

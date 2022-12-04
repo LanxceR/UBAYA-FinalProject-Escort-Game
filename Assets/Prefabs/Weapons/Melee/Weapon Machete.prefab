@@ -395,9 +395,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponScript: {fileID: 2841505596119360415}
   weaponMeleeHitScript: {fileID: 3983509067198406285}
-  attackDelay: 1.2
-  damage: 10
-  knockbackForce: 2
+  attackDelay: 0.75
+  damage: 12
+  knockbackForce: 3
   isFullAuto: 0
   drawGizmo: 0
 --- !u!114 &3983509067198406285
