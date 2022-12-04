@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// The projectile movement script (handles all projectile movements)
 /// </summary>
-[RequireComponent(typeof(Moveable))]
+[RequireComponent(typeof(MoveableScript))]
 public class ProjectileMovementScript : MonoBehaviour
 {
     // Reference to the main player script
@@ -13,15 +13,28 @@ public class ProjectileMovementScript : MonoBehaviour
     private ProjectileScript projectileScript;
 
     // Components
-    private Moveable moveableComp;
+    private MoveableScript moveableComp;
 
     // Variables
     private Vector2 startingPosition;
+    private Vector2 dir;
+
+    // Awake is called when the script instance is being loaded
+    private void Awake()
+    {
+        moveableComp = GetComponent<MoveableScript>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        moveableComp = GetComponent<Moveable>();
+        if (moveableComp)
+        {
+            // Add listener to moveable UnityEvents
+            moveableComp.BeforeMove.AddListener(delegate { projectileScript.projectileHitScript.CheckForHitsInTheWay(
+                                                           moveableComp.rb ? moveableComp.velocityThisFrame * Time.fixedDeltaTime : moveableComp.velocityThisFrame * Time.deltaTime, 
+                                                           moveableComp.GetDirectionNormalized()); });
+        }
     }
 
     // This function is called when the object becomes enabled and active
@@ -37,7 +50,7 @@ public class ProjectileMovementScript : MonoBehaviour
         if (IsOutOfRange() && !projectileScript.projectileHitScript.HasHit())
         {
             // If projectile has travelled out of range without hitting anything, stop moving
-            moveableComp.StopMoving();
+            StopMoving();
 
             // TODO: Deactivate object using animation timestamps
             gameObject.SetActive(false);
@@ -48,10 +61,32 @@ public class ProjectileMovementScript : MonoBehaviour
     internal bool IsOutOfRange()
     {
         return Vector2.Distance(startingPosition, transform.position) > projectileScript.range;
+    }    
+
+    internal void SetSpeed(float velocity)
+    {
+        moveableComp.velocityThisFrame = velocity;
     }
 
-    internal void SetVelocity(float velocity)
+    internal void SetDirection(Vector3 direction)
     {
-        moveableComp.SetSpeed(velocity);
+        dir.x = direction.x;
+        dir.y = direction.y;
+        moveableComp.SetDirection(dir.normalized);
+    }
+    internal void SetDirection(Vector2 direction)
+    {
+        dir.x = direction.x;
+        dir.y = direction.y;
+        moveableComp.SetDirection(dir.normalized);
+    }
+    internal Vector3 GetDirection()
+    {
+        return moveableComp.GetDirectionWithVelocity().normalized;
+    }
+
+    internal void StopMoving()
+    {
+        moveableComp.StopMoving();
     }
 }

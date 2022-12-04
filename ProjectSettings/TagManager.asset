@@ -3,14 +3,43 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Projectile
+  - World
+  - Obstacle
+  - WeaponAttachPos
+  - HUDCamera
+  - UICamera
+  - Ally
+  - VehicleMount
+  - Aim
+  - Trigger
+  - Destructible
+  - ItemPickup
+  - EnemyCorpse
+  - Blockade
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - HUD
   - Water
   - UI
+  - ActorBody
+  - ActorHitbox
+  - Damaging
+  - WorldHUD
+  - Uninteractable
+  - Obstacle
+  - Area
+  - Triggers
+  - Interactable
+  - InteractableBody
+  - 
+  - 
+  - Dirt
+  - Street
   - 
   - 
   - 
@@ -21,31 +50,26 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - UIOverlay
+  - World
   m_SortingLayers:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 717048945
+  - name: Street
+    uniqueID: 2182845543
     locked: 0
-  - name: Middleground
-    uniqueID: 2997578415
+  - name: Building Layer Top
+    uniqueID: 1172712047
+    locked: 0
+  - name: Street Props
+    uniqueID: 417431331
+    locked: 0
+  - name: Street Props 2
+    uniqueID: 2544407773
+    locked: 0
+  - name: Building Layer Bottom
+    uniqueID: 3810104819
     locked: 0
   - name: Foreground
     uniqueID: 1617165873

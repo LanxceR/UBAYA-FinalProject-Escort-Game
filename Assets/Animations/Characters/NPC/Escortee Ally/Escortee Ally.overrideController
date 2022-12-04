@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Escortee Ally
+  m_Controller: {fileID: 9100000, guid: 6aac5cbfdb66a2d419994303fa15403e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: dd0e375fdd3ad514eb3d77b39192e44d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4f5cd375939c47041ac42a0928a36991, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5320117035568e446b742e6a8302be03, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8b762c7ec7a3937479dbf581a6e6e437, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b6131d7d70d1e1c4ea30aef8cc7c6c03, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 17077676cbb5db94b93bad91eb14ae48, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6817d6b99f808b144bea3b3d58cf2ce5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 352cddd678509924880af32914df7f56, type: 2}

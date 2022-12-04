@@ -1,49 +1,100 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+
+public enum WeaponID
+{
+    NONE,
+    MELEE_INVISIBILE,
+    RANGED_INVISIBLE,
+    PIPE,
+    KNIFE,
+    BASEBALL_BAT,
+    MACHETE,
+    PISTOL,
+    SHOTGUN,
+    SMG,
+    RIFLE
+}
+
+public enum AmmoType { NONE, LIGHT, SHOTGUN, HEAVY }
 
 /// <summary>
 /// The main weapon script (or the hub)
 /// </summary>
-public class WeaponScript : MonoBehaviour
+public class WeaponScript : MonoBehaviour, IEquipmentItem
 {
+    // Weapon type
+    [Header("Weapon ID")]
+    [SerializeField]
+    internal WeaponID id;
+
     // Settings
     [Header("Parent Settings")]
-    [SerializeField] internal GameObject parent;
-
-    // Weapon stats
-    [Header("Weapon Stats")]
-    [SerializeField] internal float fireRateDelay = 0.1f;
-    [SerializeField] internal float damage = 1f;
-    [SerializeField] internal float range = 5f;
-    [SerializeField] internal float velocity = 5f;
-    [SerializeField] internal float knockbackForce = 10f;
-    [Range(0, 359)] [SerializeField] internal float spread = 0f;
-    [SerializeField] internal bool isFullAuto = false;
-    [SerializeField] internal bool isBurstFire = false;
-    [SerializeField] internal int burstAmount = 3;
-    [SerializeField] internal float burstDelay = 0.03f;
+    [SerializeField] internal GameObject parentHolder;
+    [SerializeField] internal GameObject parentAttach;
 
     [Header("Ammo")]
-    [SerializeField] internal float startingAmmo = Mathf.Infinity;
-    internal float Ammo { get; private set; }
+    [SerializeField] internal float reloadTime = 1f;
+    [SerializeField] internal AmmoType ammoType;
+    [SerializeField] internal float ammoMagSize = Mathf.Infinity;
+
+    [Header("Price")]
+    [SerializeField] internal float price = 1000f;
+
+    [Header("Flags")]
+    [SerializeField] internal bool isOwned;
+    [SerializeField] internal bool isEquipped;
 
     // References of the weapon's sub-scripts
+    [Header("Sub-scripts")]
     [SerializeField]
     internal WeaponInputScript weaponInputScript;
     [SerializeField]
+    internal WeaponSpriteScript weaponSpriteScript;
+    [SerializeField]
     internal WeaponAnimationScript weaponAnimationScript;
     [SerializeField]
-    internal WeaponAttackScript weaponAttackScript;
-    [SerializeField]
-    internal List<WeaponMuzzleScript> weaponMuzzleScripts; //List of muzzleScripts for multiple shooting mechanics
-    [SerializeField]
-    internal WeaponSpriteScript weaponSpriteScript;
+    internal WeaponAmmoScript weaponAmmoScript;
 
-    // Start is called before the first frame update
-    void Start()
+    internal IAttackStrategy weaponAttackScript;
+
+    // Variables
+    internal float reloadElapsedTime = 0f;
+    internal float reloadProgress = 0f;
+
+    // Awake is called when the script instance is being loaded
+    private void Awake()
     {
-        Debug.Log("Main WeaponScript starting");
-        Ammo = startingAmmo;
+        AssignComponents();
+    }
+
+    // This function is called when the object becomes enabled and active
+    private void OnEnable()
+    {
+        AssignParentHolder();
+        AssignParentAttach();
+    }
+
+    internal void AssignComponents()
+    {
+        weaponAttackScript = GetComponent<IAttackStrategy>();
+    }
+
+    // Try to assign a valid parent that implements the ICharacter interface
+    private void AssignParentHolder()
+    {
+        parentHolder = Utilities.FindParent<ICharacter>(transform, out _).gameObject;
+    }
+
+    private void AssignParentAttach()
+    {
+        parentAttach = Utilities.FindParentWithTag(gameObject, "WeaponAttachPos", out _);
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

@@ -9,20 +9,14 @@ public class WeaponSpriteScript : MonoBehaviour
 {
     // Reference to the main player script
     [SerializeField]
-    internal WeaponScript weaponScript;
+    private WeaponScript weaponScript;
 
     // Components
     [SerializeField]
-    internal SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
     // Variables
     private float degRotation;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("WeaponSpriteScript starting");
-    }
 
     // Update is called once per frame
     void Update()
@@ -35,15 +29,18 @@ public class WeaponSpriteScript : MonoBehaviour
         if (degRotation > 360) degRotation -= 360;
 
         // Perform direction checking
-        if (180 > degRotation && degRotation > 0)
+        if (spriteRenderer)
         {
-            // Facing back / up
-            spriteRenderer.sortingOrder = -1;
-        }
-        else
-        {
-            // Facing front / down
-            spriteRenderer.sortingOrder = 1;
+            if (180 > degRotation && degRotation > 0)
+            {
+                // Facing back / up
+                spriteRenderer.sortingOrder = -1;
+            }
+            else
+            {
+                // Facing front / down
+                spriteRenderer.sortingOrder = 1;
+            }
         }
     }
 }
