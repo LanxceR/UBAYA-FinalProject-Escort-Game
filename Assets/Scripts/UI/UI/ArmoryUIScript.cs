@@ -174,7 +174,7 @@ public class ArmoryUIScript : MonoBehaviour
             //CHANGE NAME OF SLIDERS
             if (weaponList[currentIndex].id.ToString() == "SHOTGUN")
             {
-                parOneText.GetComponent<TextMeshProUGUI>().text = "DMG (x5)";
+                parOneText.GetComponent<TextMeshProUGUI>().text = "DMG (x7)";
             }
             else
             {
