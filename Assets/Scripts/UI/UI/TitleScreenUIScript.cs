@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class TitleScreenUIScript : MonoBehaviour
 {
     private FMOD.Studio.EventInstance musicEvent;
-    private int hasClicked;
 
     private FMOD.Studio.VCA VcaMaster;
     private FMOD.Studio.VCA VcaSfx;
@@ -56,7 +55,6 @@ public class TitleScreenUIScript : MonoBehaviour
         MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
         MasterBus.setVolume(1f);
 
-        hasClicked = 0;
         Debug.Log("Script started");
         musicEvent = FMODUnity.RuntimeManager.CreateInstance("event:/Music/IntroLoop");
         musicEvent.start();
@@ -70,20 +68,16 @@ public class TitleScreenUIScript : MonoBehaviour
 
     void Click()
     {
-        if(hasClicked == 0)
+        if (Input.anyKeyDown)
         {
-            if (Input.anyKeyDown)
-            {
-                Debug.Log("Button has been pressed");
-                musicEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                musicEvent.release();
+            Debug.Log("Button has been pressed");
+            musicEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            musicEvent.release();
 
-                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
-                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/ClickDiegetic");
-                hasClicked = 1;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/Click");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI/ClickDiegetic");
 
-                GameManager.Instance.gameScene.GotoScene(SceneName.SAVE_LOAD);
-            }
+            GameManager.Instance.gameScene.GotoScene(SceneName.SAVE_LOAD);
         }
     }
 }

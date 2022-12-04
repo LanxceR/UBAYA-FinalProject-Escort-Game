@@ -297,8 +297,8 @@ MonoBehaviour:
   ammoType: 3
   ammoMagSize: 6
   price: 3000
-  isOwned: 0
-  isEquipped: 0
+  isOwned: 1
+  isEquipped: 1
   weaponInputScript: {fileID: 2841505596119360413}
   weaponSpriteScript: {fileID: 2841505596119360402}
   weaponAnimationScript: {fileID: 2841505596119360414}
@@ -361,7 +361,7 @@ MonoBehaviour:
   weaponMuzzleScripts:
   - {fileID: 2841505596119360403}
   fireRateDelay: 0.5
-  damage: 15
+  damage: 18
   range: 5
   velocity: 20
   knockbackForce: 5
@@ -370,6 +370,9 @@ MonoBehaviour:
   isBurstFire: 0
   burstAmount: 0
   burstDelay: 0
+  pierceAmount: 2
+  pierceMultiplier: 0.6666667
+  minPierceMultiplier: 0.1
   drawGizmo: 1
 --- !u!114 &2841505596119360403
 MonoBehaviour:

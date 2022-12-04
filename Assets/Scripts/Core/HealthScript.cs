@@ -87,7 +87,7 @@ public class HealthScript : MonoBehaviour
     // Check if the player have max health or not
     internal bool IsOnMaxHealth()
     {
-        return currentHealth == maxHealth;
+        return currentHealth >= maxHealth;
     }
 
     // Take damage

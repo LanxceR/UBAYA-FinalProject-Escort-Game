@@ -230,12 +230,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
-  health: 100
+  health: 250
   maxSpeed: 1.2
   acceleration: 0.3
   deceleration: 0.5
-  price: 5000
-  isOwned: 0
+  price: 4000
+  isOwned: 1
   isEquipped: 0
   escorteeInputScript: {fileID: 3733317801578298790}
   escorteeMovementScript: {fileID: 3733317801578298789}
@@ -344,6 +344,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   hasInitializedHealth: 0
+  isInvincible: 0
   destroyOnDeath: 0
   destroyDelay: 0
   corpsePrefab: {fileID: 0}

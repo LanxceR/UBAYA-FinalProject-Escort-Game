@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
-  health: 50
+  health: 150
   maxSpeed: 1.5
   acceleration: 0.5
   deceleration: 0.7
@@ -376,6 +376,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   hasInitializedHealth: 0
+  isInvincible: 0
   destroyOnDeath: 0
   destroyDelay: 0
   corpsePrefab: {fileID: 0}

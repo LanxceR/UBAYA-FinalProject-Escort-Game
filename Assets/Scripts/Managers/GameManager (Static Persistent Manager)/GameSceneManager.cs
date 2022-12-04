@@ -144,8 +144,8 @@ public class GameSceneManager : MonoBehaviour
 
         // Activate loading screen
         loadTransitionCanvasGroup.gameObject.SetActive(true);
-        // Fade in loading screen for 1 second
-        yield return StartCoroutine(FadeLoadingScreen(1f, 1f));
+        // Fade in loading screen for 0.5 second
+        yield return StartCoroutine(FadeLoadingScreen(1f, 0.5f));
 
         // Load loading screen scene
         yield return StartCoroutine(LoadingScreenCoroutine());
@@ -176,8 +176,8 @@ public class GameSceneManager : MonoBehaviour
 
         // Stop all ongoing loading fade coroutines
         if (LoadingFadeCoroutine != null) StopCoroutine(LoadingFadeCoroutine);
-        // Fade out loading screen for 1 second
-        yield return LoadingFadeCoroutine = StartCoroutine(FadeLoadingScreen(0f, 1f));
+        // Fade out loading screen for 0.5 second
+        yield return LoadingFadeCoroutine = StartCoroutine(FadeLoadingScreen(0f, 0.5f));
 
         // Deactivate loading screen
         loadTransitionCanvasGroup.gameObject.SetActive(false);

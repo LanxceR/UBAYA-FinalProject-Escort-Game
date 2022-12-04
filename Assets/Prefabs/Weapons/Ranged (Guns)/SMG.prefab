@@ -296,7 +296,7 @@ MonoBehaviour:
   reloadTime: 2
   ammoType: 1
   ammoMagSize: 30
-  price: 2000
+  price: 1800
   isOwned: 0
   isEquipped: 0
   weaponInputScript: {fileID: 2841505596119360413}
@@ -361,7 +361,7 @@ MonoBehaviour:
   weaponMuzzleScripts:
   - {fileID: 2841505596119360403}
   fireRateDelay: 0.125
-  damage: 4
+  damage: 5
   range: 2
   velocity: 10
   knockbackForce: 5
@@ -370,6 +370,9 @@ MonoBehaviour:
   isBurstFire: 0
   burstAmount: 0
   burstDelay: 0
+  pierceAmount: 1
+  pierceMultiplier: 1
+  minPierceMultiplier: 0.1
   drawGizmo: 1
 --- !u!114 &2841505596119360403
 MonoBehaviour:

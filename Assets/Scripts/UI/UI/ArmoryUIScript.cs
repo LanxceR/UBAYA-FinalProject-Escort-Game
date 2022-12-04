@@ -168,7 +168,7 @@ public class ArmoryUIScript : MonoBehaviour
         else
         {
             //CHANGE MAX VALUE OF SLIDERS
-            parOneSlider.GetComponent<Slider>().maxValue = (float)15;
+            parOneSlider.GetComponent<Slider>().maxValue = (float)20;
             parTwoSlider.GetComponent<Slider>().maxValue = (float)30;
 
             //CHANGE NAME OF SLIDERS

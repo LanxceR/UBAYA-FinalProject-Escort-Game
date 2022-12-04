@@ -726,9 +726,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - prefab: {fileID: 0}
-    spawnWeight: 96
+    spawnWeight: 92
   - prefab: {fileID: 3703220218853547711, guid: 28dc6c35f703d6840877b539faa1def0, type: 3}
-    spawnWeight: 1
+    spawnWeight: 5
   - prefab: {fileID: 286040589081054819, guid: 00b5de531216e2843b882d39d5e7e380, type: 3}
     spawnWeight: 1
   - prefab: {fileID: 286040589081054819, guid: 8f26deca945899745bccc1631fcd4b7c, type: 3}

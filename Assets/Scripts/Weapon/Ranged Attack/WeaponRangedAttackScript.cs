@@ -18,6 +18,7 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
        
     // Weapon stats
     [Header("Weapon Stats")]
+    // Main stats
     [SerializeField] internal float fireRateDelay = 0.1f;
     [SerializeField] internal float damage = 1f;
     [SerializeField] internal float range = 5f;
@@ -25,9 +26,16 @@ public class WeaponRangedAttackScript : MonoBehaviour, IAttackStrategy
     [SerializeField] internal float knockbackForce = 10f;
     [Range(0, 359)] [SerializeField] internal float spread = 0f;
     [SerializeField] internal bool isFullAuto = false;
+
+    // Burst fire
     [SerializeField] internal bool isBurstFire = false;
     [SerializeField] internal int burstAmount = 3;
     [SerializeField] internal float burstDelay = 0.03f;
+
+    // Pierce
+    [SerializeField] internal int pierceAmount = 0; // 0 means no piercing, 1 means pierces one enemy, etc
+    [SerializeField] internal float pierceMultiplier = 0.5f; // Multiplier to apply to projectile after each pierced enemy
+    [SerializeField] internal float minPierceMultiplier = 0.1f; // Min damage from pierce multiplier
 
     [Header("Misc Settings")]
     [SerializeField] private bool drawGizmo = false;

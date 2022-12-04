@@ -21,7 +21,10 @@ public class ItemPickupMedkit : MonoBehaviour, IItemPickup
         HealthScript health = Utilities.FindParentOfType<HealthScript>(picker.transform, out _);
 
         if (health)
+        {
+            if (health.IsOnMaxHealth()) return;
             health.Heal(healAmount);
+        }
 
         Destroy(gameObject);
     }
