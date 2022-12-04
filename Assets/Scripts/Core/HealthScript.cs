@@ -129,7 +129,18 @@ public class HealthScript : MonoBehaviour
             }
             else if (gameObject.name.Contains("Escortee"))
             {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Convoy/Damage");
+                //2D Audio
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Convoy/Damage");
+
+                //3D Audio
+                float xPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.x - this.transform.position.x;
+                float yPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.y - this.transform.position.y;
+                Vector3 audioPoint = new Vector3(xPosPlayer * -1, yPosPlayer * -1, GameManager.Instance.gamePlayer.ActivePlayer.transform.position.z - this.transform.position.z);
+
+                FMOD.Studio.EventInstance convoyDmg = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Convoy/Damage");
+                convoyDmg.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(audioPoint));
+                convoyDmg.start();
+                convoyDmg.release();
             }
             else if (gameObject.name.Contains("Blockade"))
             {
@@ -150,7 +161,17 @@ public class HealthScript : MonoBehaviour
             }
             else if (gameObject.name.Contains("Escortee"))
             {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Convoy/Damage");
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Convoy/Damage");
+
+                //3D Audio
+                float xPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.x - this.transform.position.x;
+                float yPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.y - this.transform.position.y;
+                Vector3 audioPoint = new Vector3(xPosPlayer * -1, yPosPlayer * -1, GameManager.Instance.gamePlayer.ActivePlayer.transform.position.z - this.transform.position.z);
+
+                FMOD.Studio.EventInstance convoyDmg = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Convoy/Damage");
+                convoyDmg.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(audioPoint));
+                convoyDmg.start();
+                convoyDmg.release();
             }
             else if (gameObject.name.Contains("Blockade"))
             {

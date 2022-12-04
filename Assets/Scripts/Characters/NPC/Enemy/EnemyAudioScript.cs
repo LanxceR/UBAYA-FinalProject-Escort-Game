@@ -11,6 +11,7 @@ public class EnemyAudioScript : MonoBehaviour
 
     private FMOD.Studio.EventInstance footsteps;
     private FMOD.Studio.EventInstance idleGrowl;
+    private FMOD.Studio.EventInstance attackSound;
 
     public GameObject raycastTest;
 
@@ -68,6 +69,19 @@ public class EnemyAudioScript : MonoBehaviour
         idleGrowl.start();
         idleGrowl.release();
     }
+
+    private void PlayAttack()
+    {
+        xPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.x - this.transform.position.x;
+        yPosPlayer = GameManager.Instance.gamePlayer.ActivePlayer.transform.position.y - this.transform.position.y;
+        audioPoint = new Vector3(xPosPlayer * -1, yPosPlayer * -1, GameManager.Instance.gamePlayer.ActivePlayer.transform.position.z - this.transform.position.z);
+
+        attackSound = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Zombie/Attack");
+        attackSound.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(audioPoint));
+        attackSound.start();
+        attackSound.release();
+    }
+
 
     public void SelectAndPlayFootstep()
     {
