@@ -311,7 +311,7 @@ MonoBehaviour:
   - 'On the top section of the Main Hub, you are able to see three panels that displays:
     \n(1) the amount of missions you''ve completed and failed \n(2) the current in-game
     day. \n\nSucceeding or failing a job will advance the day by one, and the amount
-    of zombies will also increase. Diifferent types of zombies will also start to
+    of zombies will also increase. Different types of zombies will also start to
     appear.'
   - 'On the bottom section, you are able to see three different buttons. \n\n1. Settings:
     Tweak volume of in-game sounds. \n\n2. Return to save/load: To choose another
