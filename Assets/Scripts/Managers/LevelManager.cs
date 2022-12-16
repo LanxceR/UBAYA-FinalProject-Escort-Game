@@ -125,6 +125,10 @@ public class LevelManager : MonoBehaviour
         {
             CalculateReward();
         }
+        else if (missionHasCompleted && finishTrigger.gameObject.activeInHierarchy)
+        {
+            finishTrigger.gameObject.SetActive(false);
+        }
     }
 
 
