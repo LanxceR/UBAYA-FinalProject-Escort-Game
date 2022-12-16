@@ -91,7 +91,7 @@ MonoBehaviour:
   - isEmpty: 0
     index: 0
     difficulty: 1
-    money: 999999
+    money: 0
     daysPassed: 1
     missionsCompleted: 1
     missionsFailed: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
     isEmpty: 0
     index: 0
     difficulty: 1
-    money: 999999
+    money: 0
     daysPassed: 1
     missionsCompleted: 1
     missionsFailed: 0
