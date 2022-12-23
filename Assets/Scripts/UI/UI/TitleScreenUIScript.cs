@@ -25,6 +25,7 @@ public class TitleScreenUIScript : MonoBehaviour
         else
         {
             VcaMaster.setVolume(1f);
+            PlayerPrefs.SetFloat("Master", 1f);
         }
 
         //SFX
@@ -36,6 +37,7 @@ public class TitleScreenUIScript : MonoBehaviour
         else
         {
             VcaSfx.setVolume(1f);
+            PlayerPrefs.SetFloat("SFX", 1f);
         }
 
         //BGM
@@ -47,6 +49,7 @@ public class TitleScreenUIScript : MonoBehaviour
         else
         {
             VcaBgm.setVolume(1f);
+            PlayerPrefs.SetFloat("BGM", 1f);
         }
 
 
