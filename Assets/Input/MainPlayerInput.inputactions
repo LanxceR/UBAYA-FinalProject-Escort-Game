@@ -975,6 +975,98 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Cheats",
+            "id": "5ab5698f-90cf-4ae1-84a5-e6a704e2cc29",
+            "actions": [
+                {
+                    "name": "PlayerGodMode",
+                    "type": "Button",
+                    "id": "26febb31-833a-4008-bc4e-9f7079fe7147",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "EscorteeGodMode",
+                    "type": "Button",
+                    "id": "a7481ede-bff2-41a8-893a-a92e054b4161",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Ctrl + F1 [Keyboard]",
+                    "id": "85ccfea8-19b0-483e-9c33-d3f24b7003a1",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerGodMode",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Modifier",
+                    "id": "c94ce426-589c-4ded-bee8-7720a83c9ee1",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PlayerGodMode",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Binding",
+                    "id": "cc3d011f-b849-4b1b-b9e5-36f07d619ed6",
+                    "path": "<Keyboard>/f1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PlayerGodMode",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Ctrl + F2 [Keyboard]",
+                    "id": "3ab8009c-cc54-48fe-aba3-73e5fa6ffc79",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EscorteeGodMode",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Modifier",
+                    "id": "5a58a82d-4749-48d2-970c-3722e67de76a",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "EscorteeGodMode",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Binding",
+                    "id": "88a9d43c-4dad-40b2-a7ee-ffcc267006e9",
+                    "path": "<Keyboard>/f2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "EscorteeGodMode",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
         }
     ],
     "controlSchemes": [
